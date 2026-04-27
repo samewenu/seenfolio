@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SeenFolio — Set up</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,200..700,0..100;1,9..144,200..700,0..100&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0E0D0A;
+      --bg-1: #15130F;
+      --surface: #1A1813;
+      --surface-1: #211E18;
+      --surface-2: #28241D;
+      --surface-3: #322D24;
+      --line: rgba(245, 233, 211, 0.07);
+      --line-strong: rgba(245, 233, 211, 0.14);
+      --line-warm: rgba(232, 178, 96, 0.18);
+      --ink: #F4EBD7;
+      --ink-soft: #C7BCA3;
+      --ink-mute: #877E6B;
+      --ink-faint: #5C5547;
+      --amber: #E8B260;
+      --amber-bright: #F4C880;
+      --amber-deep: #B8843C;
+      --amber-glow: rgba(232, 178, 96, 0.16);
+      --amber-trace: rgba(232, 178, 96, 0.06);
+      --good: #9CB87E;
+      --bad: #C9694F;
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "Geist", ui-sans-serif, -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: "Geist Mono", ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        radial-gradient(900px 600px at 18% -10%, rgba(232, 178, 96, 0.07), transparent 60%),
+        radial-gradient(1200px 800px at 110% 110%, rgba(232, 178, 96, 0.04), transparent 60%);
+    }
+    button { font: inherit; color: inherit; cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--amber-glow); }
+
+    .topnav {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 40px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .brand-mark {
+      width: 28px; height: 28px;
+      position: relative;
+    }
+    .brand-mark::before {
+      content: ""; position: absolute; inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, var(--amber-bright), var(--amber-deep) 60%, transparent 75%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    .brand-mark::after {
+      content: ""; position: absolute; inset: 8px;
+      background: var(--bg);
+      border-radius: 50%;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.85; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.06); }
+    }
+    .brand-name {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-variation-settings: "opsz" 36, "SOFT" 50, "wght" 400;
+      letter-spacing: -0.01em;
+    }
+    .brand-name em { font-style: italic; color: var(--amber); }
+
+    .nav-tour {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      display: flex;
+      gap: 16px;
+    }
+    .nav-tour a { padding: 4px 0; border-bottom: 1px dotted transparent; }
+    .nav-tour a:hover, .nav-tour .active { color: var(--amber); border-bottom-color: var(--amber); }
+
+    .progress-strip {
+      display: flex;
+      gap: 4px;
+      padding: 14px 40px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      z-index: 2;
+      background: rgba(14, 13, 10, 0.7);
+      backdrop-filter: blur(10px);
+    }
+    .progress-step {
+      flex: 1;
+      height: 3px;
+      background: var(--surface-2);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .progress-step.active::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, var(--amber-deep), var(--amber-bright));
+      animation: fill-bar 0.5s ease-out forwards;
+    }
+    .progress-step.done::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--amber-deep);
+    }
+    @keyframes fill-bar {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    /* ─── STAGE ─────────────────────────────────────────── */
+    .stage {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 60px 40px 100px;
+      min-height: calc(100vh - 132px);
+    }
+
+    .step {
+      display: none;
+      animation: step-in 0.4s ease;
+    }
+    .step.active { display: block; }
+    @keyframes step-in {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .step-eyebrow .num {
+      color: var(--amber);
+    }
+    .step-eyebrow .sep {
+      width: 30px;
+      height: 1px;
+      background: var(--line-strong);
+    }
+
+    .step-q {
+      font-family: var(--serif);
+      font-size: clamp(48px, 6.4vw, 80px);
+      line-height: 1;
+      letter-spacing: -0.025em;
+      font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 320;
+      margin: 0 0 18px;
+      max-width: 18ch;
+    }
+    .step-q em {
+      font-style: italic;
+      color: var(--amber);
+      font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 320;
+    }
+
+    .step-helper {
+      font-family: var(--serif);
+      font-size: 19px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      max-width: 56ch;
+      margin: 0 0 48px;
+      font-variation-settings: "opsz" 80, "SOFT" 60, "wght" 350;
+    }
+
+    /* big input */
+    .big-input {
+      border-bottom: 2px solid var(--line-strong);
+      padding: 12px 0 16px;
+      margin-bottom: 28px;
+      transition: border-color 0.2s;
+    }
+    .big-input:focus-within { border-color: var(--amber); }
+    .big-input input {
+      width: 100%;
+      background: transparent;
+      border: 0;
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 32px;
+      font-variation-settings: "opsz" 100, "SOFT" 50, "wght" 350;
+      letter-spacing: -0.012em;
+      outline: none;
+    }
+    .big-input input::placeholder {
+      color: var(--ink-mute);
+      font-style: italic;
+    }
+    .big-input.has-prefix {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .big-input .prefix {
+      font-family: var(--mono);
+      font-size: 18px;
+      color: var(--ink-mute);
+      letter-spacing: 0.04em;
+    }
+
+    /* chips */
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .chip-label {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      align-self: center;
+      margin-right: 8px;
+    }
+    .chip {
+      font-size: 13px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      background: var(--surface);
+      color: var(--ink-soft);
+      transition: all 0.15s;
+    }
+    .chip:hover {
+      border-color: var(--line-warm);
+      color: var(--ink);
+    }
+    .chip.selected {
+      background: var(--amber);
+      color: var(--bg);
+      border-color: var(--amber);
+      font-weight: 500;
+    }
+
+    /* platform connect tiles */
+    .connect-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .connect-tile {
+      padding: 18px 14px;
+      border: 1px solid var(--line);
+      border-radius: var(--r-md, 12px);
+      background: var(--surface);
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: center;
+    }
+    .connect-tile:hover {
+      border-color: var(--line-warm);
+      background: var(--surface-1);
+    }
+    .connect-tile.selected {
+      border-color: var(--amber);
+      background: linear-gradient(180deg, var(--surface-1), var(--surface));
+      box-shadow: 0 0 0 1px var(--amber-trace), inset 0 1px 0 rgba(245,233,211,0.05);
+    }
+    .connect-tile .logo {
+      width: 28px; height: 28px;
+      margin: 0 auto 10px;
+      border-radius: 7px;
+      display: grid; place-items: center;
+      font-family: var(--serif);
+      font-size: 16px;
+      font-style: italic;
+      font-variation-settings: "wght" 500;
+      color: var(--bg);
+    }
+    .connect-tile .name {
+      font-size: 12.5px;
+      color: var(--ink);
+    }
+
+    /* goal cards */
+    .goal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .goal-card {
+      padding: 28px 28px 32px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.18s;
+      position: relative;
+    }
+    .goal-card:hover {
+      border-color: var(--line-strong);
+      transform: translateY(-2px);
+    }
+    .goal-card.selected {
+      border-color: var(--amber);
+      background:
+        radial-gradient(500px 250px at 0% 0%, var(--amber-trace), transparent 60%),
+        var(--surface-1);
+      box-shadow: 0 0 0 1px var(--amber-trace), 0 16px 40px -16px rgba(0,0,0,0.5);
+    }
+    .goal-card.selected::before {
+      content: "✓";
+      position: absolute;
+      top: 18px; right: 22px;
+      font-family: var(--serif);
+      font-size: 22px;
+      font-style: italic;
+      color: var(--amber);
+    }
+    .goal-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 14px;
+    }
+    .goal-title {
+      font-family: var(--serif);
+      font-size: 30px;
+      letter-spacing: -0.018em;
+      font-variation-settings: "opsz" 100, "SOFT" 50, "wght" 360;
+      margin: 0 0 6px;
+    }
+    .goal-title em { font-style: italic; color: var(--amber); }
+    .goal-sub {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+
+    /* nav row */
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 48px;
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 18px;
+      border-radius: 8px;
+      border: 1px solid var(--line-strong);
+      background: transparent;
+      color: var(--ink);
+      font-size: 13.5px;
+      transition: all 0.15s;
+    }
+    .btn:hover { border-color: var(--ink-mute); }
+    .btn.amber {
+      background: var(--amber);
+      color: var(--bg);
+      border-color: var(--amber);
+      font-weight: 500;
+    }
+    .btn.amber:hover { background: var(--amber-bright); border-color: var(--amber-bright); }
+    .btn.ghost { border-color: transparent; color: var(--ink-mute); }
+    .btn.ghost:hover { color: var(--ink); }
+
+    .helper-side {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 56px;
+      align-items: start;
+    }
+    .why-card {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px 24px 24px;
+      background: var(--surface);
+      position: sticky;
+      top: 100px;
+    }
+    .why-card h4 {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin: 0 0 12px;
+    }
+    .why-card p {
+      font-family: var(--serif);
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin: 0 0 12px;
+      font-variation-settings: "opsz" 60, "SOFT" 50, "wght" 350;
+    }
+    .why-card p:last-child { margin-bottom: 0; }
+    .why-card em { font-style: italic; color: var(--ink); }
+
+    /* ─── ANALYZING STATE ───────────────────────────────── */
+    .analyzing {
+      display: none;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 0;
+      text-align: center;
+    }
+    .analyzing.active { display: block; animation: step-in 0.4s ease; }
+
+    .orb {
+      width: 96px; height: 96px;
+      margin: 0 auto 40px;
+      position: relative;
+    }
+    .orb::before, .orb::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, var(--amber-bright), var(--amber-deep) 60%, transparent 75%);
+      animation: orb-pulse 2.4s ease-in-out infinite;
+    }
+    .orb::after {
+      animation-delay: 1.2s;
+      opacity: 0.5;
+    }
+    @keyframes orb-pulse {
+      0% { transform: scale(0.7); opacity: 0; }
+      40% { opacity: 1; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+    .orb .core {
+      position: absolute;
+      inset: 30px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, var(--amber-bright), var(--amber-deep) 80%);
+      box-shadow: 0 0 40px var(--amber-glow);
+    }
+
+    .analyzing h2 {
+      font-family: var(--serif);
+      font-size: clamp(40px, 5vw, 60px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-variation-settings: "opsz" 144, "SOFT" 40, "wght" 320;
+      margin: 0 auto 20px;
+      max-width: 18ch;
+    }
+    .analyzing h2 em { font-style: italic; color: var(--amber); font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 320; }
+
+    .analyzing-sub {
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      max-width: 44ch;
+      margin: 0 auto 44px;
+      font-variation-settings: "opsz" 80, "SOFT" 60, "wght" 350;
+    }
+
+    .phase-list {
+      max-width: 460px;
+      margin: 0 auto 40px;
+      text-align: left;
+      list-style: none;
+      padding: 0;
+    }
+    .phase-list li {
+      display: grid;
+      grid-template-columns: 28px 1fr auto;
+      gap: 16px;
+      padding: 14px 18px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      margin-bottom: 6px;
+      align-items: center;
+      background: var(--surface);
+      transition: all 0.3s;
+    }
+    .phase-list li.done {
+      opacity: 0.6;
+      border-color: var(--line);
+    }
+    .phase-list li.active {
+      border-color: var(--line-warm);
+      background: linear-gradient(180deg, var(--surface-1), var(--surface));
+      box-shadow: 0 0 0 1px var(--amber-trace);
+    }
+    .phase-icon {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      border: 1.5px solid var(--ink-faint);
+      display: grid; place-items: center;
+      transition: all 0.3s;
+    }
+    .phase-list li.done .phase-icon {
+      background: var(--amber-deep);
+      border-color: var(--amber-deep);
+      color: var(--bg);
+    }
+    .phase-list li.active .phase-icon {
+      border-color: var(--amber);
+      animation: spin 1.5s linear infinite;
+    }
+    .phase-list li.active .phase-icon::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      box-shadow: 0 0 8px var(--amber);
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .phase-list .phase-icon svg { width: 12px; height: 12px; }
+    .phase-name {
+      font-family: var(--serif);
+      font-size: 17px;
+      font-variation-settings: "opsz" 60, "SOFT" 60, "wght" 360;
+      color: var(--ink);
+    }
+    .phase-list li.done .phase-name { color: var(--ink-soft); }
+    .phase-time {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--ink-mute);
+    }
+
+    .analyzing-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .findings-card {
+      max-width: 520px;
+      margin: 32px auto 0;
+      padding: 22px 24px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      text-align: left;
+    }
+    .findings-card h5 {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin: 0 0 12px;
+    }
+    .findings-card ul {
+      margin: 0; padding: 0;
+      list-style: none;
+      font-family: var(--serif);
+      font-size: 15px;
+      line-height: 1.6;
+      font-variation-settings: "opsz" 60, "SOFT" 50, "wght" 350;
+    }
+    .findings-card li {
+      padding: 6px 0 6px 22px;
+      position: relative;
+    }
+    .findings-card li::before {
+      content: "—";
+      position: absolute; left: 0;
+      color: var(--amber);
+    }
+    .findings-card li em { font-style: italic; color: var(--amber); }
+
+    @media (max-width: 820px) {
+      .helper-side { grid-template-columns: 1fr; gap: 24px; }
+      .why-card { position: relative; top: 0; }
+      .connect-grid { grid-template-columns: repeat(2, 1fr); }
+      .goal-grid { grid-template-columns: 1fr; }
+      .topnav { padding: 18px 24px; }
+      .progress-strip { padding: 12px 24px; }
+      .stage { padding: 40px 24px 80px; }
+      .step-q { font-size: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topnav">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-name">Seen<em>Folio</em></div>
+    </div>
+    <nav class="nav-tour">
+      <a href="auth.html">Auth</a>
+      <a class="active">Onboard</a>
+      <a href="app.html">App</a>
+      <a href="index.html">Lo-fi</a>
+    </nav>
+  </header>
+
+  <div class="progress-strip" data-progress>
+    <div class="progress-step active" data-prog="1"></div>
+    <div class="progress-step" data-prog="2"></div>
+    <div class="progress-step" data-prog="3"></div>
+    <div class="progress-step" data-prog="4"></div>
+  </div>
+
+  <main class="stage">
+
+    <!-- STEP 1: WHAT DO YOU SELL -->
+    <section class="step active" data-step="1">
+      <div class="helper-side">
+        <div>
+          <div class="step-eyebrow"><span class="num">01 / 04</span><span class="sep"></span> A few questions, then I'll get to work</div>
+          <h1 class="step-q">First — what do you <em>sell</em>?</h1>
+          <p class="step-helper">In plain words. No industry codes. I use this to understand who your customers are and what voice to write in.</p>
+
+          <div class="big-input">
+            <input type="text" placeholder="Handmade silver jewelry" data-field="what" autofocus />
+          </div>
+
+          <div class="chip-row" data-chip-group>
+            <span class="chip-label">or pick</span>
+            <button class="chip">Apparel &amp; fashion</button>
+            <button class="chip selected">Jewelry &amp; accessories</button>
+            <button class="chip">Home &amp; decor</button>
+            <button class="chip">Beauty &amp; skincare</button>
+            <button class="chip">Food &amp; beverage</button>
+            <button class="chip">Digital products</button>
+            <button class="chip">Services</button>
+            <button class="chip">Something else</button>
+          </div>
+
+          <div class="nav-row">
+            <a href="auth.html" class="btn ghost">← Back to sign-in</a>
+            <button class="btn amber" data-next="2">Continue →</button>
+          </div>
+        </div>
+
+        <aside class="why-card">
+          <h4>Why I'm asking</h4>
+          <p>I'll match my voice and tone to your business. Selling silver jewelry is very different from selling enterprise software — both in language and audience.</p>
+          <p>You can change this later in <em>Settings → Brand voice</em>. It's not locked in.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- STEP 2: WEBSITE -->
+    <section class="step" data-step="2">
+      <div class="helper-side">
+        <div>
+          <div class="step-eyebrow"><span class="num">02 / 04</span><span class="sep"></span> Where it lives</div>
+          <h1 class="step-q">Your <em>website</em>.</h1>
+          <p class="step-helper">Paste the URL. I'll install a small script that lets me see what's slow, what's confusing, and what's costing you customers. <strong style="color: var(--ink); font-weight: 400;">I never publish changes without showing you first.</strong></p>
+
+          <div class="big-input has-prefix">
+            <span class="prefix">https://</span>
+            <input type="text" placeholder="yourbusiness.com" value="silverjewelry.com" data-field="url" />
+          </div>
+
+          <div class="chip-row" data-chip-group>
+            <span class="chip-label">or connect via</span>
+          </div>
+          <div class="connect-grid" data-connect-group>
+            <button class="connect-tile">
+              <div class="logo" style="background: linear-gradient(135deg, #95BF47, #5E8E3E);">S</div>
+              <div class="name">Shopify</div>
+            </button>
+            <button class="connect-tile">
+              <div class="logo" style="background: linear-gradient(135deg, #96588A, #674281);">W</div>
+              <div class="name">WooCommerce</div>
+            </button>
+            <button class="connect-tile">
+              <div class="logo" style="background: linear-gradient(135deg, #4353FF, #2837B0);">W</div>
+              <div class="name">Webflow</div>
+            </button>
+            <button class="connect-tile">
+              <div class="logo" style="background: linear-gradient(135deg, #1A1A1A, #4A4A4A); color: var(--ink);">Sq</div>
+              <div class="name">Squarespace</div>
+            </button>
+            <button class="connect-tile">
+              <div class="logo" style="background: linear-gradient(135deg, #21759B, #11465F); color: var(--ink);">W</div>
+              <div class="name">WordPress</div>
+            </button>
+            <button class="connect-tile">
+              <div class="logo" style="background: linear-gradient(135deg, #FF7A59, #D9663E);">B</div>
+              <div class="name">BigCommerce</div>
+            </button>
+            <button class="connect-tile">
+              <div class="logo" style="background: linear-gradient(135deg, #00A2DC, #006B92);">W</div>
+              <div class="name">Wix</div>
+            </button>
+            <button class="connect-tile">
+              <div class="logo" style="background: linear-gradient(135deg, #635BFF, #3D34CC);">St</div>
+              <div class="name">Custom</div>
+            </button>
+          </div>
+
+          <div class="nav-row">
+            <button class="btn ghost" data-prev="1">← Back</button>
+            <button class="btn amber" data-next="3">Continue →</button>
+          </div>
+        </div>
+
+        <aside class="why-card">
+          <h4>What the snippet does</h4>
+          <p>Reads which pages convert and which don't. Watches load times. Sees which traffic sources lead to sales.</p>
+          <p>It does <em>not</em> change anything on its own. Every change comes through me first, and you see it before it goes live.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- STEP 3: GOAL -->
+    <section class="step" data-step="3">
+      <div class="helper-side">
+        <div>
+          <div class="step-eyebrow"><span class="num">03 / 04</span><span class="sep"></span> What matters most</div>
+          <h1 class="step-q">Pick an <em>outcome</em>.</h1>
+          <p class="step-helper">Not a tactic. I'll choose the engines and the ratio. You can change your mind any time and I'll rebalance.</p>
+
+          <div class="goal-grid" data-goal-group>
+            <button class="goal-card">
+              <div class="goal-num">A · for new businesses</div>
+              <h4 class="goal-title">More <em>traffic</em></h4>
+              <p class="goal-sub">Show up when people search. Best if you need eyeballs first and conversion can come later.</p>
+            </button>
+            <button class="goal-card selected">
+              <div class="goal-num">B · most picked</div>
+              <h4 class="goal-title">More <em>sales</em></h4>
+              <p class="goal-sub">Turn the visitors you already have into customers. Conversion-led with retention follow-up.</p>
+            </button>
+            <button class="goal-card">
+              <div class="goal-num">C · the long game</div>
+              <h4 class="goal-title">Build <em>brand</em></h4>
+              <p class="goal-sub">Reviews, reputation, trust signals, the name people remember. Slowest to compound, hardest to fake.</p>
+            </button>
+            <button class="goal-card">
+              <div class="goal-num">D · balanced</div>
+              <h4 class="goal-title">All of the <em>above</em></h4>
+              <p class="goal-sub">I'll run everything in measured doses, weight by what's working, and shift over time.</p>
+            </button>
+          </div>
+
+          <div class="nav-row">
+            <button class="btn ghost" data-prev="2">← Back</button>
+            <button class="btn amber" data-next="4" data-start-analyze>Start analyzing →</button>
+          </div>
+        </div>
+
+        <aside class="why-card">
+          <h4>How this shapes things</h4>
+          <p>Each goal weights my engines differently. <em>More sales</em> leans on conversion, ads, and retention. <em>Brand</em> leans on reputation and content.</p>
+          <p>I'll tell you when I notice a different goal might serve you better — and you can switch with one click.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- STEP 4: ANALYZING -->
+    <section class="step analyzing" data-step="4">
+      <div class="orb"><div class="core"></div></div>
+      <h2 data-analyzing-title>Reading your site, your traffic, and what your <em>customers</em> say.</h2>
+      <p class="analyzing-sub" data-analyzing-sub>You'll get an email tomorrow morning with three things I noticed and the first change I'd like to make. You don't need to do anything until then.</p>
+
+      <ul class="phase-list" data-phase-list>
+        <li class="active" data-phase="connect">
+          <div class="phase-icon"></div>
+          <span class="phase-name">Connecting to silverjewelry.com</span>
+          <span class="phase-time">~30 sec</span>
+        </li>
+        <li data-phase="audit">
+          <div class="phase-icon"></div>
+          <span class="phase-name">Auditing 47 pages, 14 product listings</span>
+          <span class="phase-time">~6 hr</span>
+        </li>
+        <li data-phase="listen">
+          <div class="phase-icon"></div>
+          <span class="phase-name">Listening to your visitors and your reviews</span>
+          <span class="phase-time">~4 hr</span>
+        </li>
+        <li data-phase="draft">
+          <div class="phase-icon"></div>
+          <span class="phase-name">Drafting the first move</span>
+          <span class="phase-time">~8 hr</span>
+        </li>
+      </ul>
+
+      <div class="findings-card" data-findings style="display: none;">
+        <h5>Three things I'm already seeing</h5>
+        <ul>
+          <li>Your homepage takes <em>4.2 seconds</em> to show its hero image — slower than 91% of jewelry sites.</li>
+          <li>You don't appear in search for <em>"sterling silver care"</em> — but 14k people search it monthly.</li>
+          <li><em>22% of visitors</em> from Instagram leave within 3 seconds. They can't tell what you sell.</li>
+        </ul>
+      </div>
+
+      <div class="analyzing-actions">
+        <a href="app.html" class="btn amber" data-skip-to-app style="display: none;">Take me to my dashboard →</a>
+        <button class="btn ghost" data-skip-wait>Skip the wait · jump in</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    /* ────── chip selection ────── */
+    document.querySelectorAll('[data-chip-group]').forEach(group => {
+      group.querySelectorAll('.chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          group.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+          chip.classList.add('selected');
+        });
+      });
+    });
+
+    document.querySelectorAll('[data-connect-group]').forEach(group => {
+      group.querySelectorAll('.connect-tile').forEach(t => {
+        t.addEventListener('click', () => {
+          group.querySelectorAll('.connect-tile').forEach(c => c.classList.remove('selected'));
+          t.classList.add('selected');
+        });
+      });
+    });
+
+    document.querySelectorAll('[data-goal-group]').forEach(group => {
+      group.querySelectorAll('.goal-card').forEach(card => {
+        card.addEventListener('click', () => {
+          group.querySelectorAll('.goal-card').forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+        });
+      });
+    });
+
+    /* ────── step navigation ────── */
+    const steps = document.querySelectorAll('[data-step]');
+    const progSteps = document.querySelectorAll('[data-prog]');
+
+    function gotoStep(n) {
+      steps.forEach(s => s.classList.toggle('active', s.dataset.step === String(n)));
+      progSteps.forEach((p, i) => {
+        p.classList.remove('active', 'done');
+        if (i + 1 < n) p.classList.add('done');
+        else if (i + 1 === n) p.classList.add('active');
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('[data-next]').forEach(b => {
+      b.addEventListener('click', () => {
+        const n = parseInt(b.dataset.next, 10);
+        gotoStep(n);
+        if (b.hasAttribute('data-start-analyze')) startAnalyze();
+      });
+    });
+    document.querySelectorAll('[data-prev]').forEach(b => {
+      b.addEventListener('click', () => gotoStep(parseInt(b.dataset.prev, 10)));
+    });
+
+    /* ────── analyzing animation ────── */
+    const phaseList = document.querySelectorAll('[data-phase]');
+    const findings = document.querySelector('[data-findings]');
+    const skipBtn = document.querySelector('[data-skip-to-app]');
+    const skipWait = document.querySelector('[data-skip-wait]');
+
+    function startAnalyze() {
+      // Animate phases sequentially
+      const phases = ['connect', 'audit', 'listen', 'draft'];
+      let i = 0;
+      const interval = setInterval(() => {
+        if (i < phases.length) {
+          const cur = document.querySelector(`[data-phase="${phases[i]}"]`);
+          if (i > 0) {
+            const prev = document.querySelector(`[data-phase="${phases[i - 1]}"]`);
+            prev.classList.remove('active');
+            prev.classList.add('done');
+            prev.querySelector('.phase-icon').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>';
+          }
+          cur.classList.add('active');
+          i++;
+        } else {
+          clearInterval(interval);
+          // Final phase complete
+          const last = document.querySelector(`[data-phase="${phases[phases.length - 1]}"]`);
+          last.classList.remove('active');
+          last.classList.add('done');
+          last.querySelector('.phase-icon').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>';
+          // Reveal findings
+          findings.style.display = 'block';
+          skipBtn.style.display = 'inline-flex';
+          skipWait.style.display = 'none';
+          // Update title
+          const title = document.querySelector('[data-analyzing-title]');
+          const sub = document.querySelector('[data-analyzing-sub]');
+          if (title) title.innerHTML = 'I found a few things <em>worth your attention</em>.';
+          if (sub) sub.textContent = "I've drafted my first three moves. Approve them in your dashboard, or let me run on auto.";
+        }
+      }, 1900);
+    }
+
+    if (skipWait) {
+      skipWait.addEventListener('click', () => {
+        // Speed-run completion
+        document.querySelectorAll('[data-phase]').forEach(p => {
+          p.classList.remove('active');
+          p.classList.add('done');
+          p.querySelector('.phase-icon').innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg>';
+        });
+        findings.style.display = 'block';
+        skipBtn.style.display = 'inline-flex';
+        skipWait.style.display = 'none';
+        const title = document.querySelector('[data-analyzing-title]');
+        const sub = document.querySelector('[data-analyzing-sub]');
+        if (title) title.innerHTML = 'I found a few things <em>worth your attention</em>.';
+        if (sub) sub.textContent = "I've drafted my first three moves. Approve them in your dashboard, or let me run on auto.";
+      });
+    }
+
+    /* ────── enter to advance ────── */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        const active = document.querySelector('.step.active');
+        if (!active) return;
+        const next = active.querySelector('[data-next]');
+        if (next) {
+          e.preventDefault();
+          next.click();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
