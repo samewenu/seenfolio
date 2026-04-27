@@ -3,2433 +3,558 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SeenFolio — Low-fidelity Prototype</title>
+  <title>SeenFolio — Sign in</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=IBM+Plex+Mono:wght@300;400;500&family=Newsreader:ital,wght@0,400;0,500;1,400&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,200..700,0..100;1,9..144,200..700,0..100&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --paper: #f2ede3;
-      --paper-deep: #ece6d8;
-      --paper-screen: #faf6ec;
-      --ink: #141414;
-      --ink-soft: #3a3a36;
-      --ink-mute: #8a8780;
-      --rule: rgba(20, 20, 20, 0.22);
-      --rule-soft: rgba(20, 20, 20, 0.1);
-      --accent: #1f3a8a;
-      --accent-soft: rgba(31, 58, 138, 0.08);
-      --warn: #8a3a1f;
-      --serif: "Instrument Serif", "Newsreader", Georgia, serif;
-      --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
-      --sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        "Helvetica Neue", sans-serif;
+      --bg: #0E0D0A;
+      --bg-1: #15130F;
+      --surface: #1A1813;
+      --surface-1: #211E18;
+      --surface-2: #28241D;
+      --surface-3: #322D24;
+      --line: rgba(245, 233, 211, 0.07);
+      --line-strong: rgba(245, 233, 211, 0.14);
+      --line-warm: rgba(232, 178, 96, 0.18);
+      --ink: #F4EBD7;
+      --ink-soft: #C7BCA3;
+      --ink-mute: #877E6B;
+      --ink-faint: #5C5547;
+      --amber: #E8B260;
+      --amber-bright: #F4C880;
+      --amber-deep: #B8843C;
+      --amber-glow: rgba(232, 178, 96, 0.16);
+      --amber-trace: rgba(232, 178, 96, 0.06);
+      --good: #9CB87E;
+      --bad: #C9694F;
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "Geist", ui-sans-serif, -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono: "Geist Mono", ui-monospace, monospace;
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
     body {
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background-color: var(--paper);
-      background-image: radial-gradient(
-        circle,
-        rgba(20, 20, 20, 0.07) 1px,
-        transparent 1px
-      );
-      background-size: 22px 22px;
-      background-position: 0 0;
+      background: var(--bg);
       color: var(--ink);
       font-family: var(--sans);
-      font-size: 15px;
-      line-height: 1.55;
+      font-size: 14px;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
+    button { font: inherit; color: inherit; cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--amber-glow); color: var(--ink); }
 
-    .page {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 80px 56px 160px;
-    }
-
-    /* ─── HEADER / COVER ───────────────────────────────────── */
-
-    .cover {
-      border-top: 1px solid var(--ink);
-      border-bottom: 1px solid var(--ink);
-      padding: 48px 0 56px;
-      margin-bottom: 96px;
+    .auth {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
+      grid-template-columns: 1.05fr 0.95fr;
+      min-height: 100vh;
     }
 
-    .cover-meta {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 56px;
-      grid-column: 1 / -1;
-      border-bottom: 1px dashed var(--rule);
-      padding-bottom: 14px;
-    }
-
-    .cover h1 {
-      font-family: var(--serif);
-      font-weight: 400;
-      font-size: clamp(64px, 9vw, 132px);
-      line-height: 0.92;
-      letter-spacing: -0.02em;
-      margin: 0 0 28px;
-    }
-
-    .cover h1 em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .cover-tagline {
-      font-family: var(--serif);
-      font-size: 26px;
-      line-height: 1.3;
-      max-width: 36ch;
-      color: var(--ink-soft);
-      margin: 0;
-    }
-
-    .cover-right {
+    /* ─── LEFT: BRAND STAGE ─────────────────────────────── */
+    .stage {
+      position: relative;
+      padding: 40px 60px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding-top: 12px;
-    }
-
-    .cover-legend {
-      font-family: var(--mono);
-      font-size: 11px;
-      line-height: 1.7;
-      color: var(--ink-soft);
-      letter-spacing: 0.04em;
-    }
-
-    .cover-legend dt {
-      color: var(--ink);
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-size: 10px;
-      margin-top: 14px;
-      margin-bottom: 6px;
-    }
-    .cover-legend dt:first-child {
-      margin-top: 0;
-    }
-
-    .cover-legend dd {
-      margin: 0;
-    }
-
-    .cover-toc {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      color: var(--ink-soft);
-      border-top: 1px dashed var(--rule);
-      padding-top: 18px;
-      margin-top: 28px;
-      column-count: 2;
-      column-gap: 28px;
-    }
-
-    .cover-toc a {
-      display: block;
-      padding: 3px 0;
-      color: var(--ink-soft);
-      text-decoration: none;
-      border-bottom: 1px dotted transparent;
-    }
-    .cover-toc a:hover {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-    }
-
-    /* ─── FIGURE LAYOUT ────────────────────────────────────── */
-
-    .figure {
-      display: grid;
-      grid-template-columns: 130px 1fr 130px;
-      gap: 24px;
-      margin-bottom: 120px;
-      align-items: start;
-    }
-
-    .figure-tag {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      padding-top: 6px;
-      position: sticky;
-      top: 24px;
-    }
-
-    .figure-tag .tag-num {
-      display: block;
-      font-family: var(--serif);
-      font-size: 42px;
-      letter-spacing: -0.01em;
-      color: var(--ink);
-      line-height: 1;
-      margin-bottom: 10px;
-    }
-
-    .figure-tag .tag-rule {
-      width: 36px;
-      height: 1px;
-      background: var(--ink);
-      margin: 12px 0;
-    }
-
-    .figure-body {
-      min-width: 0;
-    }
-
-    .figure-title {
-      font-family: var(--serif);
-      font-size: 36px;
-      line-height: 1.05;
-      letter-spacing: -0.01em;
-      margin: 0 0 8px;
-      font-weight: 400;
-    }
-
-    .figure-title em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .figure-desc {
-      font-family: var(--serif);
-      font-size: 17px;
-      line-height: 1.45;
-      color: var(--ink-soft);
-      margin: 0 0 28px;
-      max-width: 60ch;
-    }
-
-    .annot {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.05em;
-      line-height: 1.55;
-      color: var(--ink-soft);
-      padding-top: 12px;
-    }
-
-    .annot-row {
-      padding: 10px 0;
-      border-top: 1px dashed var(--rule);
-    }
-    .annot-row:first-child {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    .annot-row b {
-      display: block;
-      color: var(--ink);
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-weight: 500;
-      margin-bottom: 4px;
-      font-size: 9px;
-    }
-
-    /* ─── SCREEN FRAME ─────────────────────────────────────── */
-
-    .screen {
-      background: var(--paper-screen);
-      border: 1px solid var(--ink);
-      position: relative;
-    }
-
-    .screen-chrome {
-      border-bottom: 1px solid var(--ink);
-      padding: 10px 16px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--ink-soft);
-      background: var(--paper-deep);
-    }
-
-    .screen-chrome .dots {
-      display: inline-flex;
-      gap: 6px;
-    }
-    .screen-chrome .dot {
-      width: 9px;
-      height: 9px;
-      border: 1px solid var(--ink);
-      border-radius: 50%;
-    }
-
-    .screen-chrome .url {
-      flex: 1;
-      letter-spacing: 0.03em;
-    }
-
-    .screen-chrome .url::before {
-      content: "› ";
-      color: var(--ink-mute);
-    }
-
-    .screen-content {
-      padding: 56px 64px;
-    }
-
-    .screen-content.tight {
-      padding: 36px 40px;
-    }
-
-    /* ─── ONBOARDING ────────────────────────────────────────── */
-
-    .onboard-step {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-bottom: 32px;
-    }
-
-    .onboard-step .pill {
-      display: inline-block;
-      border: 1px solid var(--ink);
-      padding: 3px 10px;
-      margin-right: 6px;
-      border-radius: 999px;
-    }
-    .onboard-step .pill.active {
-      background: var(--ink);
-      color: var(--paper-screen);
-    }
-
-    .onboard-q {
-      font-family: var(--serif);
-      font-size: 56px;
-      line-height: 1.04;
-      margin: 0 0 14px;
-      letter-spacing: -0.015em;
-      font-weight: 400;
-    }
-    .onboard-q em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .onboard-helper {
-      font-family: var(--serif);
-      font-size: 19px;
-      color: var(--ink-soft);
-      max-width: 52ch;
-      margin: 0 0 40px;
-      line-height: 1.4;
-    }
-
-    .input-line {
-      border-bottom: 1px solid var(--ink);
-      padding: 12px 0 14px;
-      font-family: var(--serif);
-      font-size: 28px;
-      color: var(--ink);
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
-    }
-    .input-line .caret {
-      width: 1px;
-      height: 28px;
-      background: var(--accent);
-      animation: blink 1.05s steps(2) infinite;
-    }
-    @keyframes blink {
-      50% {
-        opacity: 0;
-      }
-    }
-    .input-line .placeholder {
-      color: var(--ink-mute);
-      font-style: italic;
-    }
-    .input-line .typed {
-      color: var(--ink);
-    }
-
-    .chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 28px;
-    }
-
-    .chip {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 8px 14px;
-      border: 1px solid var(--rule);
-      background: transparent;
-      color: var(--ink-soft);
-      cursor: pointer;
-      border-radius: 999px;
-      transition: all 0.15s;
-    }
-    .chip:hover {
-      border-color: var(--ink);
-      color: var(--ink);
-    }
-    .chip.selected {
-      background: var(--ink);
-      color: var(--paper-screen);
-      border-color: var(--ink);
-    }
-
-    .nav-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 56px;
-      padding-top: 24px;
-      border-top: 1px dashed var(--rule);
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 0.04em;
-      color: var(--ink-soft);
-    }
-
-    .btn {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      padding: 12px 22px;
-      border: 1px solid var(--ink);
-      background: transparent;
-      color: var(--ink);
-      cursor: pointer;
-      transition: all 0.15s;
-    }
-    .btn:hover {
-      background: var(--ink);
-      color: var(--paper-screen);
-    }
-    .btn.primary {
-      background: var(--ink);
-      color: var(--paper-screen);
-    }
-    .btn.primary:hover {
-      background: var(--accent);
-      border-color: var(--accent);
-    }
-    .btn.ghost {
-      border-color: var(--rule);
-      color: var(--ink-soft);
-    }
-    .btn.warn {
-      border-color: var(--warn);
-      color: var(--warn);
-    }
-    .btn.warn:hover {
-      background: var(--warn);
-      color: var(--paper-screen);
-    }
-
-    /* ─── GOAL CARDS (Step 3) ──────────────────────────────── */
-
-    .goal-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      margin-top: 12px;
-      border-top: 1px solid var(--rule);
-      border-left: 1px solid var(--rule);
-    }
-
-    .goal-card {
-      border-right: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      padding: 28px 28px 32px;
-      cursor: pointer;
-      position: relative;
-      background: transparent;
-      text-align: left;
-      font-family: inherit;
-      transition: background 0.15s;
-    }
-    .goal-card:hover {
-      background: var(--paper-deep);
-    }
-    .goal-card.selected {
-      background: var(--ink);
-      color: var(--paper-screen);
-    }
-    .goal-card.selected .goal-sub {
-      color: rgba(250, 246, 236, 0.65);
-    }
-    .goal-card.selected .goal-num {
-      color: var(--paper-screen);
-      opacity: 0.4;
-    }
-
-    .goal-num {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      color: var(--ink-mute);
-      margin-bottom: 18px;
-    }
-
-    .goal-title {
-      font-family: var(--serif);
-      font-size: 32px;
-      line-height: 1.05;
-      margin: 0 0 8px;
-      font-weight: 400;
-    }
-    .goal-title em {
-      font-style: italic;
-    }
-
-    .goal-sub {
-      font-size: 13px;
-      line-height: 1.5;
-      color: var(--ink-soft);
-      margin: 0;
-    }
-
-    /* ─── ANALYZING / WAIT STATE ───────────────────────────── */
-
-    .wait {
-      text-align: center;
-      padding: 40px 0;
-    }
-
-    .wait-eyebrow {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-bottom: 32px;
-    }
-
-    .wait h2 {
-      font-family: var(--serif);
-      font-size: 64px;
-      line-height: 1.05;
-      letter-spacing: -0.015em;
-      margin: 0 0 24px;
-      font-weight: 400;
-      max-width: 18ch;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .wait h2 em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .wait p {
-      font-family: var(--serif);
-      font-size: 19px;
-      line-height: 1.4;
-      color: var(--ink-soft);
-      max-width: 44ch;
-      margin: 0 auto 48px;
-    }
-
-    .progress {
-      max-width: 480px;
-      margin: 0 auto;
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.06em;
-      color: var(--ink-soft);
-      text-align: left;
-    }
-
-    .progress-rule {
-      height: 3px;
-      background: var(--rule-soft);
-      margin: 12px 0 14px;
-      position: relative;
       overflow: hidden;
+      border-right: 1px solid var(--line);
+      background:
+        radial-gradient(900px 600px at 20% 100%, rgba(232,178,96,0.10), transparent 60%),
+        radial-gradient(700px 500px at 80% 0%, rgba(201,105,79,0.05), transparent 60%),
+        var(--bg);
     }
-    .progress-fill {
+
+    /* ambient grid */
+    .stage::before {
+      content: "";
       position: absolute;
-      inset: 0 70% 0 0;
-      background: var(--accent);
-      animation: prog 4.5s ease-in-out infinite;
-    }
-    @keyframes prog {
-      0%,
-      100% {
-        inset: 0 78% 0 0;
-      }
-      50% {
-        inset: 0 30% 0 0;
-      }
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(245, 233, 211, 0.04) 1px, transparent 1px);
+      background-size: 22px 22px;
+      mask-image: radial-gradient(circle at 50% 50%, black, transparent 70%);
+      pointer-events: none;
     }
 
-    .progress-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-    }
-    .progress-step {
-      padding: 8px 0;
-      border-top: 1px solid var(--rule);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    .progress-step.done {
-      color: var(--ink);
-      border-top-color: var(--ink);
-    }
-    .progress-step.active {
-      color: var(--accent);
-      border-top-color: var(--accent);
-    }
-
-    /* ─── DASHBOARD ─────────────────────────────────────────── */
-
-    .dash-header {
+    .stage-top {
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 28px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
     }
-    .dash-greet {
-      font-family: var(--serif);
-      font-size: 28px;
-      letter-spacing: -0.01em;
-      margin: 0;
-      font-weight: 400;
-    }
-    .dash-greet em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .dash-meta {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      color: var(--ink-soft);
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border-top: 1px solid var(--ink);
-      border-bottom: 1px solid var(--ink);
-      margin-bottom: 40px;
-    }
-
-    .stat {
-      padding: 28px 24px 32px;
-      border-right: 1px solid var(--rule);
-    }
-    .stat:last-child {
-      border-right: 0;
-    }
-
-    .stat-label {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-bottom: 14px;
-    }
-    .stat-value {
-      font-family: var(--serif);
-      font-size: 56px;
-      line-height: 1;
-      letter-spacing: -0.02em;
-    }
-    .stat-value .unit {
-      font-size: 24px;
-      color: var(--ink-soft);
-      margin-left: 2px;
-    }
-    .stat-trend {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      margin-top: 10px;
-      color: var(--accent);
-    }
-    .stat-trend.flat {
-      color: var(--ink-soft);
-    }
-    .stat-trend.down {
-      color: var(--warn);
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 22px;
-    }
-    .section-head h3 {
-      font-family: var(--serif);
-      font-size: 26px;
-      font-weight: 400;
-      letter-spacing: -0.005em;
-      margin: 0;
-    }
-    .section-head h3 em {
-      font-style: italic;
-      color: var(--accent);
-    }
-    .section-head .meta {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      color: var(--ink-soft);
-    }
-
-    .feed {
-      border-top: 1px solid var(--ink);
-      margin-bottom: 40px;
-    }
-
-    .feed-row {
-      display: grid;
-      grid-template-columns: 90px 1fr auto;
-      gap: 20px;
-      padding: 18px 4px;
-      border-bottom: 1px solid var(--rule);
-      align-items: start;
-    }
-
-    .feed-time {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      padding-top: 4px;
-    }
-
-    .feed-body {
-      font-family: var(--serif);
-      font-size: 19px;
-      line-height: 1.4;
-      color: var(--ink);
-    }
-    .feed-body .emph {
-      font-style: italic;
-      color: var(--accent);
-    }
-    .feed-body .delta {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--ink-soft);
-      letter-spacing: 0.04em;
-      margin-top: 6px;
-      display: block;
-    }
-
-    .feed-action {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      padding-top: 8px;
-      cursor: pointer;
-      border: none;
-      background: transparent;
-      white-space: nowrap;
-    }
-    .feed-action:hover {
-      color: var(--accent);
-    }
-
-    /* chat */
-    .chat {
-      border: 1px solid var(--ink);
-      padding: 18px 20px 18px;
-      background: var(--paper-deep);
-    }
-    .chat-label {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-bottom: 12px;
-    }
-    .chat-input-wrap {
+    .brand {
       display: flex;
       align-items: center;
       gap: 12px;
-      border-bottom: 1px solid var(--ink);
-      padding-bottom: 6px;
     }
-    .chat-input-wrap::before {
-      content: "›";
-      font-family: var(--serif);
-      font-size: 28px;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .chat-input {
-      flex: 1;
-      border: 0;
-      background: transparent;
-      font-family: var(--serif);
-      font-size: 22px;
-      color: var(--ink);
-      outline: none;
-      padding: 6px 0;
-    }
-    .chat-input::placeholder {
-      color: var(--ink-mute);
-      font-style: italic;
-    }
-    .chat-suggest {
-      display: flex;
-      gap: 14px;
-      margin-top: 14px;
-      flex-wrap: wrap;
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--ink-soft);
-      letter-spacing: 0.04em;
-    }
-    .chat-suggest button {
-      border: 0;
-      background: transparent;
-      font: inherit;
-      color: inherit;
-      letter-spacing: inherit;
-      cursor: pointer;
-      padding: 0;
-      border-bottom: 1px dotted var(--rule);
-      padding-bottom: 1px;
-    }
-    .chat-suggest button:hover {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-    }
-
-    .chat-reply {
-      display: none;
-      margin-top: 18px;
-      padding-top: 18px;
-      border-top: 1px dashed var(--rule);
-      font-family: var(--serif);
-      font-size: 17px;
-      line-height: 1.5;
-      color: var(--ink);
-    }
-    .chat-reply.visible {
-      display: block;
-    }
-    .chat-reply .who {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-
-    /* ─── NOTIFICATIONS ─────────────────────────────────────── */
-
-    .notif-eyebrow {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-bottom: 22px;
-      display: flex;
-      gap: 14px;
-      align-items: center;
-    }
-    .notif-eyebrow .dot {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-    }
-
-    .notif-title {
-      font-family: var(--serif);
-      font-size: 44px;
-      line-height: 1.05;
-      letter-spacing: -0.015em;
-      margin: 0 0 32px;
-      font-weight: 400;
-      max-width: 22ch;
-    }
-    .notif-title em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .compare {
-      display: grid;
-      grid-template-columns: 1fr 32px 1fr;
-      align-items: stretch;
-      margin-bottom: 36px;
-      gap: 0;
-    }
-
-    .compare-pane {
-      border: 1px solid var(--rule);
-      padding: 22px 24px 26px;
-      background: var(--paper-deep);
-    }
-    .compare-pane.after {
-      background: var(--paper-screen);
-      border-color: var(--ink);
-    }
-
-    .compare-label {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-bottom: 14px;
-    }
-    .compare-pane.after .compare-label {
-      color: var(--accent);
-    }
-
-    .compare-text {
-      font-family: var(--serif);
-      font-size: 22px;
-      line-height: 1.3;
-      color: var(--ink);
-      font-style: italic;
-    }
-    .compare-pane:not(.after) .compare-text {
-      color: var(--ink-soft);
-      text-decoration: line-through;
-      text-decoration-color: var(--rule);
-      text-decoration-thickness: 1px;
-    }
-
-    .compare-arrow {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--serif);
-      font-size: 32px;
-      color: var(--accent);
-    }
-
-    .why-block {
-      display: grid;
-      grid-template-columns: 80px 1fr;
-      gap: 24px;
-      padding: 22px 0;
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      margin-bottom: 24px;
-    }
-    .why-label {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      padding-top: 4px;
-    }
-    .why-text {
-      font-family: var(--serif);
-      font-size: 19px;
-      line-height: 1.5;
-      color: var(--ink);
-    }
-
-    .result-strip {
-      display: flex;
-      gap: 32px;
-      padding: 20px 0 28px;
-      flex-wrap: wrap;
-    }
-    .result-item {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.06em;
-      color: var(--ink-soft);
-    }
-    .result-item .num {
-      display: block;
-      font-family: var(--serif);
-      font-size: 32px;
-      color: var(--accent);
-      letter-spacing: -0.01em;
-      margin-bottom: 4px;
-    }
-
-    .actions-row {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
-      padding-top: 16px;
-      border-top: 1px dashed var(--rule);
-    }
-
-    .undo-confirm {
-      display: none;
-      flex: 1;
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      color: var(--accent);
-      padding: 10px 0;
-    }
-    .undo-confirm.visible {
-      display: block;
-    }
-
-    /* budget shift table */
-    .budget-table {
-      border-top: 1px solid var(--ink);
-      border-bottom: 1px solid var(--ink);
-      margin: 8px 0 32px;
-    }
-    .budget-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr 80px;
-      align-items: baseline;
-      padding: 18px 4px;
-      border-bottom: 1px solid var(--rule);
-      gap: 16px;
-    }
-    .budget-row:last-child {
-      border-bottom: 0;
-    }
-    .budget-row.head {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      padding: 10px 4px;
-    }
-    .budget-channel {
-      font-family: var(--serif);
-      font-size: 22px;
-    }
-    .budget-amount {
-      font-family: var(--serif);
-      font-size: 22px;
-      color: var(--ink-soft);
-    }
-    .budget-amount.new {
-      color: var(--ink);
-    }
-    .budget-delta {
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 0.04em;
-    }
-    .budget-delta.up {
-      color: var(--accent);
-    }
-    .budget-delta.down {
-      color: var(--warn);
-    }
-
-    /* ─── CHAT IN ACTION ───────────────────────────────────── */
-
-    .conv {
-      max-width: 720px;
-    }
-
-    .conv-msg {
-      margin-bottom: 28px;
-    }
-    .conv-who {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-bottom: 8px;
-    }
-    .conv-msg.platform .conv-who {
-      color: var(--accent);
-    }
-    .conv-text {
-      font-family: var(--serif);
-      font-size: 22px;
-      line-height: 1.4;
-      color: var(--ink);
-    }
-    .conv-msg.user .conv-text {
-      font-style: italic;
-      color: var(--ink-soft);
-    }
-
-    .plan-card {
-      border: 1px solid var(--ink);
-      padding: 22px 24px;
-      margin-top: 16px;
-      background: var(--paper-deep);
-    }
-    .plan-card h4 {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin: 0 0 14px;
-    }
-    .plan-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      font-family: var(--serif);
-      font-size: 17px;
-      line-height: 1.55;
-    }
-    .plan-list li {
-      padding: 6px 0 6px 22px;
+    .brand-mark {
+      width: 32px; height: 32px;
       position: relative;
     }
-    .plan-list li::before {
-      content: "—";
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-    }
-
-    .plan-cost {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 18px;
-      padding-top: 16px;
-      border-top: 1px dashed var(--rule);
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.06em;
-      color: var(--ink-soft);
-    }
-    .plan-cost .cost {
-      font-family: var(--serif);
-      font-size: 28px;
-      color: var(--ink);
-      font-style: italic;
-    }
-    .plan-cost .cost em {
-      color: var(--accent);
-      font-style: italic;
-    }
-
-    /* ─── MODAL ─────────────────────────────────────────────── */
-
-    .modal-mock {
-      border: 1px solid var(--ink);
-      background: var(--paper-screen);
-      padding: 40px 44px 36px;
-      max-width: 540px;
-      margin: 0 auto;
-      position: relative;
-    }
-    .modal-eyebrow {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-bottom: 20px;
-    }
-    .modal-eyebrow .live {
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
+    .brand-mark::before {
+      content: "";
+      position: absolute; inset: 0;
       border-radius: 50%;
-      margin-right: 8px;
-      animation: pulse 1.6s ease-in-out infinite;
+      background: radial-gradient(circle at 35% 35%, var(--amber-bright), var(--amber-deep) 60%, transparent 75%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+    .brand-mark::after {
+      content: "";
+      position: absolute; inset: 9px;
+      background: var(--bg);
+      border-radius: 50%;
     }
     @keyframes pulse {
-      50% {
-        opacity: 0.3;
-      }
+      0%, 100% { opacity: 0.85; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.06); }
     }
-    .modal-title {
+    .brand-name {
       font-family: var(--serif);
-      font-size: 36px;
-      line-height: 1.1;
-      margin: 0 0 18px;
-      font-weight: 400;
+      font-size: 22px;
+      font-variation-settings: "opsz" 36, "SOFT" 50, "wght" 400;
       letter-spacing: -0.01em;
     }
-    .modal-title em {
-      font-style: italic;
-      color: var(--accent);
-    }
-    .modal-body {
-      font-family: var(--serif);
-      font-size: 17px;
-      line-height: 1.5;
-      color: var(--ink-soft);
-      margin: 0 0 24px;
-    }
+    .brand-name em { font-style: italic; color: var(--amber); }
 
-    .cost-block {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      border: 1px solid var(--rule);
-      margin-bottom: 28px;
-    }
-    .cost-cell {
-      padding: 18px 20px 22px;
-      border-right: 1px solid var(--rule);
-    }
-    .cost-cell:last-child {
-      border-right: 0;
-    }
-    .cost-label {
+    .nav-tour {
       font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.16em;
+      font-size: 10.5px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-bottom: 8px;
-    }
-    .cost-num {
-      font-family: var(--serif);
-      font-size: 36px;
-      letter-spacing: -0.01em;
-      line-height: 1;
-    }
-    .cost-num em {
-      font-style: italic;
-      color: var(--accent);
-    }
-    .cost-sub {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.06em;
       color: var(--ink-mute);
-      margin-top: 6px;
+      display: flex;
+      gap: 16px;
     }
+    .nav-tour a { padding: 4px 0; border-bottom: 1px dotted transparent; }
+    .nav-tour a:hover, .nav-tour .active { color: var(--amber); border-bottom-color: var(--amber); }
 
-    /* ─── BUDGET EXHAUSTED ─────────────────────────────────── */
-
-    .alert {
-      border: 1px solid var(--warn);
-      background: rgba(138, 58, 31, 0.04);
-      padding: 36px 40px;
+    .stage-mid {
+      position: relative;
+      z-index: 2;
+      max-width: 540px;
     }
-    .alert-eyebrow {
+    .stage-eyebrow {
       font-family: var(--mono);
-      font-size: 10px;
+      font-size: 11px;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--warn);
-      margin-bottom: 16px;
+      color: var(--amber);
+      margin-bottom: 24px;
     }
-    .alert h3 {
+    .stage-headline {
+      font-family: var(--serif);
+      font-size: clamp(48px, 6vw, 76px);
+      line-height: 1;
+      letter-spacing: -0.025em;
+      font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 320;
+      margin: 0 0 28px;
+      max-width: 12ch;
+    }
+    .stage-headline em {
+      font-style: italic;
+      color: var(--amber);
+      font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 320;
+    }
+    .stage-sub {
+      font-family: var(--serif);
+      font-size: 19px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      max-width: 44ch;
+      font-variation-settings: "opsz" 80, "SOFT" 50, "wght" 350;
+    }
+
+    .stage-bottom {
+      position: relative;
+      z-index: 2;
+    }
+    .testimonial {
+      max-width: 460px;
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
+    }
+    .testimonial-text {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 17px;
+      line-height: 1.5;
+      color: var(--ink);
+      font-variation-settings: "opsz" 80, "SOFT" 60, "wght" 360;
+      margin: 0 0 14px;
+    }
+    .testimonial-attr {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.06em;
+      color: var(--ink-mute);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .testimonial-attr .avatar {
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--bad), var(--amber));
+      display: grid; place-items: center;
+      font-family: var(--serif);
+      font-size: 11px;
+      font-style: italic;
+      color: var(--bg);
+      font-variation-settings: "wght" 500;
+    }
+
+    /* ─── RIGHT: FORM ───────────────────────────────────── */
+    .form-side {
+      padding: 40px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 560px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 32px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--surface);
+      width: fit-content;
+    }
+    .tab {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 7px;
+      border: 0;
+      background: transparent;
+      color: var(--ink-mute);
+      transition: all 0.15s;
+    }
+    .tab:hover { color: var(--ink); }
+    .tab.active {
+      background: var(--surface-2);
+      color: var(--ink);
+      box-shadow: inset 0 1px 0 rgba(245,233,211,0.05);
+    }
+
+    .form-title {
       font-family: var(--serif);
       font-size: 38px;
       line-height: 1.1;
-      letter-spacing: -0.01em;
-      margin: 0 0 18px;
-      font-weight: 400;
-      max-width: 22ch;
+      letter-spacing: -0.022em;
+      font-variation-settings: "opsz" 100, "SOFT" 40, "wght" 340;
+      margin: 0 0 8px;
     }
-    .alert h3 em {
+    .form-title em {
       font-style: italic;
-      color: var(--warn);
+      color: var(--amber);
     }
-    .alert p {
-      font-family: var(--serif);
-      font-size: 18px;
-      line-height: 1.5;
-      color: var(--ink-soft);
-      margin: 0 0 28px;
-      max-width: 50ch;
+    .form-sub {
+      font-size: 14px;
+      color: var(--ink-mute);
+      margin: 0 0 32px;
     }
-    .alert-grid {
+    .form-sub a { color: var(--amber); border-bottom: 1px dotted var(--amber-deep); }
+
+    .sso-group {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border-top: 1px solid var(--rule);
-      border-left: 1px solid var(--rule);
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
     }
-    .alert-opt {
-      border-right: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      padding: 22px 22px 24px;
-      font-family: inherit;
-      background: transparent;
-      cursor: pointer;
-      text-align: left;
-      transition: background 0.15s;
-    }
-    .alert-opt:hover {
-      background: var(--paper-deep);
-    }
-    .alert-opt-num {
-      font-family: var(--serif);
-      font-size: 32px;
-      letter-spacing: -0.01em;
-    }
-    .alert-opt-num em {
-      font-style: italic;
-      color: var(--accent);
-    }
-    .alert-opt-sub {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-top: 6px;
-    }
-
-    /* ─── MODE TOGGLE STRIP ────────────────────────────────── */
-
-    .mode-strip {
-      border: 1px solid var(--ink);
-      background: var(--paper-screen);
-    }
-    .mode-strip-head {
-      padding: 18px 24px;
-      border-bottom: 1px solid var(--ink);
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
+    .sso-btn {
       display: flex;
-      justify-content: space-between;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 13px;
+      transition: all 0.15s;
     }
-    .mode-grid {
+    .sso-btn:hover {
+      border-color: var(--line-warm);
+      background: var(--surface-1);
+    }
+    .sso-btn svg { width: 16px; height: 16px; }
+
+    .divider {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr auto 1fr;
+      gap: 12px;
+      align-items: center;
+      margin: 20px 0;
     }
-    .mode-cell {
-      padding: 32px 28px 36px;
-      border-right: 1px solid var(--rule);
-      cursor: pointer;
-      background: transparent;
-      text-align: left;
-      font-family: inherit;
+    .divider::before, .divider::after {
+      content: "";
+      height: 1px;
+      background: var(--line);
     }
-    .mode-cell:last-child {
-      border-right: 0;
-    }
-    .mode-cell.active {
-      background: var(--ink);
-      color: var(--paper-screen);
-    }
-    .mode-cell.active .mode-name em {
-      color: var(--paper-screen);
-    }
-    .mode-cell.active .mode-desc,
-    .mode-cell.active .mode-num {
-      color: rgba(250, 246, 236, 0.65);
-    }
-    .mode-num {
+    .divider span {
       font-family: var(--mono);
       font-size: 10px;
       letter-spacing: 0.18em;
-      color: var(--ink-mute);
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
       margin-bottom: 14px;
     }
-    .mode-name {
-      font-family: var(--serif);
-      font-size: 32px;
-      letter-spacing: -0.01em;
-      margin-bottom: 10px;
-    }
-    .mode-name em {
-      font-style: italic;
-      color: var(--accent);
-    }
-    .mode-desc {
-      font-size: 13px;
-      line-height: 1.5;
-      color: var(--ink-soft);
-      margin: 0;
-    }
-
-    /* ─── FOOTER ───────────────────────────────────────────── */
-
-    .footer {
-      border-top: 1px solid var(--ink);
-      padding-top: 28px;
-      margin-top: 80px;
-      display: flex;
-      justify-content: space-between;
+    .field label {
       font-family: var(--mono);
-      font-size: 10px;
+      font-size: 10.5px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--ink-soft);
+      color: var(--ink-mute);
+      margin-bottom: 8px;
     }
+    .field input {
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      padding: 13px 14px;
+      color: var(--ink);
+      font: inherit;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .field input:focus {
+      border-color: var(--amber);
+      background: var(--surface-1);
+    }
+    .field-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .field-row a {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.06em;
+      color: var(--ink-mute);
+      text-transform: lowercase;
+    }
+    .field-row a:hover { color: var(--amber); }
 
-    /* ─── RESPONSIVE ───────────────────────────────────────── */
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--amber);
+      color: var(--bg);
+      border: 0;
+      border-radius: 8px;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: -0.005em;
+      margin-top: 12px;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .submit-btn:hover { background: var(--amber-bright); }
+    .submit-btn svg { width: 14px; height: 14px; }
 
-    @media (max-width: 920px) {
-      .page {
-        padding: 56px 24px 120px;
-      }
-      .cover {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-      .figure {
-        grid-template-columns: 1fr;
-      }
-      .figure-tag,
-      .annot {
-        position: static;
-      }
-      .figure-tag {
-        display: flex;
-        align-items: baseline;
-        gap: 14px;
-      }
-      .figure-tag .tag-num {
-        font-size: 28px;
-        margin-bottom: 0;
-      }
-      .figure-tag .tag-rule {
-        display: none;
-      }
-      .annot {
-        border-top: 1px dashed var(--rule);
-        padding-top: 18px;
-        margin-top: 24px;
-      }
-      .screen-content {
-        padding: 32px 24px;
-      }
-      .stats {
-        grid-template-columns: 1fr;
-      }
-      .stat {
-        border-right: 0;
-        border-bottom: 1px solid var(--rule);
-      }
-      .compare {
-        grid-template-columns: 1fr;
-      }
-      .compare-arrow {
-        padding: 8px 0;
-      }
-      .alert-grid,
-      .mode-grid,
-      .goal-grid {
-        grid-template-columns: 1fr;
-      }
-      .onboard-q,
-      .notif-title,
-      .alert h3,
-      .wait h2 {
-        font-size: 40px;
-      }
-      .feed-row {
-        grid-template-columns: 1fr;
-      }
-      .feed-time {
-        padding-top: 0;
-      }
-      .budget-row {
-        grid-template-columns: 1fr;
-        gap: 4px;
-      }
+    .legal {
+      font-size: 12px;
+      color: var(--ink-faint);
+      margin-top: 24px;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .legal a { color: var(--ink-mute); border-bottom: 1px dotted var(--line-strong); }
+
+    .form-foot {
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      color: var(--ink-mute);
+      display: flex;
+      justify-content: space-between;
+    }
+    .form-foot a { color: var(--amber); border-bottom: 1px dotted var(--amber-deep); }
+
+    @media (max-width: 880px) {
+      .auth { grid-template-columns: 1fr; }
+      .stage { padding: 28px 28px 40px; min-height: 280px; }
+      .stage-headline { font-size: 44px; }
+      .stage-bottom { display: none; }
+      .form-side { padding: 32px 28px 48px; }
     }
   </style>
 </head>
 <body>
-  <main class="page">
-    <!-- ════════ COVER ════════ -->
-    <header class="cover">
-      <div class="cover-meta">
-        <span>SeenFolio · Lo-fi Prototype · v0.1</span>
-        <span>Beginner Mode · 12 figures</span>
-      </div>
 
-      <div class="cover-left">
-        <h1>Seen<em>Folio</em>.</h1>
-        <p class="cover-tagline">
-          Autonomous growth infrastructure for online businesses. The platform
-          that doesn't tell you what to fix — it&nbsp;just&nbsp;<em>does&nbsp;it</em>,
-          and tells you why.
-        </p>
-      </div>
-
-      <aside class="cover-right">
-        <dl class="cover-legend">
-          <dt>Legend</dt>
-          <dd>Solid border — committed UI. Dashed — wireframe / draft.</dd>
-          <dt>Voice</dt>
-          <dd>The platform speaks in first person ("I changed your headline…").</dd>
-          <dt>Cobalt accent</dt>
-          <dd>Marks every action the platform took on the user's behalf.</dd>
-        </dl>
-
-        <nav class="cover-toc">
-          <a href="#fig-01">01 · Onboarding 1/3</a>
-          <a href="#fig-02">02 · Onboarding 2/3</a>
-          <a href="#fig-03">03 · Onboarding 3/3</a>
-          <a href="#fig-04">04 · Analyzing</a>
-          <a href="#fig-05">05 · Dashboard</a>
-          <a href="#fig-06">06 · Headline change</a>
-          <a href="#fig-07">07 · Budget shift</a>
-          <a href="#fig-08">08 · Chat in action</a>
-          <a href="#fig-09">09 · Token approval</a>
-          <a href="#fig-10">10 · Budget exhausted</a>
-          <a href="#fig-11">11 · Mode toggle</a>
+  <main class="auth">
+    <!-- LEFT: brand stage -->
+    <section class="stage">
+      <div class="stage-top">
+        <div class="brand">
+          <div class="brand-mark"></div>
+          <div class="brand-name">Seen<em>Folio</em></div>
+        </div>
+        <nav class="nav-tour">
+          <a class="active">Auth</a>
+          <a href="onboarding.html">Onboard</a>
+          <a href="app.html">App</a>
+          <a href="lofi.html">Lo-fi</a>
         </nav>
-      </aside>
-    </header>
-
-    <!-- ════════ FIG. 01 ════════ -->
-    <section class="figure" id="fig-01">
-      <div class="figure-tag">
-        <span class="tag-num">01</span>
-        Onboarding<br />Step 1 of 3
-        <span class="tag-rule"></span>
       </div>
 
-      <div class="figure-body">
-        <h2 class="figure-title">First the <em>thing</em>, then the rest.</h2>
-        <p class="figure-desc">
-          Onboarding starts with the most human question: what do you sell?
-          Free text on top, category chips underneath as a fallback for
-          undecided users. No account fields yet — those come after value is
-          visible.
+      <div class="stage-mid">
+        <div class="stage-eyebrow">— Autonomous growth, paid by the action</div>
+        <h1 class="stage-headline">Quality businesses stay <em>invisible</em>.<br>That ends here.</h1>
+        <p class="stage-sub">
+          One platform replaces the ten you're juggling. It analyzes, decides, and acts on its own —
+          and explains every move in plain words. You only pay when it <em style="font-family: var(--serif); font-style: italic; color: var(--amber);">does</em> something.
         </p>
+      </div>
 
-        <div class="screen">
-          <div class="screen-chrome">
-            <span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
-            <span class="url">app.seenfolio.com / onboard / 1</span>
-            <span>5 min · saves automatically</span>
-          </div>
-          <div class="screen-content">
-            <div class="onboard-step">
-              <span class="pill active">01</span>
-              <span class="pill">02</span>
-              <span class="pill">03</span>
-              &nbsp;&nbsp;What you sell · Website · Goal
-            </div>
-
-            <h3 class="onboard-q">What do you <em>sell</em>?</h3>
-            <p class="onboard-helper">
-              In plain words. No jargon, no industry codes. We use this to
-              understand who your customers are — not to box you in.
-            </p>
-
-            <div class="input-line">
-              <span class="typed">Handmade silver jewelry</span>
-              <span class="caret"></span>
-            </div>
-
-            <div class="chip-row" data-chip-group>
-              <button class="chip">Apparel &amp; fashion</button>
-              <button class="chip selected">Jewelry &amp; accessories</button>
-              <button class="chip">Home &amp; decor</button>
-              <button class="chip">Beauty &amp; skincare</button>
-              <button class="chip">Food &amp; beverage</button>
-              <button class="chip">Digital products</button>
-              <button class="chip">Services</button>
-              <button class="chip">Something else</button>
-            </div>
-
-            <div class="nav-row">
-              <span>1 · 2 · 3</span>
-              <button class="btn primary">Continue →</button>
-            </div>
+      <div class="stage-bottom">
+        <div class="testimonial">
+          <p class="testimonial-text">
+            "I cancelled five tools the day I signed up. Six weeks later my revenue was up 31%
+            and I hadn't touched a single setting."
+          </p>
+          <div class="testimonial-attr">
+            <div class="avatar">M</div>
+            <span>Mae Adesina · Founder, Adire &amp; Indigo</span>
           </div>
         </div>
       </div>
-
-      <aside class="annot">
-        <div class="annot-row"><b>Why ask</b>This shapes content tone, ad targeting, and which engines lead.</div>
-        <div class="annot-row"><b>Empty state</b>Caret blinks even before user types — invites action.</div>
-        <div class="annot-row"><b>Chips</b>Selectable. Tap to toggle.</div>
-      </aside>
     </section>
 
-    <!-- ════════ FIG. 02 ════════ -->
-    <section class="figure" id="fig-02">
-      <div class="figure-tag">
-        <span class="tag-num">02</span>
-        Onboarding<br />Step 2 of 3
-        <span class="tag-rule"></span>
+    <!-- RIGHT: form -->
+    <section class="form-side">
+      <div class="tabs" data-tabs>
+        <button class="tab active" data-tab="signin">Sign in</button>
+        <button class="tab" data-tab="signup">Create account</button>
       </div>
 
-      <div class="figure-body">
-        <h2 class="figure-title">Where <em>does it live</em>?</h2>
-        <p class="figure-desc">
-          The website URL is also where transparency starts. Before asking
-          for access we explain — in one short sentence — what the snippet
-          will do and what it won't. No technical setup required.
-        </p>
+      <!-- SIGN IN -->
+      <div data-pane="signin">
+        <h2 class="form-title">Welcome <em>back</em>.</h2>
+        <p class="form-sub">It's been quiet — let me show you what I did while you were away.</p>
 
-        <div class="screen">
-          <div class="screen-chrome">
-            <span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
-            <span class="url">app.seenfolio.com / onboard / 2</span>
-            <span>Step 2 of 3</span>
-          </div>
-          <div class="screen-content">
-            <div class="onboard-step">
-              <span class="pill">01</span>
-              <span class="pill active">02</span>
-              <span class="pill">03</span>
-              &nbsp;&nbsp;What you sell · Website · Goal
-            </div>
-
-            <h3 class="onboard-q">Your <em>website</em>.</h3>
-            <p class="onboard-helper">
-              Paste the URL. We'll install a small script that lets us see
-              what's slow, what's confusing, and what's costing you customers.
-              <strong>We never publish changes without showing you first.</strong>
-            </p>
-
-            <div class="input-line">
-              <span class="placeholder">https://</span>
-              <span class="typed">silverjewelry.com</span>
-              <span class="caret"></span>
-            </div>
-
-            <div class="chip-row" style="margin-top: 36px;">
-              <span class="chip" style="cursor:default;">— or connect via —</span>
-              <button class="chip">Shopify</button>
-              <button class="chip">WooCommerce</button>
-              <button class="chip">Webflow</button>
-              <button class="chip">Squarespace</button>
-            </div>
-
-            <div class="nav-row">
-              <button class="btn ghost">← Back</button>
-              <button class="btn primary">Continue →</button>
-            </div>
-          </div>
+        <div class="sso-group">
+          <button class="sso-btn">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M22.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h6c-.3 1.4-1 2.5-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-7.8z"/><path fill="currentColor" d="M12 23c2.9 0 5.4-1 7.2-2.6l-3.6-2.7c-1 .7-2.3 1.1-3.7 1.1-2.8 0-5.2-1.9-6.1-4.5H2.2v2.8C4 20.6 7.7 23 12 23z" opacity=".75"/><path fill="currentColor" d="M5.9 14.3c-.2-.7-.4-1.4-.4-2.3s.1-1.6.4-2.3V6.9H2.2C1.4 8.4 1 10.1 1 12s.4 3.6 1.2 5.1l3.7-2.8z" opacity=".5"/><path fill="currentColor" d="M12 5.4c1.6 0 3 .5 4.1 1.6l3.1-3.1C17.4 2.1 14.9 1 12 1 7.7 1 4 3.4 2.2 6.9l3.7 2.8c.9-2.6 3.3-4.3 6.1-4.3z" opacity=".25"/></svg>
+            Continue with Google
+          </button>
+          <button class="sso-btn">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M16.4 12.5c0-2 1.6-3 1.7-3-1-1.4-2.4-1.6-3-1.6-1.3-.1-2.5.7-3.1.7-.7 0-1.6-.7-2.7-.7-1.4 0-2.7.8-3.4 2-1.5 2.5-.4 6.3 1 8.4.7 1 1.5 2.2 2.6 2.1 1 0 1.4-.7 2.7-.7s1.6.7 2.7.7c1.1 0 1.8-1 2.5-2 .8-1.2 1.1-2.3 1.1-2.4-.1 0-2.1-.8-2.1-3.5zM14.4 5.4c.6-.7 1-1.7 1-2.7-.9 0-1.9.6-2.5 1.3-.5.6-1 1.7-.9 2.6 1 .1 2-.5 2.4-1.2z"/></svg>
+            Continue with Apple
+          </button>
         </div>
-      </div>
 
-      <aside class="annot">
-        <div class="annot-row"><b>Trust copy</b>"Never publish without showing you first." — surfaced in onboarding, not buried in TOS.</div>
-        <div class="annot-row"><b>Platform integrations</b>One-click for the 5 most common stacks. Reduces drop-off.</div>
-      </aside>
-    </section>
+        <div class="divider"><span>or use email</span></div>
 
-    <!-- ════════ FIG. 03 ════════ -->
-    <section class="figure" id="fig-03">
-      <div class="figure-tag">
-        <span class="tag-num">03</span>
-        Onboarding<br />Step 3 of 3
-        <span class="tag-rule"></span>
-      </div>
-
-      <div class="figure-body">
-        <h2 class="figure-title">Pick an <em>outcome</em>, not a tactic.</h2>
-        <p class="figure-desc">
-          Users never choose between "SEO" and "ads." They pick the result
-          they want. The platform chooses the engines and the ratio, and is
-          willing to change its mind once it sees real data.
-        </p>
-
-        <div class="screen">
-          <div class="screen-chrome">
-            <span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
-            <span class="url">app.seenfolio.com / onboard / 3</span>
-            <span>Step 3 of 3 · almost there</span>
-          </div>
-          <div class="screen-content">
-            <div class="onboard-step">
-              <span class="pill">01</span>
-              <span class="pill">02</span>
-              <span class="pill active">03</span>
-              &nbsp;&nbsp;What you sell · Website · Goal
-            </div>
-
-            <h3 class="onboard-q">What matters <em>most</em>?</h3>
-            <p class="onboard-helper">
-              Pick one. You can change it any time, and we'll rebalance.
-            </p>
-
-            <div class="goal-grid" data-goal-group>
-              <button class="goal-card">
-                <div class="goal-num">A</div>
-                <h4 class="goal-title">More <em>traffic</em></h4>
-                <p class="goal-sub">Show up when people search. Best if you're new and need eyeballs.</p>
-              </button>
-              <button class="goal-card selected">
-                <div class="goal-num">B</div>
-                <h4 class="goal-title">More <em>sales</em></h4>
-                <p class="goal-sub">Turn the visitors you already have into customers. Conversion-led.</p>
-              </button>
-              <button class="goal-card">
-                <div class="goal-num">C</div>
-                <h4 class="goal-title">Build <em>brand</em></h4>
-                <p class="goal-sub">Reviews, reputation, and being the name people remember.</p>
-              </button>
-              <button class="goal-card">
-                <div class="goal-num">D</div>
-                <h4 class="goal-title">All of the <em>above</em></h4>
-                <p class="goal-sub">Balanced. We'll run everything and weight by what's working.</p>
-              </button>
-            </div>
-
-            <div class="nav-row">
-              <button class="btn ghost">← Back</button>
-              <button class="btn primary">Start analyzing →</button>
-            </div>
-          </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" placeholder="amara@silverjewelry.com" value="amara@silverjewelry.com" />
         </div>
-      </div>
 
-      <aside class="annot">
-        <div class="annot-row"><b>Outcome-led</b>Zero engine names visible. The user's mental model = a goal, not a toolkit.</div>
-        <div class="annot-row"><b>Reversibility</b>"You can change it any time" is stated up front.</div>
-      </aside>
-    </section>
-
-    <!-- ════════ FIG. 04 ════════ -->
-    <section class="figure" id="fig-04">
-      <div class="figure-tag">
-        <span class="tag-num">04</span>
-        Post-onboarding<br />Wait state
-        <span class="tag-rule"></span>
-      </div>
-
-      <div class="figure-body">
-        <h2 class="figure-title">Quiet, while we <em>look around</em>.</h2>
-        <p class="figure-desc">
-          Resist the urge to fake-load a flashy dashboard. The first
-          impression is honesty: real analysis takes hours, not seconds.
-          We tell the user when to come back and what to expect.
-        </p>
-
-        <div class="screen">
-          <div class="screen-chrome">
-            <span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
-            <span class="url">app.seenfolio.com / setup / analyzing</span>
-            <span>Working · ~18 hrs</span>
+        <div class="field">
+          <div class="field-row">
+            <label style="margin-bottom:0;">Password</label>
+            <a href="#">forgot?</a>
           </div>
-          <div class="screen-content">
-            <div class="wait">
-              <div class="wait-eyebrow">Step 04 · Quiet work</div>
-              <h2>I'm reading your site, your traffic, and what your <em>customers</em> say.</h2>
-              <p>
-                You'll get an email tomorrow with three things I noticed and the
-                first change I'd like to make. You don't need to do anything
-                until then.
-              </p>
-
-              <div class="progress">
-                <div>
-                  Connecting → Auditing → Listening → Drafting first move
-                </div>
-                <div class="progress-rule">
-                  <div class="progress-fill"></div>
-                </div>
-                <div class="progress-steps">
-                  <div class="progress-step done">Connect</div>
-                  <div class="progress-step done">Audit</div>
-                  <div class="progress-step active">Listen</div>
-                  <div class="progress-step">Draft</div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <input type="password" placeholder="•••••••••" value="••••••••••••" style="margin-top: 8px;" />
         </div>
+
+        <a href="onboarding.html" class="submit-btn">
+          Sign in
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <p class="legal">By signing in you agree to our <a href="#">Terms</a> &amp; <a href="#">Privacy Policy</a>.</p>
       </div>
 
-      <aside class="annot">
-        <div class="annot-row"><b>Time-honest</b>"~18 hrs" — sets expectation matching PRD's <strong>&lt;3 days to first value</strong>.</div>
-        <div class="annot-row"><b>No artificial CTA</b>The screen does not ask the user to do anything next. Closes the loop with email.</div>
-      </aside>
-    </section>
+      <!-- SIGN UP (hidden by default) -->
+      <div data-pane="signup" style="display: none;">
+        <h2 class="form-title">Five minutes to <em>first value</em>.</h2>
+        <p class="form-sub">No credit card. Free includes 100 tokens — enough to see the platform actually work. <a href="#">Why tokens?</a></p>
 
-    <!-- ════════ FIG. 05 ════════ -->
-    <section class="figure" id="fig-05">
-      <div class="figure-tag">
-        <span class="tag-num">05</span>
-        Beginner<br />Dashboard
-        <span class="tag-rule"></span>
-      </div>
-
-      <div class="figure-body">
-        <h2 class="figure-title">Three numbers. <em>What I did.</em> A place to talk.</h2>
-        <p class="figure-desc">
-          The default home view. No engine breakdown, no funnels, no chart
-          library. Just the outcomes the user cares about, an honest log of
-          what the platform has been up to, and a chat input that doubles as
-          the universal command surface.
-        </p>
-
-        <div class="screen">
-          <div class="screen-chrome">
-            <span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
-            <span class="url">app.seenfolio.com / home</span>
-            <span>Beginner mode · 2,140 / 5,000 tokens</span>
-          </div>
-          <div class="screen-content">
-            <div class="dash-header">
-              <h3 class="dash-greet">Morning, <em>Amara</em>. Here's where you stand.</h3>
-              <span class="dash-meta">Mon · Apr 26</span>
-            </div>
-
-            <div class="stats">
-              <div class="stat">
-                <div class="stat-label">Revenue · this month</div>
-                <div class="stat-value">$4,820<span class="unit"></span></div>
-                <div class="stat-trend">↑ 22% vs. last month</div>
-              </div>
-              <div class="stat">
-                <div class="stat-label">New customers</div>
-                <div class="stat-value">63</div>
-                <div class="stat-trend">↑ 9 more than April</div>
-              </div>
-              <div class="stat">
-                <div class="stat-label">Visitors</div>
-                <div class="stat-value">11,402</div>
-                <div class="stat-trend flat">→ steady</div>
-              </div>
-            </div>
-
-            <div class="section-head">
-              <h3>What <em>I've been doing</em></h3>
-              <span class="meta">Last 7 days · 14 actions</span>
-            </div>
-
-            <div class="feed">
-              <div class="feed-row">
-                <span class="feed-time">2h ago</span>
-                <div class="feed-body">
-                  I rewrote your <span class="emph">homepage headline</span> so people who land from ads understand what you sell faster.
-                  <span class="delta">Bounce rate ↓ 18% · Conversions ↑ 12% · 8 tokens used</span>
-                </div>
-                <a class="feed-action" href="#fig-06">See change →</a>
-              </div>
-
-              <div class="feed-row">
-                <span class="feed-time">Yesterday</span>
-                <div class="feed-body">
-                  I shifted <span class="emph">$200 from Facebook to Google Ads</span>. Google traffic converts twice as well right now.
-                  <span class="delta">Net CAC ↓ $14 · 0 tokens (analytics is free)</span>
-                </div>
-                <a class="feed-action" href="#fig-07">Why? →</a>
-              </div>
-
-              <div class="feed-row">
-                <span class="feed-time">2 days</span>
-                <div class="feed-body">
-                  I published a blog post: <span class="emph">"How to care for sterling silver"</span> — answers a question people search for that you didn't cover.
-                  <span class="delta">Indexed by Google · 34 tokens used</span>
-                </div>
-                <button class="feed-action">View →</button>
-              </div>
-
-              <div class="feed-row">
-                <span class="feed-time">3 days</span>
-                <div class="feed-body">
-                  I emailed <span class="emph">12 past customers</span> who hadn't bought in 90+ days with a small return offer.
-                  <span class="delta">3 returned · $214 recovered · 60 tokens used</span>
-                </div>
-                <button class="feed-action">Details →</button>
-              </div>
-
-              <div class="feed-row">
-                <span class="feed-time">4 days</span>
-                <div class="feed-body">
-                  I drafted replies to <span class="emph">two new Google reviews</span>. Waiting on you to approve before posting.
-                  <span class="delta">Pending your review · 0 tokens (drafts are free)</span>
-                </div>
-                <button class="feed-action">Approve →</button>
-              </div>
-            </div>
-
-            <div class="chat">
-              <div class="chat-label">Ask, request, or just think out loud</div>
-              <div class="chat-input-wrap">
-                <input
-                  class="chat-input"
-                  data-chat-input
-                  placeholder="Why did sales drop last week?"
-                />
-              </div>
-              <div class="chat-suggest">
-                <span style="margin-right: 4px;">try:</span>
-                <button data-chat-fill="Why did sales drop last week?">Why did sales drop last week?</button>
-                <button data-chat-fill="Write a blog post about silver care">Write a blog post about silver care</button>
-                <button data-chat-fill="How much am I spending on ads?">How much am I spending on ads?</button>
-              </div>
-              <div class="chat-reply" data-chat-reply>
-                <div class="who">Platform</div>
-                <span data-chat-reply-text>I'll take a look — give me a moment.</span>
-              </div>
-            </div>
-          </div>
+        <div class="sso-group">
+          <button class="sso-btn">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M22.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h6c-.3 1.4-1 2.5-2.2 3.3v2.7h3.6c2.1-1.9 3.3-4.8 3.3-7.8z"/><path fill="currentColor" d="M12 23c2.9 0 5.4-1 7.2-2.6l-3.6-2.7c-1 .7-2.3 1.1-3.7 1.1-2.8 0-5.2-1.9-6.1-4.5H2.2v2.8C4 20.6 7.7 23 12 23z" opacity=".75"/></svg>
+            Sign up with Google
+          </button>
+          <button class="sso-btn">
+            <svg viewBox="0 0 24 24"><path fill="currentColor" d="M16.4 12.5c0-2 1.6-3 1.7-3-1-1.4-2.4-1.6-3-1.6-1.3-.1-2.5.7-3.1.7-.7 0-1.6-.7-2.7-.7-1.4 0-2.7.8-3.4 2-1.5 2.5-.4 6.3 1 8.4.7 1 1.5 2.2 2.6 2.1 1 0 1.4-.7 2.7-.7s1.6.7 2.7.7c1.1 0 1.8-1 2.5-2 .8-1.2 1.1-2.3 1.1-2.4-.1 0-2.1-.8-2.1-3.5z"/></svg>
+            Sign up with Apple
+          </button>
         </div>
-      </div>
 
-      <aside class="annot">
-        <div class="annot-row"><b>Stat #1</b>Revenue first. Always. Money is the metric users actually feel.</div>
-        <div class="annot-row"><b>Activity feed</b>Every row uses the same shape: <em>I did X · so that Y · result Z · cost N tokens</em>.</div>
-        <div class="annot-row"><b>Token strip</b>Top-right shows usage, not just balance — reduces month-end surprise.</div>
-        <div class="annot-row"><b>Chat</b>Always present. The input is the entire app's command surface.</div>
-      </aside>
-    </section>
+        <div class="divider"><span>or use email</span></div>
 
-    <!-- ════════ FIG. 06 ════════ -->
-    <section class="figure" id="fig-06">
-      <div class="figure-tag">
-        <span class="tag-num">06</span>
-        Notification<br />Headline change
-        <span class="tag-rule"></span>
-      </div>
-
-      <div class="figure-body">
-        <h2 class="figure-title">The <em>trust loop</em>: what / why / result / undo.</h2>
-        <p class="figure-desc">
-          The most repeated unit in the product. Every autonomous action
-          collapses to this same four-part shape. Before/after on top, plain
-          reasoning in the middle, hard numbers on the bottom, and a one-click
-          revert that's never hidden.
-        </p>
-
-        <div class="screen">
-          <div class="screen-chrome">
-            <span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
-            <span class="url">app.seenfolio.com / actions / a-3094</span>
-            <span>2 hours ago</span>
-          </div>
-          <div class="screen-content">
-            <div class="notif-eyebrow"><span class="dot"></span> Action · Live on your site</div>
-            <h3 class="notif-title">I changed your homepage <em>headline</em>.</h3>
-
-            <div class="compare">
-              <div class="compare-pane">
-                <div class="compare-label">Before</div>
-                <div class="compare-text">"Welcome to Our Store"</div>
-              </div>
-              <div class="compare-arrow">→</div>
-              <div class="compare-pane after">
-                <div class="compare-label">After · Live</div>
-                <div class="compare-text">"Handmade silver jewelry — free shipping over $50"</div>
-              </div>
-            </div>
-
-            <div class="why-block">
-              <div class="why-label">Why</div>
-              <div class="why-text">
-                Visitors arriving from your ads were bouncing because the old
-                headline didn't tell them what you sold. People who can't tell
-                what a site is in 3 seconds leave. The new one names the product
-                and the offer up front.
-              </div>
-            </div>
-
-            <div class="result-strip">
-              <div class="result-item">
-                <span class="num">−18%</span>
-                Bounce rate · since live
-              </div>
-              <div class="result-item">
-                <span class="num">+12%</span>
-                Add-to-cart rate
-              </div>
-              <div class="result-item">
-                <span class="num">8</span>
-                Tokens spent
-              </div>
-              <div class="result-item">
-                <span class="num">A/B</span>
-                Tested 4 variants · this won
-              </div>
-            </div>
-
-            <div class="actions-row">
-              <button class="btn warn" data-undo>Undo this change</button>
-              <button class="btn">Why these words?</button>
-              <button class="btn ghost">Test another variant</button>
-              <span class="undo-confirm" data-undo-confirm>Reverted. Headline restored. I'll learn from this — what would you have written instead?</span>
-            </div>
-          </div>
+        <div class="field">
+          <label>Your name</label>
+          <input type="text" placeholder="Amara Okafor" />
         </div>
-      </div>
 
-      <aside class="annot">
-        <div class="annot-row"><b>Pattern</b>What → Why → Result → Undo. Memorize this. Every action page uses it.</div>
-        <div class="annot-row"><b>Plain language</b>Zero jargon. "Bounce rate" is mentioned once, but the explanation is human.</div>
-        <div class="annot-row"><b>Undo affordance</b>Visible, single click, includes the learning prompt — not a punishment for the user.</div>
-      </aside>
-    </section>
-
-    <!-- ════════ FIG. 07 ════════ -->
-    <section class="figure" id="fig-07">
-      <div class="figure-tag">
-        <span class="tag-num">07</span>
-        Notification<br />Budget shift
-        <span class="tag-rule"></span>
-      </div>
-
-      <div class="figure-body">
-        <h2 class="figure-title">Money moved, <em>here's why</em>.</h2>
-        <p class="figure-desc">
-          The same trust loop applied to budget — but with the added duty of
-          showing the platform is still hedging, not making a permanent call.
-          Failed channels get reduced, not killed.
-        </p>
-
-        <div class="screen">
-          <div class="screen-chrome">
-            <span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
-            <span class="url">app.seenfolio.com / actions / a-3081</span>
-            <span>Yesterday</span>
-          </div>
-          <div class="screen-content">
-            <div class="notif-eyebrow"><span class="dot"></span> Action · Budget rebalanced</div>
-            <h3 class="notif-title">I shifted <em>$150</em> from Facebook to Google Ads.</h3>
-
-            <div class="budget-table">
-              <div class="budget-row head">
-                <span>Channel</span>
-                <span>Was</span>
-                <span>Now</span>
-                <span style="text-align:right;">Δ</span>
-              </div>
-              <div class="budget-row">
-                <span class="budget-channel">Google Ads</span>
-                <span class="budget-amount">$400 / wk</span>
-                <span class="budget-amount new">$550 / wk</span>
-                <span class="budget-delta up" style="text-align:right;">↑ +$150</span>
-              </div>
-              <div class="budget-row">
-                <span class="budget-channel">Facebook Ads</span>
-                <span class="budget-amount">$300 / wk</span>
-                <span class="budget-amount new">$150 / wk</span>
-                <span class="budget-delta down" style="text-align:right;">↓ −$150</span>
-              </div>
-            </div>
-
-            <div class="why-block">
-              <div class="why-label">Why</div>
-              <div class="why-text">
-                Google traffic is converting twice as well right now —
-                $45 to acquire a customer vs. $89 on Facebook. I'm not killing
-                Facebook; I'm keeping it at $150 to keep testing. If it
-                improves, I'll shift money back automatically.
-              </div>
-            </div>
-
-            <div class="result-strip">
-              <div class="result-item">
-                <span class="num">$45</span>
-                Google · cost per customer
-              </div>
-              <div class="result-item">
-                <span class="num">$89</span>
-                Facebook · cost per customer
-              </div>
-              <div class="result-item">
-                <span class="num">7d</span>
-                Window I evaluated
-              </div>
-            </div>
-
-            <div class="actions-row">
-              <button class="btn warn" data-undo>Undo · revert to old split</button>
-              <button class="btn">Override · set my own split</button>
-              <button class="btn ghost">Pause Facebook entirely</button>
-              <span class="undo-confirm" data-undo-confirm>Reverted. Google: $400 / FB: $300 restored. I'll keep the old ratio for 7 days unless you tell me otherwise.</span>
-            </div>
-          </div>
+        <div class="field">
+          <label>Work email</label>
+          <input type="email" placeholder="you@yourbusiness.com" />
         </div>
-      </div>
 
-      <aside class="annot">
-        <div class="annot-row"><b>Hedging</b>"I'm not killing Facebook" — preempts the user's fear of an over-confident agent.</div>
-        <div class="annot-row"><b>Override</b>Power-user lever exists, but is the second-class citizen.</div>
-      </aside>
-    </section>
-
-    <!-- ════════ FIG. 08 ════════ -->
-    <section class="figure" id="fig-08">
-      <div class="figure-tag">
-        <span class="tag-num">08</span>
-        Chat<br />in action
-        <span class="tag-rule"></span>
-      </div>
-
-      <div class="figure-body">
-        <h2 class="figure-title">"Write a blog post about <em>silver care</em>."</h2>
-        <p class="figure-desc">
-          The chat surface accepts requests, returns a plan, and shows the
-          token cost <strong>before</strong> work begins. The user is never
-          surprised by their bill. Cheap default actions still need explicit
-          consent if they exceed the user's typical spend pattern.
-        </p>
-
-        <div class="screen">
-          <div class="screen-chrome">
-            <span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
-            <span class="url">app.seenfolio.com / chat</span>
-            <span>2,140 / 5,000 tokens this month</span>
-          </div>
-          <div class="screen-content">
-            <div class="conv">
-              <div class="conv-msg user">
-                <div class="conv-who">You · 11:42</div>
-                <div class="conv-text">"Write a blog post about how to care for silver jewelry. Mention our cleaning kit at the bottom."</div>
-              </div>
-
-              <div class="conv-msg platform">
-                <div class="conv-who">Platform · 11:42</div>
-                <div class="conv-text">
-                  Got it. Here's what I'd write — about 1,200 words, written
-                  for someone who just bought their first silver piece.
-                </div>
-
-                <div class="plan-card">
-                  <h4>Plan</h4>
-                  <ul class="plan-list">
-                    <li>Headline: <em>"Your silver will last 20 years if you do these 4 things."</em></li>
-                    <li>4 sections: storing it, wearing it, cleaning it, what NOT to do.</li>
-                    <li>Soft mention of your cleaning kit in the cleaning section + at the end.</li>
-                    <li>Optimized for the search "how to clean silver jewelry at home" — 14k searches/mo, you don't rank yet.</li>
-                    <li>Will publish to /blog/silver-care after you approve, with internal links from your product pages.</li>
-                  </ul>
-                  <div class="plan-cost">
-                    <span>Estimated cost · prediction is conservative</span>
-                    <span class="cost"><em>35</em> tokens</span>
-                  </div>
-                </div>
-
-                <div class="actions-row" style="margin-top: 22px;">
-                  <button class="btn primary" data-open-modal>Approve &amp; write →</button>
-                  <button class="btn">Tweak the plan</button>
-                  <button class="btn ghost">Skip</button>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="field">
+          <label>Password</label>
+          <input type="password" placeholder="At least 10 characters" />
         </div>
+
+        <a href="onboarding.html" class="submit-btn">
+          Create account · 100 free tokens
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <p class="legal">By creating an account you agree to our <a href="#">Terms</a> &amp; <a href="#">Privacy Policy</a>. We never publish to your site without showing you first.</p>
       </div>
 
-      <aside class="annot">
-        <div class="annot-row"><b>Plan-first</b>The platform never silently burns tokens. Plan + estimate, then user consents.</div>
-        <div class="annot-row"><b>Voice</b>Specific, not corporate. "20 years if you do these 4 things" sounds like a writer, not a CMS.</div>
-        <div class="annot-row"><b>Search intent</b>Mentioned briefly but explained ("you don't rank yet"). No keyword-difficulty jargon.</div>
-      </aside>
+      <div class="form-foot">
+        <span>v 0.1 · Lo-fi → Hi-fi</span>
+        <a href="lofi.html">↺ See lo-fi prototype</a>
+      </div>
     </section>
-
-    <!-- ════════ FIG. 09 ════════ -->
-    <section class="figure" id="fig-09">
-      <div class="figure-tag">
-        <span class="tag-num">09</span>
-        Token approval<br />modal
-        <span class="tag-rule"></span>
-      </div>
-
-      <div class="figure-body">
-        <h2 class="figure-title">Confirming the <em>spend</em>.</h2>
-        <p class="figure-desc">
-          The token approval surface. Two numbers side by side: what this
-          will cost, and what's left after. No fine print, no upsell. If the
-          user has auto-mode on and the cost is within their normal pattern,
-          this modal never appears.
-        </p>
-
-        <div class="screen">
-          <div class="screen-chrome">
-            <span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
-            <span class="url">app.seenfolio.com / chat · approval modal</span>
-            <span>Awaiting your nod</span>
-          </div>
-          <div class="screen-content tight" style="background: var(--paper-deep); padding: 64px 40px;">
-            <div class="modal-mock">
-              <div class="modal-eyebrow"><span class="live"></span> Confirm before I start</div>
-              <h3 class="modal-title">Write the silver-care <em>blog post</em>?</h3>
-              <p class="modal-body">
-                I'll publish to <em>/blog/silver-care</em> with internal links
-                from your three highest-traffic product pages. I'll show you
-                the draft before it goes live — you can edit, regenerate, or
-                cancel at any point with no token cost.
-              </p>
-
-              <div class="cost-block">
-                <div class="cost-cell">
-                  <div class="cost-label">This task</div>
-                  <div class="cost-num"><em>35</em> tokens</div>
-                  <div class="cost-sub">Roughly $1.05 at your plan rate.</div>
-                </div>
-                <div class="cost-cell">
-                  <div class="cost-label">Remaining after</div>
-                  <div class="cost-num">2,825</div>
-                  <div class="cost-sub">2,860 → 2,825 · resets May 1.</div>
-                </div>
-              </div>
-
-              <div class="actions-row" style="border-top: 0; padding-top: 0;">
-                <button class="btn primary">Approve · start now</button>
-                <button class="btn">Always approve content under 50 tokens</button>
-                <button class="btn ghost">Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <aside class="annot">
-        <div class="annot-row"><b>Two numbers</b>Cost + remaining. Together they answer the only question that matters.</div>
-        <div class="annot-row"><b>"Always approve under N"</b>Lets the user opt into auto-mode incrementally — without a settings rabbit hole.</div>
-        <div class="annot-row"><b>Currency</b>Tokens shown first, dollars in fine print. Builds the unit users will live in.</div>
-      </aside>
-    </section>
-
-    <!-- ════════ FIG. 10 ════════ -->
-    <section class="figure" id="fig-10">
-      <div class="figure-tag">
-        <span class="tag-num">10</span>
-        Edge case<br />Budget exhausted
-        <span class="tag-rule"></span>
-      </div>
-
-      <div class="figure-body">
-        <h2 class="figure-title">When the <em>money runs out</em>.</h2>
-        <p class="figure-desc">
-          A graceful pause is more reassuring than a panicked alert. The
-          platform stopped spending automatically, explained that the
-          campaign was actually working, and offered three concrete refill
-          paths — not a dropdown.
-        </p>
-
-        <div class="screen">
-          <div class="screen-chrome">
-            <span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
-            <span class="url">app.seenfolio.com / alerts / budget-out</span>
-            <span>Triggered 06:14</span>
-          </div>
-          <div class="screen-content">
-            <div class="alert">
-              <div class="alert-eyebrow">⏸ Paused · awaiting you</div>
-              <h3>Your ad budget <em>ran out</em>. I paused everything.</h3>
-              <p>
-                Your ads were performing well — $42 to acquire each customer,
-                better than industry average. I stopped them at 6:14 this
-                morning so you wouldn't overspend. Want to keep them running?
-              </p>
-
-              <div class="alert-grid">
-                <button class="alert-opt">
-                  <div class="alert-opt-num">+ <em>$500</em></div>
-                  <div class="alert-opt-sub">Lasts ~12 days at current pace</div>
-                </button>
-                <button class="alert-opt">
-                  <div class="alert-opt-num">+ <em>$1,000</em></div>
-                  <div class="alert-opt-sub">Lasts ~24 days · most users pick this</div>
-                </button>
-                <button class="alert-opt">
-                  <div class="alert-opt-num">Custom</div>
-                  <div class="alert-opt-sub">Pick your own number</div>
-                </button>
-              </div>
-
-              <div class="actions-row" style="margin-top: 24px; padding-top: 22px;">
-                <button class="btn ghost">Don't refill · keep ads paused</button>
-                <button class="btn ghost">Auto-refill from card next time</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <aside class="annot">
-        <div class="annot-row"><b>Lead with reassurance</b>Performance was good. Pause was protective, not a failure signal.</div>
-        <div class="annot-row"><b>Three options</b>Cognitive load is a feature: a free-form input alone slows decisions.</div>
-        <div class="annot-row"><b>Auto-refill exit</b>Quietly available — never the default first prompt.</div>
-      </aside>
-    </section>
-
-    <!-- ════════ FIG. 11 ════════ -->
-    <section class="figure" id="fig-11">
-      <div class="figure-tag">
-        <span class="tag-num">11</span>
-        Mode toggle<br />Settings strip
-        <span class="tag-rule"></span>
-      </div>
-
-      <div class="figure-body">
-        <h2 class="figure-title">One product, three <em>postures</em>.</h2>
-        <p class="figure-desc">
-          90% of users never see this screen. It lives one click deep in
-          settings. The wording — Beginner / Intermediate / Advanced — is
-          honest about what changes; the platform is the same engine
-          underneath, just with more or fewer levers exposed.
-        </p>
-
-        <div class="mode-strip">
-          <div class="mode-strip-head">
-            <span>Settings · Display mode</span>
-            <span>Switch any time. Your data stays the same.</span>
-          </div>
-          <div class="mode-grid" data-mode-group>
-            <button class="mode-cell active">
-              <div class="mode-num">Default · 90% of you</div>
-              <div class="mode-name"><em>Beginner</em></div>
-              <p class="mode-desc">Outcomes, activity feed, chat. The platform decides; you approve. No engine names, no charts.</p>
-            </button>
-            <button class="mode-cell">
-              <div class="mode-num">For curious operators</div>
-              <div class="mode-name"><em>Intermediate</em></div>
-              <p class="mode-desc">Channel breakdown, conversion funnels, preview-before-publish on every action.</p>
-            </button>
-            <button class="mode-cell">
-              <div class="mode-num">Opt in only</div>
-              <div class="mode-name"><em>Advanced</em></div>
-              <p class="mode-desc">Per-engine controls, custom rules, API access. For teams who want every dial exposed.</p>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <aside class="annot">
-        <div class="annot-row"><b>Default-first</b>Beginner is pre-selected. The other modes are reached, not stumbled into.</div>
-        <div class="annot-row"><b>Honest framing</b>"90% of you" — admits the design choice instead of pretending all modes are equal.</div>
-      </aside>
-    </section>
-
-    <!-- ════════ FOOTER ════════ -->
-    <footer class="footer">
-      <span>SeenFolio · Lo-fi prototype</span>
-      <span>Drawn for review · Apr 2026</span>
-      <span>Next: copy review → mid-fi</span>
-    </footer>
   </main>
 
   <script>
-    // Chip selection (multi-toggle within a group, except onboarding which is single-select)
-    document.querySelectorAll("[data-chip-group]").forEach((group) => {
-      group.querySelectorAll(".chip").forEach((chip) => {
-        chip.addEventListener("click", () => {
-          group.querySelectorAll(".chip").forEach((c) => c.classList.remove("selected"));
-          chip.classList.add("selected");
+    document.querySelectorAll('[data-tabs]').forEach(group => {
+      const tabs = group.querySelectorAll('.tab');
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          const target = tab.dataset.tab;
+          document.querySelectorAll('[data-pane]').forEach(p => {
+            p.style.display = p.dataset.pane === target ? '' : 'none';
+          });
         });
-      });
-    });
-
-    // Goal cards — single select
-    document.querySelectorAll("[data-goal-group]").forEach((group) => {
-      group.querySelectorAll(".goal-card").forEach((card) => {
-        card.addEventListener("click", () => {
-          group.querySelectorAll(".goal-card").forEach((c) => c.classList.remove("selected"));
-          card.classList.add("selected");
-        });
-      });
-    });
-
-    // Mode toggle — single select
-    document.querySelectorAll("[data-mode-group]").forEach((group) => {
-      group.querySelectorAll(".mode-cell").forEach((cell) => {
-        cell.addEventListener("click", () => {
-          group.querySelectorAll(".mode-cell").forEach((c) => c.classList.remove("active"));
-          cell.classList.add("active");
-        });
-      });
-    });
-
-    // Chat input + canned replies
-    const replies = {
-      "why did sales drop last week?":
-        "Two things happened. Your Facebook ads dropped in performance — I rebalanced toward Google. And one of your top blog posts lost its featured snippet on Google. I'm rewriting the intro now to win it back.",
-      "write a blog post about silver care":
-        "Drafting now — 1,200 words, optimized for \"how to clean silver jewelry at home.\" I'll show you a preview before publishing. Estimated cost: 35 tokens.",
-      "how much am i spending on ads?":
-        "$700/week right now — $550 Google, $150 Facebook. CAC is sitting at $48 blended. Last month you spent $2,840 total and gained 59 paying customers.",
-    };
-
-    const chatInput = document.querySelector("[data-chat-input]");
-    const chatReply = document.querySelector("[data-chat-reply]");
-    const chatReplyText = document.querySelector("[data-chat-reply-text]");
-
-    function showReply(message) {
-      const key = message.trim().toLowerCase();
-      const reply =
-        replies[key] ||
-        "Looking at that for you — give me a moment. I'll have an answer in your activity feed shortly.";
-      chatReplyText.textContent = reply;
-      chatReply.classList.add("visible");
-    }
-
-    if (chatInput) {
-      chatInput.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" && chatInput.value.trim()) {
-          showReply(chatInput.value);
-        }
-      });
-    }
-
-    document.querySelectorAll("[data-chat-fill]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const text = btn.getAttribute("data-chat-fill");
-        chatInput.value = text;
-        chatInput.focus();
-        showReply(text);
-      });
-    });
-
-    // Undo confirmation
-    document.querySelectorAll("[data-undo]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const confirm = btn.parentElement.querySelector("[data-undo-confirm]");
-        if (confirm) confirm.classList.add("visible");
-        btn.disabled = true;
-        btn.textContent = "Reverted";
-        btn.style.opacity = "0.5";
-      });
-    });
-
-    // Modal scroll target — clicking the "Approve & write" button on Fig. 08 jumps to Fig. 09
-    document.querySelectorAll("[data-open-modal]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        document.getElementById("fig-09").scrollIntoView({ behavior: "smooth", block: "start" });
       });
     });
   </script>

@@ -6,10 +6,10 @@ This repo holds the lo-fi and hi-fi prototypes for stakeholder review.
 
 ## Pages
 
-- [`index.html`](index.html) — Lo-fi prototype (12 figures on a design board)
-- [`auth.html`](auth.html) — Sign in / sign up
+- [`index.html`](index.html) — Sign in / sign up (entry point)
 - [`onboarding.html`](onboarding.html) — Four-step setup with the analyzing wait state
 - [`app.html`](app.html) — Hi-fi app: dashboard, engines, drawers, modals, edge cases
+- [`lofi.html`](lofi.html) — Lo-fi prototype (12 figures on a design board)
 
 ## App views (`app.html`)
 
