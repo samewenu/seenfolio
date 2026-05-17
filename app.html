@@ -2878,11 +2878,43 @@
     /* ─── HEALTH ROW ───────────────────────────────────── */
     .health-row { display:flex; align-items:center; gap:10px; font-family:var(--mono); font-size:11px; color:var(--ink-soft); letter-spacing:.02em; }
 
+    /* ─── AUTONOMY RADIO ROWS ──────────────────────────── */
+    .autonomy-row {
+      display:grid; grid-template-columns:1fr repeat(4,90px);
+      padding:18px 24px; border-bottom:1px solid var(--line); align-items:center;
+    }
+    .autonomy-name {
+      font-family:var(--serif); font-size:17px;
+      font-variation-settings:"opsz" 60,"wght" 380; letter-spacing:-0.01em;
+      margin-bottom:4px;
+    }
+    .autonomy-name em { font-style:italic; color:var(--amber); }
+    .autonomy-desc { font-size:12.5px; color:var(--ink-mute); line-height:1.5; }
+    .radio {
+      display:flex; justify-content:center; cursor:pointer;
+    }
+    .radio input { position:absolute; opacity:0; pointer-events:none; }
+    .radio span {
+      width:18px; height:18px; border-radius:50%;
+      border:1.5px solid var(--line-strong); background:transparent;
+      position:relative; transition:.15s;
+    }
+    .radio:hover span { border-color:var(--ink-mute); }
+    .radio input:checked + span {
+      border-color:var(--amber); background:var(--amber-trace);
+    }
+    .radio input:checked + span::after {
+      content:""; position:absolute; inset:3px;
+      border-radius:50%; background:var(--amber);
+      box-shadow:0 0 8px var(--amber-glow);
+    }
+
     /* responsive */
     @media (max-width: 820px) {
       .ws-switch-btn .ws-meta { display:none; }
       .metric-strip { grid-template-columns:repeat(2,1fr); }
       .citation-grid { grid-template-columns:1fr 1fr; }
+      .autonomy-row { grid-template-columns:1fr repeat(4,50px); padding:14px 16px; }
     }
   </style>
 </head>
@@ -3748,6 +3780,124 @@
               </div>
               <div class="toggle" data-toggle></div>
             </div>
+          </div>
+
+          <!-- PER-ENGINE AUTONOMY -->
+          <div class="sec-head" style="margin-top:48px;">
+            <h3 class="sec-title">Per-engine <em>autonomy</em></h3>
+            <span class="sec-sub">How freely I act per engine · Full Auto → Off</span>
+          </div>
+          <div style="border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);overflow:hidden;">
+            <div style="display:grid;grid-template-columns:1fr repeat(4,90px);padding:14px 24px;background:var(--bg-1);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute);align-items:center;">
+              <span>Engine</span>
+              <span style="text-align:center;">Full Auto</span>
+              <span style="text-align:center;">Suggest+Confirm</span>
+              <span style="text-align:center;">Notify Only</span>
+              <span style="text-align:center;">Off</span>
+            </div>
+
+            <div class="autonomy-row" data-engine="seo_geo">
+              <div>
+                <div class="autonomy-name"><em>SEO + GEO</em></div>
+                <div class="autonomy-desc">Page rewrites · AI citation tracking · schema markup</div>
+              </div>
+              <label class="radio"><input type="radio" name="aut_seo" checked><span></span></label>
+              <label class="radio"><input type="radio" name="aut_seo"><span></span></label>
+              <label class="radio"><input type="radio" name="aut_seo"><span></span></label>
+              <label class="radio"><input type="radio" name="aut_seo"><span></span></label>
+            </div>
+            <div class="autonomy-row" data-engine="bi">
+              <div>
+                <div class="autonomy-name"><em>Intelligence (BI)</em></div>
+                <div class="autonomy-desc">Attribution · budget allocation · channel routing</div>
+              </div>
+              <label class="radio"><input type="radio" name="aut_bi" checked><span></span></label>
+              <label class="radio"><input type="radio" name="aut_bi"><span></span></label>
+              <label class="radio"><input type="radio" name="aut_bi"><span></span></label>
+              <label class="radio"><input type="radio" name="aut_bi"><span></span></label>
+            </div>
+            <div class="autonomy-row" data-engine="ads">
+              <div>
+                <div class="autonomy-name"><em>Ads</em></div>
+                <div class="autonomy-desc">Cross-platform campaigns · creative variants · bidding</div>
+              </div>
+              <label class="radio"><input type="radio" name="aut_ads"><span></span></label>
+              <label class="radio"><input type="radio" name="aut_ads" checked><span></span></label>
+              <label class="radio"><input type="radio" name="aut_ads"><span></span></label>
+              <label class="radio"><input type="radio" name="aut_ads"><span></span></label>
+            </div>
+            <div class="autonomy-row" data-engine="content">
+              <div>
+                <div class="autonomy-name"><em>Content</em></div>
+                <div class="autonomy-desc">Blog posts · product descriptions · social copy</div>
+              </div>
+              <label class="radio"><input type="radio" name="aut_content" checked><span></span></label>
+              <label class="radio"><input type="radio" name="aut_content"><span></span></label>
+              <label class="radio"><input type="radio" name="aut_content"><span></span></label>
+              <label class="radio"><input type="radio" name="aut_content"><span></span></label>
+            </div>
+            <div class="autonomy-row" data-engine="trust">
+              <div>
+                <div class="autonomy-name"><em>Trust</em></div>
+                <div class="autonomy-desc">GBP posts · review replies · social proof widgets</div>
+              </div>
+              <label class="radio"><input type="radio" name="aut_trust"><span></span></label>
+              <label class="radio"><input type="radio" name="aut_trust" checked><span></span></label>
+              <label class="radio"><input type="radio" name="aut_trust"><span></span></label>
+              <label class="radio"><input type="radio" name="aut_trust"><span></span></label>
+            </div>
+            <div class="autonomy-row" data-engine="whatsapp">
+              <div>
+                <div class="autonomy-name"><em>WhatsApp</em></div>
+                <div class="autonomy-desc">Bot replies · cart recovery · order handoff</div>
+              </div>
+              <label class="radio"><input type="radio" name="aut_wa"><span></span></label>
+              <label class="radio"><input type="radio" name="aut_wa"><span></span></label>
+              <label class="radio"><input type="radio" name="aut_wa" checked><span></span></label>
+              <label class="radio"><input type="radio" name="aut_wa"><span></span></label>
+            </div>
+            <div class="autonomy-row" data-engine="retention" style="border-bottom:0;">
+              <div>
+                <div class="autonomy-name"><em>Retention</em></div>
+                <div class="autonomy-desc">Lifecycle email · churn prediction · winback</div>
+              </div>
+              <label class="radio"><input type="radio" name="aut_ret" checked><span></span></label>
+              <label class="radio"><input type="radio" name="aut_ret"><span></span></label>
+              <label class="radio"><input type="radio" name="aut_ret"><span></span></label>
+              <label class="radio"><input type="radio" name="aut_ret"><span></span></label>
+            </div>
+          </div>
+
+          <div class="sec-head" style="margin-top:48px;">
+            <h3 class="sec-title">Workspace <em>details</em></h3>
+            <span class="sec-sub">Currency, timezone, brand voice defaults</span>
+          </div>
+          <div style="border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:4px 24px;">
+            <div class="pref-row">
+              <div class="pref-text"><div class="pref-name">Timezone</div><div class="pref-desc">Used for scheduled sends, daily digests, and trend chart axes.</div></div>
+              <div style="font-family:var(--mono);font-size:12px;color:var(--ink);">Africa/Lagos · GMT+1</div>
+            </div>
+            <div class="pref-row">
+              <div class="pref-text"><div class="pref-name">Currency</div><div class="pref-desc">Reporting currency for revenue, CAC, LTV. Channels in other currencies normalized daily.</div></div>
+              <div style="font-family:var(--mono);font-size:12px;color:var(--ink);">USD · $</div>
+            </div>
+            <div class="pref-row">
+              <div class="pref-text"><div class="pref-name">Default integration method</div><div class="pref-desc">Where I install content patches when a new page is created.</div></div>
+              <div style="font-family:var(--mono);font-size:12px;color:var(--ink);">WordPress plugin</div>
+            </div>
+            <div class="pref-row">
+              <div class="pref-text"><div class="pref-name">Brand voice profile</div><div class="pref-desc">3 anchor examples + tone attrs + avoid list. Versioned and A/B testable.</div></div>
+              <button class="btn ghost" data-view-link="content" style="padding:6px 12px;font-size:12px;">Edit profile →</button>
+            </div>
+          </div>
+
+          <div class="sec-head" style="margin-top:48px;">
+            <h3 class="sec-title">Reset <em>demo</em></h3>
+            <span class="sec-sub">Clear all local state and restart from sign-up</span>
+          </div>
+          <div style="padding:18px 22px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);display:flex;justify-content:space-between;align-items:center;gap:24px;">
+            <div style="color:var(--ink-soft);font-size:13.5px;line-height:1.55;max-width:60ch;">Wipes <code style="background:var(--surface-2);padding:2px 6px;border-radius:4px;font-family:var(--mono);font-size:11.5px;color:var(--amber-bright);">localStorage:seenfolio:*</code>. Workspace, autonomy overrides, dismissed banners, undo streak — all reset. The next page load behaves like a fresh sign-up.</div>
+            <button class="btn danger" data-reset-all-stage>Reset demo</button>
           </div>
         </div>
       </div>
@@ -6359,9 +6509,10 @@
         demoPanel.classList.remove('visible');
       });
     });
-    const resetBtn = document.querySelector('[data-reset-all]');
-    if (resetBtn) {
+    const resetBtns = document.querySelectorAll('[data-reset-all], [data-reset-all-stage]');
+    resetBtns.forEach(resetBtn => {
       resetBtn.addEventListener('click', () => {
+        if (window.SeenFolioState) window.SeenFolioState.reset();
         document.querySelectorAll('[data-banner]').forEach(b => b.classList.remove('visible'));
         closeDrawer();
         closeModal();
@@ -6378,9 +6529,9 @@
           btn.textContent = btn.dataset.original || btn.textContent;
         });
         drawer.querySelectorAll('[data-undo-confirm]').forEach(c => c.classList.remove('visible'));
-        demoPanel.classList.remove('visible');
+        if (demoPanel) demoPanel.classList.remove('visible');
       });
-    }
+    });
 
     /* ────────────────── CHAT ────────────────── */
     const replies = {
