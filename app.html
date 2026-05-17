@@ -2733,6 +2733,157 @@
       .result-cell, .cost-cell { border-right: 0; border-bottom: 1px solid var(--line); }
       .greeting { font-size: 32px; }
     }
+
+    /* ─── WORKSPACE SWITCHER ─────────────────────────── */
+    .ws-switch { position: relative; }
+    .ws-switch-btn {
+      display:flex; align-items:center; gap:10px;
+      padding:6px 10px 6px 6px; border-radius:8px;
+      border:1px solid var(--line); background:var(--surface);
+      color:var(--ink); transition:.15s; cursor:pointer;
+    }
+    .ws-switch-btn:hover { border-color:var(--line-strong); }
+    .ws-avatar {
+      width:26px; height:26px; border-radius:6px;
+      display:grid; place-items:center;
+      background:linear-gradient(135deg,#C9694F,#E8B260);
+      font-family:var(--serif); font-size:13px; font-style:italic;
+      color:var(--bg); font-variation-settings:"wght" 500;
+      flex-shrink:0;
+    }
+    .ws-meta {
+      display:flex; flex-direction:column; line-height:1.15;
+      align-items:flex-start;
+    }
+    .ws-name { font-size:13px; color:var(--ink); }
+    .ws-site { font-family:var(--mono); font-size:10px; color:var(--ink-mute); letter-spacing:.04em; }
+    .ws-menu {
+      position:absolute; top:calc(100% + 8px); left:0;
+      width:300px;
+      background:var(--bg-1); border:1px solid var(--line-strong);
+      border-radius:12px; padding:8px;
+      box-shadow:0 24px 60px -20px rgba(0,0,0,0.7);
+      opacity:0; pointer-events:none; transform:translateY(-4px);
+      transition:.18s; z-index:60;
+    }
+    .ws-menu.open { opacity:1; pointer-events:auto; transform:translateY(0); }
+    .ws-menu-head {
+      font-family:var(--mono); font-size:10px; letter-spacing:.18em;
+      text-transform:uppercase; color:var(--ink-mute);
+      padding:8px 10px 6px;
+    }
+    .ws-menu-item {
+      display:flex; align-items:center; gap:10px;
+      padding:9px 10px; width:100%;
+      border:0; background:transparent; border-radius:8px;
+      color:var(--ink); cursor:pointer; transition:.12s;
+    }
+    .ws-menu-item:hover { background:var(--surface-1); }
+    .ws-menu-item .ws-check { margin-left:auto; font-size:13px; width:14px; text-align:right; }
+    .ws-menu-sep { height:1px; background:var(--line); margin:6px 4px; }
+
+    /* ─── BIG TABLE PATTERN (Pages, Registry, Team, etc.) ── */
+    .big-table {
+      border:1px solid var(--line); border-radius:var(--r-lg);
+      overflow:hidden; background:var(--surface);
+    }
+    .bt-head, .bt-row {
+      display:grid; padding:14px 22px; align-items:center;
+      gap:18px; border-bottom:1px solid var(--line);
+    }
+    .bt-head {
+      background:var(--bg-1);
+      font-family:var(--mono); font-size:10px; letter-spacing:.16em;
+      text-transform:uppercase; color:var(--ink-mute);
+    }
+    .bt-row { cursor:pointer; transition:.15s; }
+    .bt-row:hover { background:var(--surface-1); }
+    .bt-row:last-child { border-bottom:0; }
+
+    /* ─── SCORE BADGE ──────────────────────────────────── */
+    .score {
+      display:inline-flex; align-items:baseline; gap:6px;
+      font-family:var(--serif); font-size:22px;
+      font-variation-settings:"opsz" 80,"wght" 360; letter-spacing:-0.012em;
+      line-height:1;
+    }
+    .score.good { color:var(--good); }
+    .score.warn { color:var(--warn); }
+    .score.bad { color:var(--bad); }
+    .score .of { font-family:var(--mono); font-size:10px; color:var(--ink-mute); letter-spacing:.06em; }
+    .score-bar {
+      height:4px; width:50px; background:var(--surface-2);
+      border-radius:2px; overflow:hidden; margin-top:4px;
+    }
+    .score-bar > span { display:block; height:100%; background:var(--amber); border-radius:2px; }
+    .score-bar > span.good { background:var(--good); }
+    .score-bar > span.warn { background:var(--warn); }
+    .score-bar > span.bad { background:var(--bad); }
+
+    /* ─── PILLS / TAGS ─────────────────────────────────── */
+    .pill {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:4px 10px; border-radius:999px;
+      font-family:var(--mono); font-size:10px;
+      letter-spacing:.12em; text-transform:uppercase;
+      border:1px solid var(--line); color:var(--ink-soft);
+      background:var(--surface);
+    }
+    .pill.ok { border-color:rgba(156,184,126,0.4); color:var(--good); background:rgba(156,184,126,0.06); }
+    .pill.warn { border-color:rgba(212,154,79,0.4); color:var(--warn); background:rgba(212,154,79,0.07); }
+    .pill.bad { border-color:rgba(201,105,79,0.4); color:var(--bad); background:rgba(201,105,79,0.06); }
+    .pill.amber { border-color:var(--line-warm); color:var(--amber); background:var(--amber-trace); }
+    .pill .dot { width:5px; height:5px; border-radius:50%; background:currentColor; }
+
+    /* ─── KEY METRIC ROW ───────────────────────────────── */
+    .metric-strip {
+      display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+      border:1px solid var(--line); border-radius:var(--r-lg);
+      background:var(--surface); margin-bottom:32px; overflow:hidden;
+    }
+    .metric-strip .stat {
+      padding:22px 24px 26px; border-right:1px solid var(--line);
+    }
+    .metric-strip .stat:last-child { border-right:0; }
+
+    /* ─── CITATIONS ────────────────────────────────────── */
+    .citation-grid {
+      display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+      border:1px solid var(--line); border-radius:var(--r-lg);
+      overflow:hidden; background:var(--surface); margin-bottom:32px;
+    }
+    .citation-cell {
+      padding:22px 24px; border-right:1px solid var(--line);
+    }
+    .citation-cell:last-child { border-right:0; }
+    .citation-cell .engine {
+      font-family:var(--mono); font-size:10px; letter-spacing:.16em;
+      text-transform:uppercase; color:var(--ink-mute); margin-bottom:14px;
+    }
+    .citation-cell .count {
+      font-family:var(--serif); font-size:38px; line-height:1;
+      letter-spacing:-0.025em; font-variation-settings:"opsz" 144,"wght" 320;
+      color:var(--ink); margin-bottom:6px;
+    }
+    .citation-cell .label {
+      font-family:var(--mono); font-size:10.5px; color:var(--ink-mute);
+      letter-spacing:.04em;
+    }
+    .spark-line {
+      width:100%; height:32px; margin-top:14px;
+    }
+    .spark-line path.l { stroke:var(--amber); stroke-width:1.4; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+    .spark-line path.a { fill:var(--amber-glow); opacity:0.4; }
+
+    /* ─── HEALTH ROW ───────────────────────────────────── */
+    .health-row { display:flex; align-items:center; gap:10px; font-family:var(--mono); font-size:11px; color:var(--ink-soft); letter-spacing:.02em; }
+
+    /* responsive */
+    @media (max-width: 820px) {
+      .ws-switch-btn .ws-meta { display:none; }
+      .metric-strip { grid-template-columns:repeat(2,1fr); }
+      .citation-grid { grid-template-columns:1fr 1fr; }
+    }
   </style>
 </head>
 <body class="mode-beginner">
@@ -2778,10 +2929,23 @@
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z"/></svg>
           Chat
         </button>
+        <button class="nav-item for-advanced" data-view="registry">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
+          Registry
+        </button>
       </nav>
 
       <nav class="nav-section for-intermediate">
         <div class="nav-label">Engines</div>
+        <button class="nav-item" data-view="pages">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
+          Pages
+          <span class="badge">12</span>
+        </button>
+        <button class="nav-item" data-view="citations">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12c5-4 13-4 18 0M3 12c5 4 13 4 18 0"/><circle cx="12" cy="12" r="2"/></svg>
+          AI Citations
+        </button>
         <button class="nav-item" data-view="content">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg>
           Content
@@ -2825,6 +2989,26 @@
         </button>
       </nav>
 
+      <nav class="nav-section for-advanced">
+        <div class="nav-label">System</div>
+        <button class="nav-item" data-view="team">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="8" r="3"/><path d="M3 21v-1a6 6 0 0112 0v1M16 11a3 3 0 100-6M21 21v-1a6 6 0 00-3-5.2"/></svg>
+          Team
+        </button>
+        <button class="nav-item" data-view="credentials">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V8a5 5 0 0110 0v3"/></svg>
+          Credentials
+        </button>
+        <button class="nav-item" data-view="api">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12a9 9 0 11-9-9"/><path d="M14 4l4 4-4 4"/></svg>
+          API &amp; Webhooks
+        </button>
+        <button class="nav-item" data-view="audit">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Audit log
+        </button>
+      </nav>
+
       <div class="rail-bottom">
         <div class="meter">
           <div class="meter-head">
@@ -2853,7 +3037,32 @@
 
       <!-- TOPBAR -->
       <header class="topbar">
-        <div class="crumb"><b>Home</b> <span data-view-crumb></span></div>
+        <div class="ws-switch" data-ws-switch>
+          <button class="ws-switch-btn" data-ws-toggle>
+            <span class="ws-avatar" data-ws-avatar>S</span>
+            <span class="ws-meta">
+              <span class="ws-name" data-ws-name>Silver Jewelry Co</span>
+              <span class="ws-site" data-ws-site>silverjewelry.com</span>
+            </span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--ink-mute);"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="ws-menu" data-ws-menu>
+            <div class="ws-menu-head">Workspaces</div>
+            <button class="ws-menu-item" data-ws-pick="ws_silver">
+              <span class="ws-avatar">S</span>
+              <span class="ws-meta"><span class="ws-name">Silver Jewelry Co</span><span class="ws-site">silverjewelry.com · Growth</span></span>
+              <span class="ws-check" style="color:var(--amber)">✓</span>
+            </button>
+            <button class="ws-menu-item" data-ws-pick="ws_kente">
+              <span class="ws-avatar" style="background:linear-gradient(135deg,#7B5C3A,#D49A4F);">K</span>
+              <span class="ws-meta"><span class="ws-name">Kente Threads</span><span class="ws-site">kentethreads.com · Starter</span></span>
+              <span class="ws-check"></span>
+            </button>
+            <div class="ws-menu-sep"></div>
+            <button class="ws-menu-item add"><span class="ws-avatar" style="background:transparent;border:1px dashed var(--line-strong);color:var(--ink-mute);">+</span><span class="ws-meta"><span class="ws-name">Add workspace</span><span class="ws-site">Connect a new site</span></span></button>
+          </div>
+        </div>
+        <div class="crumb"><span data-view-crumb>Home</span></div>
         <div class="search">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color: var(--ink-mute);"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
           <input placeholder="Ask anything, or jump to…" />
@@ -4879,6 +5088,729 @@
         </div>
       </div>
 
+      <!-- ════ VIEW: PAGES (Engine 1 — SEO/GEO site map) ════ -->
+      <div class="view" data-view-pane="pages">
+        <div class="content">
+          <div class="hero-head" style="margin-bottom:24px;">
+            <h1 class="greeting">Every page on <em>silverjewelry.com</em>.</h1>
+            <div class="hero-meta">
+              <b>Last full scan · 2h ago</b><br>
+              12 pages · 3 patches staged · sitemap diff next Tue
+            </div>
+          </div>
+
+          <div class="metric-strip">
+            <div class="stat">
+              <div class="stat-label">Avg SEO score</div>
+              <div class="stat-num">71<span class="suf">/100</span></div>
+              <div class="stat-trend">↑ <span class="delta-num">+8</span> since onboarding</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Avg GEO score</div>
+              <div class="stat-num">62<span class="suf">/100</span></div>
+              <div class="stat-trend">↑ <span class="delta-num">+14</span> in 4 weeks</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Avg CWV score</div>
+              <div class="stat-num">92<span class="suf">/100</span></div>
+              <div class="stat-trend">→ <span class="delta-num">stable</span></div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Staged patches</div>
+              <div class="stat-num">3</div>
+              <div class="stat-trend">2 from auto · 1 needs your approval</div>
+            </div>
+          </div>
+
+          <div class="sec-head">
+            <h3 class="sec-title">Pages <em>I'm watching</em></h3>
+            <span class="sec-sub">12 indexed · click any row to dive in</span>
+          </div>
+
+          <div class="big-table">
+            <div class="bt-head" style="grid-template-columns: 2.4fr 0.9fr 0.9fr 0.9fr 0.7fr 0.9fr 0.7fr;">
+              <span>URL</span>
+              <span>SEO</span>
+              <span>GEO</span>
+              <span>CWV</span>
+              <span>Issues</span>
+              <span>Status</span>
+              <span style="text-align:right;">Last scan</span>
+            </div>
+            <div class="bt-row" style="grid-template-columns: 2.4fr 0.9fr 0.9fr 0.9fr 0.7fr 0.9fr 0.7fr;" data-page-open="pg_home">
+              <div>
+                <div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;letter-spacing:-0.005em;">/</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Handmade silver jewelry — free shipping over $50</div>
+              </div>
+              <div><div class="score good">86<span class="of">/100</span></div><div class="score-bar"><span class="good" style="width:86%;"></span></div></div>
+              <div><div class="score warn">71<span class="of">/100</span></div><div class="score-bar"><span class="warn" style="width:71%;"></span></div></div>
+              <div><div class="score good">92<span class="of">/100</span></div><div class="score-bar"><span class="good" style="width:92%;"></span></div></div>
+              <div style="font-family:var(--mono);color:var(--ink-soft);">2</div>
+              <div><span class="pill ok"><span class="dot"></span>Optimized</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute);">2h ago</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns: 2.4fr 0.9fr 0.9fr 0.9fr 0.7fr 0.9fr 0.7fr;" data-page-open="pg_rings">
+              <div>
+                <div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">/rings</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Sterling silver rings</div>
+              </div>
+              <div><div class="score warn">64<span class="of">/100</span></div><div class="score-bar"><span class="warn" style="width:64%;"></span></div></div>
+              <div><div class="score warn">58<span class="of">/100</span></div><div class="score-bar"><span class="warn" style="width:58%;"></span></div></div>
+              <div><div class="score good">88<span class="of">/100</span></div><div class="score-bar"><span class="good" style="width:88%;"></span></div></div>
+              <div style="font-family:var(--mono);color:var(--ink-soft);">6</div>
+              <div><span class="pill amber"><span class="dot"></span>Patch staged</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute);">5h ago</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns: 2.4fr 0.9fr 0.9fr 0.9fr 0.7fr 0.9fr 0.7fr;">
+              <div>
+                <div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">/earrings</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Silver earrings collection</div>
+              </div>
+              <div><div class="score good">78<span class="of">/100</span></div><div class="score-bar"><span class="good" style="width:78%;"></span></div></div>
+              <div><div class="score warn">66<span class="of">/100</span></div><div class="score-bar"><span class="warn" style="width:66%;"></span></div></div>
+              <div><div class="score good">94<span class="of">/100</span></div><div class="score-bar"><span class="good" style="width:94%;"></span></div></div>
+              <div style="font-family:var(--mono);color:var(--ink-soft);">3</div>
+              <div><span class="pill ok"><span class="dot"></span>Optimized</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute);">11h ago</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns: 2.4fr 0.9fr 0.9fr 0.9fr 0.7fr 0.9fr 0.7fr;">
+              <div>
+                <div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">/blog/silver-care</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Your silver will last 20 years if you do these 4 things</div>
+              </div>
+              <div><div class="score good">91<span class="of">/100</span></div><div class="score-bar"><span class="good" style="width:91%;"></span></div></div>
+              <div><div class="score good">88<span class="of">/100</span></div><div class="score-bar"><span class="good" style="width:88%;"></span></div></div>
+              <div><div class="score good">90<span class="of">/100</span></div><div class="score-bar"><span class="good" style="width:90%;"></span></div></div>
+              <div style="font-family:var(--mono);color:var(--ink-soft);">1</div>
+              <div><span class="pill ok"><span class="dot"></span>Top performer</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute);">1d ago</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns: 2.4fr 0.9fr 0.9fr 0.9fr 0.7fr 0.9fr 0.7fr;" data-page-open="pg_about">
+              <div>
+                <div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">/about</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Our story</div>
+              </div>
+              <div><div class="score bad">52<span class="of">/100</span></div><div class="score-bar"><span class="bad" style="width:52%;"></span></div></div>
+              <div><div class="score bad">42<span class="of">/100</span></div><div class="score-bar"><span class="bad" style="width:42%;"></span></div></div>
+              <div><div class="score good">96<span class="of">/100</span></div><div class="score-bar"><span class="good" style="width:96%;"></span></div></div>
+              <div style="font-family:var(--mono);color:var(--bad);">9</div>
+              <div><span class="pill amber"><span class="dot"></span>Patch staged</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute);">2d ago</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns: 2.4fr 0.9fr 0.9fr 0.9fr 0.7fr 0.9fr 0.7fr;">
+              <div>
+                <div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">/products/polishing-cloth</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Silver polishing cloth</div>
+              </div>
+              <div><div class="score good">81<span class="of">/100</span></div><div class="score-bar"><span class="good" style="width:81%;"></span></div></div>
+              <div><div class="score warn">70<span class="of">/100</span></div><div class="score-bar"><span class="warn" style="width:70%;"></span></div></div>
+              <div><div class="score good">93<span class="of">/100</span></div><div class="score-bar"><span class="good" style="width:93%;"></span></div></div>
+              <div style="font-family:var(--mono);color:var(--ink-soft);">2</div>
+              <div><span class="pill ok"><span class="dot"></span>Optimized</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute);">3d ago</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns: 2.4fr 0.9fr 0.9fr 0.9fr 0.7fr 0.9fr 0.7fr;">
+              <div>
+                <div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">/gift-cards</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Gift cards · "Let them pick."</div>
+              </div>
+              <div><div class="score bad">38<span class="of">/100</span></div><div class="score-bar"><span class="bad" style="width:38%;"></span></div></div>
+              <div><div class="score bad">25<span class="of">/100</span></div><div class="score-bar"><span class="bad" style="width:25%;"></span></div></div>
+              <div><div class="score good">91<span class="of">/100</span></div><div class="score-bar"><span class="good" style="width:91%;"></span></div></div>
+              <div style="font-family:var(--mono);color:var(--bad);">12</div>
+              <div><span class="pill warn"><span class="dot"></span>Needs attention</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute);">3d ago</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns: 2.4fr 0.9fr 0.9fr 0.9fr 0.7fr 0.9fr 0.7fr;">
+              <div>
+                <div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">/size-guide</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Ring size guide</div>
+              </div>
+              <div><div class="score good">88<span class="of">/100</span></div><div class="score-bar"><span class="good" style="width:88%;"></span></div></div>
+              <div><div class="score good">81<span class="of">/100</span></div><div class="score-bar"><span class="good" style="width:81%;"></span></div></div>
+              <div><div class="score good">95<span class="of">/100</span></div><div class="score-bar"><span class="good" style="width:95%;"></span></div></div>
+              <div style="font-family:var(--mono);color:var(--ink-soft);">1</div>
+              <div><span class="pill ok"><span class="dot"></span>Top performer</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute);">4d ago</div>
+            </div>
+          </div>
+
+          <!-- SITEMAP DIFF -->
+          <div class="sec-head" style="margin-top:48px;">
+            <h3 class="sec-title">Sitemap <em>diff</em></h3>
+            <span class="sec-sub">Last scan 2 days ago · next scan Tue</span>
+          </div>
+          <div class="panel">
+            <div class="pending-row">
+              <div class="pending-icon" style="color:var(--good);">+</div>
+              <div class="pending-text">
+                <b>3 new URLs detected</b>
+                <span class="small">/blog/anniversary-gifts-guide · /collections/mens · /products/cuff-bracelet — queued for ingest</span>
+              </div>
+              <button class="pending-cta">Review →</button>
+            </div>
+            <div class="pending-row">
+              <div class="pending-icon" style="color:var(--bad);">−</div>
+              <div class="pending-text">
+                <b>1 URL removed</b>
+                <span class="small">/blog/discontinued-line — patches archived, ranking history preserved</span>
+              </div>
+              <button class="pending-cta">Archive →</button>
+            </div>
+            <div class="pending-row">
+              <div class="pending-icon">~</div>
+              <div class="pending-text">
+                <b>2 URLs changed</b>
+                <span class="small">/about (h1 changed) · /contact (added FAQ section) — re-ingesting now</span>
+              </div>
+              <button class="pending-cta">View →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════ VIEW: AI CITATIONS (Engine 1 — GEO surface) ════ -->
+      <div class="view" data-view-pane="citations">
+        <div class="content">
+          <div class="hero-head" style="margin-bottom:24px;">
+            <h1 class="greeting">Are AI engines <em>citing you</em>?</h1>
+            <div class="hero-meta">
+              <b>Visibility score · 62/100</b><br>
+              ↑ 14 points · last 4 weeks
+            </div>
+          </div>
+
+          <div class="citation-grid">
+            <div class="citation-cell">
+              <div class="engine">ChatGPT</div>
+              <div class="count">18</div>
+              <div class="label">citations · last 30d</div>
+              <svg class="spark-line" viewBox="0 0 80 32" preserveAspectRatio="none">
+                <path class="a" d="M0,28 L11,24 L22,21 L33,18 L44,14 L55,10 L66,6 L80,3 L80,32 L0,32 Z"/>
+                <path class="l" d="M0,28 L11,24 L22,21 L33,18 L44,14 L55,10 L66,6 L80,3"/>
+              </svg>
+            </div>
+            <div class="citation-cell">
+              <div class="engine">Perplexity</div>
+              <div class="count">12</div>
+              <div class="label">citations · last 30d</div>
+              <svg class="spark-line" viewBox="0 0 80 32" preserveAspectRatio="none">
+                <path class="a" d="M0,28 L11,26 L22,22 L33,18 L44,14 L55,12 L66,9 L80,7 L80,32 L0,32 Z"/>
+                <path class="l" d="M0,28 L11,26 L22,22 L33,18 L44,14 L55,12 L66,9 L80,7"/>
+              </svg>
+            </div>
+            <div class="citation-cell">
+              <div class="engine">Google SGE</div>
+              <div class="count">9</div>
+              <div class="label">citations · last 30d</div>
+              <svg class="spark-line" viewBox="0 0 80 32" preserveAspectRatio="none">
+                <path class="a" d="M0,29 L11,26 L22,24 L33,20 L44,17 L55,14 L66,11 L80,9 L80,32 L0,32 Z"/>
+                <path class="l" d="M0,29 L11,26 L22,24 L33,20 L44,17 L55,14 L66,11 L80,9"/>
+              </svg>
+            </div>
+            <div class="citation-cell">
+              <div class="engine">Claude</div>
+              <div class="count">7</div>
+              <div class="label">citations · last 30d</div>
+              <svg class="spark-line" viewBox="0 0 80 32" preserveAspectRatio="none">
+                <path class="a" d="M0,30 L11,28 L22,26 L33,22 L44,19 L55,16 L66,13 L80,11 L80,32 L0,32 Z"/>
+                <path class="l" d="M0,30 L11,28 L22,26 L33,22 L44,19 L55,16 L66,13 L80,11"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="sec-head">
+            <h3 class="sec-title">Queries I'm <em>watching</em></h3>
+            <span class="sec-sub">Weekly rank in AI responses · top 5 by intent match</span>
+          </div>
+
+          <div class="big-table">
+            <div class="bt-head" style="grid-template-columns:2.6fr 1.4fr 0.8fr 0.8fr;">
+              <span>Query</span><span>Engines citing you</span><span>Your rank</span><span style="text-align:right;">7d trend</span>
+            </div>
+            <div class="bt-row" style="grid-template-columns:2.6fr 1.4fr 0.8fr 0.8fr;">
+              <div>
+                <div style="font-family:var(--serif);font-size:17px;font-style:italic;font-variation-settings:'opsz' 60,'wght' 360;">"best silver jewelry Lagos"</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">~4,400 monthly searches</div>
+              </div>
+              <div style="display:flex;gap:5px;flex-wrap:wrap;"><span class="pill ok">Perplexity</span><span class="pill ok">ChatGPT</span></div>
+              <div><span class="score warn">#3</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--good);">↑ from #5</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:2.6fr 1.4fr 0.8fr 0.8fr;">
+              <div>
+                <div style="font-family:var(--serif);font-size:17px;font-style:italic;font-variation-settings:'opsz' 60,'wght' 360;">"handmade silver rings Nigeria"</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">~1,200 monthly searches</div>
+              </div>
+              <div style="display:flex;gap:5px;flex-wrap:wrap;"><span class="pill ok">ChatGPT</span><span class="pill ok">Claude</span></div>
+              <div><span class="score good">#1</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--good);">↑ from #8</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:2.6fr 1.4fr 0.8fr 0.8fr;">
+              <div>
+                <div style="font-family:var(--serif);font-size:17px;font-style:italic;font-variation-settings:'opsz' 60,'wght' 360;">"how to care for sterling silver"</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">~14,000 monthly searches</div>
+              </div>
+              <div style="display:flex;gap:5px;flex-wrap:wrap;"><span class="pill ok">ChatGPT</span><span class="pill ok">Perplexity</span><span class="pill ok">SGE</span><span class="pill ok">Claude</span></div>
+              <div><span class="score good">#2</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--good);">↑ from #12</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:2.6fr 1.4fr 0.8fr 0.8fr;">
+              <div>
+                <div style="font-family:var(--serif);font-size:17px;font-style:italic;font-variation-settings:'opsz' 60,'wght' 360;">"silver vs gold sensitive ears"</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">~4,800 monthly searches</div>
+              </div>
+              <div style="display:flex;gap:5px;flex-wrap:wrap;"><span class="pill ok">ChatGPT</span></div>
+              <div><span class="score warn">#5</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--good);">↑ from unranked</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:2.6fr 1.4fr 0.8fr 0.8fr;">
+              <div>
+                <div style="font-family:var(--serif);font-size:17px;font-style:italic;font-variation-settings:'opsz' 60,'wght' 360;">"anniversary jewelry gift ideas"</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">~22,000 monthly searches · high intent</div>
+              </div>
+              <div style="display:flex;gap:5px;flex-wrap:wrap;"><span class="pill">— none yet</span></div>
+              <div><span class="score bad">—</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute);">drafting content</div>
+            </div>
+          </div>
+
+          <!-- INSIGHT -->
+          <div class="panel" style="margin-top:36px;">
+            <div class="insight">
+              <div class="insight-eyebrow">Pattern I'm watching</div>
+              <p class="insight-text">
+                Your <em>silver-care content</em> is gaining citations 3× faster than your product pages. AI engines reward depth + specificity. I want to write <em>two more long-form guides</em> this month — anniversary gifting and silver-vs-gold — to extend the lead.
+              </p>
+              <div class="insight-foot">
+                <button class="btn amber">Approve both · 70 tokens</button>
+                <button class="btn">Just the anniversary one</button>
+                <button class="btn ghost">Tell me more</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════ VIEW: REGISTRY (Action Registry deep) ════ -->
+      <div class="view" data-view-pane="registry">
+        <div class="content">
+          <div class="hero-head" style="margin-bottom:24px;">
+            <h1 class="greeting">Action <em>Registry</em>.</h1>
+            <div class="hero-meta">
+              <b>Every action, forever</b><br>
+              ~50 actions / week · 100% reversible if &lt; 24h
+            </div>
+          </div>
+
+          <div class="metric-strip">
+            <div class="stat">
+              <div class="stat-label">Total · last 90d</div>
+              <div class="stat-num">412</div>
+              <div class="stat-trend">↑ <span class="delta-num">+18%</span> vs. prior</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Auto-executed</div>
+              <div class="stat-num">368</div>
+              <div class="stat-trend">89% of all actions</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Approved by you</div>
+              <div class="stat-num">36</div>
+              <div class="stat-trend">9% required approval</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Rolled back</div>
+              <div class="stat-num">8</div>
+              <div class="stat-trend">1.9% · target &lt; 10%</div>
+            </div>
+          </div>
+
+          <div class="big-table">
+            <div class="filter-row">
+              <button class="filter active">All <span class="count">412</span></button>
+              <button class="filter">SEO/GEO <span class="count">186</span></button>
+              <button class="filter">BI <span class="count">22</span></button>
+              <button class="filter">Ads <span class="count">48</span></button>
+              <button class="filter">Content <span class="count">74</span></button>
+              <button class="filter">Trust <span class="count">38</span></button>
+              <button class="filter">WhatsApp <span class="count">18</span></button>
+              <button class="filter">Retention <span class="count">26</span></button>
+              <button class="filter" style="margin-left:auto;">Rolled back <span class="count">8</span></button>
+            </div>
+            <div class="bt-head" style="grid-template-columns:90px 100px 1.6fr 0.7fr 0.6fr;">
+              <span>When</span><span>Engine</span><span>Action</span><span>Outcome</span><span style="text-align:right;">Status</span>
+            </div>
+            <div class="bt-row" style="grid-template-columns:90px 100px 1.6fr 0.7fr 0.6fr;" data-open-drawer>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">2h ago</div>
+              <div><span class="pill amber">SEO/GEO</span></div>
+              <div><div style="font-family:var(--serif);font-size:15px;">Rewrote homepage <em style="font-style:italic;color:var(--amber);">title + meta</em></div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">8 tokens · full_auto · /</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--good);">↓ 18% bounce</div>
+              <div style="text-align:right;"><span class="pill ok">Live</span></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:90px 100px 1.6fr 0.7fr 0.6fr;" data-open-drawer="budget">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">1d ago</div>
+              <div><span class="pill amber">BI</span></div>
+              <div><div style="font-family:var(--serif);font-size:15px;">Reallocated <em style="font-style:italic;color:var(--amber);">$150 Meta → Google</em></div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">0 tokens · full_auto · 7d window</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--good);">CAC ↓ $14</div>
+              <div style="text-align:right;"><span class="pill ok">Live</span></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:90px 100px 1.6fr 0.7fr 0.6fr;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">2d ago</div>
+              <div><span class="pill amber">Content</span></div>
+              <div><div style="font-family:var(--serif);font-size:15px;">Published <em style="font-style:italic;color:var(--amber);">"How to care for sterling silver"</em></div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">34 tokens · suggest_confirm · 1,180 words</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--good);">Indexed</div>
+              <div style="text-align:right;"><span class="pill ok">Live</span></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:90px 100px 1.6fr 0.7fr 0.6fr;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">3d ago</div>
+              <div><span class="pill amber">Retention</span></div>
+              <div><div style="font-family:var(--serif);font-size:15px;">Winback email to <em style="font-style:italic;color:var(--amber);">12 inactive customers</em></div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">60 tokens · full_auto · 90d inactive</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--good);">3 returned · $214</div>
+              <div style="text-align:right;"><span class="pill ok">Live</span></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:90px 100px 1.6fr 0.7fr 0.6fr;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">4d ago</div>
+              <div><span class="pill amber">Trust</span></div>
+              <div><div style="font-family:var(--serif);font-size:15px;">Drafted reply to <em style="font-style:italic;color:var(--amber);">5★ from Maya O.</em></div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">0 tokens · suggest_confirm</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--warn);">Pending you</div>
+              <div style="text-align:right;"><span class="pill warn">Pending</span></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:90px 100px 1.6fr 0.7fr 0.6fr;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">5d ago</div>
+              <div><span class="pill amber">SEO/GEO</span></div>
+              <div><div style="font-family:var(--serif);font-size:15px;">A/B tested <em style="font-style:italic;color:var(--amber);">/rings layout</em></div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">22 tokens · full_auto · 4 variants</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--good);">+9% to cart</div>
+              <div style="text-align:right;"><span class="pill ok">Live</span></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:90px 100px 1.6fr 0.7fr 0.6fr;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">12d ago</div>
+              <div><span class="pill amber">SEO/GEO</span></div>
+              <div><div style="font-family:var(--serif);font-size:15px;">Added <em style="font-style:italic;color:var(--amber);">Product schema</em> to 11 pages</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">10 tokens · full_auto · learning: user prefers manual</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--bad);">You undid</div>
+              <div style="text-align:right;"><span class="pill bad">Rolled back</span></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:90px 100px 1.6fr 0.7fr 0.6fr;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">14d ago</div>
+              <div><span class="pill amber">Content</span></div>
+              <div><div style="font-family:var(--serif);font-size:15px;">Filled gap: <em style="font-style:italic;color:var(--amber);">"silver vs gold sensitive ears"</em></div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">28 tokens · full_auto · 4.8k searches/mo</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--good);">Ranked 14 queries</div>
+              <div style="text-align:right;"><span class="pill ok">Live</span></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:90px 100px 1.6fr 0.7fr 0.6fr;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">16d ago</div>
+              <div><span class="pill amber">WhatsApp</span></div>
+              <div><div style="font-family:var(--serif);font-size:15px;">Cart recovery to <em style="font-style:italic;color:var(--amber);">Chioma N.</em></div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">5 tokens · full_auto · 6h abandoned</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--good);">Recovered · $89</div>
+              <div style="text-align:right;"><span class="pill ok">Live</span></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:90px 100px 1.6fr 0.7fr 0.6fr;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">21d ago</div>
+              <div><span class="pill amber">Trust</span></div>
+              <div><div style="font-family:var(--serif);font-size:15px;">Auto-replied to <em style="font-style:italic;color:var(--amber);">Priya R.'s 5★</em></div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">4 tokens · full_auto (5★ &lt; 60 words policy)</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">—</div>
+              <div style="text-align:right;"><span class="pill ok">Live</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════ VIEW: TEAM ════ -->
+      <div class="view" data-view-pane="team">
+        <div class="content">
+          <div class="hero-head" style="margin-bottom:24px;">
+            <h1 class="greeting">Your <em>team</em>.</h1>
+            <div class="hero-meta">
+              <b>3 of 10 seats used</b><br>
+              Growth plan · invite up to 7 more
+            </div>
+          </div>
+
+          <div class="big-table">
+            <div class="bt-head" style="grid-template-columns:1.6fr 1.4fr 0.8fr 0.8fr 0.6fr;">
+              <span>Name</span><span>Email</span><span>Role</span><span>Last seen</span><span style="text-align:right;">Actions</span>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.6fr 1.4fr 0.8fr 0.8fr 0.6fr;">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div class="ws-avatar">A</div>
+                <div><div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Amara Okafor</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--amber);">you</div></div>
+              </div>
+              <div style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);">amara@silverjewelry.com</div>
+              <div><span class="pill amber">Owner</span></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">2h ago</div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute);">—</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.6fr 1.4fr 0.8fr 0.8fr 0.6fr;">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div class="ws-avatar" style="background:linear-gradient(135deg,#3A5C7B,#5C8AB0);">T</div>
+                <div><div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Tunde Adesina</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);">co-founder</div></div>
+              </div>
+              <div style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);">tunde@silverjewelry.com</div>
+              <div><span class="pill">Admin</span></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">6h ago</div>
+              <div style="text-align:right;"><button class="btn ghost" style="padding:4px 10px;font-size:11px;">Edit</button></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.6fr 1.4fr 0.8fr 0.8fr 0.6fr;">
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div class="ws-avatar" style="background:linear-gradient(135deg,#7B3A5C,#B05C8A);">Z</div>
+                <div><div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Zara Mukasa</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);">content lead</div></div>
+              </div>
+              <div style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);">zara@silverjewelry.com</div>
+              <div><span class="pill">Editor</span></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">1d ago</div>
+              <div style="text-align:right;"><button class="btn ghost" style="padding:4px 10px;font-size:11px;">Edit</button></div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:24px;">
+            <button class="btn amber">+ Invite teammate</button>
+            <button class="btn">Role policies</button>
+          </div>
+
+          <div class="sec-head" style="margin-top:48px;">
+            <h3 class="sec-title">Role <em>permissions</em></h3>
+            <span class="sec-sub">What each role can do</span>
+          </div>
+          <div class="big-table">
+            <div class="bt-head" style="grid-template-columns:1.4fr 0.7fr 0.7fr 0.7fr 0.7fr;">
+              <span>Permission</span><span>Owner</span><span>Admin</span><span>Editor</span><span>Viewer</span>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.4fr 0.7fr 0.7fr 0.7fr 0.7fr;cursor:default;">
+              <div>View dashboards &amp; activity</div>
+              <div style="color:var(--good);">✓</div><div style="color:var(--good);">✓</div><div style="color:var(--good);">✓</div><div style="color:var(--good);">✓</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.4fr 0.7fr 0.7fr 0.7fr 0.7fr;cursor:default;">
+              <div>Approve pending actions</div>
+              <div style="color:var(--good);">✓</div><div style="color:var(--good);">✓</div><div style="color:var(--good);">✓</div><div style="color:var(--ink-faint);">—</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.4fr 0.7fr 0.7fr 0.7fr 0.7fr;cursor:default;">
+              <div>Change autonomy settings</div>
+              <div style="color:var(--good);">✓</div><div style="color:var(--good);">✓</div><div style="color:var(--ink-faint);">—</div><div style="color:var(--ink-faint);">—</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.4fr 0.7fr 0.7fr 0.7fr 0.7fr;cursor:default;">
+              <div>Manage billing &amp; tokens</div>
+              <div style="color:var(--good);">✓</div><div style="color:var(--ink-faint);">—</div><div style="color:var(--ink-faint);">—</div><div style="color:var(--ink-faint);">—</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.4fr 0.7fr 0.7fr 0.7fr 0.7fr;cursor:default;">
+              <div>Invite &amp; remove team</div>
+              <div style="color:var(--good);">✓</div><div style="color:var(--good);">✓</div><div style="color:var(--ink-faint);">—</div><div style="color:var(--ink-faint);">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════ VIEW: CREDENTIALS ════ -->
+      <div class="view" data-view-pane="credentials">
+        <div class="content">
+          <div class="hero-head" style="margin-bottom:24px;">
+            <h1 class="greeting">Connected <em>services</em>.</h1>
+            <div class="hero-meta">
+              <b>6 connected · all healthy</b><br>
+              Encrypted at rest · refreshed automatically
+            </div>
+          </div>
+
+          <div class="big-table">
+            <div class="bt-head" style="grid-template-columns:1.6fr 1fr 0.9fr 0.9fr 0.5fr;">
+              <span>Service</span><span>Scope</span><span>Last refresh</span><span>Status</span><span style="text-align:right;">—</span>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.6fr 1fr 0.9fr 0.9fr 0.5fr;">
+              <div><div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Google Ads</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Customer 874-991-2208</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);">ads.readwrite</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">4h ago</div>
+              <div><span class="pill ok"><span class="dot"></span>Healthy</span></div>
+              <div style="text-align:right;"><button class="btn ghost" style="padding:4px 10px;font-size:11px;">···</button></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.6fr 1fr 0.9fr 0.9fr 0.5fr;">
+              <div><div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Meta Marketing</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">System User · act_1029384756</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);">ads_management</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">2d ago</div>
+              <div><span class="pill ok"><span class="dot"></span>Healthy</span></div>
+              <div style="text-align:right;"><button class="btn ghost" style="padding:4px 10px;font-size:11px;">···</button></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.6fr 1fr 0.9fr 0.9fr 0.5fr;">
+              <div><div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Google Business Profile</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Silver Jewelry Co · Lagos</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);">business.manage</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">1d ago</div>
+              <div><span class="pill ok"><span class="dot"></span>Healthy</span></div>
+              <div style="text-align:right;"><button class="btn ghost" style="padding:4px 10px;font-size:11px;">···</button></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.6fr 1fr 0.9fr 0.9fr 0.5fr;">
+              <div><div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Shopify Admin</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">silverjewelry.myshopify.com</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);">read_write_products</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">30m ago</div>
+              <div><span class="pill ok"><span class="dot"></span>Healthy</span></div>
+              <div style="text-align:right;"><button class="btn ghost" style="padding:4px 10px;font-size:11px;">···</button></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.6fr 1fr 0.9fr 0.9fr 0.5fr;">
+              <div><div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Brevo (email)</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Connected via API key</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);">marketing</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">6h ago</div>
+              <div><span class="pill ok"><span class="dot"></span>Healthy</span></div>
+              <div style="text-align:right;"><button class="btn ghost" style="padding:4px 10px;font-size:11px;">···</button></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.6fr 1fr 0.9fr 0.9fr 0.5fr;">
+              <div><div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Paystack</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Payments · NGN</div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);">transactions</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">12h ago</div>
+              <div><span class="pill ok"><span class="dot"></span>Healthy</span></div>
+              <div style="text-align:right;"><button class="btn ghost" style="padding:4px 10px;font-size:11px;">···</button></div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:24px;">
+            <button class="btn amber">+ Connect a service</button>
+            <button class="btn">Rotate all credentials</button>
+            <button class="btn ghost">View encryption details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════ VIEW: API & WEBHOOKS ════ -->
+      <div class="view" data-view-pane="api">
+        <div class="content">
+          <div class="hero-head" style="margin-bottom:24px;">
+            <h1 class="greeting">API keys &amp; <em>webhooks</em>.</h1>
+            <div class="hero-meta">
+              <b>2 keys active</b><br>
+              7 webhook sources · all 200s in last 24h
+            </div>
+          </div>
+
+          <div class="sec-head"><h3 class="sec-title">API <em>keys</em></h3><span class="sec-sub">Used by your SDK and custom integrations</span></div>
+          <div class="big-table">
+            <div class="bt-head" style="grid-template-columns:1.4fr 1.6fr 0.9fr 0.9fr 0.7fr;">
+              <span>Label</span><span>Key</span><span>Created</span><span>Last used</span><span style="text-align:right;">—</span>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.4fr 1.6fr 0.9fr 0.9fr 0.7fr;cursor:default;">
+              <div><div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Production</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--good);margin-top:3px;">live</div></div>
+              <div style="font-family:var(--mono);font-size:13px;letter-spacing:.04em;color:var(--ink-soft);">sf_live_8h2k••••••••7q1d <button class="btn ghost" style="padding:2px 8px;font-size:10px;margin-left:8px;">Copy</button></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">82d ago</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">2h ago</div>
+              <div style="text-align:right;"><button class="btn ghost" style="padding:4px 10px;font-size:11px;">Rotate</button></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.4fr 1.6fr 0.9fr 0.9fr 0.7fr;cursor:default;">
+              <div><div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Test / staging</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--warn);margin-top:3px;">test</div></div>
+              <div style="font-family:var(--mono);font-size:13px;letter-spacing:.04em;color:var(--ink-soft);">sf_test_3p9w••••••••4r6m <button class="btn ghost" style="padding:2px 8px;font-size:10px;margin-left:8px;">Copy</button></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">82d ago</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">1d ago</div>
+              <div style="text-align:right;"><button class="btn ghost" style="padding:4px 10px;font-size:11px;">Rotate</button></div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:18px;"><button class="btn">+ Create key</button><button class="btn ghost">API docs ↗</button></div>
+
+          <div class="sec-head" style="margin-top:48px;"><h3 class="sec-title">Webhook <em>log</em></h3><span class="sec-sub">Last 24h · click row to replay</span></div>
+          <div class="big-table">
+            <div class="bt-head" style="grid-template-columns:1fr 1.4fr 1fr 0.6fr 0.6fr;">
+              <span>Source</span><span>Event</span><span>When</span><span>Status</span><span style="text-align:right;">Latency</span>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1fr 1.4fr 1fr 0.6fr 0.6fr;">
+              <div style="font-family:var(--serif);font-size:14px;">Shopify</div>
+              <div style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);">orders/create</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">2h ago</div>
+              <div><span class="pill ok">200</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute);">142ms</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1fr 1.4fr 1fr 0.6fr 0.6fr;">
+              <div style="font-family:var(--serif);font-size:14px;">Paystack</div>
+              <div style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);">charge.success</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">6h ago</div>
+              <div><span class="pill ok">200</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute);">88ms</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1fr 1.4fr 1fr 0.6fr 0.6fr;">
+              <div style="font-family:var(--serif);font-size:14px;">WhatsApp</div>
+              <div style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);">messages</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">40m ago</div>
+              <div><span class="pill ok">200</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute);">31ms</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1fr 1.4fr 1fr 0.6fr 0.6fr;">
+              <div style="font-family:var(--serif);font-size:14px;">Meta</div>
+              <div style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);">ad_review_status</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">8h ago</div>
+              <div><span class="pill ok">200</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute);">67ms</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1fr 1.4fr 1fr 0.6fr 0.6fr;">
+              <div style="font-family:var(--serif);font-size:14px;">Brevo</div>
+              <div style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);">email.bounce</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">1d ago</div>
+              <div><span class="pill ok">200</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute);">22ms</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1fr 1.4fr 1fr 0.6fr 0.6fr;">
+              <div style="font-family:var(--serif);font-size:14px;">WhatsApp</div>
+              <div style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);">messages</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">2d ago</div>
+              <div><span class="pill bad">401</span></div>
+              <div style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--bad);">9ms · sig mismatch · replayed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ════ VIEW: AUDIT LOG ════ -->
+      <div class="view" data-view-pane="audit">
+        <div class="content">
+          <div class="hero-head" style="margin-bottom:24px;">
+            <h1 class="greeting">Audit <em>log</em>.</h1>
+            <div class="hero-meta">
+              <b>Every system event</b><br>
+              Retained 12 months · exportable
+            </div>
+          </div>
+
+          <div class="big-table">
+            <div class="bt-head" style="grid-template-columns:140px 1.2fr 1.8fr 1fr;">
+              <span>When</span><span>Actor</span><span>Action</span><span>Target</span>
+            </div>
+            <div class="bt-row" style="grid-template-columns:140px 1.2fr 1.8fr 1fr;cursor:default;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">30m ago</div>
+              <div style="font-family:var(--serif);font-size:14px;">Amara Okafor</div>
+              <div>Approved <em style="font-style:italic;color:var(--amber);font-family:var(--serif);">review reply draft</em></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);">a_3055 (Maya O.)</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:140px 1.2fr 1.8fr 1fr;cursor:default;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">2h ago</div>
+              <div style="font-family:var(--serif);font-size:14px;">system</div>
+              <div>Executed <em style="font-style:italic;color:var(--amber);font-family:var(--serif);">patch_page_title</em></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);">a_3094 · pg_home</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:140px 1.2fr 1.8fr 1fr;cursor:default;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">2h ago</div>
+              <div style="font-family:var(--serif);font-size:14px;">system</div>
+              <div>Scheduled outcome measurement (+7d)</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);">a_3094</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:140px 1.2fr 1.8fr 1fr;cursor:default;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">6h ago</div>
+              <div style="font-family:var(--serif);font-size:14px;">Amara Okafor</div>
+              <div>Changed autonomy: <em style="font-style:italic;color:var(--amber);font-family:var(--serif);">Engine 3 (Ads) full_auto → suggest_confirm</em></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);">ws_silver</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:140px 1.2fr 1.8fr 1fr;cursor:default;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">11d ago</div>
+              <div style="font-family:var(--serif);font-size:14px;">Amara Okafor</div>
+              <div>Rolled back <em style="font-style:italic;color:var(--amber);font-family:var(--serif);">patch_schema_markup</em></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);">a_2922</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:140px 1.2fr 1.8fr 1fr;cursor:default;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">82d ago</div>
+              <div style="font-family:var(--serif);font-size:14px;">Amara Okafor</div>
+              <div>Created workspace</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);">ws_silver</div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;margin-top:24px;">
+            <button class="btn">Export CSV</button>
+            <button class="btn ghost">Export JSON</button>
+            <button class="btn ghost" style="margin-left:auto;">Retention policy ↗</button>
+          </div>
+        </div>
+      </div>
+
     </main>
   </div>
 
@@ -5175,6 +6107,8 @@
     </div>
   </div>
 
+  <script src="mock.js"></script>
+  <script src="state.js"></script>
   <script>
     /* ────────────────── VIEW SWITCHING ────────────────── */
     const navItems = document.querySelectorAll('[data-view]');
@@ -5183,20 +6117,27 @@
     const crumbExtra = document.querySelector('[data-view-crumb]');
 
     const crumbMap = {
-      home: '',
-      activity: ' / Activity',
-      inbox: ' / Inbox',
-      chat: ' / Chat',
-      settings: ' / Settings',
-      content: ' / Engines / Content',
-      ads: ' / Engines / Ads',
-      email: ' / Engines / Email',
-      reputation: ' / Engines / Reputation',
-      whatsapp: ' / Engines / WhatsApp',
-      customers: ' / Engines / Customers',
-      performance: ' / Insights / Performance',
-      schedule: ' / Insights / Schedule',
-      billing: ' / Insights / Billing',
+      home: 'Home',
+      activity: 'Activity',
+      inbox: 'Inbox',
+      chat: 'Chat',
+      registry: 'Activity / Registry',
+      settings: 'Account / Settings',
+      pages: 'Engines / Pages',
+      citations: 'Engines / AI Citations',
+      content: 'Engines / Content',
+      ads: 'Engines / Ads',
+      email: 'Engines / Email',
+      reputation: 'Engines / Reputation',
+      whatsapp: 'Engines / WhatsApp',
+      customers: 'Engines / Customers',
+      performance: 'Insights / Performance',
+      schedule: 'Insights / Schedule',
+      billing: 'Insights / Billing',
+      team: 'System / Team',
+      credentials: 'System / Credentials',
+      api: 'System / API & Webhooks',
+      audit: 'System / Audit log',
     };
 
     function switchView(name) {
@@ -5564,6 +6505,56 @@
         const search = document.querySelector('.search input');
         if (search) search.focus();
       }
+    });
+
+    /* ────────────────── WORKSPACE SWITCHER ────────────────── */
+    const wsSwitch = document.querySelector('[data-ws-switch]');
+    const wsToggle = document.querySelector('[data-ws-toggle]');
+    const wsMenu = document.querySelector('[data-ws-menu]');
+    const wsName = document.querySelector('[data-ws-name]');
+    const wsSite = document.querySelector('[data-ws-site]');
+    const wsAvatar = document.querySelector('[data-ws-avatar]');
+
+    const workspaceConfig = {
+      ws_silver: { name: 'Silver Jewelry Co', site: 'silverjewelry.com', letter: 'S', gradient: 'linear-gradient(135deg,#C9694F,#E8B260)' },
+      ws_kente:  { name: 'Kente Threads',     site: 'kentethreads.com',  letter: 'K', gradient: 'linear-gradient(135deg,#7B5C3A,#D49A4F)' },
+    };
+
+    if (wsToggle && wsMenu) {
+      wsToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        wsMenu.classList.toggle('open');
+      });
+      document.addEventListener('click', (e) => {
+        if (wsMenu.classList.contains('open') && !wsSwitch.contains(e.target)) {
+          wsMenu.classList.remove('open');
+        }
+      });
+      document.querySelectorAll('[data-ws-pick]').forEach(item => {
+        item.addEventListener('click', () => {
+          const id = item.dataset.wsPick;
+          const ws = workspaceConfig[id];
+          if (!ws) return;
+          if (wsName) wsName.textContent = ws.name;
+          if (wsSite) wsSite.textContent = ws.site;
+          if (wsAvatar) { wsAvatar.textContent = ws.letter; wsAvatar.style.background = ws.gradient; }
+          // Update check marks
+          document.querySelectorAll('[data-ws-pick] .ws-check').forEach(c => c.textContent = '');
+          const checked = item.querySelector('.ws-check');
+          if (checked) { checked.textContent = '✓'; checked.style.color = 'var(--amber)'; }
+          wsMenu.classList.remove('open');
+          // Persist
+          if (window.SeenFolioState) window.SeenFolioState.switchWorkspace(id);
+        });
+      });
+    }
+
+    /* ────────────────── PAGE ROW → OPEN DRAWER ────────────────── */
+    document.querySelectorAll('[data-page-open]').forEach(row => {
+      row.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openDrawer('headline');
+      });
     });
   </script>
 </body>
