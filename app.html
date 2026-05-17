@@ -3145,6 +3145,77 @@
         </button>
       </div>
 
+      <div class="banner warn" data-banner="csp">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V8a5 5 0 0110 0v3"/></svg>
+        <span class="banner-text">Your site's <em>Content-Security-Policy</em> is blocking my SDK. I generated the directive you need — one line to paste in your headers.</span>
+        <div class="banner-actions">
+          <button class="btn amber">Copy directive</button>
+          <button class="btn ghost">Show me how</button>
+        </div>
+        <button class="banner-close" data-banner-close="csp">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        </button>
+      </div>
+
+      <div class="banner warn" data-banner="wa-window">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+        <span class="banner-text"><em>WhatsApp 24h window</em> closing in 38 minutes for 7 conversations. After that I can only send pre-approved templates — auto-switching now.</span>
+        <div class="banner-actions">
+          <button class="btn">See conversations</button>
+          <button class="btn ghost">Templates</button>
+        </div>
+        <button class="banner-close" data-banner-close="wa-window">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        </button>
+      </div>
+
+      <div class="banner danger" data-banner="bounce">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9 6 9-6M3 7v12a2 2 0 002 2h14a2 2 0 002-2V7"/><path d="M3 7l2-3h14l2 3M9 14l3 3 4-5"/></svg>
+        <span class="banner-text">Email bounce rate hit <em>5.4%</em> — I paused the winback campaign automatically. Likely a stale segment. Want me to clean the list?</span>
+        <div class="banner-actions">
+          <button class="btn amber">Clean list · 6 tokens</button>
+          <button class="btn">See bounced addresses</button>
+        </div>
+        <button class="banner-close" data-banner-close="bounce">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        </button>
+      </div>
+
+      <div class="banner" data-banner="attribution">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--ink-soft);"><path d="M3 12c5-4 13-4 18 0M3 12c5 4 13 4 18 0"/><circle cx="12" cy="12" r="2"/></svg>
+        <span class="banner-text"><em>Only 84 conversions</em> in the last 90 days — below the 100-conversion threshold for Shapley attribution. I'm using time-decay as a fallback until you cross 100.</span>
+        <div class="banner-actions">
+          <button class="btn ghost">Why this matters</button>
+        </div>
+        <button class="banner-close" data-banner-close="attribution">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        </button>
+      </div>
+
+      <div class="banner danger" data-banner="ad-suspended">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M6 6l12 12"/></svg>
+        <span class="banner-text"><em>Meta ad account suspended</em> — reason code "policy review." All Meta campaigns auto-paused. Refund for unspent budget is automatic. I'll keep Google running.</span>
+        <div class="banner-actions">
+          <button class="btn amber">Open appeal</button>
+          <button class="btn">View suspension reason</button>
+        </div>
+        <button class="banner-close" data-banner-close="ad-suspended">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        </button>
+      </div>
+
+      <div class="banner" data-banner="hallucination">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--warn);"><path d="M12 2L2 22h20L12 2z"/><path d="M12 9v5M12 18h.01"/></svg>
+        <span class="banner-text">A patch for <em>/about</em> contained <em>1 unverifiable claim</em> ("founded 2018" — source says 2019). Held for your review. I'll never publish content I can't cite.</span>
+        <div class="banner-actions">
+          <button class="btn amber">Review claims</button>
+          <button class="btn ghost">Regenerate</button>
+        </div>
+        <button class="banner-close" data-banner-close="hallucination">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        </button>
+      </div>
+
       <!-- ════ VIEW: HOME ════ -->
       <div class="view active" data-view-pane="home">
         <div class="content">
@@ -6229,6 +6300,12 @@
     <button class="demo-btn" data-trigger-banner="token">Token threshold hit (80%)</button>
     <button class="demo-btn" data-trigger-banner="budget">Ad budget exhausted</button>
     <button class="demo-btn" data-trigger-banner="degrade">Performance auto-protect</button>
+    <button class="demo-btn" data-trigger-banner="csp">SDK blocked by CSP</button>
+    <button class="demo-btn" data-trigger-banner="wa-window">WhatsApp 24h window closing</button>
+    <button class="demo-btn" data-trigger-banner="bounce">Email bounce auto-pause</button>
+    <button class="demo-btn" data-trigger-banner="attribution">Insufficient attribution data</button>
+    <button class="demo-btn" data-trigger-banner="ad-suspended">Meta ad account suspended</button>
+    <button class="demo-btn" data-trigger-banner="hallucination">Patch hallucination held</button>
     <button class="demo-btn" data-trigger-modal="undo">Multiple-undo learning</button>
     <button class="demo-btn" data-trigger-modal="bigspend">Above-pattern approval</button>
     <button class="demo-btn" data-trigger-drawer="conflict">Conflicting optimization</button>
