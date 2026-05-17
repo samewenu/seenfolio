@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Docs — SeenFolio</title>
+<meta name="description" content="Setup guides for the four ways to connect SeenFolio to your site." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,200..700,0..100;1,9..144,200..700,0..100&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#0E0D0A;--bg-1:#15130F;--surface:#1A1813;--surface-1:#211E18;--surface-2:#28241D;--surface-3:#322D24;
+  --line:rgba(245,233,211,0.07);--line-strong:rgba(245,233,211,0.14);--line-warm:rgba(232,178,96,0.22);
+  --ink:#F4EBD7;--ink-soft:#C7BCA3;--ink-mute:#877E6B;--ink-faint:#5C5547;
+  --amber:#E8B260;--amber-bright:#F4C880;--amber-deep:#B8843C;--amber-glow:rgba(232,178,96,0.16);--amber-trace:rgba(232,178,96,0.06);
+  --good:#9CB87E;--warn:#D49A4F;--bad:#C9694F;
+  --serif:"Fraunces","Iowan Old Style",Georgia,serif;
+  --sans:"Geist",ui-sans-serif,-apple-system,BlinkMacSystemFont,sans-serif;
+  --mono:"Geist Mono",ui-monospace,"SF Mono",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;letter-spacing:-0.005em;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(900px 600px at 18% -5%,rgba(232,178,96,0.05),transparent 60%);z-index:0}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;background:transparent;border:0}
+::selection{background:var(--amber-glow);color:var(--ink)}
+
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(14,13,10,0.7);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1240px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;gap:36px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{width:26px;height:26px;position:relative}
+.brand-mark::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--amber-bright),var(--amber-deep) 60%,transparent 75%);animation:pulse 4s ease-in-out infinite}
+.brand-mark::after{content:"";position:absolute;inset:7px;background:var(--bg);border-radius:50%}
+@keyframes pulse{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+.brand-name{font-family:var(--serif);font-size:19px;font-variation-settings:"opsz" 36,"SOFT" 50;letter-spacing:-0.01em}
+.brand-name em{font-style:italic;color:var(--amber)}
+.nav-links{display:flex;gap:24px;font-size:14px;color:var(--ink-soft);margin-left:14px}
+.nav-links a{padding:6px 0;border-bottom:1px dotted transparent;transition:.15s}
+.nav-links a:hover,.nav-links a.active{color:var(--amber);border-bottom-color:var(--amber)}
+.nav-cta{margin-left:auto;display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:8px;border:1px solid var(--line-strong);color:var(--ink);font-size:13.5px;transition:all .15s;white-space:nowrap}
+.btn:hover{border-color:var(--ink-mute)}
+.btn.primary{background:var(--amber);color:var(--bg);border-color:var(--amber);font-weight:500}
+.btn.primary:hover{background:var(--amber-bright);border-color:var(--amber-bright)}
+.btn.ghost{border-color:transparent;color:var(--ink-soft)}
+
+.wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 32px}
+
+.hero{padding:64px 0 40px}
+.eyebrow{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);padding:6px 14px;border:1px solid var(--line-warm);border-radius:999px;background:var(--amber-trace);margin-bottom:18px}
+.hero h1{font-family:var(--serif);font-size:clamp(40px,5.5vw,68px);line-height:1.02;letter-spacing:-0.025em;font-variation-settings:"opsz" 144,"SOFT" 30,"wght" 320;margin:0 0 18px;max-width:24ch}
+.hero h1 em{font-style:italic;color:var(--amber);font-variation-settings:"opsz" 144,"SOFT" 100,"wght" 320}
+.hero-sub{font-family:var(--serif);font-size:19px;line-height:1.5;color:var(--ink-soft);max-width:60ch;font-variation-settings:"opsz" 80,"wght" 350;margin:0}
+
+.layout{display:grid;grid-template-columns:240px 1fr;gap:48px;align-items:start;margin-top:32px}
+.sidebar{position:sticky;top:80px;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--ink-soft);padding-top:6px}
+.sidebar h4{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 12px}
+.sidebar ul{list-style:none;padding:0;margin:0 0 22px}
+.sidebar a{display:block;padding:5px 10px;border-radius:6px;color:var(--ink-soft);border-left:2px solid transparent;transition:.15s}
+.sidebar a:hover{color:var(--ink);background:var(--surface)}
+.sidebar a.active{color:var(--amber);border-left-color:var(--amber)}
+
+.method{margin-bottom:88px;scroll-margin-top:80px}
+.method-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin-bottom:14px;border-bottom:1px solid var(--line);padding-bottom:14px}
+.method-head h2{font-family:var(--serif);font-size:34px;letter-spacing:-0.02em;font-variation-settings:"opsz" 100,"SOFT" 50,"wght" 340;margin:0}
+.method-head h2 em{font-style:italic;color:var(--amber)}
+.method-pill{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);padding:5px 11px;border:1px solid var(--line-strong);border-radius:999px}
+.method-pill.fast{color:var(--good);border-color:rgba(156,184,126,0.4)}
+.method-pill.med{color:var(--warn);border-color:rgba(212,154,79,0.4)}
+
+.method-lede{font-family:var(--serif);font-size:18px;line-height:1.5;color:var(--ink-soft);max-width:60ch;font-variation-settings:"opsz" 80,"wght" 350;margin:0 0 26px}
+
+.steps{display:flex;flex-direction:column;gap:24px}
+.step{display:grid;grid-template-columns:42px 1fr;gap:18px}
+.step-num{width:32px;height:32px;border-radius:50%;border:1px solid var(--line-warm);background:var(--amber-trace);display:grid;place-items:center;font-family:var(--serif);font-style:italic;color:var(--amber);font-size:15px;font-variation-settings:"wght" 400}
+.step h3{font-family:var(--serif);font-size:20px;margin:4px 0 8px;font-variation-settings:"opsz" 60,"wght" 380;letter-spacing:-0.01em}
+.step p{margin:0 0 12px;color:var(--ink-soft);line-height:1.6}
+.step p code{background:var(--surface-2);padding:2px 6px;border-radius:4px;font-family:var(--mono);font-size:12.5px;color:var(--amber-bright)}
+
+pre.code{background:var(--bg-1);border:1px solid var(--line);border-radius:10px;padding:18px 20px;font-family:var(--mono);font-size:12.5px;line-height:1.65;color:var(--ink);overflow-x:auto;margin:0 0 14px;position:relative}
+pre.code .com{color:var(--ink-mute)}
+pre.code .str{color:var(--good)}
+pre.code .kw{color:var(--amber)}
+pre.code .num{color:var(--amber-bright)}
+pre.code .copy{position:absolute;top:10px;right:10px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--line-strong);border-radius:6px;color:var(--ink-mute);transition:.15s}
+pre.code .copy:hover{color:var(--amber);border-color:var(--line-warm)}
+pre.code .copy.copied{color:var(--good);border-color:rgba(156,184,126,0.5)}
+
+.callout{padding:16px 18px;border-radius:10px;background:var(--amber-trace);border:1px solid var(--line-warm);font-size:13.5px;color:var(--ink);margin:0 0 14px;display:flex;gap:12px}
+.callout::before{content:"⚡";color:var(--amber);font-size:16px;flex-shrink:0}
+.callout.warn{background:rgba(212,154,79,0.07);border-color:rgba(212,154,79,0.3)}
+.callout.warn::before{content:"⚠"}
+
+.next{margin-top:64px;padding:36px 40px;background:linear-gradient(180deg,var(--surface-1),var(--bg-1));border:1px solid var(--line);border-radius:16px}
+.next h3{font-family:var(--serif);font-size:24px;margin:0 0 10px;font-variation-settings:"opsz" 80,"wght" 360}
+.next h3 em{font-style:italic;color:var(--amber)}
+.next p{margin:0 0 18px;color:var(--ink-soft);max-width:50ch}
+
+.footer{margin-top:80px;border-top:1px solid var(--line);padding:48px 32px}
+.footer-inner{max-width:1240px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.footer-tagline{font-size:13.5px;color:var(--ink-mute);max-width:40ch;line-height:1.6}
+.footer-meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--ink-mute)}
+
+@media (max-width:980px){
+  .nav-links{display:none}
+  .layout{grid-template-columns:1fr}
+  .sidebar{position:static;display:flex;flex-wrap:wrap;gap:8px}
+  .sidebar h4{display:none}
+  .sidebar ul{display:flex;flex-wrap:wrap;gap:6px}
+  .sidebar a{padding:6px 12px;border:1px solid var(--line);border-radius:999px;border-left:0}
+  .sidebar a.active{background:var(--amber-trace);color:var(--amber);border-color:var(--line-warm)}
+  .wrap{padding:0 20px}
+  .method-head{flex-direction:column;align-items:flex-start;gap:8px}
+  .method-pill{align-self:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <div class="brand-mark"></div>
+      <div class="brand-name">Seen<em>Folio</em></div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#how-it-works">How it works</a>
+      <a href="index.html#engines">Engines</a>
+      <a href="pricing.html">Pricing</a>
+      <a class="active" href="docs.html">Docs</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn ghost" href="sign-in.html">Sign in</a>
+      <a class="btn primary" href="sign-in.html?signup=true">Start free →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <span class="eyebrow">Setup guides · 5 min</span>
+  <h1>Connect SeenFolio to your <em>site</em>.</h1>
+  <p class="hero-sub">Four ways. Pick the one that matches your stack. All four reach the same place: SeenFolio analyzing your site within minutes and proposing optimizations within 24 hours.</p>
+</header>
+
+<div class="wrap">
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h4>Integration methods</h4>
+      <ul>
+        <li><a class="active" href="#js-sdk">01 — JS SDK</a></li>
+        <li><a href="#wordpress">02 — WordPress plugin</a></li>
+        <li><a href="#cloudflare">03 — Cloudflare Worker</a></li>
+        <li><a href="#ci">04 — Direct CI / GitHub</a></li>
+      </ul>
+      <h4>After install</h4>
+      <ul>
+        <li><a href="#verify">Verify the connection</a></li>
+        <li><a href="#first-week">Your first 7 days</a></li>
+      </ul>
+    </aside>
+
+    <main>
+
+      <!-- JS SDK -->
+      <section class="method" id="js-sdk">
+        <div class="method-head">
+          <h2>01 — JavaScript <em>SDK</em></h2>
+          <span class="method-pill fast">Recommended · 5 min</span>
+        </div>
+        <p class="method-lede">A single &lt;script&gt; tag. Works on any site — custom builds, Webflow, Squarespace, Wix, anything. Best for non-technical operators who can paste one tag into their site's &lt;head&gt;.</p>
+
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div>
+            <h3>Copy your snippet</h3>
+            <p>Find your snippet under Settings → API keys. Each workspace has its own key prefixed <code>sf_live_…</code>.</p>
+            <pre class="code"><button class="copy" data-copy>Copy</button><span class="com">&lt;!-- in &lt;head&gt;, before the closing tag --&gt;</span>
+<span class="kw">&lt;script</span> src=<span class="str">"https://cdn.seenfolio.com/v1/sdk.js"</span>
+        data-workspace=<span class="str">"sf_live_8h2k…7q1d"</span>
+        <span class="kw">defer</span><span class="kw">&gt;&lt;/script&gt;</span></pre>
+          </div></div>
+
+          <div class="step"><div class="step-num">2</div><div>
+            <h3>Paste into your site's &lt;head&gt;</h3>
+            <p>Most platforms have a "custom code" or "header tag" setting. We've published copy-paste guides for the top 12 platforms — see Settings → Integration for the path on your platform.</p>
+            <div class="callout">Our SDK is <b>12.8&nbsp;KB</b> gzipped and loaded with the <code>defer</code> attribute. It never blocks page render. Performance budget enforced in our CI.</div>
+          </div></div>
+
+          <div class="step"><div class="step-num">3</div><div>
+            <h3>Verify in our dashboard</h3>
+            <p>Open Settings → Integration. Status will flip to "Connected" within 30 seconds of the first page view from your site.</p>
+            <div class="callout warn">If your site sets a strict Content-Security-Policy, you'll need to allow our CDN domain. We auto-detect this and generate the directive for you. See the CSP fix card in your dashboard.</div>
+          </div></div>
+        </div>
+      </section>
+
+      <!-- WORDPRESS -->
+      <section class="method" id="wordpress">
+        <div class="method-head">
+          <h2>02 — WordPress <em>plugin</em></h2>
+          <span class="method-pill fast">5 min · best for WP</span>
+        </div>
+        <p class="method-lede">Server-side integration via the WP REST API. Lets us modify content directly in your posts and pages with proper meta-field support. Survives theme switches. Recommended for any WordPress site.</p>
+
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div>
+            <h3>Install from the WordPress plugin directory</h3>
+            <p>Search "SeenFolio" in <code>Plugins → Add New</code>. Or download the latest .zip:</p>
+            <pre class="code"><button class="copy" data-copy>Copy</button>https://cdn.seenfolio.com/plugins/wp/latest.zip</pre>
+          </div></div>
+
+          <div class="step"><div class="step-num">2</div><div>
+            <h3>Authorize with your workspace key</h3>
+            <p>In <code>Settings → SeenFolio</code> inside WP, paste your key. We round-trip-verify it against our API.</p>
+          </div></div>
+
+          <div class="step"><div class="step-num">3</div><div>
+            <h3>Choose auto-publish or staged-review</h3>
+            <p>Default is <em>staged review</em>: every optimization sits in a 24-hour preview before it goes live. You can flip to <em>auto-publish</em> per page or globally — and undo any change at any time.</p>
+            <div class="callout">We handle both Gutenberg and the Classic Editor. Inline styles are preserved. Custom blocks work via filters.</div>
+          </div></div>
+        </div>
+      </section>
+
+      <!-- CLOUDFLARE WORKER -->
+      <section class="method" id="cloudflare">
+        <div class="method-head">
+          <h2>03 — Cloudflare <em>Worker proxy</em></h2>
+          <span class="method-pill med">10 min · advanced</span>
+        </div>
+        <p class="method-lede">Edge rewriting. Content is patched at the CDN before the browser ever sees it — best for sites that need perfect server-side SEO and AI engine crawlability. Requires Cloudflare on your domain.</p>
+
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div>
+            <h3>Add the SeenFolio Worker as a route</h3>
+            <p>In your Cloudflare dashboard: <code>Workers &amp; Pages → Add Service → Connect to existing Worker</code>. Paste:</p>
+            <pre class="code"><button class="copy" data-copy>Copy</button><span class="com">// Cloudflare Worker — paste in dashboard or wrangler.toml</span>
+<span class="kw">name</span> = <span class="str">"seenfolio-edge"</span>
+<span class="kw">main</span> = <span class="str">"https://workers.seenfolio.com/v1/edge.js"</span>
+<span class="kw">route</span> = <span class="str">"yourdomain.com/*"</span>
+[vars]
+<span class="kw">SEENFOLIO_WORKSPACE</span> = <span class="str">"sf_live_8h2k…7q1d"</span></pre>
+          </div></div>
+
+          <div class="step"><div class="step-num">2</div><div>
+            <h3>Trigger the first content sync</h3>
+            <p>The Worker pulls pre-computed patches from our edge KV. After your first patch is staged, hit the <em>Warm KV</em> button in Settings → Integration.</p>
+            <div class="callout">Worker CPU budget: under 10&nbsp;ms per request. We never call our origin synchronously. KV consistency is eventual — cache warmup runs automatically post-deploy.</div>
+          </div></div>
+        </div>
+      </section>
+
+      <!-- CI -->
+      <section class="method" id="ci">
+        <div class="method-head">
+          <h2>04 — Direct <em>CI pipeline</em> (Git)</h2>
+          <span class="method-pill med">15 min · static sites</span>
+        </div>
+        <p class="method-lede">For Next.js, Astro, SvelteKit, Nuxt, Eleventy, Hugo, Jekyll — anything Git-deployed. We open pull requests against your repo with content patches, run your tests, and trigger your rebuild webhook on merge.</p>
+
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div>
+            <h3>Install the SeenFolio GitHub App</h3>
+            <p>Grant write access to the repos you want SeenFolio to optimize. We'll never touch anything outside of MDX, Markdown, JSON content, and SEO meta fields.</p>
+            <pre class="code"><button class="copy" data-copy>Copy</button>https://github.com/apps/seenfolio</pre>
+          </div></div>
+
+          <div class="step"><div class="step-num">2</div><div>
+            <h3>Add the SeenFolio rebuild secret</h3>
+            <p>If your host uses a deploy webhook (Vercel, Netlify, Cloudflare Pages), paste the webhook URL into Settings → Integration. We trigger it after merge.</p>
+            <pre class="code"><button class="copy" data-copy>Copy</button><span class="kw">SEENFOLIO_REBUILD_WEBHOOK</span>=<span class="str">"https://api.vercel.com/v1/integrations/deploy/prj_xxx/abc"</span></pre>
+          </div></div>
+
+          <div class="step"><div class="step-num">3</div><div>
+            <h3>Configure your PR style</h3>
+            <p>Choose batch frequency: every optimization, daily, or weekly. Default is <em>weekly batched PRs</em> to avoid review fatigue. Each PR includes the rationale and the SEO/GEO score delta.</p>
+            <div class="callout">If your CI runs Lighthouse on PRs, we use it as a safety net — patches that regress Core Web Vitals get auto-flagged for review instead of merging.</div>
+          </div></div>
+        </div>
+      </section>
+
+      <!-- VERIFY -->
+      <section class="method" id="verify">
+        <div class="method-head">
+          <h2>Verify the <em>connection</em></h2>
+          <span class="method-pill">30 seconds</span>
+        </div>
+        <p class="method-lede">Regardless of method, your Settings → Integration page will turn green when we receive our first signal from your site. From that moment, we start crawling and scoring.</p>
+
+        <div class="steps">
+          <div class="step"><div class="step-num">✓</div><div>
+            <h3>First crawl runs immediately</h3>
+            <p>We launch a headless Playwright crawler that fetches your homepage, captures Core Web Vitals, detects your CMS, and stores the rendered HTML. Takes 30 seconds for most sites, up to 5 minutes for 10k+ page sites.</p>
+          </div></div>
+          <div class="step"><div class="step-num">✓</div><div>
+            <h3>You get a connection email</h3>
+            <p>Within minutes of connection: an email with the first five things we noticed and the first optimization we'd like to make.</p>
+          </div></div>
+        </div>
+      </section>
+
+      <!-- FIRST WEEK -->
+      <section class="method" id="first-week">
+        <div class="method-head">
+          <h2>Your first <em>seven days</em></h2>
+          <span class="method-pill">what to expect</span>
+        </div>
+        <p class="method-lede">A timeline of what SeenFolio does in week one. No two sites are identical, but the cadence is consistent.</p>
+
+        <div class="steps">
+          <div class="step"><div class="step-num">D1</div><div>
+            <h3>Site audit + first recommendations</h3>
+            <p>Full ingest. SEO + GEO + Core Web Vitals scoring on every page. Five highest-impact recommendations surfaced. One small optimization (a meta description fix or two) staged.</p>
+          </div></div>
+          <div class="step"><div class="step-num">D2</div><div>
+            <h3>Attribution baseline</h3>
+            <p>Your first 24 hours of events build the attribution baseline. By end of day 2 the dashboard shows live revenue, customers, and visitor counts with channel breakdown.</p>
+          </div></div>
+          <div class="step"><div class="step-num">D3</div><div>
+            <h3>First content patch goes live</h3>
+            <p>The 24-hour staging window on the first optimization elapses. It goes live. Outcome measurement starts (we re-check the affected metric in 7 days).</p>
+          </div></div>
+          <div class="step"><div class="step-num">D5</div><div>
+            <h3>Content gaps surfaced</h3>
+            <p>We identify high-search-volume queries you don't rank for. Brand voice is calibrated from the existing content we ingested. A draft is ready in your Inbox for review.</p>
+          </div></div>
+          <div class="step"><div class="step-num">D7</div><div>
+            <h3>First weekly review email</h3>
+            <p>Every Monday at your local 8am: a digest of everything we did the prior week, what worked, what didn't, and what we're planning. You can pause anything in one click.</p>
+          </div></div>
+        </div>
+      </section>
+
+      <!-- NEXT -->
+      <div class="next">
+        <h3>Need a different stack?</h3>
+        <p>Shopify, BigCommerce, Webflow, Framer, Ghost, Drupal — all supported via the JS SDK with platform-specific helpers in Settings → Integration. If your stack isn't there, write to us and we'll add a guide.</p>
+        <a class="btn primary" href="sign-in.html?signup=true">Start the 5-minute setup →</a>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-name">Seen<em>Folio</em></div>
+    </div>
+    <p class="footer-tagline">Autonomous growth infrastructure for online businesses.</p>
+    <div class="footer-meta">© SeenFolio · Idylabs LTD · 2026 · Docs v1.0</div>
+  </div>
+</footer>
+
+<script>
+  // copy buttons
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pre = btn.parentElement;
+      const text = pre.innerText.replace(/^Copy\n?/, '').trim();
+      navigator.clipboard?.writeText(text);
+      btn.textContent = 'Copied';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1400);
+    });
+  });
+
+  // sidebar active state
+  const links = document.querySelectorAll('.sidebar a');
+  const sections = Array.from(links).map(a => document.querySelector(a.getAttribute('href')));
+  function syncActive() {
+    let active = sections[0];
+    sections.forEach(s => { if (s && s.getBoundingClientRect().top < 200) active = s; });
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + active.id));
+  }
+  document.addEventListener('scroll', syncActive);
+</script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pricing — SeenFolio</title>
+<meta name="description" content="Token-based, pay-only-when-it-works pricing for SeenFolio." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,200..700,0..100;1,9..144,200..700,0..100&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#0E0D0A;--bg-1:#15130F;--surface:#1A1813;--surface-1:#211E18;--surface-2:#28241D;--surface-3:#322D24;
+  --line:rgba(245,233,211,0.07);--line-strong:rgba(245,233,211,0.14);--line-warm:rgba(232,178,96,0.22);
+  --ink:#F4EBD7;--ink-soft:#C7BCA3;--ink-mute:#877E6B;--ink-faint:#5C5547;
+  --amber:#E8B260;--amber-bright:#F4C880;--amber-deep:#B8843C;--amber-glow:rgba(232,178,96,0.16);--amber-trace:rgba(232,178,96,0.06);
+  --good:#9CB87E;--warn:#D49A4F;--bad:#C9694F;
+  --serif:"Fraunces","Iowan Old Style",Georgia,serif;
+  --sans:"Geist",ui-sans-serif,-apple-system,BlinkMacSystemFont,sans-serif;
+  --mono:"Geist Mono",ui-monospace,"SF Mono",monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;letter-spacing:-0.005em;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(900px 600px at 18% -5%,rgba(232,178,96,0.07),transparent 60%);z-index:0}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer;background:transparent;border:0}
+::selection{background:var(--amber-glow);color:var(--ink)}
+
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(14,13,10,0.7);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1240px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;gap:36px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{width:26px;height:26px;position:relative}
+.brand-mark::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--amber-bright),var(--amber-deep) 60%,transparent 75%);animation:pulse 4s ease-in-out infinite}
+.brand-mark::after{content:"";position:absolute;inset:7px;background:var(--bg);border-radius:50%}
+@keyframes pulse{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
+.brand-name{font-family:var(--serif);font-size:19px;font-variation-settings:"opsz" 36,"SOFT" 50;letter-spacing:-0.01em}
+.brand-name em{font-style:italic;color:var(--amber)}
+.nav-links{display:flex;gap:24px;font-size:14px;color:var(--ink-soft);margin-left:14px}
+.nav-links a{padding:6px 0;border-bottom:1px dotted transparent;transition:.15s}
+.nav-links a:hover,.nav-links a.active{color:var(--amber);border-bottom-color:var(--amber)}
+.nav-cta{margin-left:auto;display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:8px;border:1px solid var(--line-strong);color:var(--ink);font-size:13.5px;transition:all .15s;white-space:nowrap}
+.btn:hover{border-color:var(--ink-mute)}
+.btn.primary{background:var(--amber);color:var(--bg);border-color:var(--amber);font-weight:500}
+.btn.primary:hover{background:var(--amber-bright);border-color:var(--amber-bright)}
+.btn.ghost{border-color:transparent;color:var(--ink-soft)}
+.btn.ghost:hover{color:var(--ink)}
+
+.wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 32px}
+.hero{padding:80px 0 56px;text-align:center}
+.eyebrow{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);padding:6px 14px;border:1px solid var(--line-warm);border-radius:999px;background:var(--amber-trace);margin-bottom:24px}
+.hero h1{font-family:var(--serif);font-size:clamp(40px,5.5vw,72px);line-height:1.02;letter-spacing:-0.025em;font-variation-settings:"opsz" 144,"SOFT" 30,"wght" 320;margin:0 0 22px;max-width:18ch;margin-inline:auto}
+.hero h1 em{font-style:italic;color:var(--amber);font-variation-settings:"opsz" 144,"SOFT" 100,"wght" 320}
+.hero-sub{font-family:var(--serif);font-size:20px;line-height:1.5;color:var(--ink-soft);max-width:50ch;margin:0 auto 24px;font-variation-settings:"opsz" 80,"wght" 350}
+
+.toggle-row{display:inline-flex;padding:5px;border:1px solid var(--line-strong);border-radius:10px;background:var(--surface);gap:4px;margin-bottom:48px}
+.toggle-row button{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:9px 18px;border-radius:7px;color:var(--ink-mute);transition:.15s}
+.toggle-row button.on{background:var(--surface-2);color:var(--ink);box-shadow:inset 0 1px 0 rgba(245,233,211,0.05)}
+.toggle-row button:hover{color:var(--ink)}
+.toggle-row .save{font-family:var(--mono);font-size:9px;color:var(--amber);margin-left:6px}
+
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:56px}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px 26px 30px;position:relative;transition:all .18s}
+.plan:hover{transform:translateY(-3px);border-color:var(--line-strong)}
+.plan.featured{background:radial-gradient(500px 250px at 0% 0%,var(--amber-trace),transparent 60%),linear-gradient(180deg,var(--surface-1),var(--surface));border-color:var(--line-warm);box-shadow:0 0 0 1px var(--amber-trace),0 16px 40px -16px rgba(0,0,0,0.5)}
+.plan-badge{position:absolute;top:14px;right:14px;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--amber)}
+.plan-name{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:18px}
+.plan-name b{color:var(--amber);font-weight:normal}
+.plan-price{font-family:var(--serif);font-size:48px;letter-spacing:-0.03em;line-height:1;font-variation-settings:"opsz" 144,"SOFT" 40,"wght" 300;margin-bottom:6px}
+.plan-price .unit{font-size:18px;color:var(--ink-mute);margin-left:4px}
+.plan-tagline{font-size:13px;color:var(--ink-soft);margin:0 0 22px;min-height:38px}
+.plan-cta{display:block;text-align:center;padding:11px 12px;border-radius:8px;border:1px solid var(--line-strong);color:var(--ink);font-size:13.5px;font-family:var(--sans);transition:.15s;margin-bottom:24px}
+.plan-cta:hover{border-color:var(--ink-mute)}
+.plan.featured .plan-cta{background:var(--amber);color:var(--bg);border-color:var(--amber);font-weight:500}
+.plan.featured .plan-cta:hover{background:var(--amber-bright);border-color:var(--amber-bright)}
+.plan-feats{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;font-size:13.5px;color:var(--ink-soft);line-height:1.45}
+.plan-feats li{padding-left:22px;position:relative}
+.plan-feats li::before{content:"✓";position:absolute;left:0;top:1px;color:var(--amber);font-size:13px;font-weight:600}
+.plan-feats li.muted{color:var(--ink-mute)}
+.plan-feats li.muted::before{content:"—";color:var(--ink-faint)}
+
+/* token cost table */
+.section{padding:64px 0;position:relative}
+.section-eyebrow{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:18px}
+.section h2{font-family:var(--serif);font-size:clamp(32px,4.5vw,56px);line-height:1.08;letter-spacing:-0.022em;font-variation-settings:"opsz" 144,"SOFT" 30,"wght" 320;margin:0 0 18px;max-width:22ch}
+.section h2 em{font-style:italic;color:var(--amber)}
+.section-intro{font-family:var(--serif);font-size:18px;line-height:1.5;color:var(--ink-soft);max-width:58ch;margin:0 0 36px;font-variation-settings:"opsz" 80,"wght" 350}
+
+.cost-table{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface)}
+.cost-row{display:grid;grid-template-columns:1.4fr 2.2fr 0.9fr;padding:18px 28px;border-bottom:1px solid var(--line);align-items:center;gap:24px}
+.cost-row:last-child{border-bottom:0}
+.cost-row.head{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);background:var(--bg-1)}
+.cost-action{font-family:var(--serif);font-size:18px;font-variation-settings:"opsz" 60,"wght" 380;letter-spacing:-0.005em}
+.cost-desc{font-size:13px;color:var(--ink-soft);line-height:1.5}
+.cost-price{font-family:var(--serif);font-size:24px;font-style:italic;color:var(--amber);text-align:right;font-variation-settings:"opsz" 80,"wght" 360}
+.cost-price.free{color:var(--good);font-style:normal;font-size:14px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase}
+
+/* faq */
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px}
+.faq-item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px 24px}
+.faq-item h4{font-family:var(--serif);font-size:18px;margin:0 0 10px;letter-spacing:-0.01em;font-variation-settings:"opsz" 60,"wght" 380}
+.faq-item p{margin:0;font-size:13.5px;color:var(--ink-soft);line-height:1.6}
+
+/* footer */
+.footer{margin-top:64px;border-top:1px solid var(--line);padding:48px 32px}
+.footer-inner{max-width:1240px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
+.footer-tagline{font-size:13.5px;color:var(--ink-mute);max-width:40ch;line-height:1.6}
+.footer-meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--ink-mute);margin-top:18px}
+
+@media (max-width:980px){
+  .nav-links{display:none}
+  .plans{grid-template-columns:1fr 1fr}
+  .faq{grid-template-columns:1fr}
+  .wrap{padding:0 20px}
+}
+@media (max-width:620px){
+  .plans{grid-template-columns:1fr}
+  .cost-row{grid-template-columns:1fr;gap:8px;padding:18px 22px}
+  .cost-price{text-align:left}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <div class="brand-mark"></div>
+      <div class="brand-name">Seen<em>Folio</em></div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#how-it-works">How it works</a>
+      <a href="index.html#engines">Engines</a>
+      <a class="active" href="pricing.html">Pricing</a>
+      <a href="docs.html">Docs</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn ghost" href="sign-in.html">Sign in</a>
+      <a class="btn primary" href="sign-in.html?signup=true">Start free →</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <span class="eyebrow">Pay only when it works</span>
+  <h1>Tokens for <em>actions</em>. Insights for <em>free</em>.</h1>
+  <p class="hero-sub">SeenFolio earns when you grow. Analytics, attribution, and recommendations cost nothing. You pay per executed action — a published blog post, an optimized page, an ad campaign launched.</p>
+  <div class="toggle-row">
+    <button class="on">Monthly</button>
+    <button>Annual <span class="save">save 20%</span></button>
+  </div>
+</header>
+
+<section class="wrap">
+  <div class="plans">
+
+    <div class="plan">
+      <div class="plan-name">Free</div>
+      <div class="plan-price">$0<span class="unit">/mo</span></div>
+      <p class="plan-tagline">Test the waters. Connect one site. See what we'd do.</p>
+      <a class="plan-cta" href="sign-in.html?signup=true&plan=free">Start free</a>
+      <ul class="plan-feats">
+        <li>100 tokens / month</li>
+        <li>1 site</li>
+        <li>1 seat</li>
+        <li>Analytics &amp; recommendations (always free)</li>
+        <li class="muted">No autonomous actions</li>
+        <li class="muted">Email support only</li>
+      </ul>
+    </div>
+
+    <div class="plan">
+      <div class="plan-name">Starter</div>
+      <div class="plan-price">$49<span class="unit">/mo</span></div>
+      <p class="plan-tagline">Solo founders, small brands. Enough to feel the platform working.</p>
+      <a class="plan-cta" href="sign-in.html?signup=true&plan=starter">Start Starter</a>
+      <ul class="plan-feats">
+        <li>1,000 tokens / month</li>
+        <li>1 site</li>
+        <li>3 seats</li>
+        <li>All 7 engines</li>
+        <li>One-click undo (24h window)</li>
+        <li>Email + chat support</li>
+      </ul>
+    </div>
+
+    <div class="plan featured">
+      <div class="plan-badge">MOST POPULAR</div>
+      <div class="plan-name"><b>Growth</b></div>
+      <div class="plan-price">$149<span class="unit">/mo</span></div>
+      <p class="plan-tagline">Growing e-commerce and SaaS. The plan that pays for itself.</p>
+      <a class="plan-cta" href="sign-in.html?signup=true&plan=growth">Start Growth</a>
+      <ul class="plan-feats">
+        <li>5,000 tokens / month</li>
+        <li>3 sites</li>
+        <li>10 seats</li>
+        <li>All 7 engines</li>
+        <li>Custom brand voice profiles</li>
+        <li>Priority chat + onboarding call</li>
+        <li>Auto-refill tokens (optional)</li>
+      </ul>
+    </div>
+
+    <div class="plan">
+      <div class="plan-name">Enterprise</div>
+      <div class="plan-price">Custom</div>
+      <p class="plan-tagline">Agencies, multi-brand operators, &gt;5,000 tokens/mo.</p>
+      <a class="plan-cta" href="#">Talk to sales</a>
+      <ul class="plan-feats">
+        <li>Custom token allocation</li>
+        <li>Unlimited sites &amp; seats</li>
+        <li>Multi-workspace org dashboard</li>
+        <li>API access</li>
+        <li>SLA &amp; dedicated CSM</li>
+        <li>DPA + custom legal</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- TOKEN COSTS -->
+<section class="section wrap">
+  <span class="section-eyebrow">What tokens buy</span>
+  <h2>Transparent costs <em>per action</em>.</h2>
+  <p class="section-intro">Every action is priced before you approve it. The platform predicts the cost from the brief — and rounds up, never down. Analytics, recommendations, dashboards, monitoring: all free.</p>
+
+  <div class="cost-table">
+    <div class="cost-row head">
+      <span>Action</span>
+      <span>What you get</span>
+      <span style="text-align:right">Cost</span>
+    </div>
+    <div class="cost-row">
+      <span class="cost-action">Page SEO &amp; GEO analysis</span>
+      <span class="cost-desc">Deep crawl, scoring, ranked issues, AI-citation visibility for one URL.</span>
+      <span class="cost-price">10 tokens</span>
+    </div>
+    <div class="cost-row">
+      <span class="cost-action">Page content rewrite</span>
+      <span class="cost-desc">Title, meta, body — brand-voice trained, staged 24h before publish.</span>
+      <span class="cost-price">15 tokens</span>
+    </div>
+    <div class="cost-row">
+      <span class="cost-action">Blog post (long-form)</span>
+      <span class="cost-desc">1,000–1,500 words, SEO-optimized, distributed to your channels.</span>
+      <span class="cost-price">35–50 tokens</span>
+    </div>
+    <div class="cost-row">
+      <span class="cost-action">Social post / email copy</span>
+      <span class="cost-desc">Short-form content, brand-voice matched, ready to schedule.</span>
+      <span class="cost-price">10 tokens</span>
+    </div>
+    <div class="cost-row">
+      <span class="cost-action">Ad creative bundle</span>
+      <span class="cost-desc">N headline × N description × N CTA variants for one campaign.</span>
+      <span class="cost-price">20 tokens</span>
+    </div>
+    <div class="cost-row">
+      <span class="cost-action">Lifecycle email send</span>
+      <span class="cost-desc">Per personalized email in welcome / winback / at-risk flow.</span>
+      <span class="cost-price">5 tokens</span>
+    </div>
+    <div class="cost-row">
+      <span class="cost-action">WhatsApp AI response</span>
+      <span class="cost-desc">Per outbound message in conversational commerce / support.</span>
+      <span class="cost-price">5 tokens</span>
+    </div>
+    <div class="cost-row">
+      <span class="cost-action">Churn prediction (per contact)</span>
+      <span class="cost-desc">Nightly ML inference against your active customer base.</span>
+      <span class="cost-price">0.1 tokens</span>
+    </div>
+    <div class="cost-row">
+      <span class="cost-action">Analytics &amp; insights</span>
+      <span class="cost-desc">Attribution, dashboards, recommendations, citation tracking.</span>
+      <span class="cost-price free">always free</span>
+    </div>
+    <div class="cost-row">
+      <span class="cost-action">Undo (within 24h)</span>
+      <span class="cost-desc">Reverting an action we took. We refund the original cost.</span>
+      <span class="cost-price free">refunded</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section wrap">
+  <span class="section-eyebrow">FAQ</span>
+  <h2>Things people <em>actually ask</em>.</h2>
+
+  <div class="faq">
+    <div class="faq-item">
+      <h4>What happens when I run out of tokens?</h4>
+      <p>Autonomous jobs pause. Analytics and dashboards keep working. You'll get notified at 20% and again at 5%. You can top up manually or enable auto-refill in settings.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Do I get refunded if I undo something?</h4>
+      <p>Yes — anything you undo within 24 hours of execution gets its tokens refunded. After 24h the work has already happened, so no refund, but you can still revert the change.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can I cap how much SeenFolio can spend?</h4>
+      <p>Yes. Set token limits per engine, per week. Set a "require approval above X tokens" rule. Pause any engine entirely. You're in control.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What's the difference between Beginner, Intermediate, and Advanced mode?</h4>
+      <p>Same engine underneath. Beginner shows outcomes and chat only — no engine names, no technical metrics. Intermediate adds channel breakdowns and preview-before-publish. Advanced exposes every dial, per-engine controls, and the API.</p>
+    </div>
+    <div class="faq-item">
+      <h4>How is autonomy set?</h4>
+      <p>Per engine, per workspace: Full Auto, Suggest+Confirm, Notify Only, or Off. Defaults match your goal — e.g. content gets Suggest+Confirm by default, while small SEO patches go Full Auto.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Where are you hosted? Where's my data?</h4>
+      <p>EU and West Africa primary regions. Data isolation is per-workspace at the Postgres level via row-level security. AES-256 at rest. We're NDPR + GDPR compliant.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can I cancel anytime?</h4>
+      <p>Yes. No annual lock-in unless you choose the annual plan for the 20% discount. Cancel and your unused tokens stay good for 30 days.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Do you work with my CMS / stack?</h4>
+      <p>WordPress (official plugin), Shopify (Admin app), Webflow, Squarespace, custom sites (JS SDK), and CI pipelines (GitHub App for static sites). If we can't make it work in 5 minutes, the next call is free.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="section wrap" style="text-align:center;padding-top:32px">
+  <h2 style="margin-inline:auto;text-align:center">Start with <em>100 free tokens</em>.</h2>
+  <p style="font-family:var(--serif);font-size:18px;color:var(--ink-soft);max-width:48ch;margin:0 auto 28px;font-variation-settings:'opsz' 80,'wght' 350;line-height:1.5">No credit card. Five minutes to set up. Your first optimization staged within 24 hours.</p>
+  <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
+    <a class="btn primary" href="sign-in.html?signup=true">Start free →</a>
+    <a class="btn" href="docs.html">Read the docs</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-name">Seen<em>Folio</em></div>
+    </div>
+    <p class="footer-tagline">Autonomous growth infrastructure for online businesses.</p>
+    <div class="footer-meta">© SeenFolio · Idylabs LTD · 2026 · Made in Lagos</div>
+  </div>
+</footer>
+
+<script>
+  // Plan-toggle (visual only)
+  document.querySelectorAll('.toggle-row button').forEach(b=>{
+    b.addEventListener('click',()=>{
+      document.querySelectorAll('.toggle-row button').forEach(x=>x.classList.remove('on'));
+      b.classList.add('on');
+    });
+  });
+</script>
+</body>
+</html>

@@ -2,16 +2,31 @@
 
 Autonomous growth infrastructure for online businesses. One platform replaces 10–15 marketing tools by analyzing performance, deciding optimizations, and executing changes — paid for in tokens (only when the platform acts).
 
-This repo holds the lo-fi and hi-fi prototypes for stakeholder review.
+A clickable high-fidelity prototype in vanilla HTML/CSS/JS. No backend.
 
-## Pages
+**Live:** [seenfolio.vercel.app](https://seenfolio.vercel.app)
 
-- [`index.html`](index.html) — Sign in / sign up (entry point)
-- [`onboarding.html`](onboarding.html) — Four-step setup with the analyzing wait state
-- [`app.html`](app.html) — Hi-fi app: dashboard, engines, drawers, modals, edge cases
-- [`lofi.html`](lofi.html) — Lo-fi prototype (12 figures on a design board)
+## Site map
 
-## App views (`app.html`)
+| Route | File | Purpose |
+| --- | --- | --- |
+| `/` | `index.html` | Public marketing landing |
+| `/pricing.html` | `pricing.html` | Pricing tiers + token costs + FAQ |
+| `/docs.html` | `docs.html` | Setup guides for 4 integration methods |
+| `/sign-in.html` | `sign-in.html` | Sign in / sign up |
+| `/onboarding.html` | `onboarding.html` | Multi-step setup with analyzing wait state |
+| `/app.html` | `app.html` | The full app — dashboard, engines, drawers, modals |
+| `/lofi.html` | `lofi.html` | Original lo-fi design board (12 figures) |
+
+## Architecture (prototype)
+
+- **Stack:** static HTML/CSS/JS, no build step, no framework
+- **Shared mock data:** `mock.js` exposes `window.SeenFolioMock` (workspaces, pages, actions, attribution, contacts, conversations, reviews, token ledger, edge-case triggers, etc.)
+- **Shared state:** `state.js` exposes `window.SeenFolioState` — localStorage-backed, namespaced `seenfolio:*`, resettable from settings
+- **Async sim:** 600ms simulated latency via `setTimeout`
+- **Design system:** warm-dark base (`#0E0D0A`), cream ink (`#F4EBD7`), single amber accent (`#E8B260`). Fraunces (display) + Geist (body) + Geist Mono (system voice).
+
+## App surface (in `app.html`)
 
 **Workspace:** Home · Activity · Inbox · Chat
 **Engines:** Content · Ads · Email · Reputation · WhatsApp · Customers
@@ -20,21 +35,36 @@ This repo holds the lo-fi and hi-fi prototypes for stakeholder review.
 
 ## Edge cases covered
 
-Click the cogwheel bottom-left in `app.html` to trigger any of:
+Trigger any via the demo control panel inside `app.html`:
 
-- Token threshold (80%) banner
-- Ad budget exhausted banner
-- Performance auto-protect banner
-- Multiple-undo learning modal (also fires automatically after 3 undos)
-- Above-pattern token approval modal
-- Conflicting optimization drawer
-- Auto-disabled feature drawer
-- Live action toast
+- Token threshold (20% / 5%)
+- Ad budget exhausted
+- Performance auto-protect
+- Multi-undo learning prompt
+- Above-pattern token approval
+- Conflicting optimization
+- Auto-disabled feature
+- CSP blocking the SDK
+- WhatsApp 24h window expiring
+- Email bounce-rate auto-pause
+- Insufficient attribution data
+- Ad account suspended
+- Meta ad in extended review
+- Patch hallucination flagged
+- Live-action toast
 
-## Modes
+## Three modes
 
-Beginner / Intermediate / Advanced switch the density and disclosure of the app — toggle in Settings or via the demo panel. The mode badge in the topbar reflects the current state.
+Beginner / Intermediate / Advanced shifts disclosure density across the entire app. Toggle in Settings.
 
-## Stack
+## Deployment
 
-Static HTML / CSS / vanilla JS. No build step. Fonts: Fraunces (serif), Geist + Geist Mono (sans + mono).
+Auto-deploys from `main` via Vercel. To deploy locally:
+
+```bash
+git push origin main
+```
+
+## Repo
+
+[github.com/samewenu/seenfolio](https://github.com/samewenu/seenfolio)
