@@ -3047,6 +3047,13 @@
       transform: translate(-2px, -2px);
       box-shadow: 4px 4px 0 var(--ink) !important;
     }
+    .btn:active {
+      transform: translate(0, 0) !important;
+      box-shadow: 1px 1px 0 var(--ink) !important;
+      transition: transform 0.05s, box-shadow 0.05s !important;
+    }
+    .btn.ghost:hover { transform: none; box-shadow: none !important; }
+    .btn.ghost:active { transform: none !important; box-shadow: none !important; }
     .btn.primary, .btn.amber {
       background: var(--amber) !important;
       color: #fff !important;
@@ -3149,17 +3156,6 @@
   </style>
 </head>
 <body class="mode-beginner">
-
-  <!-- ═══════════════════ TOUR NAV ═══════════════════ -->
-  <nav class="tour-nav">
-    <a href="sign-in.html">Auth</a>
-    <span class="sep">→</span>
-    <a href="onboarding.html">Onboard</a>
-    <span class="sep">→</span>
-    <a class="active">App</a>
-    <span class="sep">·</span>
-    <a href="lofi.html">Lo-fi</a>
-  </nav>
 
   <!-- ═══════════════════ APP SHELL ═══════════════════ -->
   <div class="app">
@@ -3410,9 +3406,9 @@
           <span class="indicator"></span>
           Auto-mode · on
         </button>
-        <button class="top-action" data-bell title="Notifications" style="padding:7px 10px;">
+        <button class="top-action" data-bell title="Notifications" style="padding:7px 10px;position:relative;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 004 0"/></svg>
-          <span class="bell-dot" style="position:absolute;top:6px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--accent);border:1.5px solid var(--ink);"></span>
+          <span class="bell-dot" style="position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:var(--accent);border:1.5px solid var(--ink);"></span>
         </button>
       </header>
 
@@ -8205,7 +8201,7 @@
 
   <!-- ═══════════════════ NOTIFICATIONS DRAWER ═══════════════════ -->
   <div class="scrim" data-scrim-notif></div>
-  <aside class="drawer" data-drawer-notif style="transform: translateX(100%);">
+  <aside class="drawer" data-drawer-notif>
     <div class="drawer-head">
       <div class="drawer-eyebrow"><span class="dot"></span> Notifications</div>
       <button class="drawer-close" data-close-notif>
@@ -8502,21 +8498,21 @@
     /* ────────────────── NOTIFICATIONS DRAWER ────────────────── */
     const notifDrawer = document.querySelector('[data-drawer-notif]');
     const notifScrim = document.querySelector('[data-scrim-notif]');
-    if (notifDrawer) {
-      const openNotif = () => {
-        notifDrawer.style.transform = 'translateX(0)';
-        notifScrim.classList.add('visible');
-        document.body.style.overflow = 'hidden';
-      };
-      const closeNotif = () => {
-        notifDrawer.style.transform = 'translateX(100%)';
-        notifScrim.classList.remove('visible');
-        document.body.style.overflow = '';
-      };
-      document.querySelectorAll('[data-bell]').forEach(b => b.addEventListener('click', openNotif));
-      document.querySelectorAll('[data-close-notif]').forEach(b => b.addEventListener('click', closeNotif));
-      notifScrim?.addEventListener('click', closeNotif);
-    }
+    const openNotif = () => {
+      if (!notifDrawer) return;
+      notifDrawer.classList.add('visible');
+      notifScrim?.classList.add('visible');
+      document.body.style.overflow = 'hidden';
+    };
+    const closeNotif = () => {
+      if (!notifDrawer) return;
+      notifDrawer.classList.remove('visible');
+      notifScrim?.classList.remove('visible');
+      document.body.style.overflow = '';
+    };
+    document.querySelectorAll('[data-bell]').forEach(b => b.addEventListener('click', openNotif));
+    document.querySelectorAll('[data-close-notif]').forEach(b => b.addEventListener('click', closeNotif));
+    notifScrim?.addEventListener('click', closeNotif);
 
     /* wire all "+ Invite", "+ Create key", "Replay" buttons inside their views */
     document.querySelectorAll('.view[data-view-pane="team"] .btn.amber').forEach(b => {
@@ -8764,6 +8760,7 @@
         else if (mInvite.host && mInvite.host.classList.contains('visible')) mInvite.close();
         else if (mApikey.host && mApikey.host.classList.contains('visible')) mApikey.close();
         else if (mReplay.host && mReplay.host.classList.contains('visible')) mReplay.close();
+        else if (notifDrawer && notifDrawer.classList.contains('visible')) closeNotif();
         else if (drawer.classList.contains('visible')) closeDrawer();
         else if (demoPanel && demoPanel.classList.contains('visible')) demoPanel.classList.remove('visible');
       }
@@ -8843,6 +8840,111 @@
         if (c) {
           if (attrExplain) attrExplain.textContent = c.explain;
           if (attrSub) attrSub.textContent = c.sub;
+        }
+      });
+    });
+
+    /* ────────────────── INTERACTION POLISH PASS ────────────────── */
+
+    // 1) Inbox / pending approval buttons — visual confirmation on Approve
+    document.querySelectorAll('.view[data-view-pane="inbox"] .btn.amber').forEach(b => {
+      const text = b.textContent.trim().toLowerCase();
+      if (text.startsWith('approve') || text === 'send' || text.startsWith('post')) {
+        b.addEventListener('click', () => {
+          if (b.dataset.handled) return;
+          b.dataset.handled = '1';
+          const orig = b.textContent;
+          b.textContent = '✓ Approved · posting';
+          b.style.background = 'var(--good)';
+          b.style.color = '#fff';
+          setTimeout(() => { b.textContent = orig; b.style.background = ''; b.style.color = ''; b.dataset.handled = ''; }, 2200);
+        });
+      }
+    });
+
+    // 3) Pending sidebar items (Home view) — fade out on click
+    document.querySelectorAll('.pending-row .pending-cta').forEach(b => {
+      b.addEventListener('click', (e) => {
+        e.preventDefault();
+        const row = b.closest('.pending-row');
+        if (!row || row.dataset.dismissed) return;
+        row.dataset.dismissed = '1';
+        row.style.transition = 'opacity 0.25s, transform 0.25s, max-height 0.3s';
+        row.style.opacity = '0';
+        row.style.transform = 'translateX(8px)';
+        setTimeout(() => { row.style.maxHeight = '0'; row.style.padding = '0'; row.style.overflow = 'hidden'; }, 250);
+      });
+    });
+
+    // 4) Connect-style buttons in credentials/ads accounts → token-approval modal as a stand-in for OAuth
+    document.querySelectorAll('button, a').forEach(el => {
+      const text = (el.textContent || '').trim().toLowerCase();
+      if (text === '+ connect' || text === 'connect') {
+        if (el.dataset.connectBound) return;
+        el.dataset.connectBound = '1';
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          // Reuse the big-spend modal layout by showing a toast for now
+          const t = document.querySelector('[data-toast]');
+          if (t) {
+            const text2 = t.querySelector('.toast-text');
+            const meta = t.querySelector('.toast-meta');
+            if (text2) text2.innerHTML = 'Opening <em>OAuth</em> for that service…';
+            if (meta) meta.textContent = 'In production this is the consent screen';
+            t.classList.add('visible');
+            setTimeout(() => t.classList.remove('visible'), 3200);
+          }
+        });
+      }
+    });
+
+    // 5) Quick visual feedback for any toggle that doesn't already have data-toggle handler
+    document.querySelectorAll('.toggle').forEach(el => {
+      if (el.dataset.toggleBound) return;
+      el.dataset.toggleBound = '1';
+      if (!el.hasAttribute('data-toggle')) {
+        el.addEventListener('click', () => el.classList.toggle('on'));
+      }
+    });
+
+    // 6) Defensive: any anchor with href="#" should preventDefault to avoid page-jump
+    document.querySelectorAll('a[href="#"]').forEach(a => {
+      a.addEventListener('click', (e) => e.preventDefault());
+    });
+
+    // 7) Generic "approve all" / "do this" buttons in panel insights — visual confirmation
+    document.querySelectorAll('.insight-foot .btn.amber, .insight-foot .btn.primary').forEach(b => {
+      b.addEventListener('click', () => {
+        if (b.dataset.done) return;
+        b.dataset.done = '1';
+        const orig = b.textContent;
+        b.textContent = '✓ Done · learning';
+        b.style.background = 'var(--good)';
+        b.style.color = '#fff';
+        setTimeout(() => { b.textContent = orig; b.style.background = ''; b.style.color = ''; b.dataset.done = ''; }, 2400);
+      });
+    });
+
+    // 8) "Reset demo" buttons (one in settings, one in demo panel) — full state reset
+    document.querySelectorAll('[data-reset-all-stage], [data-reset-all], .demo-btn').forEach(b => {
+      if (b.dataset.resetBound) return;
+      if (!b.matches('[data-reset-all-stage]') && !b.matches('[data-reset-all]')) return;
+      b.dataset.resetBound = '1';
+      b.addEventListener('click', () => {
+        if (window.SeenFolioState && typeof window.SeenFolioState.reset === 'function') {
+          window.SeenFolioState.reset();
+        }
+        if (typeof closeDrawer === 'function') closeDrawer();
+        if (typeof closeModal === 'function') closeModal();
+        document.querySelectorAll('[data-banner]').forEach(b => b.classList.remove('visible'));
+        if (typeof setMode === 'function') setMode('beginner');
+        if (typeof switchView === 'function') switchView('home');
+        const t = document.querySelector('[data-toast]');
+        if (t) {
+          const text = t.querySelector('.toast-text');
+          if (text) text.innerHTML = '<em>Demo reset.</em> All state cleared.';
+          t.classList.add('visible');
+          setTimeout(() => t.classList.remove('visible'), 2800);
         }
       });
     });
