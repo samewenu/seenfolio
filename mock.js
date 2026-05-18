@@ -481,6 +481,277 @@
     { id: "ec_budget_out", label: "Ad budget ran out" },
   ];
 
+  /* ────────────────────────────────────────────────────────────
+     FULL-SYSTEM EXTENSIONS · added for comprehensive coverage
+     ──────────────────────────────────────────────────────────── */
+
+  /* SITE SPEED & CWV (Engine 1 internals · Health & Watch) */
+  const site_speed_metrics = {
+    avg_lcp_s: 2.1,
+    avg_cls: 0.04,
+    avg_fid_ms: 38,
+    avg_inp_ms: 142,
+    delta_30d: { lcp: -0.7, cls: -0.02, fid: -8 },
+    slowest_pages: [
+      { url: "/gift-cards", lcp: 4.2, status: "warn" },
+      { url: "/about", lcp: 3.6, status: "warn" },
+      { url: "/blog/anniversary-gifts-guide", lcp: 3.1, status: "ok" },
+      { url: "/journal", lcp: 2.8, status: "ok" },
+      { url: "/products/cuff-bracelet", lcp: 2.4, status: "ok" },
+    ],
+    compression_queue: { processed: 847, total_mb_before: 3240, total_mb_after: 1180, savings_pct: 64 },
+    minified: { css_files: 18, js_files: 22, saved_kb: 412 },
+    budget_status: { sdk_size_kb: 12.8, sdk_budget_kb: 15, widget_size_kb: 41.2, widget_budget_kb: 50, cf_worker_ms: 6.4, cf_worker_budget_ms: 10 },
+    auto_protect_history: [
+      { at: ago(8 * DAY), what: "Disabled homepage personalization", reason: "LCP regressed 2.1s" },
+      { at: ago(22 * DAY), what: "Suppressed video on /rings", reason: "CLS 0.18 → 0.07" },
+    ],
+  };
+
+  /* FRAUD SIGNALS (Section 13 · Health & Watch) */
+  const fraud_signals = {
+    last_24h: { total_events: 8420, bot_filtered: 312, bot_pct: 3.7, click_fraud_blocked: 18, fake_reviews_flagged: 0, fake_leads_caught: 4 },
+    by_source: [
+      { source: "Direct", events: 4100, bot_pct: 1.2, status: "ok" },
+      { source: "Google Ads", events: 2200, bot_pct: 3.4, status: "ok" },
+      { source: "Meta Ads", events: 1100, bot_pct: 9.8, status: "elevated" },
+      { source: "Organic", events: 1020, bot_pct: 2.0, status: "ok" },
+    ],
+    ip_reputation: [
+      { ip_range: "203.0.113.0/24", source: "Meta Ads", flagged: 84, action: "blocked" },
+      { ip_range: "198.51.100.0/24", source: "Google Ads", flagged: 12, action: "monitor" },
+    ],
+    honeypot_trips_24h: 31,
+    fake_review_flagged: [],
+    quality_score_by_channel: { google: 92, meta: 71, organic: 96, email: 99, whatsapp: 98 },
+  };
+
+  /* LOCALES (Gap 3 · Health & Watch) */
+  const locales = {
+    primary: "en-NG",
+    connected: [
+      { code: "en-NG", label: "English · Nigeria", currency: "NGN", status: "live", traffic_pct: 62 },
+      { code: "en-US", label: "English · United States", currency: "USD", status: "live", traffic_pct: 22 },
+      { code: "en-GB", label: "English · United Kingdom", currency: "GBP", status: "live", traffic_pct: 11 },
+      { code: "fr-FR", label: "French · France", currency: "EUR", status: "translating", traffic_pct: 3 },
+      { code: "es-ES", label: "Spanish · Spain", currency: "EUR", status: "pending_enable", traffic_pct: 2 },
+    ],
+    hreflang_status: { pages_with_hreflang: 9, pages_total: 12, errors: 1 },
+    translation_queue: [
+      { page: "/blog/silver-care", source: "en-NG", target: "fr-FR", status: "translating", progress_pct: 64 },
+      { page: "/rings", source: "en-NG", target: "fr-FR", status: "queued", progress_pct: 0 },
+    ],
+    currency_rates_updated_at: ago(3 * HOUR),
+  };
+
+  /* NPS / CSAT (Gap 4 · Health & Watch) */
+  const nps_surveys = {
+    active: [
+      { id: "s_purchase", trigger: "+3d post-purchase", responses_30d: 84, score: 62, status: "active" },
+      { id: "s_support", trigger: "after WhatsApp resolve", responses_30d: 38, score: 71, status: "active" },
+      { id: "s_browse", trigger: "exit-intent on /rings", responses_30d: 12, score: 41, status: "draft" },
+    ],
+    sentiment_by_channel: {
+      email: { positive: 68, neutral: 24, negative: 8 },
+      whatsapp: { positive: 81, neutral: 14, negative: 5 },
+      reviews: { positive: 88, neutral: 8, negative: 4 },
+      support: { positive: 54, neutral: 32, negative: 14 },
+    },
+    themes: [
+      { label: "Shipping speed (international)", mentions: 18, sentiment: "negative", suggested_action: "Switch international courier" },
+      { label: "Engraving turnaround", mentions: 9, sentiment: "neutral", suggested_action: "Add engraving FAQ; train bot" },
+      { label: "Anniversary gift wrapping", mentions: 14, sentiment: "positive", suggested_action: "Promote in May" },
+    ],
+    feedback_to_action_backlog: [
+      { theme: "Shipping speed", proposed: "Switch couriers Apr 30", status: "queued" },
+      { theme: "Engraving turnaround", proposed: "Update bot FAQ", status: "in_progress" },
+    ],
+  };
+
+  /* FINANCIAL INTELLIGENCE (Gap 5 · Health & Watch) */
+  const finance_breakdown = {
+    profit_per_channel_30d: [
+      { channel: "Google Ads", revenue: 7200, spend: 2200, cogs: 2160, margin: 2840, payback_days: 32 },
+      { channel: "Meta Ads", revenue: 980, spend: 600, cogs: 294, margin: 86, payback_days: 58 },
+      { channel: "Organic", revenue: 5840, spend: 0, cogs: 1752, margin: 4088, payback_days: 0 },
+      { channel: "Email", revenue: 2640, spend: 0, cogs: 792, margin: 1848, payback_days: 0 },
+      { channel: "WhatsApp", revenue: 1480, spend: 0, cogs: 444, margin: 1036, payback_days: 0 },
+    ],
+    ltv_cohorts: [
+      { cohort: "Feb 2026", customers: 42, ltv_30d: 96, ltv_60d: 138, ltv_90d: 174, ltv_180d_projected: 240 },
+      { cohort: "Mar 2026", customers: 51, ltv_30d: 104, ltv_60d: 148, ltv_90d: 184, ltv_180d_projected: 252 },
+      { cohort: "Apr 2026", customers: 63, ltv_30d: 112, ltv_60d: null, ltv_90d: null, ltv_180d_projected: 268 },
+    ],
+    cash_flow: {
+      current_runway_weeks: 18,
+      max_safe_weekly_ad_spend: 940,
+      current_weekly_ad_spend: 700,
+      recommendation: "You can spend +$240/wk without burning runway. I'd add to Google Ads.",
+    },
+    margin_by_product: [
+      { product: "Sterling silver rings", margin_pct: 62, units_30d: 28 },
+      { product: "Anniversary collection", margin_pct: 58, units_30d: 14 },
+      { product: "Polishing cloth", margin_pct: 84, units_30d: 84 },
+      { product: "Custom engraving", margin_pct: 71, units_30d: 9 },
+    ],
+  };
+
+  /* CRISIS MONITOR (Gap 6 · Health & Watch) */
+  const crisis_monitor = {
+    status: "all_quiet",
+    sentiment_baseline: 0.74,
+    sentiment_current: 0.78,
+    threshold_negative_3sigma: -0.45,
+    mentions_24h: 38,
+    breakdown: { positive: 28, neutral: 7, negative: 3 },
+    anomalies: [],
+    crisis_protocols: [
+      { id: "neg_spike", trigger: "Negative sentiment >3σ baseline", actions: ["Pause all ads", "Notify owner via WhatsApp", "Post holding statement"], enabled: true },
+      { id: "viral_complaint", trigger: ">50 mentions in 1h about same issue", actions: ["Pause campaigns", "Generate response draft", "Open war-room channel"], enabled: true },
+      { id: "review_bomb", trigger: ">10 sub-3★ reviews in 24h", actions: ["Suppress review widget", "Flag for owner", "Notify Trustpilot/Google"], enabled: false },
+    ],
+    playbooks: [
+      { id: "pb_recall", title: "Product quality recall", steps: 7 },
+      { id: "pb_breach", title: "Data privacy incident", steps: 9 },
+      { id: "pb_outage", title: "Site downtime > 1h", steps: 5 },
+    ],
+    last_drill: ago(42 * DAY),
+  };
+
+  /* EVENTS STREAM (Engine 2 · Engine depth) */
+  const events_log = [
+    { id: "ev_001", at: ago(8 * 60 * 1000), type: "purchase", channel: "google_ads", value: 184, customer: "Maya O." },
+    { id: "ev_002", at: ago(11 * 60 * 1000), type: "page_view", url: "/rings", channel: "direct" },
+    { id: "ev_003", at: ago(14 * 60 * 1000), type: "add_to_cart", url: "/products/cuff-bracelet", value: 124, channel: "google_ads" },
+    { id: "ev_004", at: ago(22 * 60 * 1000), type: "page_view", url: "/blog/silver-care", channel: "perplexity" },
+    { id: "ev_005", at: ago(28 * 60 * 1000), type: "email_open", campaign: "welcome-d3", channel: "email" },
+    { id: "ev_006", at: ago(38 * 60 * 1000), type: "whatsapp_msg", customer: "Chioma N.", channel: "whatsapp" },
+    { id: "ev_007", at: ago(42 * 60 * 1000), type: "page_view", url: "/", channel: "organic" },
+    { id: "ev_008", at: ago(58 * 60 * 1000), type: "purchase", channel: "email", value: 92, customer: "Priya R." },
+    { id: "ev_009", at: ago(74 * 60 * 1000), type: "signup", channel: "google_ads" },
+    { id: "ev_010", at: ago(82 * 60 * 1000), type: "review_left", platform: "Google", stars: 5, customer: "Maya O." },
+  ];
+
+  /* EXPERIMENTS (Engine 1 + 3 + 4 · Engine depth) */
+  const experiments = [
+    { id: "x_001", name: "Homepage headline · vague vs specific", engine: "seo_geo", started: ago(8 * DAY), ended: ago(2 * HOUR), winner: "B", lift_pct: 18, metric: "bounce", status: "complete" },
+    { id: "x_002", name: "/rings layout · long vs short", engine: "seo_geo", started: ago(12 * DAY), ended: ago(5 * DAY), winner: "B", lift_pct: 9, metric: "add_to_cart", status: "complete" },
+    { id: "x_003", name: "Brand voice · v4 vs v3", engine: "content", started: ago(20 * DAY), ended: ago(8 * DAY), winner: "v4", lift_pct: 14, metric: "time_on_page", status: "complete" },
+    { id: "x_004", name: "Google Ads · headline variants A/B/C", engine: "ads", started: ago(7 * DAY), ended: null, winner: null, lift_pct: null, metric: "ctr", status: "running" },
+    { id: "x_005", name: "Welcome email · subject A/B", engine: "retention", started: ago(3 * DAY), ended: null, winner: null, lift_pct: null, metric: "open_rate", status: "running" },
+    { id: "x_006", name: "Social proof widget · placement", engine: "trust", started: ago(15 * DAY), ended: ago(5 * DAY), winner: "top", lift_pct: 6, metric: "conversion", status: "complete" },
+  ];
+
+  /* CONTENT LIBRARY (Engine 4 · Engine depth) */
+  const library_items = [
+    { id: "li_blog_silver_care", type: "blog_post", title: "How to care for sterling silver", status: "published", words: 1180, engine: "content", performance: { views: 2840, dwell_avg: 184 }, published_at: ago(2 * DAY) },
+    { id: "li_blog_mistakes", type: "blog_post", title: "4 silver-care mistakes", status: "review_gate", words: 1184, engine: "content", performance: null, drafted_at: ago(1 * DAY) },
+    { id: "li_blog_gift_guide", type: "blog_post", title: "Anniversary gift guide", status: "drafting", words: 412, engine: "content", performance: null, drafted_at: ago(6 * HOUR) },
+    { id: "li_page_home", type: "landing_page", title: "Homepage", status: "published", words: 240, engine: "seo_geo", performance: { views: 8420 }, last_patched: ago(2 * HOUR) },
+    { id: "li_ad_anniv", type: "ad_creative", title: "Anniversary · 6 variants", status: "scheduled", engine: "ads", scheduled_for: new Date(now + 3 * DAY).toISOString() },
+    { id: "li_email_welcome", type: "email_sequence", title: "Welcome series (3 emails)", status: "published", engine: "retention", performance: { open_rate: 64, click_rate: 22 }, published_at: ago(60 * DAY) },
+    { id: "li_social_polishing", type: "social_post", title: "Polishing cloth · Instagram + TikTok", status: "scheduled", engine: "content", scheduled_for: new Date(now + 1 * DAY).toISOString() },
+    { id: "li_blog_silver_vs_gold", type: "blog_post", title: "Silver vs gold for sensitive ears", status: "published", words: 940, engine: "content", performance: { views: 1840, ranked_queries: 14 }, published_at: ago(14 * DAY) },
+    { id: "li_blog_discontinued", type: "blog_post", title: "Discontinued line announcement", status: "archived", words: 220, engine: "content", archived_at: ago(2 * DAY) },
+  ];
+
+  /* CUSTOMER JOURNEYS (deeper than attribution.journeys) */
+  const journeys_full = [
+    {
+      conversion_id: "conv_maya_001", customer: "Maya O.", value: 184, days_to_convert: 7, touchpoint_count: 6,
+      first_channel: "Instagram organic", last_channel: "Direct", shapley_assigned: { instagram: 8, google_ads: 22, direct: 28, email: 42 },
+      touchpoints: [
+        { at: ago(7 * DAY), channel: "Instagram organic", action: "post view", value: null },
+        { at: ago(5 * DAY), channel: "Google Ads", action: "branded search click", value: null },
+        { at: ago(3 * DAY), channel: "Direct", action: "homepage", value: null },
+        { at: ago(2 * DAY), channel: "Email", action: "welcome series open", value: null },
+        { at: ago(1 * DAY), channel: "Email", action: "welcome series click", value: null },
+        { at: ago(6 * HOUR), channel: "Direct", action: "checkout", value: 184 },
+      ],
+    },
+    {
+      conversion_id: "conv_david_001", customer: "David L.", value: 89, days_to_convert: 3, touchpoint_count: 3,
+      first_channel: "TikTok organic", last_channel: "Direct", shapley_assigned: { tiktok: 28, google_ads: 32, direct: 40 },
+      touchpoints: [
+        { at: ago(3 * DAY), channel: "TikTok organic", action: "video view", value: null },
+        { at: ago(1 * DAY), channel: "Google Ads", action: "non-branded click", value: null },
+        { at: ago(20 * HOUR), channel: "Direct", action: "checkout", value: 89 },
+      ],
+    },
+  ];
+
+  /* CUSTOM AUTONOMY RULES (Advanced · Operations) */
+  const custom_rules = [
+    { id: "r_001", name: "Auto-approve sub-30 token content", trigger: "content_action.cost < 30", action: "execute_directly", scope: ["content"], enabled: true, fires_30d: 18 },
+    { id: "r_002", name: "Pause ads if bot rate > 15%", trigger: "fraud.bot_pct > 15", action: "pause_engine", scope: ["ads"], enabled: true, fires_30d: 0 },
+    { id: "r_003", name: "Always ask before changing /home", trigger: "patch.page = '/'", action: "require_approval", scope: ["seo_geo"], enabled: true, fires_30d: 2 },
+    { id: "r_004", name: "Email blast cap at 200/day", trigger: "retention.emails_today > 200", action: "throttle", scope: ["retention"], enabled: true, fires_30d: 1 },
+  ];
+
+  /* GOALS / OKRs (Insights · Goals) */
+  const goals = {
+    quarter: "Q2 2026",
+    items: [
+      { id: "g_revenue", name: "Monthly revenue", target: 8000, current: 4820, pacing_pct: 60, on_track: false, engines: ["seo_geo", "ads", "content"], days_left: 41 },
+      { id: "g_customers", name: "New customers / mo", target: 100, current: 63, pacing_pct: 63, on_track: false, engines: ["ads", "content", "retention"], days_left: 41 },
+      { id: "g_traffic", name: "Monthly visitors", target: 15000, current: 11402, pacing_pct: 76, on_track: true, engines: ["seo_geo", "content"], days_left: 41 },
+      { id: "g_ltv", name: "Average LTV", target: 220, current: 184, pacing_pct: 84, on_track: true, engines: ["retention", "whatsapp"], days_left: 41 },
+    ],
+  };
+
+  /* INTEGRATION HEALTH (Operations · Health) */
+  const integration_health = {
+    sdk_status: { connected: true, last_ping: ago(45 * 1000), uptime_24h_pct: 99.98 },
+    sitemap_diff_history: [
+      { at: ago(2 * DAY), new_urls: 3, removed_urls: 1, changed_urls: 2 },
+      { at: ago(9 * DAY), new_urls: 1, removed_urls: 0, changed_urls: 4 },
+      { at: ago(16 * DAY), new_urls: 0, removed_urls: 0, changed_urls: 1 },
+    ],
+    cms_status: { type: "WordPress 6.4", admin_reachable: true, last_publish: ago(2 * HOUR), gutenberg: true },
+    oauth_expiries: [
+      { service: "Google Ads", days_to_expiry: 86, action: "auto-refresh enabled" },
+      { service: "Google Business Profile", days_to_expiry: 78, action: "auto-refresh enabled" },
+      { service: "Meta Marketing", days_to_expiry: null, action: "system user · no expiry" },
+    ],
+    csp_check: { passing: true, last_checked: ago(6 * HOUR) },
+  };
+
+  /* COMPLIANCE STATE (Operations · Compliance) */
+  const compliance_state = {
+    dpa_accepted: true, dpa_version: "v2.1", dpa_accepted_at: ago(82 * DAY),
+    region: "EU-West",
+    data_retention_days: 730,
+    sub_processors: [
+      { name: "Anthropic Claude API", purpose: "Content + chatbot reasoning", location: "US" },
+      { name: "OpenAI", purpose: "Embeddings only", location: "US" },
+      { name: "AWS SES", purpose: "Transactional email", location: "EU-West" },
+      { name: "Paystack", purpose: "Payments · Nigeria", location: "NG" },
+      { name: "Stripe", purpose: "Payments · international", location: "US/EU" },
+      { name: "Hetzner", purpose: "Compute + DB", location: "EU" },
+      { name: "BunnyCDN", purpose: "Static assets", location: "Global" },
+    ],
+    data_export_requests: [
+      { id: "exp_001", requested_at: ago(15 * DAY), status: "completed", expires_at: ago(8 * DAY) },
+    ],
+  };
+
+  /* DLQ JOBS (Operations · Advanced) */
+  const dlq_jobs = [
+    { id: "j_001", queue: "geo-seo-queue", job_type: "generate-patch", failed_at: ago(2 * HOUR), retries: 3, error: "Claude API rate limit (429) after exponential backoff" },
+    { id: "j_002", queue: "ads-queue", job_type: "sync-account", failed_at: ago(6 * HOUR), retries: 3, error: "Meta API: account requires re-auth (190)" },
+    { id: "j_003", queue: "whatsapp-queue", job_type: "send-template", failed_at: ago(1 * DAY), retries: 2, error: "Template review_request not yet approved by Meta" },
+  ];
+
+  /* RELEASE NOTES (Marketing · Changelog) */
+  const release_notes = [
+    { date: "2026-05-15", title: "Workspace switcher v2", body: "Click your workspace name in the topbar to jump between sites instantly. Plus: keyboard shortcut ⌘W.", tag: "feature" },
+    { date: "2026-05-08", title: "Sage learned 3 new things", body: "Better at email subject lines, smarter about cart-recovery timing, and now spots GBP photo gaps automatically.", tag: "improvement" },
+    { date: "2026-05-01", title: "TikTok Ads is here", body: "Connect TikTok Ads from Engines → Ads. Variant testing and budget orchestration work out of the box.", tag: "integration" },
+    { date: "2026-04-24", title: "Crisis Watch (private beta)", body: "Real-time brand mention monitoring with 3σ sentiment alerts. Email crisis@seenfolio.com for early access.", tag: "feature" },
+    { date: "2026-04-17", title: "We made errors clearer", body: "Every action now tells you exactly why it ran or didn't — including the model temperature and prompt fragment.", tag: "fix" },
+    { date: "2026-04-10", title: "Cloudflare Worker proxy GA", body: "Edge-side rewrites are now available to every workspace. Adds ~6ms to TTFB; doubles GEO score on average.", tag: "feature" },
+  ];
+
   /* ─── EXPORT ─────────────────────────────────────────────────────── */
   global.SeenFolioMock = {
     user, workspaces, team, pages, patches, actions, stats, attribution,
@@ -490,6 +761,11 @@
     token_ledger, billing, credentials, webhook_log, fraud_panel,
     performance_budget, api_keys, notifications, audit_log,
     first_recommendations, edge_cases,
+    // full-system extensions
+    site_speed_metrics, fraud_signals, locales, nps_surveys, finance_breakdown,
+    crisis_monitor, events_log, experiments, library_items, journeys_full,
+    custom_rules, goals, integration_health, compliance_state, dlq_jobs,
+    release_notes,
     // Helpers
     fmtCurrency(value, currency = "$") {
       if (value === null || value === undefined) return "—";
