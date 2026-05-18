@@ -2915,7 +2915,32 @@
       .metric-strip { grid-template-columns:repeat(2,1fr); }
       .citation-grid { grid-template-columns:1fr 1fr; }
       .autonomy-row { grid-template-columns:1fr repeat(4,50px); padding:14px 16px; }
+      .autonomy-row .autonomy-desc { font-size:11px; }
+      .big-table .bt-head { display:none; }
+      .big-table .bt-row {
+        grid-template-columns:1fr !important;
+        gap:8px !important;
+        padding:18px 18px !important;
+      }
+      .big-table .bt-row > * { text-align:left !important; }
+      .ws-menu { width:280px; }
+      .crumb { display:none; }
+      .top-action { display:none; }
     }
+    @media (max-width: 560px) {
+      .ws-switch-btn .ws-avatar { width:24px; height:24px; }
+      .greeting { font-size:28px; }
+      .stat-num { font-size:36px; }
+      .reco-card { padding:18px 20px !important; }
+    }
+
+    /* a11y focus rings */
+    button:focus-visible, a:focus-visible, input:focus-visible, .toggle:focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: 2px;
+      border-radius: 6px;
+    }
+    .radio:focus-within span { outline: 2px solid var(--amber); outline-offset: 2px; }
   </style>
 </head>
 <body class="mode-beginner">
