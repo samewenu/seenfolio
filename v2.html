@@ -3,30 +3,38 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Seenfolio — Autonomous growth infrastructure for online businesses</title>
+<title>Seenfolio — Wake up to growth that already shipped · v2 design</title>
 <meta name="description" content="Replaces the ten marketing tools you barely use. Analyzes, decides, and acts on its own — and tells you why, in normal-person words." />
 <link rel="stylesheet" href="styles.css" />
 <style>
-/* ─── hero · 2-column · text+CTA left, contained Sage scene right ─── */
-.hero { padding: 56px 0 80px; }
-.hero-stage {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 56px;
-  align-items: center;
-}
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO · v2 · centered editorial above + morning-briefing card below
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero.hero-v2 { padding: 56px 0 96px; }
 
-.hero-text { min-width: 0; }
-.hero-text .hero-mark { margin-bottom: 22px; }
-.hero-text .h1 {
+/* the centered editorial column on top */
+.hero-v2-top { max-width: 760px; margin: 0 auto; text-align: center; }
+.hero-v2-top .hero-mark { margin: 0 0 22px; }
+.hero-v2-h1 {
   margin: 0;
-  font-size: clamp(34px, 4.2vw, 56px);
-  letter-spacing: -0.02em;
-  line-height: 1.06;
+  font-size: clamp(40px, 5.4vw, 72px);
+  letter-spacing: -0.022em;
+  line-height: 1.04;
+  max-width: 18ch;
+  margin-left: auto; margin-right: auto;
 }
-.hero-text .lede { margin: 22px 0 28px; max-width: 44ch; }
-.hero-text .hero-capture { margin: 0; }
-.hero-text .hero-aside { margin-top: 22px; }
+.hero-v2-lede {
+  margin: 22px auto 32px;
+  max-width: 56ch;
+}
+.hero-v2-form {
+  margin: 0 auto !important;
+  max-width: 660px;
+}
+.hero-v2-aside {
+  margin-top: 18px;
+  justify-content: center;
+}
 
 .hero-mark {
   display: inline-flex; align-items: center; gap: 8px;
@@ -36,75 +44,204 @@
 }
 .hero-mark .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 .hero-aside {
-  font-family: var(--font-hand); font-size: 22px; color: var(--accent);
+  font-family: var(--font-hand); font-size: 21px; color: var(--accent);
   display: inline-flex; align-items: center; gap: 10px;
 }
 
-/* ─── Sage's scene · self-contained illustration on the right ───────── */
-.hero-art {
+/* ─── BRIEFING CARD WRAP · the product output ─────────────────────────── */
+.briefing-wrap {
+  max-width: 860px;
+  margin: 72px auto 0;
   position: relative;
-  width: 100%;
-  max-width: 540px;
-  margin: 0 auto;
-  padding-bottom: 24px;          /* room for ground shadow */
 }
-.hero-art .sage {
-  position: relative;
-  width: 100%;
-  display: block;
-}
-.hero-art .sage svg { width: 100%; height: auto; display: block; }
-
-/* subtle floor shadow grounds the scene · echoes the PostHog reference */
-.hero-art::after {
-  content: "";
-  position: absolute;
-  left: 8%;
-  right: 8%;
-  bottom: 6px;
-  height: 14px;
-  background: var(--ink);
-  border-radius: 50%;
-  opacity: 0.08;
-  filter: blur(8px);
-  z-index: 0;
+.briefing-tag {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 18px;
 }
 
-/* speech bubble · emerges from Sage's head · tight to the scene */
-.hero-bubble {
-  position: absolute;
-  top: -4%;
-  left: 22%;
+.briefing-card {
   background: var(--bg-card);
   border: 2px solid var(--ink);
-  border-radius: 14px;
-  padding: 7px 14px;
-  font-family: var(--font-hand);
-  font-size: 21px;
-  color: var(--ink);
-  box-shadow: var(--shadow-card-sm);
-  z-index: 4;
-  transform: rotate(-3deg);
-  white-space: nowrap;
-}
-.hero-bubble::after {
-  content: "";
-  position: absolute;
-  left: 20px; bottom: -9px;
-  width: 12px; height: 12px;
-  background: var(--bg-card);
-  border-right: 2px solid var(--ink);
-  border-bottom: 2px solid var(--ink);
-  transform: rotate(45deg);
-  border-bottom-right-radius: 3px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-card-lg);
+  padding: 28px 32px 24px;
+  transform: rotate(-0.4deg);
+  position: relative;
+  z-index: 1;
 }
 
+/* head — Sage avatar + title block */
+.briefing-head {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 18px;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1.5px dashed var(--line);
+  margin-bottom: 8px;
+}
+.briefing-sage {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--yellow);
+  border: 2px solid var(--ink);
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow-card-sm);
+  transform: rotate(-4deg);
+  overflow: hidden;
+}
+.briefing-sage svg { width: 84%; height: 84%; display: block; }
+.briefing-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 4px;
+}
+.briefing-title {
+  font-family: var(--font-sans);
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.018em;
+  line-height: 1.12;
+  margin: 0;
+  color: var(--ink);
+}
+.briefing-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  margin: 6px 0 0;
+}
+
+/* list of autonomous actions */
+.briefing-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.briefing-item {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1.5px solid var(--line);
+}
+.briefing-item:last-child { border-bottom: 0; }
+.briefing-check {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--good);
+  border: 2px solid var(--ink);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  box-shadow: var(--shadow-card-sm);
+}
+.briefing-action {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--ink);
+  margin-bottom: 3px;
+  line-height: 1.4;
+}
+.briefing-action b {
+  font-variation-settings: "wght" 720;
+}
+.briefing-impact {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.briefing-impact em.impact-good {
+  font-style: normal;
+  font-variation-settings: "wght" 700;
+  color: var(--accent);
+  background: var(--yellow);
+  padding: 0 4px;
+  border-radius: 3px;
+}
+.briefing-time {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.04em;
+  align-self: start;
+  padding-top: 4px;
+}
+
+/* footer — trust line + CTA */
+.briefing-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  padding-top: 18px;
+  border-top: 1.5px dashed var(--line);
+}
+.briefing-reversible {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.briefing-reversible b { color: var(--ink); font-variation-settings: "wght" 720; }
+.briefing-reversible .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--good);
+  box-shadow: 0 0 0 2px var(--ink);
+  flex-shrink: 0;
+}
+.briefing-cta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--accent);
+  padding-bottom: 1px;
+}
+.briefing-cta:hover { color: var(--accent-deep); border-bottom-color: var(--accent-deep); }
+
+/* hand-drawn annotation on the side */
+.briefing-scribble {
+  position: absolute;
+  bottom: -8px;
+  right: -32px;
+  font-family: var(--font-hand);
+  font-size: 21px;
+  color: var(--accent);
+  transform: rotate(-6deg);
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+.briefing-scribble svg { flex-shrink: 0; margin-top: 2px; }
+
 @media (max-width: 920px) {
-  .hero-stage { grid-template-columns: 1fr; gap: 40px; }
-  .hero-text { text-align: center; }
-  .hero-text .lede { margin-left: auto; margin-right: auto; }
-  .hero-text .hero-aside { justify-content: center; }
-  .hero-art { max-width: 420px; }
+  .hero-v2-h1 { font-size: clamp(34px, 7vw, 52px); }
+  .briefing-card { padding: 22px 20px 18px; }
+  .briefing-head { grid-template-columns: 52px 1fr; gap: 14px; }
+  .briefing-sage { width: 52px; height: 52px; }
+  .briefing-item { grid-template-columns: 26px 1fr; gap: 12px; }
+  .briefing-time { grid-column: 2; padding-top: 0; }
+  .briefing-scribble { display: none; }
 }
 
 /* hero URL-capture bar — primary "get started" entry point (in left column) */
@@ -414,73 +551,136 @@
       <a href="docs.html">Docs</a>
     </div>
     <div class="nav-cta">
-      <a class="design-switch" href="v2.html" title="View design v2">v1 · see v2 →</a>
+      <a class="design-switch" href="index.html" title="View design v1">v2 · see v1 →</a>
       <a class="btn ghost" href="sign-in.html">Sign in</a>
       <a class="btn primary" href="sign-in.html?signup=true">Start free →</a>
     </div>
   </div>
 </nav>
 
-<!-- ════════ HERO ════════ -->
-<header class="hero wrap">
-  <div class="hero-stage">
+<!-- ════════ HERO · V2 · centered editorial top + morning-briefing card below ════════ -->
+<header class="hero wrap hero-v2">
 
-    <!-- LEFT · text content + URL form + microcopy aside -->
-    <div class="hero-text">
-      <span class="hero-mark"><span class="dot"></span> Autonomous, not automated</span>
-      <h1 class="h1">The growth tool that <span class="mark">actually does the work.</span></h1>
-      <p class="lede">
-        Replaces the ten marketing tools you barely use. Analyzes, decides, and acts on its own — and tells you why, in normal-person words.
-      </p>
+  <div class="hero-v2-top">
+    <span class="hero-mark"><span class="dot"></span> Autonomous, not automated</span>
+    <h1 class="h1 hero-v2-h1">Wake up to growth that <span class="mark">already shipped</span>.</h1>
+    <p class="lede hero-v2-lede">
+      Sage analyzes your business, decides what to do, and acts on her own — overnight. You wake up to the wins. (And one undo button, just in case.)
+    </p>
 
-      <form class="hero-capture" data-hero-capture autocomplete="off">
-        <input class="hero-capture-input" type="text" name="website"
-               placeholder="Enter your website URL..." autocomplete="url"
-               aria-label="Your website URL" />
-        <div class="hero-capture-divider" aria-hidden="true"></div>
-        <label class="hero-capture-region">
-          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24"
-               fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="9"/>
-            <path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/>
-          </svg>
-          <select name="region" aria-label="Region">
-            <option value="worldwide">Worldwide</option>
-            <option value="africa">Africa</option>
-            <option value="europe">Europe</option>
-            <option value="north-america">North America</option>
-            <option value="asia">Asia</option>
-            <option value="latam">Latin America</option>
-          </select>
-        </label>
-        <button class="hero-capture-cta" type="submit">
-          Get started
-          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24"
-               fill="none" stroke="currentColor" stroke-width="2.4"
-               stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12h14M13 6l6 6-6 6"/>
-          </svg>
-        </button>
-      </form>
-
-      <div class="hero-aside">
-        <svg aria-hidden="true" width="50" height="40" viewBox="0 0 50 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M 4 10 Q 18 6 30 20 Q 38 30 44 26"/>
-          <path d="M 44 26 L 38 22 M 44 26 L 42 32"/>
+    <form class="hero-capture hero-v2-form" data-hero-capture autocomplete="off">
+      <input class="hero-capture-input" type="text" name="website"
+             placeholder="Enter your website URL..." autocomplete="url"
+             aria-label="Your website URL" />
+      <div class="hero-capture-divider" aria-hidden="true"></div>
+      <label class="hero-capture-region">
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/>
         </svg>
-        <span>No credit card. 5-min setup.</span>
-      </div>
-    </div>
+        <select name="region" aria-label="Region">
+          <option value="worldwide">Worldwide</option>
+          <option value="africa">Africa</option>
+          <option value="europe">Europe</option>
+          <option value="north-america">North America</option>
+          <option value="asia">Asia</option>
+          <option value="latam">Latin America</option>
+        </select>
+      </label>
+      <button class="hero-capture-cta" type="submit">
+        Get started
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2.4"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M13 6l6 6-6 6"/>
+        </svg>
+      </button>
+    </form>
 
-    <!-- RIGHT · Sage's enriched workstation · desk, monitor with Post-it, plant, notebook, pen all baked into the SVG · only a floating speech bubble sits on top -->
-    <div class="hero-art">
-      <div class="hero-bubble">Hi, I'm Sage 👋</div>
-      <div class="sage hero">
-        <svg aria-hidden="true" viewBox="0 0 320 230" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-desk"/></svg>
-      </div>
+    <div class="hero-aside hero-v2-aside">
+      <svg aria-hidden="true" width="50" height="40" viewBox="0 0 50 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 4 10 Q 18 6 30 20 Q 38 30 44 26"/>
+        <path d="M 44 26 L 38 22 M 44 26 L 42 32"/>
+      </svg>
+      <span>No credit card. 5-min setup.</span>
+    </div>
+  </div>
+
+  <!-- Below: morning-briefing card — the actual product output -->
+  <div class="briefing-wrap">
+
+    <div class="briefing-tag">↓ THIS IS WHAT YOU'D HAVE SEEN THIS MORNING</div>
+
+    <article class="briefing-card">
+
+      <header class="briefing-head">
+        <div class="briefing-sage" aria-hidden="true">
+          <svg viewBox="0 0 220 220" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-wink"/></svg>
+        </div>
+        <div class="briefing-meta">
+          <div class="briefing-eyebrow">MORNING BRIEFING · WED 18 MAY · 06:00</div>
+          <h2 class="briefing-title">Last night, I shipped <span class="mark">three things</span>.</h2>
+          <p class="briefing-sub">Estimated saved time: 4h 20m · projected upside: +$1,540</p>
+        </div>
+      </header>
+
+      <ul class="briefing-list">
+        <li class="briefing-item" data-engine="content">
+          <div class="briefing-check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-11"/></svg>
+          </div>
+          <div class="briefing-body">
+            <div class="briefing-action">Replied to <b>12 customer reviews</b> on Google &amp; Trustpilot</div>
+            <div class="briefing-impact">Drafted in your tone of voice · 4 await your approval · 8 already auto-sent (4★+)</div>
+          </div>
+          <div class="briefing-time">03:14</div>
+        </li>
+
+        <li class="briefing-item" data-engine="ads">
+          <div class="briefing-check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-11"/></svg>
+          </div>
+          <div class="briefing-body">
+            <div class="briefing-action">Moved <b>$340 ad spend</b> from Meta → TikTok</div>
+            <div class="briefing-impact">CAC on Meta climbing 4 weeks running · TikTok ROAS up 2.1× · <em class="impact-good">+$1,200 projected lift</em></div>
+          </div>
+          <div class="briefing-time">02:41</div>
+        </li>
+
+        <li class="briefing-item" data-engine="seo">
+          <div class="briefing-check" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-11"/></svg>
+          </div>
+          <div class="briefing-body">
+            <div class="briefing-action">Drafted <b>3 blog posts</b> on the summer collection</div>
+            <div class="briefing-impact">Optimised for ChatGPT &amp; Perplexity citation · ready for one-click publish</div>
+          </div>
+          <div class="briefing-time">01:20</div>
+        </li>
+      </ul>
+
+      <footer class="briefing-foot">
+        <div class="briefing-reversible">
+          <span class="dot"></span>
+          <span><b>100% reversible.</b> Undo any of this from the dashboard.</span>
+        </div>
+        <a href="onboarding.html" class="briefing-cta">Let Sage do this on your site →</a>
+      </footer>
+
+    </article>
+
+    <!-- doodled annotations around the card -->
+    <div class="briefing-scribble briefing-scribble--time">
+      <span>~ 6 hrs of your week back</span>
+      <svg aria-hidden="true" viewBox="0 0 50 60" width="44" height="50" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M 5 8 Q 18 26 35 38 L 40 50"/>
+        <path d="M 40 50 L 32 48 M 40 50 L 42 42"/>
+      </svg>
     </div>
 
   </div>
+
 </header>
 
 <!-- ════════ PROBLEM ════════ -->
