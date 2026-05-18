@@ -3410,6 +3410,10 @@
           <span class="indicator"></span>
           Auto-mode · on
         </button>
+        <button class="top-action" data-bell title="Notifications" style="padding:7px 10px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 004 0"/></svg>
+          <span class="bell-dot" style="position:absolute;top:6px;right:8px;width:8px;height:8px;border-radius:50%;background:var(--accent);border:1.5px solid var(--ink);"></span>
+        </button>
       </header>
 
       <!-- BANNERS (edge cases) -->
@@ -3519,6 +3523,69 @@
         <button class="banner-close" data-banner-close="hallucination">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
         </button>
+      </div>
+
+      <div class="banner warn" data-banner="kv-stale">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 11-9-9"/><path d="M14 4l4 4-4 4M3 12h18"/></svg>
+        <span class="banner-text">Cloudflare edge cache is stale after your last patch. <em>Warming up</em> — should be live in ~30 seconds.</span>
+        <div class="banner-actions"><button class="btn">Refresh status</button></div>
+        <button class="banner-close" data-banner-close="kv-stale"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+      </div>
+
+      <div class="banner" data-banner="sitemap-changed">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+        <span class="banner-text">Your sitemap changed — <em>3 new URLs · 1 removed · 2 modified</em>. Re-ingesting all three now.</span>
+        <div class="banner-actions"><button class="btn" data-view-link="pages">See sitemap diff</button></div>
+        <button class="banner-close" data-banner-close="sitemap-changed"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+      </div>
+
+      <div class="banner warn" data-banner="meta-review-long">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <span class="banner-text">Meta ad <em>"Lookalike — past buyers"</em> has been in review for 51 hours. Likely policy issue — auto-pausing dependent automations.</span>
+        <div class="banner-actions"><button class="btn">Check review status</button><button class="btn ghost">Cancel ad</button></div>
+        <button class="banner-close" data-banner-close="meta-review-long"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+      </div>
+
+      <div class="banner" data-banner="wa-handoff">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 21v-1a6 6 0 0112 0v1M16 11a3 3 0 100-6M21 21v-1a6 6 0 00-3-5.2"/></svg>
+        <span class="banner-text"><em>WhatsApp conversation</em> with unknown number routed to human queue. Bot suppressed. Customer asked to speak with a person.</span>
+        <div class="banner-actions"><button class="btn amber" data-view-link="whatsapp">Open thread</button><button class="btn ghost">Re-engage bot</button></div>
+        <button class="banner-close" data-banner-close="wa-handoff"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+      </div>
+
+      <div class="banner danger" data-banner="webhook-sig">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M6 6l12 12"/></svg>
+        <span class="banner-text">Webhook from <em>WhatsApp</em> failed signature verification. Replayed once and verified. Check your webhook secret if this repeats.</span>
+        <div class="banner-actions"><button class="btn" data-view-link="api">View webhook log</button><button class="btn ghost">Rotate secret</button></div>
+        <button class="banner-close" data-banner-close="webhook-sig"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+      </div>
+
+      <div class="banner" data-banner="channel-learning">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--ink-soft);"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+        <span class="banner-text"><em>TikTok Ads</em> has been active for 11 days. I won't reallocate budget away from it for 3 more days — letting it learn properly.</span>
+        <div class="banner-actions"><button class="btn">See learning status</button></div>
+        <button class="banner-close" data-banner-close="channel-learning"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+      </div>
+
+      <div class="banner warn" data-banner="oauth-expired">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V8a5 5 0 0110 0v3"/></svg>
+        <span class="banner-text"><em>Meta Marketing OAuth</em> expired. I paused Meta-side actions until you re-authenticate — should take 30 seconds.</span>
+        <div class="banner-actions"><button class="btn amber">Re-authenticate</button><button class="btn ghost" data-view-link="credentials">All credentials</button></div>
+        <button class="banner-close" data-banner-close="oauth-expired"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+      </div>
+
+      <div class="banner" data-banner="voice-mismatch">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--warn);"><path d="M12 2L2 22h20L12 2z"/><path d="M12 9v5M12 18h.01"/></svg>
+        <span class="banner-text">You've reverted <em>3 of my last 5 content patches</em>. Either my brand voice is off, or I'm being too aggressive. Want to recalibrate?</span>
+        <div class="banner-actions"><button class="btn amber">Recalibrate voice</button><button class="btn">Be less aggressive</button><button class="btn ghost">Tell me more</button></div>
+        <button class="banner-close" data-banner-close="voice-mismatch"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+      </div>
+
+      <div class="banner danger" data-banner="dlq-high">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M5 6v14a2 2 0 002 2h10a2 2 0 002-2V6"/></svg>
+        <span class="banner-text"><em>108 failed jobs</em> in the dead-letter queue · above the 100 alert threshold. Mostly Meta API rate-limit retries that finally exhausted.</span>
+        <div class="banner-actions"><button class="btn amber" data-view-link="dlq">Open DLQ</button><button class="btn">Retry all</button></div>
+        <button class="banner-close" data-banner-close="dlq-high"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M5 6v14a2 2 0 002 2h10a2 2 0 002-2V6"/></svg></button>
       </div>
 
       <!-- ════ VIEW: HOME ════ -->
@@ -8039,6 +8106,130 @@
     </div>
   </div>
 
+  <!-- ═══════════════════ MODAL · PLAN UPGRADE ═══════════════════ -->
+  <div class="modal-host" data-modal-upgrade>
+    <div class="modal" style="width: min(560px, 100%);">
+      <div class="modal-eyebrow"><span class="dot"></span> Recommended next step</div>
+      <h2 class="modal-title">Upgrade to <em>Growth</em>?</h2>
+      <p class="modal-body">You've used 80% of your Starter tokens twice in a row. Growth gives you 5× the tokens and unlocks A/B-test variant scaling.</p>
+      <div class="cost-grid">
+        <div class="cost-cell"><div class="cost-lbl">Current</div><div class="cost-val">$49<span style="font-size:14px;color:var(--ink-mute);">/mo</span></div><div class="cost-sub">1,000 tokens · 1 site</div></div>
+        <div class="cost-cell"><div class="cost-lbl">After upgrade</div><div class="cost-val"><em>$149</em><span style="font-size:14px;color:var(--ink-mute);">/mo</span></div><div class="cost-sub">5,000 tokens · 3 sites · A/B scaling</div></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn amber" data-close-upgrade>Upgrade now · $100 today</button>
+        <button class="btn" data-close-upgrade>Top up tokens instead</button>
+        <button class="btn ghost" data-close-upgrade>Stay on Starter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ MODAL · ADD WORKSPACE ═══════════════════ -->
+  <div class="modal-host" data-modal-ws>
+    <div class="modal" style="width: min(540px, 100%);">
+      <div class="modal-eyebrow"><span class="dot"></span> Connect another site</div>
+      <h2 class="modal-title">New <em>workspace</em>.</h2>
+      <p class="modal-body">Each workspace is one website with its own tokens, autonomy, and data. You can switch in the topbar any time.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px;">
+        <div><label style="display:block;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px;">Workspace name</label><input class="form-input" style="width:100%;padding:12px 14px;border:2px solid var(--ink);border-radius:10px;background:var(--bg-card);font-family:var(--sans);font-size:15px;outline:none;" placeholder="Kente Threads" /></div>
+        <div><label style="display:block;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px;">Site URL</label><input class="form-input" style="width:100%;padding:12px 14px;border:2px solid var(--ink);border-radius:10px;background:var(--bg-card);font-family:var(--sans);font-size:15px;outline:none;" placeholder="kentethreads.com" /></div>
+        <div><label style="display:block;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px;">Plan</label><select class="form-input" style="width:100%;padding:12px 14px;border:2px solid var(--ink);border-radius:10px;background:var(--bg-card);font-family:var(--sans);font-size:15px;outline:none;"><option>Free · 100 tokens / mo</option><option selected>Starter · $49 · 1,000 tokens</option><option>Growth · $149 · 5,000 tokens</option></select></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn amber" data-close-ws>Create workspace</button>
+        <button class="btn ghost" data-close-ws>Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ MODAL · INVITE TEAMMATE ═══════════════════ -->
+  <div class="modal-host" data-modal-invite>
+    <div class="modal" style="width: min(520px, 100%);">
+      <div class="modal-eyebrow"><span class="dot"></span> Add to workspace</div>
+      <h2 class="modal-title">Invite a <em>teammate</em>.</h2>
+      <p class="modal-body">They'll get an email to set their password and join. Roles can change later.</p>
+      <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px;">
+        <div><label style="display:block;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px;">Email</label><input style="width:100%;padding:12px 14px;border:2px solid var(--ink);border-radius:10px;background:var(--bg-card);font-family:var(--sans);font-size:15px;outline:none;" placeholder="teammate@silverjewelry.com" /></div>
+        <div><label style="display:block;font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px;">Role</label><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;">
+          <button class="btn" style="padding:8px 10px;font-size:12px;justify-content:center;">Viewer</button>
+          <button class="btn primary" style="padding:8px 10px;font-size:12px;justify-content:center;">Editor</button>
+          <button class="btn" style="padding:8px 10px;font-size:12px;justify-content:center;">Admin</button>
+          <button class="btn" style="padding:8px 10px;font-size:12px;justify-content:center;">Owner</button>
+        </div></div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn amber" data-close-invite>Send invite</button>
+        <button class="btn ghost" data-close-invite>Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ MODAL · CREATE API KEY ═══════════════════ -->
+  <div class="modal-host" data-modal-apikey>
+    <div class="modal" style="width: min(560px, 100%);">
+      <div class="modal-eyebrow"><span class="dot"></span> Show once · cannot be recovered</div>
+      <h2 class="modal-title">Your new <em>API key</em>.</h2>
+      <p class="modal-body">Use this with the SDK or your custom integration. Copy it now — we don't store it in plain text and can't show it again.</p>
+      <div style="background:var(--ink);color:var(--bg);padding:18px 22px;border-radius:10px;margin-bottom:18px;font-family:var(--mono);font-size:14px;display:flex;align-items:center;justify-content:space-between;">
+        <span><span style="color:var(--yellow);">sf_live_</span>4n8c2k5pX9zQrT3vL7mN1bH6jW0sY2dF</span>
+        <button class="btn" style="padding:5px 12px;font-size:11px;background:var(--bg);">Copy</button>
+      </div>
+      <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);line-height:1.6;margin-bottom:18px;">
+        Scope: <span style="color:var(--ink);">events:write, attribution:read</span><br>
+        Created: just now · Created by: Amara Okafor
+      </div>
+      <div class="modal-actions">
+        <button class="btn amber" data-close-apikey>I've copied it · done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ MODAL · WEBHOOK REPLAY ═══════════════════ -->
+  <div class="modal-host" data-modal-replay>
+    <div class="modal" style="width: min(520px, 100%);">
+      <div class="modal-eyebrow"><span class="dot"></span> Re-send to your endpoint</div>
+      <h2 class="modal-title">Replay <em>webhook</em>?</h2>
+      <p class="modal-body">Re-fires the original payload to your webhook URL. Idempotency key is preserved — if your handler is idempotent (it should be), this is safe.</p>
+      <div style="background:var(--surface-2);border:2px solid var(--ink);border-radius:10px;padding:14px 18px;font-family:var(--mono);font-size:11.5px;line-height:1.6;margin-bottom:18px;">
+        <div><span style="color:var(--ink-mute);">source:</span> Shopify</div>
+        <div><span style="color:var(--ink-mute);">event:</span> orders/create</div>
+        <div><span style="color:var(--ink-mute);">at:</span> 2h ago · 200 · 142ms</div>
+        <div><span style="color:var(--ink-mute);">message_id:</span> wh_a3f9c0e2…</div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn amber" data-close-replay>Replay now</button>
+        <button class="btn ghost" data-close-replay>Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ NOTIFICATIONS DRAWER ═══════════════════ -->
+  <div class="scrim" data-scrim-notif></div>
+  <aside class="drawer" data-drawer-notif style="transform: translateX(100%);">
+    <div class="drawer-head">
+      <div class="drawer-eyebrow"><span class="dot"></span> Notifications</div>
+      <button class="drawer-close" data-close-notif>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      </button>
+    </div>
+    <div class="drawer-content">
+      <div style="display:flex;gap:6px;margin-bottom:18px;">
+        <button class="btn primary" style="padding:6px 14px;font-size:12px;">All <span style="margin-left:4px;color:rgba(255,255,255,0.7);">6</span></button>
+        <button class="btn" style="padding:6px 14px;font-size:12px;">Actions <span style="margin-left:4px;color:var(--ink-mute);">2</span></button>
+        <button class="btn" style="padding:6px 14px;font-size:12px;">Approvals <span style="margin-left:4px;color:var(--ink-mute);">2</span></button>
+        <button class="btn ghost" style="padding:6px 14px;font-size:12px;margin-left:auto;">Mark all read</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="padding:14px 18px;background:var(--yellow);border:2px solid var(--ink);border-radius:12px;"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;"><div style="font-family:var(--sans);font-size:14px;font-variation-settings:'wght' 700;">Homepage headline live</div><span style="font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);">2h ago</span></div><div style="font-size:13px;color:var(--ink);line-height:1.5;">I rewrote your homepage headline. Bounce rate down 18%.</div></div>
+        <div style="padding:14px 18px;background:var(--bg-card);border:2px solid var(--ink);border-radius:12px;"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;"><div style="font-family:var(--sans);font-size:14px;font-variation-settings:'wght' 700;">11 meta descriptions updated</div><span style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);">5h ago</span></div><div style="font-size:13px;color:var(--ink-soft);line-height:1.5;">Updated meta descriptions on product pages.</div></div>
+        <div style="padding:14px 18px;background:var(--accent-soft);border:2px solid var(--ink);border-radius:12px;"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;"><div style="font-family:var(--sans);font-size:14px;font-variation-settings:'wght' 700;">Mother's Day campaign ready</div><span style="font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);">6h ago</span></div><div style="font-size:13px;color:var(--ink);line-height:1.5;">Confirm to launch in 3 days. Budget $400.</div><div style="margin-top:10px;display:flex;gap:6px;"><button class="btn primary" style="padding:4px 11px;font-size:11px;">Confirm</button><button class="btn ghost" style="padding:4px 11px;font-size:11px;">Review</button></div></div>
+        <div style="padding:14px 18px;background:var(--accent-soft);border:2px solid var(--ink);border-radius:12px;"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;"><div style="font-family:var(--sans);font-size:14px;font-variation-settings:'wght' 700;">Two reviews need your approval</div><span style="font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);">4 days ago</span></div><div style="font-size:13px;color:var(--ink);line-height:1.5;">Drafted replies to a 5★ and a 4★. Awaiting you.</div></div>
+        <div style="padding:14px 18px;background:var(--bg-card);border:2px solid var(--ink);border-radius:12px;opacity:0.7;"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;"><div style="font-family:var(--sans);font-size:14px;font-variation-settings:'wght' 700;">Switched attribution to data-driven</div><span style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);">8d ago</span></div><div style="font-size:13px;color:var(--ink-soft);line-height:1.5;">Past 100 conversions — Shapley now active.</div></div>
+        <div style="padding:14px 18px;background:var(--bg-card);border:2px solid var(--ink);border-radius:12px;opacity:0.7;"><div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;"><div style="font-family:var(--sans);font-size:14px;font-variation-settings:'wght' 700;">Patch reverted by you</div><span style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);">11d ago</span></div><div style="font-size:13px;color:var(--ink-soft);line-height:1.5;">Schema markup change rolled back. I'll remember.</div></div>
+      </div>
+    </div>
+  </aside>
+
   <!-- ═══════════════════ DEMO CONTROLS (review-only) ═══════════════════ -->
   <button class="demo-toggle" data-demo-toggle title="Demo controls">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -8059,6 +8250,21 @@
     <button class="demo-btn" data-trigger-banner="attribution">Insufficient attribution data</button>
     <button class="demo-btn" data-trigger-banner="ad-suspended">Meta ad account suspended</button>
     <button class="demo-btn" data-trigger-banner="hallucination">Patch hallucination held</button>
+    <button class="demo-btn" data-trigger-banner="kv-stale">Cloudflare KV cache stale</button>
+    <button class="demo-btn" data-trigger-banner="sitemap-changed">Sitemap structure changed</button>
+    <button class="demo-btn" data-trigger-banner="meta-review-long">Meta ad review &gt; 48h</button>
+    <button class="demo-btn" data-trigger-banner="wa-handoff">WhatsApp human handoff</button>
+    <button class="demo-btn" data-trigger-banner="webhook-sig">Webhook signature mismatch</button>
+    <button class="demo-btn" data-trigger-banner="channel-learning">New channel learning phase</button>
+    <button class="demo-btn" data-trigger-banner="oauth-expired">OAuth credential expired</button>
+    <button class="demo-btn" data-trigger-banner="voice-mismatch">Brand voice mismatch (3 undos)</button>
+    <button class="demo-btn" data-trigger-banner="dlq-high">DLQ depth alert (108 jobs)</button>
+    <button class="demo-btn" data-trigger-modal-upgrade>Plan upgrade prompt</button>
+    <button class="demo-btn" data-trigger-modal-ws>Add workspace</button>
+    <button class="demo-btn" data-trigger-modal-invite>Invite teammate</button>
+    <button class="demo-btn" data-trigger-modal-apikey>Create API key</button>
+    <button class="demo-btn" data-trigger-modal-replay>Webhook replay</button>
+    <button class="demo-btn" data-trigger-notif>Open notifications</button>
     <button class="demo-btn" data-trigger-modal="undo">Multiple-undo learning</button>
     <button class="demo-btn" data-trigger-modal="bigspend">Above-pattern approval</button>
     <button class="demo-btn" data-trigger-drawer="conflict">Conflicting optimization</button>
@@ -8273,6 +8479,62 @@
     document.querySelectorAll('[data-close-bigspend]').forEach(b => b.addEventListener('click', closeModalBigspend));
     modalUndo.addEventListener('click', (e) => { if (e.target === modalUndo) closeModalUndo(); });
     modalBigspend.addEventListener('click', (e) => { if (e.target === modalBigspend) closeModalBigspend(); });
+
+    /* ────────────────── NEW MODALS (full-coverage) ────────────────── */
+    function genericModal(selectorAttr, closeAttr) {
+      const host = document.querySelector(`[${selectorAttr}]`);
+      if (!host) return { open: () => {}, close: () => {}, host: null };
+      const open = () => { host.classList.add('visible'); document.body.style.overflow = 'hidden'; };
+      const close = () => { host.classList.remove('visible'); document.body.style.overflow = ''; };
+      document.querySelectorAll(`[${closeAttr}]`).forEach(b => b.addEventListener('click', close));
+      host.addEventListener('click', e => { if (e.target === host) close(); });
+      return { open, close, host };
+    }
+    const mUpgrade = genericModal('data-modal-upgrade', 'data-close-upgrade');
+    const mWs = genericModal('data-modal-ws', 'data-close-ws');
+    const mInvite = genericModal('data-modal-invite', 'data-close-invite');
+    const mApikey = genericModal('data-modal-apikey', 'data-close-apikey');
+    const mReplay = genericModal('data-modal-replay', 'data-close-replay');
+
+    // Wire dead buttons
+    document.querySelectorAll('.ws-menu-item.add').forEach(b => b.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); document.querySelector('[data-ws-menu]')?.classList.remove('open'); mWs.open(); }));
+
+    /* ────────────────── NOTIFICATIONS DRAWER ────────────────── */
+    const notifDrawer = document.querySelector('[data-drawer-notif]');
+    const notifScrim = document.querySelector('[data-scrim-notif]');
+    if (notifDrawer) {
+      const openNotif = () => {
+        notifDrawer.style.transform = 'translateX(0)';
+        notifScrim.classList.add('visible');
+        document.body.style.overflow = 'hidden';
+      };
+      const closeNotif = () => {
+        notifDrawer.style.transform = 'translateX(100%)';
+        notifScrim.classList.remove('visible');
+        document.body.style.overflow = '';
+      };
+      document.querySelectorAll('[data-bell]').forEach(b => b.addEventListener('click', openNotif));
+      document.querySelectorAll('[data-close-notif]').forEach(b => b.addEventListener('click', closeNotif));
+      notifScrim?.addEventListener('click', closeNotif);
+    }
+
+    /* wire all "+ Invite", "+ Create key", "Replay" buttons inside their views */
+    document.querySelectorAll('.view[data-view-pane="team"] .btn.amber').forEach(b => {
+      if (b.textContent.includes('Invite')) b.addEventListener('click', e => { e.preventDefault(); mInvite.open(); });
+    });
+    document.querySelectorAll('.view[data-view-pane="api"] button').forEach(b => {
+      const t = b.textContent.trim();
+      if (t.startsWith('+ Create')) b.addEventListener('click', e => { e.preventDefault(); mApikey.open(); });
+      if (t === 'Replay' || t.startsWith('Replay')) b.addEventListener('click', e => { e.preventDefault(); mReplay.open(); });
+    });
+
+    /* demo-panel triggers for new modals/notif */
+    document.querySelectorAll('[data-trigger-modal-upgrade]').forEach(b => b.addEventListener('click', () => { mUpgrade.open(); if (demoPanel) demoPanel.classList.remove('visible'); }));
+    document.querySelectorAll('[data-trigger-modal-ws]').forEach(b => b.addEventListener('click', () => { mWs.open(); if (demoPanel) demoPanel.classList.remove('visible'); }));
+    document.querySelectorAll('[data-trigger-modal-invite]').forEach(b => b.addEventListener('click', () => { mInvite.open(); if (demoPanel) demoPanel.classList.remove('visible'); }));
+    document.querySelectorAll('[data-trigger-modal-apikey]').forEach(b => b.addEventListener('click', () => { mApikey.open(); if (demoPanel) demoPanel.classList.remove('visible'); }));
+    document.querySelectorAll('[data-trigger-modal-replay]').forEach(b => b.addEventListener('click', () => { mReplay.open(); if (demoPanel) demoPanel.classList.remove('visible'); }));
+    document.querySelectorAll('[data-trigger-notif]').forEach(b => b.addEventListener('click', () => { document.querySelector('[data-bell]')?.click(); if (demoPanel) demoPanel.classList.remove('visible'); }));
 
     /* ────────────────── BANNERS ────────────────── */
     function showBanner(name) {
@@ -8497,6 +8759,11 @@
         if (modal.classList.contains('visible')) closeModal();
         else if (modalUndo.classList.contains('visible')) closeModalUndo();
         else if (modalBigspend.classList.contains('visible')) closeModalBigspend();
+        else if (mUpgrade.host && mUpgrade.host.classList.contains('visible')) mUpgrade.close();
+        else if (mWs.host && mWs.host.classList.contains('visible')) mWs.close();
+        else if (mInvite.host && mInvite.host.classList.contains('visible')) mInvite.close();
+        else if (mApikey.host && mApikey.host.classList.contains('visible')) mApikey.close();
+        else if (mReplay.host && mReplay.host.classList.contains('visible')) mReplay.close();
         else if (drawer.classList.contains('visible')) closeDrawer();
         else if (demoPanel && demoPanel.classList.contains('visible')) demoPanel.classList.remove('visible');
       }
