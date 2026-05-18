@@ -653,6 +653,8 @@
     <div class="progress-step" data-prog="2"></div>
     <div class="progress-step" data-prog="3"></div>
     <div class="progress-step" data-prog="4"></div>
+    <div class="progress-step" data-prog="5"></div>
+    <div class="progress-step" data-prog="6"></div>
   </div>
 
   <main class="stage">
@@ -661,7 +663,7 @@
     <section class="step active" data-step="1">
       <div class="helper-side">
         <div>
-          <div class="step-eyebrow"><span class="num">01 / 04</span><span class="sep"></span> A few questions, then I'll get to work</div>
+          <div class="step-eyebrow"><span class="num">01 / 06</span><span class="sep"></span> A few questions, then I'll get to work</div>
           <h1 class="step-q">First — what do you <em>sell</em>?</h1>
           <p class="step-helper">In plain words. No industry codes. I use this to understand who your customers are and what voice to write in.</p>
 
@@ -699,7 +701,7 @@
     <section class="step" data-step="2">
       <div class="helper-side">
         <div>
-          <div class="step-eyebrow"><span class="num">02 / 04</span><span class="sep"></span> Where it lives</div>
+          <div class="step-eyebrow"><span class="num">02 / 06</span><span class="sep"></span> Where it lives</div>
           <h1 class="step-q">Your <em>website</em>.</h1>
           <p class="step-helper">Paste the URL. I'll install a small script that lets me see what's slow, what's confusing, and what's costing you customers. <strong style="color: var(--ink); font-weight: 400;">I never publish changes without showing you first.</strong></p>
 
@@ -764,7 +766,7 @@
     <section class="step" data-step="3">
       <div class="helper-side">
         <div>
-          <div class="step-eyebrow"><span class="num">03 / 04</span><span class="sep"></span> What matters most</div>
+          <div class="step-eyebrow"><span class="num">03 / 06</span><span class="sep"></span> What matters most</div>
           <h1 class="step-q">Pick an <em>outcome</em>.</h1>
           <p class="step-helper">Not a tactic. I'll choose the engines and the ratio. You can change your mind any time and I'll rebalance.</p>
 
@@ -793,7 +795,7 @@
 
           <div class="nav-row">
             <button class="btn ghost" data-prev="2">← Back</button>
-            <button class="btn amber" data-next="4" data-start-analyze>Start analyzing →</button>
+            <button class="btn amber" data-next="4">Continue →</button>
           </div>
         </div>
 
@@ -805,8 +807,72 @@
       </div>
     </section>
 
-    <!-- STEP 4: ANALYZING -->
-    <section class="step analyzing" data-step="4">
+    <!-- STEP 4: INTEGRATION METHOD -->
+    <section class="step" data-step="4">
+      <div class="helper-side">
+        <div>
+          <div class="step-eyebrow"><span class="num">04 / 06</span><span class="sep"></span> How I connect</div>
+          <h1 class="step-q">How should I <em>plug in</em>?</h1>
+          <p class="step-helper">Four ways. I detected <em style="color:var(--amber);font-style:italic;font-family:var(--serif);">WordPress</em> on your site — that's usually the smoothest path. Pick what suits you; you can change later.</p>
+
+          <div class="connect-grid" data-integration-group style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:32px;">
+            <button class="connect-tile selected" data-integration="wordpress" style="text-align:left;padding:22px 24px;border:1px solid var(--line-warm);border-radius:14px;background:linear-gradient(180deg,var(--surface-1),var(--surface));cursor:pointer;font:inherit;color:inherit;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+                <span style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);">Recommended · 5 min</span>
+                <span style="font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;color:var(--good);">DETECTED</span>
+              </div>
+              <div style="font-family:var(--serif);font-size:22px;letter-spacing:-0.01em;margin-bottom:6px;font-variation-settings:'opsz' 80,'wght' 380;">WordPress plugin</div>
+              <p style="font-size:13px;color:var(--ink-soft);margin:0;line-height:1.5;">Server-side integration via REST API. Modifies posts/pages with proper meta-field support. Survives theme switches.</p>
+            </button>
+            <button class="connect-tile" data-integration="js" style="text-align:left;padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:var(--surface);cursor:pointer;font:inherit;color:inherit;">
+              <div style="margin-bottom:12px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);">Universal · 5 min</div>
+              <div style="font-family:var(--serif);font-size:22px;letter-spacing:-0.01em;margin-bottom:6px;font-variation-settings:'opsz' 80,'wght' 380;">JavaScript SDK</div>
+              <p style="font-size:13px;color:var(--ink-soft);margin:0;line-height:1.5;">One &lt;script&gt; tag. Works on any site — Webflow, Squarespace, custom builds. 12.8KB, <code style="font-family:var(--mono);font-size:11.5px;color:var(--amber-bright);background:var(--surface-2);padding:1px 5px;border-radius:3px;">defer</code> loaded.</p>
+            </button>
+            <button class="connect-tile" data-integration="cloudflare" style="text-align:left;padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:var(--surface);cursor:pointer;font:inherit;color:inherit;">
+              <div style="margin-bottom:12px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);">Edge · 10 min · advanced</div>
+              <div style="font-family:var(--serif);font-size:22px;letter-spacing:-0.01em;margin-bottom:6px;font-variation-settings:'opsz' 80,'wght' 380;">Cloudflare Worker</div>
+              <p style="font-size:13px;color:var(--ink-soft);margin:0;line-height:1.5;">Edge rewriting before the browser. Best for sites needing perfect server-side SEO + GEO. Requires Cloudflare DNS.</p>
+            </button>
+            <button class="connect-tile" data-integration="ci" style="text-align:left;padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:var(--surface);cursor:pointer;font:inherit;color:inherit;">
+              <div style="margin-bottom:12px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);">Git-native · 15 min</div>
+              <div style="font-family:var(--serif);font-size:22px;letter-spacing:-0.01em;margin-bottom:6px;font-variation-settings:'opsz' 80,'wght' 380;">Direct CI / GitHub</div>
+              <p style="font-size:13px;color:var(--ink-soft);margin:0;line-height:1.5;">PRs against your repo with patches. Tests run, you merge, your CI deploys. For Next.js, Astro, SvelteKit, Hugo.</p>
+            </button>
+          </div>
+
+          <div class="snippet-box" data-snippet="wordpress" style="border:1px solid var(--line);border-radius:12px;background:var(--bg-1);padding:18px 20px;margin-bottom:14px;">
+            <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:10px;">Your setup snippet · WordPress</div>
+            <code style="display:block;font-family:var(--mono);font-size:12.5px;color:var(--ink);line-height:1.6;letter-spacing:.02em;">
+              <span style="color:var(--ink-mute);"># In WordPress admin → Plugins → Add New, search "SeenFolio"</span><br>
+              <span style="color:var(--ink-mute);"># Or download:</span><br>
+              <span style="color:var(--good);">https://cdn.seenfolio.com/plugins/wp/latest.zip</span><br><br>
+              <span style="color:var(--ink-mute);"># Then in Settings → SeenFolio, paste:</span><br>
+              <span style="color:var(--amber-bright);">sf_live_8h2k</span>•••••••••<span style="color:var(--amber-bright);">7q1d</span>
+            </code>
+            <div style="display:flex;gap:8px;margin-top:14px;">
+              <button class="btn ghost" style="padding:5px 12px;font-size:11px;">Copy key</button>
+              <button class="btn ghost" style="padding:5px 12px;font-size:11px;">Email me the link</button>
+              <button class="btn ghost" style="padding:5px 12px;font-size:11px;margin-left:auto;">Talk to setup support</button>
+            </div>
+          </div>
+
+          <div class="nav-row">
+            <button class="btn ghost" data-prev="3">← Back</button>
+            <button class="btn amber" data-next="5" data-start-analyze>Continue · I'll wait for your install →</button>
+          </div>
+        </div>
+
+        <aside class="why-card">
+          <h4>Why this matters</h4>
+          <p>Each method has tradeoffs. WordPress plugins are server-side so they help with AI engine crawlability. The JS SDK is the simplest but client-side only. Cloudflare Workers are the fastest. Direct CI is the safest for repo-controlled sites.</p>
+          <p>I'll generate setup snippets automatically — no API key handling, no config files.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- STEP 5: ANALYZING -->
+    <section class="step analyzing" data-step="5">
       <div class="orb"><div class="core"></div></div>
       <h2 data-analyzing-title>Reading your site, your traffic, and what your <em>customers</em> say.</h2>
       <p class="analyzing-sub" data-analyzing-sub>You'll get an email tomorrow morning with three things I noticed and the first change I'd like to make. You don't need to do anything until then.</p>
@@ -844,8 +910,128 @@
       </div>
 
       <div class="analyzing-actions">
-        <a href="app.html" class="btn amber" data-skip-to-app style="display: none;">Take me to my dashboard →</a>
+        <button class="btn amber" data-skip-to-welcome data-next="6" style="display: none;">See first recommendations →</button>
         <button class="btn ghost" data-skip-wait>Skip the wait · jump in</button>
+      </div>
+    </section>
+
+    <!-- STEP 6: WELCOME · FIRST 5 RECOMMENDATIONS -->
+    <section class="step" data-step="6">
+      <div style="max-width:780px;margin:0 auto;">
+        <div class="step-eyebrow"><span class="num">06 / 06</span><span class="sep"></span> Analysis complete · you're in</div>
+        <h1 class="step-q">Five things I <em>noticed</em>.</h1>
+        <p class="step-helper">I'll start working on the top one immediately. The others are queued — you can reorder, approve, or skip. Token estimates are conservative.</p>
+
+        <div class="reco-list" style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
+
+          <article class="reco-card" style="padding:22px 24px;border:1px solid var(--line-warm);border-radius:14px;background:linear-gradient(180deg,var(--surface-1),var(--surface));position:relative;overflow:hidden;">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:14px;">
+              <div>
+                <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);margin-bottom:6px;">01 · Starting now</div>
+                <div style="font-family:var(--serif);font-size:22px;line-height:1.2;font-variation-settings:'opsz' 80,'wght' 380;letter-spacing:-0.01em;">Your homepage doesn't <em style="font-style:italic;color:var(--amber);">say what you sell</em> above the fold.</div>
+              </div>
+              <div style="text-align:right;flex-shrink:0;">
+                <div style="font-family:var(--serif);font-style:italic;font-size:24px;color:var(--amber);font-variation-settings:'opsz' 80,'wght' 360;">+12%</div>
+                <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);letter-spacing:.06em;">est. add-to-cart</div>
+              </div>
+            </div>
+            <p style="margin:0 0 16px;color:var(--ink-soft);font-size:14px;line-height:1.55;">Ad visitors hit "Welcome to Our Store" and bounce in 3 seconds. I'll rewrite the headline to name the product and the offer up front. Goes live after a 24h staging window.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink-mute);padding:4px 10px;border:1px solid var(--line);border-radius:999px;">8 tokens</span>
+              <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--amber);padding:4px 10px;border:1px solid var(--line-warm);border-radius:999px;">SEO/GEO</span>
+              <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--good);padding:4px 10px;border:1px solid rgba(156,184,126,0.4);border-radius:999px;">High impact</span>
+            </div>
+          </article>
+
+          <article class="reco-card" style="padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:var(--surface);">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:14px;">
+              <div>
+                <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px;">02 · Queued</div>
+                <div style="font-family:var(--serif);font-size:22px;line-height:1.2;font-variation-settings:'opsz' 80,'wght' 380;letter-spacing:-0.01em;">11 product pages have <em style="font-style:italic;color:var(--amber);">auto-generated meta descriptions</em>.</div>
+              </div>
+              <div style="text-align:right;flex-shrink:0;">
+                <div style="font-family:var(--serif);font-style:italic;font-size:24px;color:var(--amber);font-variation-settings:'opsz' 80,'wght' 360;">+8%</div>
+                <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);letter-spacing:.06em;">organic CTR</div>
+              </div>
+            </div>
+            <p style="margin:0 0 16px;color:var(--ink-soft);font-size:14px;line-height:1.55;">Default Shopify meta descriptions repeat the page title, which kills click-through from Google. I'll write custom ones in your brand voice.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink-mute);padding:4px 10px;border:1px solid var(--line);border-radius:999px;">14 tokens</span>
+              <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--amber);padding:4px 10px;border:1px solid var(--line-warm);border-radius:999px;">SEO/GEO</span>
+              <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--good);padding:4px 10px;border:1px solid rgba(156,184,126,0.4);border-radius:999px;">High impact</span>
+            </div>
+          </article>
+
+          <article class="reco-card" style="padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:var(--surface);">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:14px;">
+              <div>
+                <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px;">03 · Queued</div>
+                <div style="font-family:var(--serif);font-size:22px;line-height:1.2;font-variation-settings:'opsz' 80,'wght' 380;letter-spacing:-0.01em;">You don't rank for <em style="font-style:italic;color:var(--amber);">"how to clean silver"</em> — 14k searches/mo.</div>
+              </div>
+              <div style="text-align:right;flex-shrink:0;">
+                <div style="font-family:var(--serif);font-style:italic;font-size:24px;color:var(--amber);font-variation-settings:'opsz' 80,'wght' 360;">~600</div>
+                <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);letter-spacing:.06em;">organic visits/mo</div>
+              </div>
+            </div>
+            <p style="margin:0 0 16px;color:var(--ink-soft);font-size:14px;line-height:1.55;">High-volume search, low competition, perfect long-form match for your brand. I'll write a 1,200-word guide and place internal links from your top 3 product pages.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink-mute);padding:4px 10px;border:1px solid var(--line);border-radius:999px;">35 tokens</span>
+              <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--amber);padding:4px 10px;border:1px solid var(--line-warm);border-radius:999px;">Content</span>
+              <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--warn);padding:4px 10px;border:1px solid rgba(212,154,79,0.4);border-radius:999px;">Medium impact</span>
+            </div>
+          </article>
+
+          <article class="reco-card" style="padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:var(--surface);">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:14px;">
+              <div>
+                <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px;">04 · Queued</div>
+                <div style="font-family:var(--serif);font-size:22px;line-height:1.2;font-variation-settings:'opsz' 80,'wght' 380;letter-spacing:-0.01em;">Cart abandonment recovery isn't running on <em style="font-style:italic;color:var(--amber);">WhatsApp</em>.</div>
+              </div>
+              <div style="text-align:right;flex-shrink:0;">
+                <div style="font-family:var(--serif);font-style:italic;font-size:24px;color:var(--amber);font-variation-settings:'opsz' 80,'wght' 360;">~$400</div>
+                <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);letter-spacing:.06em;">recovered / mo</div>
+              </div>
+            </div>
+            <p style="margin:0 0 16px;color:var(--ink-soft);font-size:14px;line-height:1.55;">For Nigerian shoppers, WhatsApp recovery beats email recovery 3:1. I'll send a gentle nudge with the cart link 2 hours after abandonment.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink-mute);padding:4px 10px;border:1px solid var(--line);border-radius:999px;">5 tokens / msg</span>
+              <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--amber);padding:4px 10px;border:1px solid var(--line-warm);border-radius:999px;">WhatsApp</span>
+              <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--warn);padding:4px 10px;border:1px solid rgba(212,154,79,0.4);border-radius:999px;">Medium impact</span>
+            </div>
+          </article>
+
+          <article class="reco-card" style="padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:var(--surface);">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:14px;">
+              <div>
+                <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px;">05 · Queued</div>
+                <div style="font-family:var(--serif);font-size:22px;line-height:1.2;font-variation-settings:'opsz' 80,'wght' 380;letter-spacing:-0.01em;">Facebook costs <em style="font-style:italic;color:var(--amber);">2× Google</em> for the same outcome.</div>
+              </div>
+              <div style="text-align:right;flex-shrink:0;">
+                <div style="font-family:var(--serif);font-style:italic;font-size:24px;color:var(--amber);font-variation-settings:'opsz' 80,'wght' 360;">+$200</div>
+                <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);letter-spacing:.06em;">freed up / wk</div>
+              </div>
+            </div>
+            <p style="margin:0 0 16px;color:var(--ink-soft);font-size:14px;line-height:1.55;">I'd reallocate $150 from Meta to Google while keeping $150 on Meta as a learning test — if Meta improves I'll shift back automatically.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink-mute);padding:4px 10px;border:1px solid var(--line);border-radius:999px;">0 tokens · analytics</span>
+              <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--amber);padding:4px 10px;border:1px solid var(--line-warm);border-radius:999px;">BI / Ads</span>
+              <span style="font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--good);padding:4px 10px;border:1px solid rgba(156,184,126,0.4);border-radius:999px;">High impact</span>
+            </div>
+          </article>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border:1px solid var(--line);border-radius:14px;background:var(--bg-1);margin-bottom:24px;">
+          <div>
+            <div style="font-family:var(--serif);font-size:17px;font-variation-settings:'opsz' 60,'wght' 380;margin-bottom:4px;">Approve all five at once</div>
+            <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.04em;">Estimated total · 62 tokens · ~$1.86 at your plan rate</div>
+          </div>
+          <button class="btn amber">Approve all →</button>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
+          <a href="app.html" class="btn ghost">Just take me to the dashboard →</a>
+          <span style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.04em;">You can approve/reject each one later · nothing publishes without your nod.</span>
+        </div>
       </div>
     </section>
 
@@ -868,6 +1054,20 @@
           group.querySelectorAll('.connect-tile').forEach(c => c.classList.remove('selected'));
           t.classList.add('selected');
         });
+      });
+    });
+
+    // integration-method tiles (step 4)
+    document.querySelectorAll('[data-integration-group] .connect-tile').forEach(t => {
+      t.addEventListener('click', () => {
+        document.querySelectorAll('[data-integration-group] .connect-tile').forEach(c => {
+          c.classList.remove('selected');
+          c.style.border = '1px solid var(--line)';
+          c.style.background = 'var(--surface)';
+        });
+        t.classList.add('selected');
+        t.style.border = '1px solid var(--line-warm)';
+        t.style.background = 'linear-gradient(180deg,var(--surface-1),var(--surface))';
       });
     });
 
@@ -908,8 +1108,11 @@
     /* ────── analyzing animation ────── */
     const phaseList = document.querySelectorAll('[data-phase]');
     const findings = document.querySelector('[data-findings]');
-    const skipBtn = document.querySelector('[data-skip-to-app]');
+    const skipBtn = document.querySelector('[data-skip-to-welcome]');
     const skipWait = document.querySelector('[data-skip-wait]');
+    if (skipWait) {
+      skipWait.addEventListener('click', () => gotoStep(6));
+    }
 
     function startAnalyze() {
       // Animate phases sequentially
