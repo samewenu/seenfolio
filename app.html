@@ -4764,6 +4764,194 @@
               </div>
             </aside>
           </div>
+
+          <!-- LIFECYCLE CAMPAIGN DAG BUILDER -->
+          <div class="sec-head" style="margin-top:48px;">
+            <h3 class="sec-title">Welcome series · <em>DAG</em></h3>
+            <span class="sec-sub">4 nodes · 84 contacts enrolled · 64% open / 22% click</span>
+          </div>
+          <div class="big-table" style="padding:36px 28px;">
+            <div style="display:flex;align-items:center;gap:0;justify-content:center;flex-wrap:wrap;">
+              <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;min-width:120px;">
+                <div style="width:48px;height:48px;border-radius:50%;background:var(--amber);color:var(--bg);display:grid;place-items:center;font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.1em;">START</div>
+                <div style="font-family:var(--serif);font-size:13px;margin-top:8px;text-align:center;font-variation-settings:'opsz' 60,'wght' 380;">New subscriber</div>
+                <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:3px;">trigger</div>
+              </div>
+              <div style="flex-shrink:0;width:36px;height:2px;background:var(--amber);"></div>
+              <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;min-width:140px;">
+                <div style="width:80px;padding:10px 14px;border-radius:10px;background:var(--surface-1);border:1px solid var(--line-warm);color:var(--amber);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-align:center;text-transform:uppercase;">Email</div>
+                <div style="font-family:var(--serif);font-size:13px;margin-top:8px;text-align:center;font-variation-settings:'opsz' 60,'wght' 380;">Welcome &amp; story</div>
+                <div style="font-family:var(--mono);font-size:10px;color:var(--good);margin-top:3px;">68% open</div>
+              </div>
+              <div style="flex-shrink:0;width:36px;height:2px;background:var(--line-warm);"></div>
+              <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;min-width:120px;">
+                <div style="width:80px;padding:10px 14px;border-radius:10px;background:var(--surface-1);border:1px solid var(--line);color:var(--ink-soft);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-align:center;text-transform:uppercase;">Wait</div>
+                <div style="font-family:var(--serif);font-size:13px;margin-top:8px;text-align:center;font-variation-settings:'opsz' 60,'wght' 380;">3 days</div>
+              </div>
+              <div style="flex-shrink:0;width:36px;height:2px;background:var(--line-warm);"></div>
+              <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;min-width:140px;">
+                <div style="width:80px;padding:10px 14px;border-radius:10px;background:var(--surface-1);border:1px solid var(--line-warm);color:var(--amber);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-align:center;text-transform:uppercase;">If/else</div>
+                <div style="font-family:var(--serif);font-size:13px;margin-top:8px;text-align:center;font-variation-settings:'opsz' 60,'wght' 380;">Bought yet?</div>
+              </div>
+              <div style="flex-shrink:0;width:36px;height:2px;background:var(--line-warm);"></div>
+              <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;min-width:140px;">
+                <div style="width:80px;padding:10px 14px;border-radius:10px;background:var(--surface-1);border:1px solid var(--line-warm);color:var(--amber);font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-align:center;text-transform:uppercase;">Email</div>
+                <div style="font-family:var(--serif);font-size:13px;margin-top:8px;text-align:center;font-variation-settings:'opsz' 60,'wght' 380;">Care guide</div>
+                <div style="font-family:var(--mono);font-size:10px;color:var(--good);margin-top:3px;">54% open</div>
+              </div>
+            </div>
+            <div style="margin-top:24px;padding-top:18px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.04em;">Scheduler runs every 5min · DAG cycle validation on save · re-enrollment blocked within 90d</div>
+              <div style="display:flex;gap:8px;">
+                <button class="btn">Edit nodes</button>
+                <button class="btn ghost">Pause campaign</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHURN RISK LIST -->
+          <div class="sec-head" style="margin-top:48px;">
+            <h3 class="sec-title">Churn <em>risk</em></h3>
+            <span class="sec-sub">ML scored nightly · threshold 0.65 triggers intervention</span>
+          </div>
+          <div class="big-table">
+            <div class="bt-head" style="grid-template-columns:1.4fr 0.9fr 1fr 0.9fr 0.8fr;">
+              <span>Contact</span><span>Risk</span><span>Driver</span><span>Last purchase</span><span style="text-align:right;">Status</span>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.4fr 0.9fr 1fr 0.9fr 0.8fr;cursor:default;">
+              <div><div style="font-family:var(--serif);font-size:15px;font-variation-settings:'opsz' 60,'wght' 380;">Isabel A.</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">$72 LTV · Spain</div></div>
+              <div><div class="score bad">0.92</div><div class="score-bar"><span class="bad" style="width:92%;"></span></div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);">5mo since open</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">146d ago</div>
+              <div style="text-align:right;"><span class="pill warn">Intervention sent</span></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.4fr 0.9fr 1fr 0.9fr 0.8fr;cursor:default;">
+              <div><div style="font-family:var(--serif);font-size:15px;font-variation-settings:'opsz' 60,'wght' 380;">Chioma N.</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">$138 LTV · Lagos</div></div>
+              <div><div class="score bad">0.84</div><div class="score-bar"><span class="bad" style="width:84%;"></span></div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);">No opens in 60d</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">102d ago</div>
+              <div style="text-align:right;"><span class="pill warn">Queued · WhatsApp</span></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.4fr 0.9fr 1fr 0.9fr 0.8fr;cursor:default;">
+              <div><div style="font-family:var(--serif);font-size:15px;font-variation-settings:'opsz' 60,'wght' 380;">David L.</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">$89 LTV · Brisbane</div></div>
+              <div><div class="score warn">0.61</div><div class="score-bar"><span class="warn" style="width:61%;"></span></div></div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-soft);">Slow shipping complaint</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">20h ago</div>
+              <div style="text-align:right;"><span class="pill">Below threshold</span></div>
+            </div>
+          </div>
+
+          <!-- ESP CONNECTION -->
+          <div class="sec-head" style="margin-top:48px;">
+            <h3 class="sec-title">Email <em>delivery</em></h3>
+            <span class="sec-sub">ESP integration · use yours or platform fallback</span>
+          </div>
+          <div class="big-table">
+            <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;">
+              <div style="padding:22px 20px;border-right:1px solid var(--line);text-align:center;background:linear-gradient(180deg,var(--surface-1),var(--surface));border-right:1px solid var(--line-warm);">
+                <div style="font-family:var(--serif);font-size:17px;font-variation-settings:'opsz' 60,'wght' 380;margin-bottom:8px;">Brevo</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--good);margin-bottom:14px;">98.4% deliverability</div>
+                <span class="pill ok">Connected</span>
+              </div>
+              <div style="padding:22px 20px;border-right:1px solid var(--line);text-align:center;">
+                <div style="font-family:var(--serif);font-size:17px;font-variation-settings:'opsz' 60,'wght' 380;margin-bottom:8px;">Mailchimp</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-bottom:14px;">Industry standard</div>
+                <button class="btn ghost" style="padding:5px 12px;font-size:11px;">Connect</button>
+              </div>
+              <div style="padding:22px 20px;border-right:1px solid var(--line);text-align:center;">
+                <div style="font-family:var(--serif);font-size:17px;font-variation-settings:'opsz' 60,'wght' 380;margin-bottom:8px;">Klaviyo</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-bottom:14px;">For e-commerce</div>
+                <button class="btn ghost" style="padding:5px 12px;font-size:11px;">Connect</button>
+              </div>
+              <div style="padding:22px 20px;border-right:1px solid var(--line);text-align:center;">
+                <div style="font-family:var(--serif);font-size:17px;font-variation-settings:'opsz' 60,'wght' 380;margin-bottom:8px;">Loops</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-bottom:14px;">For SaaS</div>
+                <button class="btn ghost" style="padding:5px 12px;font-size:11px;">Connect</button>
+              </div>
+              <div style="padding:22px 20px;text-align:center;background:var(--bg-1);">
+                <div style="font-family:var(--serif);font-size:17px;font-variation-settings:'opsz' 60,'wght' 380;margin-bottom:8px;">AWS SES</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-bottom:14px;">Platform fallback</div>
+                <span class="pill ok">Always on · transactional</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SEND-TIME HEATMAP -->
+          <div class="sec-head" style="margin-top:48px;">
+            <h3 class="sec-title">Send-time <em>heatmap</em></h3>
+            <span class="sec-sub">Open rates by hour and weekday · per-contact learned</span>
+          </div>
+          <div class="big-table" style="padding:24px 28px;">
+            <div style="display:grid;grid-template-columns:60px repeat(7,1fr);gap:4px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;">
+              <div></div>
+              <div style="text-align:center;color:var(--ink-mute);">Mon</div>
+              <div style="text-align:center;color:var(--ink-mute);">Tue</div>
+              <div style="text-align:center;color:var(--ink-mute);">Wed</div>
+              <div style="text-align:center;color:var(--ink-mute);">Thu</div>
+              <div style="text-align:center;color:var(--ink-mute);">Fri</div>
+              <div style="text-align:center;color:var(--ink-mute);">Sat</div>
+              <div style="text-align:center;color:var(--ink-mute);">Sun</div>
+            </div>
+            <div style="display:grid;grid-template-columns:60px repeat(7,1fr);gap:4px;margin-top:6px;">
+              <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);align-self:center;">6am</div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.06);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.10);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.08);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.10);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.06);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.04);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.04);"></div>
+
+              <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);align-self:center;">9am</div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.32);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.78);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.92);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.74);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.42);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.14);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.10);"></div>
+
+              <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);align-self:center;">12pm</div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.22);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.30);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.36);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.26);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.22);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.18);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.16);"></div>
+
+              <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);align-self:center;">3pm</div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.14);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.20);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.22);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.18);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.16);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.12);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.10);"></div>
+
+              <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);align-self:center;">6pm</div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.18);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.30);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.34);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.28);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.24);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.08);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.06);"></div>
+
+              <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);align-self:center;">9pm</div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.10);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.12);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.14);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.12);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.10);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.04);"></div>
+              <div style="height:32px;border-radius:4px;background:rgba(232,178,96,0.04);"></div>
+            </div>
+            <div style="margin-top:18px;padding-top:14px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.04em;display:flex;justify-content:space-between;">
+              <span>Best window · Tue–Thu, 9–11am local</span>
+              <span>Worst · weekend evenings</span>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -4903,6 +5091,126 @@
                 </div>
               </div>
             </aside>
+          </div>
+
+          <!-- NPS-GATED REVIEW COLLECTION -->
+          <div class="sec-head" style="margin-top:48px;">
+            <h3 class="sec-title">Review collection <em>flow</em></h3>
+            <span class="sec-sub">Two-step NPS gate · happy → public · unhappy → private feedback</span>
+          </div>
+          <div class="big-table" style="padding:32px 36px;">
+            <div style="display:flex;align-items:center;gap:0;justify-content:space-between;flex-wrap:wrap;">
+              <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;min-width:140px;text-align:center;">
+                <div style="width:48px;height:48px;border-radius:50%;background:var(--surface-1);border:1.5px solid var(--line-strong);display:grid;place-items:center;font-family:var(--mono);font-size:10px;color:var(--ink-mute);letter-spacing:.1em;">+3d</div>
+                <div style="font-family:var(--serif);font-size:15px;margin-top:10px;font-variation-settings:'opsz' 60,'wght' 380;">Post-purchase email</div>
+                <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:4px;">"How was your experience?"</div>
+              </div>
+              <div style="flex:1;height:2px;background:var(--line-warm);min-width:24px;margin:24px 8px 0;"></div>
+              <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;min-width:140px;text-align:center;">
+                <div style="width:48px;height:48px;border-radius:50%;background:var(--amber-trace);border:1.5px solid var(--amber);color:var(--amber);display:grid;place-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.1em;">1–5★</div>
+                <div style="font-family:var(--serif);font-size:15px;margin-top:10px;font-variation-settings:'opsz' 60,'wght' 380;">Customer rates</div>
+                <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:4px;">embedded widget</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:flex-start;gap:14px;flex-shrink:0;margin:0 8px;">
+                <div style="display:flex;align-items:center;gap:0;">
+                  <div style="width:24px;height:2px;background:var(--good);"></div>
+                  <span style="font-family:var(--mono);font-size:10px;color:var(--good);letter-spacing:.08em;margin-left:4px;">4–5★</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0;">
+                  <div style="width:24px;height:2px;background:var(--warn);"></div>
+                  <span style="font-family:var(--mono);font-size:10px;color:var(--warn);letter-spacing:.08em;margin-left:4px;">1–3★</span>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:18px;flex-shrink:0;">
+                <div style="display:flex;flex-direction:column;align-items:center;text-align:center;min-width:140px;">
+                  <div style="padding:8px 14px;border-radius:8px;background:rgba(156,184,126,0.08);border:1px solid rgba(156,184,126,0.4);font-family:var(--mono);font-size:10.5px;color:var(--good);letter-spacing:.08em;">→ Google / Trustpilot</div>
+                  <div style="font-family:var(--serif);font-size:13px;color:var(--ink-soft);margin-top:8px;">Public review platform</div>
+                </div>
+                <div style="display:flex;flex-direction:column;align-items:center;text-align:center;min-width:140px;">
+                  <div style="padding:8px 14px;border-radius:8px;background:rgba(212,154,79,0.08);border:1px solid rgba(212,154,79,0.4);font-family:var(--mono);font-size:10.5px;color:var(--warn);letter-spacing:.08em;">→ Internal form</div>
+                  <div style="font-family:var(--serif);font-size:13px;color:var(--ink-soft);margin-top:8px;">Private feedback · you respond</div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:24px;padding-top:18px;border-top:1px dashed var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center;font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.04em;">
+              <span>Last 30d · 38 emails sent · 18 responses · 14 public 5★ · 2 internal complaints (resolved)</span>
+              <span>SMS fallback after 48h unopened</span>
+            </div>
+          </div>
+
+          <!-- SOCIAL PROOF WIDGET PREVIEW -->
+          <div class="sec-head" style="margin-top:48px;">
+            <h3 class="sec-title">Social proof <em>widget</em></h3>
+            <span class="sec-sub">Embed on any site · &lt;50KB · cookie-free · GDPR/NDPR safe</span>
+          </div>
+          <div class="big-table">
+            <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:0;">
+              <!-- WIDGET PREVIEW -->
+              <div style="padding:32px 36px;border-right:1px solid var(--line);background:linear-gradient(180deg,#fafafa,#f2eee5);position:relative;min-height:240px;">
+                <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#888;margin-bottom:14px;">customer's site · embedded widget</div>
+                <div style="background:#fff;border:1px solid #e6dfd0;border-radius:14px;padding:18px 22px;box-shadow:0 8px 24px -8px rgba(0,0,0,0.1);max-width:380px;">
+                  <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+                    <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#C9694F,#E8B260);display:grid;place-items:center;font-family:Georgia,serif;font-size:14px;font-style:italic;color:#fff;">M</div>
+                    <div>
+                      <div style="font-family:Georgia,serif;font-size:14px;color:#222;font-weight:500;">Maya O.</div>
+                      <div style="color:#E8B260;font-size:13px;letter-spacing:2px;">★★★★★</div>
+                    </div>
+                    <div style="margin-left:auto;font-family:'Geist Mono',monospace;font-size:10px;color:#888;">3h ago</div>
+                  </div>
+                  <p style="margin:0;font-family:Georgia,serif;font-size:14px;color:#444;line-height:1.5;font-style:italic;">"Absolutely love the ring I got for my anniversary. Quality is incredible."</p>
+                </div>
+                <div style="margin-top:14px;font-family:'Geist Mono',monospace;font-size:10px;color:#888;text-align:center;">★ 4.9 from 142 reviews · powered by SeenFolio</div>
+              </div>
+              <!-- EMBED SNIPPET -->
+              <div style="padding:32px 28px;">
+                <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:14px;">Embed snippet</div>
+                <pre style="background:var(--bg-1);border:1px solid var(--line);border-radius:8px;padding:14px 16px;font-family:var(--mono);font-size:11px;color:var(--ink);line-height:1.65;margin:0 0 14px;overflow-x:auto;"><span style="color:var(--ink-mute);">&lt;!-- paste above &lt;/body&gt; --&gt;</span>
+&lt;script <span style="color:var(--amber);">src</span>=<span style="color:var(--good);">"https://cdn.seenfolio.com/widget/v1.js"</span>
+        <span style="color:var(--amber);">data-workspace</span>=<span style="color:var(--good);">"sf_live_8h2k…"</span>
+        <span style="color:var(--amber);">data-min-stars</span>=<span style="color:var(--good);">"4"</span>
+        <span style="color:var(--amber);">data-recency</span>=<span style="color:var(--good);">"30d"</span>
+        async&gt;&lt;/script&gt;</pre>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;">
+                  <button class="btn ghost" style="padding:5px 12px;font-size:11px;">Copy snippet</button>
+                  <button class="btn ghost" style="padding:5px 12px;font-size:11px;">Customize styles</button>
+                </div>
+                <div style="border-top:1px dashed var(--line);padding-top:14px;font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.02em;line-height:1.6;">
+                  <div>· 41.2KB gzipped · loads async · no render block</div>
+                  <div>· No cookies · NDPR/GDPR compliant</div>
+                  <div>· Auto-archives reviews older than 24 months</div>
+                  <div>· Versioned URLs · safe to cache forever</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- REVIEW REPLY APPROVAL QUEUE -->
+          <div class="sec-head" style="margin-top:48px;">
+            <h3 class="sec-title">Reply <em>approval queue</em></h3>
+            <span class="sec-sub">2 drafted · pending your nod · 5★ auto-replied within policy</span>
+          </div>
+          <div class="big-table">
+            <div class="bt-head" style="grid-template-columns:1.4fr 2fr 1fr 0.7fr;">
+              <span>Reviewer</span><span>My drafted reply</span><span>Drafted</span><span style="text-align:right;">—</span>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.4fr 2fr 1fr 0.7fr;cursor:default;">
+              <div>
+                <div style="font-family:var(--serif);font-size:15px;font-variation-settings:'opsz' 60,'wght' 380;">Maya O. · 5★</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Google · "Absolutely love the ring…"</div>
+              </div>
+              <div style="font-family:var(--serif);font-size:13.5px;line-height:1.55;color:var(--ink-soft);font-style:italic;font-variation-settings:'opsz' 60,'wght' 350;">"Maya — thank you for taking the time. We pour care into every piece, and hearing it landed for an anniversary means a great deal. — Amara"</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">3h ago</div>
+              <div style="text-align:right;display:flex;gap:6px;justify-content:flex-end;"><button class="btn amber" style="padding:4px 10px;font-size:11px;">Post</button><button class="btn ghost" style="padding:4px 10px;font-size:11px;">Edit</button></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.4fr 2fr 1fr 0.7fr;cursor:default;">
+              <div>
+                <div style="font-family:var(--serif);font-size:15px;font-variation-settings:'opsz' 60,'wght' 380;">David L. · 4★</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Google · "Took longer than expected…"</div>
+              </div>
+              <div style="font-family:var(--serif);font-size:13.5px;line-height:1.55;color:var(--ink-soft);font-style:italic;font-variation-settings:'opsz' 60,'wght' 350;">"David — thanks for the honest review. Three weeks to Brisbane is longer than I'd like, and we're switching couriers for international orders. — Amara"</div>
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);">5h ago</div>
+              <div style="text-align:right;display:flex;gap:6px;justify-content:flex-end;"><button class="btn amber" style="padding:4px 10px;font-size:11px;">Post</button><button class="btn ghost" style="padding:4px 10px;font-size:11px;">Edit</button></div>
+            </div>
           </div>
         </div>
       </div>
@@ -5044,6 +5352,124 @@
                 </div>
               </div>
             </aside>
+          </div>
+
+          <!-- BOT CONFIG -->
+          <div class="sec-head" style="margin-top:48px;">
+            <h3 class="sec-title">Bot <em>configuration</em></h3>
+            <span class="sec-sub">Claude context loaded · 20-message window · then summarize</span>
+          </div>
+          <div class="big-table">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+              <div style="padding:22px 24px;border-right:1px solid var(--line);">
+                <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:10px;">System prompt</div>
+                <div style="background:var(--bg-1);border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-family:var(--serif);font-size:13.5px;line-height:1.6;color:var(--ink-soft);font-style:italic;font-variation-settings:'opsz' 60,'wght' 350;">You are Amara, founder of Silver Jewelry Co. You hand-forge silver in Lagos. Warm, specific, anti-jargon. Never invent answers about engraving — escalate to me. Always offer free shipping over $50 when relevant.</div>
+                <button class="btn ghost" style="padding:6px 12px;font-size:11px;margin-top:14px;">Edit prompt</button>
+              </div>
+              <div style="padding:22px 24px;">
+                <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:14px;">Behavior</div>
+                <div class="pref-row" style="border:0;padding:8px 0;">
+                  <div class="pref-text"><div class="pref-name" style="font-size:14px;">Handoff to human on dissatisfaction</div></div>
+                  <div class="toggle on" data-toggle></div>
+                </div>
+                <div class="pref-row" style="border:0;padding:8px 0;">
+                  <div class="pref-text"><div class="pref-name" style="font-size:14px;">Generate payment links in-chat</div></div>
+                  <div class="toggle on" data-toggle></div>
+                </div>
+                <div class="pref-row" style="border:0;padding:8px 0;">
+                  <div class="pref-text"><div class="pref-name" style="font-size:14px;">Suggest products from catalog</div></div>
+                  <div class="toggle on" data-toggle></div>
+                </div>
+                <div class="pref-row" style="border:0;padding:8px 0;">
+                  <div class="pref-text"><div class="pref-name" style="font-size:14px;">Use template-only mode outside 24h window</div></div>
+                  <div class="toggle on" data-toggle></div>
+                </div>
+                <div style="margin-top:16px;padding-top:14px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);letter-spacing:.04em;line-height:1.6;">
+                  Context limit: 20 messages → summarize earlier turns at 50.<br>
+                  Hand-off keywords: "speak to person", "cancel", "complaint".<br>
+                  Opt-out keywords: "STOP", "Unsubscribe" → opt_in=false forever.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MESSAGE TEMPLATES -->
+          <div class="sec-head" style="margin-top:48px;">
+            <h3 class="sec-title">Message <em>templates</em></h3>
+            <span class="sec-sub">Meta-approved · used outside the 24h customer-service window</span>
+          </div>
+          <div class="big-table">
+            <div class="bt-head" style="grid-template-columns:1.2fr 2.4fr 0.6fr 0.7fr;">
+              <span>Name</span><span>Body</span><span>Status</span><span style="text-align:right;">—</span>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.2fr 2.4fr 0.6fr 0.7fr;cursor:default;">
+              <div><div style="font-family:var(--serif);font-size:15px;font-variation-settings:'opsz' 60,'wght' 380;">abandoned_cart_24h</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">EN · marketing</div></div>
+              <div style="font-family:var(--serif);font-size:13.5px;font-style:italic;color:var(--ink-soft);font-variation-settings:'opsz' 60,'wght' 350;line-height:1.55;">"Hey {{1}}, you left some pieces in your cart at silverjewelry.com. Want me to hold them for 24h? Reply YES."</div>
+              <div><span class="pill ok">Approved</span></div>
+              <div style="text-align:right;"><button class="btn ghost" style="padding:4px 10px;font-size:11px;">Edit</button></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.2fr 2.4fr 0.6fr 0.7fr;cursor:default;">
+              <div><div style="font-family:var(--serif);font-size:15px;font-variation-settings:'opsz' 60,'wght' 380;">post_purchase_3d</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">EN · marketing</div></div>
+              <div style="font-family:var(--serif);font-size:13.5px;font-style:italic;color:var(--ink-soft);font-variation-settings:'opsz' 60,'wght' 350;line-height:1.55;">"Hi {{1}}, just checking — did your order arrive okay? Reply with a thumbs up or let me know if anything's off."</div>
+              <div><span class="pill ok">Approved</span></div>
+              <div style="text-align:right;"><button class="btn ghost" style="padding:4px 10px;font-size:11px;">Edit</button></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.2fr 2.4fr 0.6fr 0.7fr;cursor:default;">
+              <div><div style="font-family:var(--serif);font-size:15px;font-variation-settings:'opsz' 60,'wght' 380;">winback_90d</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">EN · marketing</div></div>
+              <div style="font-family:var(--serif);font-size:13.5px;font-style:italic;color:var(--ink-soft);font-variation-settings:'opsz' 60,'wght' 350;line-height:1.55;">"It's been a while {{1}}. We just released the anniversary collection — saved a piece you'd love. Reply SHOW to see it."</div>
+              <div><span class="pill ok">Approved</span></div>
+              <div style="text-align:right;"><button class="btn ghost" style="padding:4px 10px;font-size:11px;">Edit</button></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.2fr 2.4fr 0.6fr 0.7fr;cursor:default;">
+              <div><div style="font-family:var(--serif);font-size:15px;font-variation-settings:'opsz' 60,'wght' 380;">review_request</div><div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">EN · utility</div></div>
+              <div style="font-family:var(--serif);font-size:13.5px;font-style:italic;color:var(--ink-soft);font-variation-settings:'opsz' 60,'wght' 350;line-height:1.55;">"Hi {{1}}, how's your {{2}} treating you? A short review would mean a lot. Link inside."</div>
+              <div><span class="pill warn">In Meta review · 18h</span></div>
+              <div style="text-align:right;"><button class="btn ghost" style="padding:4px 10px;font-size:11px;">View</button></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.2fr 2.4fr 0.6fr 0.7fr;cursor:default;">
+              <div style="font-family:var(--mono);font-size:11px;color:var(--ink-mute);grid-column:1/-1;letter-spacing:.04em;padding:6px 0;">+ Add template — Meta approval takes 24–48h. Templates can use up to 10 dynamic variables.</div>
+            </div>
+          </div>
+
+          <!-- AUTOMATED SEQUENCE BUILDER -->
+          <div class="sec-head" style="margin-top:48px;">
+            <h3 class="sec-title">Automated <em>sequences</em></h3>
+            <span class="sec-sub">Cart abandonment · post-purchase · reactivation</span>
+          </div>
+          <div class="big-table">
+            <div class="bt-head" style="grid-template-columns:1.6fr 0.9fr 0.9fr 0.9fr 0.7fr;">
+              <span>Sequence</span><span>Trigger</span><span>Enrolled · 30d</span><span>Conversion</span><span style="text-align:right;">Status</span>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.6fr 0.9fr 0.9fr 0.9fr 0.7fr;cursor:default;">
+              <div>
+                <div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Cart abandonment recovery</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Message at 2h · then 24h · then 72h</div>
+              </div>
+              <div style="font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);">cart_abandoned</div>
+              <div style="font-family:var(--serif);font-size:16px;">38</div>
+              <div><div class="score good">31.5%</div></div>
+              <div style="text-align:right;"><span class="pill ok"><span class="dot"></span>Active</span></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.6fr 0.9fr 0.9fr 0.9fr 0.7fr;cursor:default;">
+              <div>
+                <div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Post-purchase follow-up</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Day 3 + day 14 · care guide + review nudge</div>
+              </div>
+              <div style="font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);">first_purchase</div>
+              <div style="font-family:var(--serif);font-size:16px;">63</div>
+              <div><div class="score good">42%</div><div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:2px;">reply rate</div></div>
+              <div style="text-align:right;"><span class="pill ok"><span class="dot"></span>Active</span></div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.6fr 0.9fr 0.9fr 0.9fr 0.7fr;cursor:default;">
+              <div>
+                <div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Dormant customer reactivation</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">90-day inactive · new-collection nudge</div>
+              </div>
+              <div style="font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);">90d_inactive</div>
+              <div style="font-family:var(--serif);font-size:16px;">12</div>
+              <div><div class="score warn">17%</div></div>
+              <div style="text-align:right;"><span class="pill ok"><span class="dot"></span>Active</span></div>
+            </div>
           </div>
         </div>
       </div>
