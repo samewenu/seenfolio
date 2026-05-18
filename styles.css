@@ -22,18 +22,35 @@
   --line: #D0D0C7;
   --line-strong: #151515;
 
-  /* brand */
-  --accent: #F54E00;
-  --accent-soft: #FFE9DD;
-  --accent-deep: #C53B00;
-  --yellow: #F9BD2B;
-  --yellow-soft: #FFF3C9;
-  --teal: #29DBBB;
-  --teal-soft: #C8F5EC;
-  --red: #EF4444;
-  --red-soft: #FDD8D8;
-  --blue: #1D4AFF;
-  --blue-soft: #D7DEFF;
+  /* brand · primary gold (matches alphabeta.seenfolio.com) */
+  --accent: #E9C000;
+  --accent-bright: #FFD63B;
+  --accent-deep: #B89500;
+  --accent-soft: #FBF2C5;
+  --accent-trace: rgba(233, 192, 0, 0.10);
+  --accent-glow: rgba(233, 192, 0, 0.20);
+
+  /* yellow · aliased to primary (keeps existing .mark highlights working) */
+  --yellow: #E9C000;
+  --yellow-soft: #FBF2C5;
+
+  /* brand green family (three depths) */
+  --green: #81A62D;
+  --green-soft: #C4E675;
+  --green-deep: #3E5210;
+
+  /* legacy aliases · still resolve so existing classes keep working */
+  --teal: #81A62D;
+  --teal-soft: #C4E675;
+
+  /* signal semantics retuned to harmonize with the new palette */
+  --good: #81A62D;
+  --warn: #E9C000;
+  --bad: #C44A2A;
+  --red: #C44A2A;
+  --red-soft: #F1D6CB;
+  --blue: #3E5210;
+  --blue-soft: #C4E675;
 
   /* type */
   --font-sans: "Mona Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -176,10 +193,10 @@ button { font: inherit; color: inherit; cursor: pointer; background: transparent
 }
 .btn:active { transform: translate(0, 0); box-shadow: var(--shadow-card-sm); }
 
-.btn.primary { background: var(--accent); color: #fff; }
-.btn.primary:hover { background: var(--accent-deep); }
+.btn.primary { background: var(--accent); color: var(--ink); }
+.btn.primary:hover { background: var(--accent-deep); color: var(--ink); }
 .btn.yellow { background: var(--yellow); color: var(--ink); }
-.btn.teal { background: var(--teal); color: var(--ink); }
+.btn.teal, .btn.green { background: var(--green); color: var(--ink); }
 .btn.ghost {
   background: transparent;
   border-color: transparent;
