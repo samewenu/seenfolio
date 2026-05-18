@@ -8692,12 +8692,13 @@
       t.addEventListener('click', () => t.classList.toggle('on'));
     });
 
-    /* ────────────────── MODE CARDS ────────────────── */
-    const modeGroup = document.querySelector('[data-mode-group]');
-    if (modeGroup) {
-      modeGroup.querySelectorAll('.mode-card').forEach(card => {
+    /* ────────────────── MODE CARDS · visual-only handler ────────────────── */
+    /* (the global setMode hook above is the canonical one) */
+    const _modeGroupVis = document.querySelector('[data-mode-group]');
+    if (_modeGroupVis) {
+      _modeGroupVis.querySelectorAll('.mode-card').forEach(card => {
         card.addEventListener('click', () => {
-          modeGroup.querySelectorAll('.mode-card').forEach(c => c.classList.remove('active'));
+          _modeGroupVis.querySelectorAll('.mode-card').forEach(c => c.classList.remove('active'));
           card.classList.add('active');
         });
       });
