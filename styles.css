@@ -343,15 +343,10 @@ button { font: inherit; color: inherit; cursor: pointer; background: transparent
   gap: 10px;
 }
 .brand-mark {
-  width: 36px; height: 36px;
-  background: var(--accent);
-  border: 2px solid var(--ink);
-  border-radius: 50%;
   display: grid;
   place-items: center;
-  box-shadow: var(--shadow-card-sm);
-  color: #fff;
 }
+.brand-mark svg { display: block; }
 .brand-name {
   font-family: var(--font-sans);
   font-size: 22px;
@@ -360,10 +355,6 @@ button { font: inherit; color: inherit; cursor: pointer; background: transparent
 }
 .brand-name em {
   font-style: normal;
-  color: var(--accent);
-  background: var(--yellow);
-  padding: 0 4px;
-  border-radius: 4px;
 }
 .nav-links {
   display: flex;
