@@ -604,7 +604,22 @@
 
 </main>
 
+<script src="state.js"></script>
 <script>
+  // Hero pickup · pre-fill website + persist region if handed in via URL params
+  (function applyHeroHandoff(){
+    const params = new URLSearchParams(window.location.search);
+    const incomingUrl = params.get('website');
+    const incomingRegion = params.get('region');
+    if (incomingUrl) {
+      const stepTwoInput = document.querySelector('[data-step="2"] .big-input input');
+      if (stepTwoInput) stepTwoInput.value = incomingUrl;
+    }
+    if (incomingRegion && window.SeenFolioState && typeof window.SeenFolioState.set === 'function') {
+      try { window.SeenFolioState.set('onboarding.region', incomingRegion); } catch (_) {}
+    }
+  })();
+
   // chip groups
   document.querySelectorAll('[data-chip-group]').forEach(group => {
     group.querySelectorAll('.chip').forEach(chip => {

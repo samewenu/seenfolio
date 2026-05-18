@@ -41,6 +41,116 @@
   transform: rotate(-3deg); z-index: 2;
 }
 
+/* hero URL-capture bar — primary "get started" entry point */
+.hero-grid > .hero-capture,
+.hero-grid > .hero-capture-foot { grid-column: 1 / -1; }
+.hero-capture {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: stretch;
+  height: 68px;
+  background: var(--bg);
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card-sm);
+  transition: box-shadow .15s, transform .15s;
+  overflow: hidden;
+}
+.hero-capture:focus-within {
+  box-shadow: 4px 4px 0 var(--accent);
+  transform: translate(-1px, -1px);
+}
+.hero-capture-input {
+  border: 0;
+  background: transparent;
+  padding: 0 26px;
+  font-family: var(--font-sans);
+  font-size: 18px;
+  color: var(--ink);
+  outline: none;
+  min-width: 0;
+}
+.hero-capture-input::placeholder { color: var(--ink-mute); }
+.hero-capture-divider {
+  width: 0;
+  border-left: 1.5px solid var(--line);
+  align-self: center;
+  height: 60%;
+}
+.hero-capture-region {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 18px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.hero-capture-region svg { flex-shrink: 0; opacity: 0.7; }
+.hero-capture-region select {
+  border: 0;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-variation-settings: "wght" 600;
+  color: var(--ink);
+  cursor: pointer;
+  padding: 6px 4px;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M2 4l3 3 3-3' fill='none' stroke='%23151515' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  padding-right: 18px;
+}
+.hero-capture-cta {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  padding: 0 30px;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-variation-settings: "wght" 720;
+  letter-spacing: -0.005em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background .12s;
+}
+.hero-capture-cta:hover { background: var(--accent-deep); }
+.hero-capture-cta:active { background: var(--accent-deep); }
+.hero-capture-foot {
+  text-align: center;
+  margin: 14px 0 0;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  color: var(--ink-mute);
+}
+@media (max-width: 700px) {
+  .hero-capture {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 56px;
+    height: auto;
+    border-radius: 12px;
+  }
+  .hero-capture-input {
+    padding: 0 18px;
+    border-bottom: 1.5px solid var(--line);
+  }
+  .hero-capture-divider { display: none; }
+  .hero-capture-region {
+    border-bottom: 1.5px solid var(--line);
+    padding: 0 18px;
+  }
+  .hero-capture-cta {
+    justify-content: center;
+    padding: 14px 0;
+  }
+}
+
 /* problem section */
 .tools-stack { position: relative; min-height: 460px; }
 .tool-sticker {
@@ -263,6 +373,39 @@
       </div>
       <div class="hero-stamp">100% reversible</div>
     </div>
+
+    <!-- URL capture · onboarding entry-point -->
+    <form class="hero-capture" data-hero-capture autocomplete="off">
+      <input class="hero-capture-input" type="text" name="website"
+             placeholder="Enter your website URL..." autocomplete="url"
+             aria-label="Your website URL" />
+      <div class="hero-capture-divider" aria-hidden="true"></div>
+      <label class="hero-capture-region">
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/>
+        </svg>
+        <select name="region" aria-label="Region">
+          <option value="worldwide">Worldwide</option>
+          <option value="africa">Africa</option>
+          <option value="europe">Europe</option>
+          <option value="north-america">North America</option>
+          <option value="asia">Asia</option>
+          <option value="latam">Latin America</option>
+        </select>
+      </label>
+      <button class="hero-capture-cta" type="submit">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24"
+             fill="none" stroke="currentColor" stroke-width="2.4"
+             stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7"/>
+          <path d="M21 21l-4.3-4.3"/>
+        </svg>
+        Get started
+      </button>
+    </form>
+    <p class="hero-capture-foot">Free · No credit card</p>
   </div>
 </header>
 
@@ -560,6 +703,22 @@
     <span>Made in Lagos · operated from London</span>
   </div>
 </footer>
+
+<script>
+  // Hero URL-capture → hand off to onboarding with website + region params
+  document.querySelector('[data-hero-capture]')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const raw = (form.website.value || '').trim();
+    const url = raw.replace(/^https?:\/\//i, '').replace(/\/+$/, '');
+    const region = form.region.value;
+    const params = new URLSearchParams();
+    if (url) params.set('website', url);
+    if (region && region !== 'worldwide') params.set('region', region);
+    const qs = params.toString();
+    window.location.href = 'onboarding.html' + (qs ? '?' + qs : '');
+  });
+</script>
 
 </body>
 </html>
