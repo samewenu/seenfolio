@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Trust &amp; security — SeenFolio</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+.hero { padding: 64px 0 40px; text-align: center; }
+.hero h1 { max-width: 22ch; margin: 18px auto; }
+.eyebrow { display: inline-block; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); padding: 5px 12px; border: 2px solid var(--accent); border-radius: 999px; background: var(--accent-soft); margin-bottom: 22px; }
+.section { padding: 64px 0; }
+.section h2 { max-width: 22ch; margin-bottom: 18px; }
+.section h2 em { font-style: normal; background: var(--yellow); padding: 0 6px; }
+.cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-bottom: 32px; }
+.tcard { background: var(--bg-card); border: 2px solid var(--ink); border-radius: 14px; padding: 24px; box-shadow: var(--shadow-card); }
+.tcard:nth-child(1) { background: var(--accent-soft); }
+.tcard:nth-child(2) { background: var(--yellow-soft, #FFF3C9); }
+.tcard:nth-child(3) { background: var(--teal-soft, #C8F5EC); }
+.tcard h3 { font-family: var(--font-sans); font-size: 19px; font-variation-settings: "wght" 720; margin: 0 0 10px; }
+.tcard p { margin: 0 0 8px; font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
+.list { font-family: var(--font-mono); font-size: 13px; line-height: 1.9; color: var(--ink-soft); }
+.list li::before { content: "✓ "; color: var(--good); font-variation-settings: "wght" 800; }
+.list li { list-style: none; padding-left: 0; }
+.compliance-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.badge-box { padding: 22px; text-align: center; background: var(--bg-card); border: 2px solid var(--ink); border-radius: 14px; box-shadow: var(--shadow-card-sm); }
+.badge-box .lbl { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--ink-mute); margin-bottom: 4px; }
+.badge-box .name { font-family: var(--font-sans); font-size: 18px; font-variation-settings: "wght" 800; }
+@media (max-width: 920px) { .nav-links { display: none; } .cards-grid, .compliance-row { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .cards-grid, .compliance-row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><div class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div><div class="brand-name">Seen<em>Folio</em></div></a>
+    <div class="nav-links"><a href="index.html#how-it-works">How it works</a><a href="pricing.html">Pricing</a><a href="docs.html">Docs</a><a class="active" href="trust.html">Trust</a></div>
+    <div class="nav-cta"><a class="btn ghost" href="sign-in.html">Sign in</a><a class="btn primary" href="sign-in.html?signup=true">Start free →</a></div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <span class="eyebrow">Trust &amp; security</span>
+  <h1 class="h1">Your data lives <span class="mark">where you said it should</span>.</h1>
+  <p class="lede">Built for businesses in regulated markets (NDPR · GDPR). Region pinning, RLS-isolated tenancy, encrypted credentials, and a public undo guarantee.</p>
+</header>
+
+<section class="section wrap">
+  <span class="eyebrow">Architecture</span>
+  <h2 class="h2">Three things we got <em>right by default</em>.</h2>
+  <div class="cards-grid">
+    <div class="tcard"><h3>Per-tenant data isolation</h3><p>Postgres Row-Level Security enforces workspace_id on every query. Application-layer enforcement too — defense in depth.</p><ul class="list"><li>RLS policies on every table</li><li>Per-service DB roles</li><li>Tested against cross-tenant reads</li></ul></div>
+    <div class="tcard"><h3>Encrypted credentials</h3><p>OAuth tokens for Google/Meta/Shopify and your API keys are AES-256-GCM encrypted at rest. Master key lives outside the database.</p><ul class="list"><li>AES-256-GCM at rest</li><li>Annual key rotation</li><li>Refresh rotation on every use</li></ul></div>
+    <div class="tcard"><h3>Region pinning</h3><p>Your data stays in your chosen region (EU-West or US-East). Sub-processors are listed publicly and DPA-bound.</p><ul class="list"><li>Single-region by default</li><li>No cross-region replication</li><li>Hetzner-hosted compute + DB</li></ul></div>
+  </div>
+</section>
+
+<section class="section wrap">
+  <span class="eyebrow">Compliance</span>
+  <h2 class="h2">The <em>certifications</em> and the <em>spirit</em>.</h2>
+  <div class="compliance-row">
+    <div class="badge-box"><div class="lbl">EU</div><div class="name">GDPR</div></div>
+    <div class="badge-box"><div class="lbl">Nigeria</div><div class="name">NDPR</div></div>
+    <div class="badge-box"><div class="lbl">In progress</div><div class="name">SOC 2 Type II</div></div>
+    <div class="badge-box"><div class="lbl">Standard</div><div class="name">ISO 27001</div></div>
+  </div>
+  <p class="lede" style="margin-top:32px;max-width:60ch;">We publish our sub-processor list, our DPA, and our data-retention defaults. Customers on Enterprise plans get a signed DPA + custom region pinning.</p>
+</section>
+
+<section class="section wrap">
+  <span class="eyebrow">Our promise</span>
+  <h2 class="h2">The <em>undo guarantee</em>.</h2>
+  <div class="cards-grid">
+    <div class="tcard" style="background: var(--ink); color: var(--bg);"><h3 style="color: var(--bg);">100% reversible</h3><p style="color: var(--bg); opacity: 0.85;">Any content patch, ad-budget shift, email send, or autonomous action can be undone within 24 hours. We keep version history for 90 days.</p></div>
+    <div class="tcard" style="background: var(--ink); color: var(--bg);"><h3 style="color: var(--bg);">Token refunds on undo</h3><p style="color: var(--bg); opacity: 0.85;">If you undo something within 24 hours, you get those tokens back. We're not in the business of being paid for work you reverted.</p></div>
+    <div class="tcard" style="background: var(--ink); color: var(--bg);"><h3 style="color: var(--bg);">Performance auto-protect</h3><p style="color: var(--bg); opacity: 0.85;">If a patch hurts your Core Web Vitals, we automatically disable it and tell you. Speed beats SEO; we know.</p></div>
+  </div>
+</section>
+
+<section class="section wrap">
+  <span class="eyebrow">Operational</span>
+  <h2 class="h2">Uptime &amp; <em>incident response</em>.</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+    <div class="tcard"><h3>99.9% target uptime</h3><p>Live status page at <a href="status.html" style="color:var(--accent);border-bottom:1.5px solid var(--accent);">status.seenfolio.com</a>. Three-month trailing uptime: <strong>99.97%</strong>.</p></div>
+    <div class="tcard"><h3>Public incidents</h3><p>We post-mortem every Sev1 incident publicly within 5 business days. No blameless theater — what failed and what we changed.</p></div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col"><a class="brand" href="index.html" style="margin-bottom:14px;"><div class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div><div class="brand-name">Seen<em>Folio</em></div></a></div>
+    <div class="footer-col"><h5>Product</h5><a href="index.html#engines">Engines</a><a href="pricing.html">Pricing</a><a href="docs.html">Docs</a></div>
+    <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="customers.html">Customers</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h5>Resources</h5><a href="changelog.html">Changelog</a><a href="status.html">Status</a><a href="trust.html">Trust</a><a href="blog.html">Blog</a></div>
+    <div class="footer-col"><h5>Legal</h5><a href="#">Terms</a><a href="#">Privacy</a><a href="#">DPA</a></div>
+  </div>
+  <div class="footer-meta"><span>© SeenFolio · Idylabs LTD · 2026</span><span>Made in Lagos</span></div>
+</footer>
+</body>
+</html>

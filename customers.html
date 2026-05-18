@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Customers — SeenFolio</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+.hero { padding: 64px 0 40px; text-align: center; }
+.hero h1 { max-width: 24ch; margin: 18px auto; }
+.eyebrow { display: inline-block; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); padding: 5px 12px; border: 2px solid var(--accent); border-radius: 999px; background: var(--accent-soft); margin-bottom: 22px; }
+.case-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; padding-bottom: 80px; }
+.case { background: var(--bg-card); border: 2px solid var(--ink); border-radius: 18px; padding: 28px 32px; box-shadow: var(--shadow-card); position: relative; }
+.case:nth-child(1) { background: var(--yellow-soft, #FFF3C9); transform: rotate(-0.8deg); }
+.case:nth-child(2) { background: var(--accent-soft); transform: rotate(0.6deg); }
+.case:nth-child(3) { background: var(--teal-soft, #C8F5EC); transform: rotate(-0.5deg); }
+.case:nth-child(4) { background: var(--bg-card); transform: rotate(0.4deg); }
+.case:nth-child(5) { background: var(--yellow-soft, #FFF3C9); transform: rotate(0.7deg); }
+.case:nth-child(6) { background: var(--accent-soft); transform: rotate(-0.9deg); }
+.case .badge { display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); background: var(--bg-card); padding: 4px 10px; border-radius: 999px; border: 1.5px solid var(--ink); margin-bottom: 14px; }
+.case h3 { font-family: var(--font-sans); font-size: 26px; font-variation-settings: "wght" 800; letter-spacing: -0.02em; margin: 0 0 10px; }
+.case .stat-row { display: flex; gap: 18px; margin: 18px 0 14px; }
+.case .stat-row b { font-family: var(--font-hand); font-size: 32px; color: var(--accent); display: block; line-height: 1; }
+.case .stat-row span { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; color: var(--ink-soft); }
+.case blockquote { font-family: var(--font-sans); font-size: 15px; line-height: 1.5; font-style: italic; font-variation-settings: "wght" 500; margin: 0 0 14px; padding: 0; }
+.case cite { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-mute); font-style: normal; }
+.section { padding: 64px 0; }
+.section h2 { max-width: 22ch; margin-bottom: 18px; }
+.section h2 em { font-style: normal; background: var(--yellow); padding: 0 6px; }
+@media (max-width: 920px) { .nav-links { display: none; } .case-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><div class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div><div class="brand-name">Seen<em>Folio</em></div></a>
+    <div class="nav-links"><a href="index.html#how-it-works">How it works</a><a href="index.html#engines">Engines</a><a href="pricing.html">Pricing</a><a href="docs.html">Docs</a><a class="active" href="customers.html">Customers</a></div>
+    <div class="nav-cta"><a class="btn ghost" href="sign-in.html">Sign in</a><a class="btn primary" href="sign-in.html?signup=true">Start free →</a></div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <span class="eyebrow">Customer stories</span>
+  <h1 class="h1">What happens when <span class="mark">Sage takes over</span>.</h1>
+  <p class="lede">Six real businesses. Six different markets. One pattern: less time on tools, more revenue.</p>
+</header>
+
+<div class="wrap case-grid">
+  <article class="case">
+    <span class="badge">E-commerce · Lagos</span>
+    <h3>Silver Jewelry Co</h3>
+    <div class="stat-row"><div><b>+31%</b><span>revenue / 6 weeks</span></div><div><b>-5</b><span>tools cancelled</span></div><div><b>10×</b><span>AI citations</span></div></div>
+    <blockquote>"I cancelled five tools the day I signed up. Six weeks later my revenue was up 31% and I hadn't touched a single setting."</blockquote>
+    <cite>— Amara O. · Founder</cite>
+  </article>
+  <article class="case">
+    <span class="badge">SaaS · London</span>
+    <h3>Northstar Analytics</h3>
+    <div class="stat-row"><div><b>-38%</b><span>CAC blended</span></div><div><b>+22</b><span>signups/week</span></div><div><b>14</b><span>blog posts auto-written</span></div></div>
+    <blockquote>"SeenFolio's BI engine caught a Meta-Google misallocation in 4 days. Paid for itself in week one."</blockquote>
+    <cite>— Devon W. · Head of Growth</cite>
+  </article>
+  <article class="case">
+    <span class="badge">Apparel · Accra</span>
+    <h3>Kente Threads</h3>
+    <div class="stat-row"><div><b>+47%</b><span>WhatsApp orders</span></div><div><b>$0</b><span>spent on support staff</span></div><div><b>92%</b><span>bot resolution rate</span></div></div>
+    <blockquote>"The WhatsApp bot recovers about 12 carts a week for us. That's a whole side of payroll we don't need anymore."</blockquote>
+    <cite>— Akosua M. · Owner</cite>
+  </article>
+  <article class="case">
+    <span class="badge">Beauty · Cape Town</span>
+    <h3>Tilde Skincare</h3>
+    <div class="stat-row"><div><b>#2</b><span>in ChatGPT for "natural skincare SA"</span></div><div><b>+18%</b><span>organic traffic</span></div><div><b>3 mo</b><span>to rank from zero</span></div></div>
+    <blockquote>"We didn't even know GEO was a thing. Now people find us through Perplexity more than Google."</blockquote>
+    <cite>— Naledi T. · CMO</cite>
+  </article>
+  <article class="case">
+    <span class="badge">Subscription · Nairobi</span>
+    <h3>Daily Mwangi Coffee</h3>
+    <div class="stat-row"><div><b>-22%</b><span>churn (90d cohort)</span></div><div><b>$340</b><span>recovered weekly</span></div><div><b>89%</b><span>welcome series open rate</span></div></div>
+    <blockquote>"The retention engine alone makes this worth it. Churn went from 18% to 14% in a quarter."</blockquote>
+    <cite>— Kamau N. · Co-founder</cite>
+  </article>
+  <article class="case">
+    <span class="badge">Marketplace · Cairo</span>
+    <h3>Souq Hand</h3>
+    <div class="stat-row"><div><b>4 hrs</b><span>saved per day</span></div><div><b>40+</b><span>seller listings auto-optimized</span></div><div><b>+9%</b><span>conversion lift</span></div></div>
+    <blockquote>"I used to spend mornings editing product titles. Sage does it overnight, with better keywords than I'd pick."</blockquote>
+    <cite>— Yasmin K. · Operator</cite>
+  </article>
+</div>
+
+<section class="section wrap" style="text-align:center;">
+  <h2 class="h2" style="margin:0 auto 18px;">Add your <em>logo</em> here.</h2>
+  <p class="lede" style="max-width:50ch;margin:0 auto 28px;">Start free. 100 tokens. No credit card. If we can't show results in 30 days, refund and we'll buy you coffee.</p>
+  <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+    <a class="btn primary lg" href="sign-in.html?signup=true">Start free →</a>
+    <a class="btn lg" href="contact.html">Talk to sales</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col"><a class="brand" href="index.html" style="margin-bottom:14px;"><div class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div><div class="brand-name">Seen<em>Folio</em></div></a></div>
+    <div class="footer-col"><h5>Product</h5><a href="index.html#engines">Engines</a><a href="pricing.html">Pricing</a><a href="docs.html">Docs</a></div>
+    <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="customers.html">Customers</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h5>Resources</h5><a href="changelog.html">Changelog</a><a href="status.html">Status</a><a href="trust.html">Trust</a><a href="blog.html">Blog</a></div>
+    <div class="footer-col"><h5>Legal</h5><a href="#">Terms</a><a href="#">Privacy</a><a href="#">DPA</a></div>
+  </div>
+  <div class="footer-meta"><span>© SeenFolio · Idylabs LTD · 2026</span><span>Made in Lagos</span></div>
+</footer>
+</body>
+</html>

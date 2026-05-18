@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact &amp; careers — SeenFolio</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+.hero { padding: 64px 0 40px; text-align: center; }
+.hero h1 { max-width: 22ch; margin: 18px auto; }
+.eyebrow { display: inline-block; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); padding: 5px 12px; border: 2px solid var(--accent); border-radius: 999px; background: var(--accent-soft); margin-bottom: 22px; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding-bottom: 80px; }
+.contact-form { background: var(--bg-card); border: 2px solid var(--ink); border-radius: 18px; padding: 32px; box-shadow: var(--shadow-card); }
+.contact-form h2 { font-family: var(--font-sans); font-size: 24px; font-variation-settings: "wght" 800; letter-spacing: -0.018em; margin: 0 0 18px; }
+.field { margin-bottom: 16px; }
+.field label { display: block; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 8px; }
+.field input, .field textarea, .field select {
+  width: 100%; padding: 12px 14px; border: 2px solid var(--ink); border-radius: 10px;
+  background: var(--bg); font-family: var(--font-sans); font-size: 15px; outline: none;
+}
+.field input:focus, .field textarea:focus, .field select:focus { box-shadow: 4px 4px 0 var(--accent); border-color: var(--accent); }
+.field textarea { min-height: 120px; resize: vertical; }
+.contact-form .btn { width: 100%; justify-content: center; padding: 14px; font-size: 15px; }
+.right h2 { font-family: var(--font-sans); font-size: 22px; font-variation-settings: "wght" 720; margin: 0 0 18px; letter-spacing: -0.012em; }
+.email-card, .office-card, .role-card { background: var(--bg-card); border: 2px solid var(--ink); border-radius: 14px; padding: 18px 22px; margin-bottom: 12px; box-shadow: var(--shadow-card-sm); }
+.email-card .email { font-family: var(--font-mono); font-size: 13px; color: var(--accent); letter-spacing: 0.02em; }
+.office-card { background: var(--yellow); }
+.office-card h3 { font-family: var(--font-sans); font-size: 17px; font-variation-settings: "wght" 720; margin: 0 0 6px; }
+.office-card .addr { font-size: 13.5px; color: var(--ink); line-height: 1.55; }
+.role-card { display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+.role-card .info { font-family: var(--font-sans); font-size: 15px; font-variation-settings: "wght" 700; }
+.role-card .info span { display: block; font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-mute); margin-top: 4px; }
+.role-card .btn { padding: 7px 14px; font-size: 12px; }
+@media (max-width: 920px) { .nav-links { display: none; } .split { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><div class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div><div class="brand-name">Seen<em>Folio</em></div></a>
+    <div class="nav-links"><a href="index.html#how-it-works">How it works</a><a href="pricing.html">Pricing</a><a href="docs.html">Docs</a><a class="active" href="contact.html">Contact</a></div>
+    <div class="nav-cta"><a class="btn ghost" href="sign-in.html">Sign in</a><a class="btn primary" href="sign-in.html?signup=true">Start free →</a></div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <span class="eyebrow">Talk to us</span>
+  <h1 class="h1">Drop a note. We <span class="mark">always reply</span>.</h1>
+</header>
+
+<div class="wrap split">
+  <div class="contact-form">
+    <h2>Tell us what you're after.</h2>
+    <div class="field"><label>Your email</label><input type="email" placeholder="amara@example.com" /></div>
+    <div class="field"><label>About</label><select><option>I'm evaluating SeenFolio</option><option>I'm a customer with a question</option><option>I'm pitching a partnership</option><option>I'm a journalist</option><option>I'm applying for a role</option><option>Other</option></select></div>
+    <div class="field"><label>Message</label><textarea placeholder="Tell us what's on your mind."></textarea></div>
+    <button class="btn primary">Send · we reply in 24h</button>
+  </div>
+
+  <div class="right">
+    <h2>Direct lines</h2>
+    <div class="email-card"><div style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.14em;color:var(--ink-mute);margin-bottom:4px;">SALES</div><div class="email">sales@seenfolio.com</div></div>
+    <div class="email-card"><div style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.14em;color:var(--ink-mute);margin-bottom:4px;">SUPPORT</div><div class="email">help@seenfolio.com</div></div>
+    <div class="email-card"><div style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.14em;color:var(--ink-mute);margin-bottom:4px;">SECURITY</div><div class="email">security@seenfolio.com</div></div>
+    <div class="email-card"><div style="font-family:var(--font-mono);font-size:10.5px;letter-spacing:0.14em;color:var(--ink-mute);margin-bottom:4px;">PRESS</div><div class="email">press@seenfolio.com</div></div>
+
+    <div class="office-card"><h3>Lagos · workshop</h3><div class="addr">14, Akin Adesola St · Victoria Island<br>Lagos · Nigeria</div></div>
+
+    <h2 style="margin-top:32px;">Open roles · 4</h2>
+    <div class="role-card"><div class="info">Senior backend engineer<span>Remote · GMT±3 · 50% Lagos</span></div><a href="#" class="btn">Apply</a></div>
+    <div class="role-card"><div class="info">ML engineer · churn / attribution<span>Remote · GMT±5</span></div><a href="#" class="btn">Apply</a></div>
+    <div class="role-card"><div class="info">Product designer · app + brand<span>Lagos preferred</span></div><a href="#" class="btn">Apply</a></div>
+    <div class="role-card"><div class="info">Customer engineer · Africa lead<span>Lagos · Nairobi · Accra</span></div><a href="#" class="btn">Apply</a></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col"><a class="brand" href="index.html" style="margin-bottom:14px;"><div class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div><div class="brand-name">Seen<em>Folio</em></div></a></div>
+    <div class="footer-col"><h5>Product</h5><a href="index.html#engines">Engines</a><a href="pricing.html">Pricing</a><a href="docs.html">Docs</a></div>
+    <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="customers.html">Customers</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h5>Resources</h5><a href="changelog.html">Changelog</a><a href="status.html">Status</a><a href="trust.html">Trust</a><a href="blog.html">Blog</a></div>
+    <div class="footer-col"><h5>Legal</h5><a href="#">Terms</a><a href="#">Privacy</a><a href="#">DPA</a></div>
+  </div>
+  <div class="footer-meta"><span>© SeenFolio · Idylabs LTD · 2026</span><span>Made in Lagos</span></div>
+</footer>
+</body>
+</html>

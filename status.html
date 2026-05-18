@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Status — SeenFolio</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+.hero { padding: 64px 0 40px; text-align: center; }
+.hero h1 { max-width: 24ch; margin: 18px auto; }
+.eyebrow { display: inline-block; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); padding: 5px 12px; border: 2px solid var(--accent); border-radius: 999px; background: var(--accent-soft); margin-bottom: 22px; }
+.overall { padding: 28px 32px; background: var(--teal); border: 2px solid var(--ink); border-radius: 18px; box-shadow: var(--shadow-card-lg); display: flex; align-items: center; gap: 18px; max-width: 720px; margin: 0 auto 36px; }
+.overall .ball { width: 16px; height: 16px; border-radius: 50%; background: #0f8a5a; box-shadow: 0 0 0 4px rgba(0,0,0,0.1); }
+.overall .label { font-family: var(--font-sans); font-size: 22px; font-variation-settings: "wght" 800; flex: 1; }
+.overall .uptime { font-family: var(--font-mono); font-size: 13px; color: var(--ink); }
+.services { padding-bottom: 64px; max-width: 720px; margin: 0 auto; }
+.service-row { padding: 18px 22px; background: var(--bg-card); border: 2px solid var(--ink); border-radius: 12px; margin-bottom: 10px; box-shadow: var(--shadow-card-sm); display: flex; align-items: center; gap: 16px; }
+.service-row .ball { width: 12px; height: 12px; border-radius: 50%; background: #1F8A65; }
+.service-row .ball.degraded { background: var(--warn); }
+.service-row .ball.outage { background: var(--bad); }
+.service-row .name { font-family: var(--font-sans); font-size: 16px; font-variation-settings: "wght" 700; flex: 1; }
+.service-row .meta { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-mute); }
+.uptime-bar { display: flex; gap: 2px; flex: 0 0 auto; }
+.uptime-bar span { width: 3px; height: 22px; background: #1F8A65; border-radius: 1px; }
+.uptime-bar span.degraded { background: var(--warn); }
+.uptime-bar span.outage { background: var(--bad); }
+.incidents { padding: 32px 0 80px; max-width: 720px; margin: 0 auto; }
+.incident { padding: 18px 22px; background: var(--bg-card); border: 2px solid var(--ink); border-radius: 12px; margin-bottom: 10px; box-shadow: var(--shadow-card-sm); }
+.incident.resolved { opacity: 0.7; }
+.incident .meta { display: flex; gap: 10px; align-items: center; margin-bottom: 6px; }
+.incident h4 { font-family: var(--font-sans); font-size: 17px; font-variation-settings: "wght" 720; margin: 0 0 6px; }
+.incident p { margin: 0; font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+.tag-mini { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; padding: 3px 9px; border-radius: 999px; border: 1.5px solid var(--ink); }
+.tag-mini.resolved { background: var(--teal); color: var(--ink); }
+.tag-mini.degraded { background: var(--yellow); color: var(--ink); }
+.tag-mini.sev1 { background: var(--bad); color: #fff; }
+@media (max-width: 920px) { .nav-links { display: none; } }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><div class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div><div class="brand-name">Seen<em>Folio</em></div></a>
+    <div class="nav-links"><a href="index.html#how-it-works">How it works</a><a href="pricing.html">Pricing</a><a href="docs.html">Docs</a><a class="active" href="status.html">Status</a></div>
+    <div class="nav-cta"><a class="btn ghost" href="sign-in.html">Sign in</a><a class="btn primary" href="sign-in.html?signup=true">Start free →</a></div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <span class="eyebrow">System status</span>
+  <h1 class="h1">Everything is <span class="mark">running fine</span>.</h1>
+</header>
+
+<div class="wrap">
+  <div class="overall">
+    <div class="ball"></div>
+    <div class="label">All systems operational</div>
+    <div class="uptime">99.97% · trailing 90d</div>
+  </div>
+
+  <div class="services">
+    <div class="service-row"><div class="ball"></div><div class="name">API server (api.seenfolio.com)</div><div class="meta">10ms · last hour</div><div class="uptime-bar" aria-label="last 30 days"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+    <div class="service-row"><div class="ball"></div><div class="name">Frontend (app.seenfolio.com)</div><div class="meta">142ms · last hour</div><div class="uptime-bar"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+    <div class="service-row"><div class="ball"></div><div class="name">Worker queues (BullMQ)</div><div class="meta">DLQ depth · 3 jobs</div><div class="uptime-bar"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="degraded"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+    <div class="service-row"><div class="ball"></div><div class="name">ML sidecar (Python)</div><div class="meta">churn model trained 2h ago</div><div class="uptime-bar"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+    <div class="service-row"><div class="ball"></div><div class="name">PostgreSQL · primary</div><div class="meta">connections · 38 / 200</div><div class="uptime-bar"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+    <div class="service-row"><div class="ball degraded"></div><div class="name">Meta Marketing API (external)</div><div class="meta">elevated latency · their issue</div><div class="uptime-bar"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span class="degraded"></span><span class="degraded"></span><span class="degraded"></span><span class="degraded"></span></div></div>
+    <div class="service-row"><div class="ball"></div><div class="name">BunnyCDN (assets)</div><div class="meta">cache hit · 98.4%</div><div class="uptime-bar"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+  </div>
+
+  <h2 style="font-family:var(--font-sans);font-size:24px;font-variation-settings:'wght' 800;letter-spacing:-0.018em;margin:32px 0 16px;">Recent <em style="font-style:normal;background:var(--yellow);padding:0 6px;">incidents</em></h2>
+  <div class="incidents">
+    <div class="incident"><div class="meta"><span class="tag-mini degraded">Investigating</span><span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-mute);">May 17, 14:22 UTC</span></div><h4>Meta Marketing API latency elevated</h4><p>We're seeing 3–5× normal latency on Meta API calls. Auto-retries are absorbing it; affected workspaces will see brief lag in ad metrics. Meta has acknowledged on their side.</p></div>
+    <div class="incident resolved"><div class="meta"><span class="tag-mini resolved">Resolved</span><span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-mute);">May 9 · 47min duration</span></div><h4>Worker queue DLQ spike</h4><p>Claude API rate-limited harder than usual during a US-morning content sync window. Retries exhausted on 14 jobs. Manual retry succeeded all. Implementing tighter per-workspace rate-limiting.</p></div>
+    <div class="incident resolved"><div class="meta"><span class="tag-mini resolved">Resolved</span><span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-mute);">April 28 · 18min duration</span></div><h4>Brief frontend 500s after deploy</h4><p>New Mona Sans font load triggered a CSP block on 3% of customer sites. Rolled back, fixed CSP directive, redeployed.</p></div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col"><a class="brand" href="index.html" style="margin-bottom:14px;"><div class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div><div class="brand-name">Seen<em>Folio</em></div></a></div>
+    <div class="footer-col"><h5>Product</h5><a href="index.html#engines">Engines</a><a href="pricing.html">Pricing</a><a href="docs.html">Docs</a></div>
+    <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="customers.html">Customers</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h5>Resources</h5><a href="changelog.html">Changelog</a><a href="status.html">Status</a><a href="trust.html">Trust</a><a href="blog.html">Blog</a></div>
+    <div class="footer-col"><h5>Legal</h5><a href="#">Terms</a><a href="#">Privacy</a><a href="#">DPA</a></div>
+  </div>
+  <div class="footer-meta"><span>© SeenFolio · Idylabs LTD · 2026</span><span>Made in Lagos</span></div>
+</footer>
+</body>
+</html>

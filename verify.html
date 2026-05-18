@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Verify email — SeenFolio</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+body { min-height: 100vh; display: grid; place-items: center; padding: 32px; }
+.shell { max-width: 520px; width: 100%; background: var(--bg-card); border: 2px solid var(--ink); border-radius: 18px; box-shadow: 6px 6px 0 var(--ink); padding: 40px 44px; text-align: center; }
+.shell .brand { margin: 0 auto 22px; justify-content: center; }
+.sage-wrap { width: 180px; height: 180px; margin: 0 auto 14px; }
+.shell h1 { font-family: var(--font-sans); font-size: 32px; font-variation-settings: "wght" 800; letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 12px; }
+.shell h1 em { font-style: normal; background: var(--yellow); padding: 0 6px; }
+.shell p { font-family: var(--font-sans); font-size: 15px; color: var(--ink-soft); line-height: 1.55; margin: 0 0 28px; }
+.code-row { display: flex; gap: 10px; justify-content: center; margin-bottom: 24px; }
+.code-cell { width: 52px; height: 60px; border: 2px solid var(--ink); border-radius: 10px; background: var(--bg); text-align: center; font-family: var(--font-sans); font-size: 28px; font-variation-settings: "wght" 800; box-shadow: var(--shadow-card-sm); outline: none; }
+.code-cell:focus { box-shadow: 4px 4px 0 var(--accent); border-color: var(--accent); }
+.btn { width: 100%; justify-content: center; padding: 14px; font-size: 16px; margin-bottom: 14px; }
+.resend { font-family: var(--font-mono); font-size: 12px; color: var(--ink-mute); }
+.resend a { color: var(--accent); border-bottom: 1.5px solid var(--accent); }
+</style>
+</head>
+<body>
+<main class="shell">
+  <a class="brand" href="index.html">
+    <div class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div>
+    <div class="brand-name">Seen<em>Folio</em></div>
+  </a>
+  <div class="sage-wrap"><svg viewBox="0 0 260 220" width="100%"><use href="sage.svg#sage-ribbon"/></svg></div>
+  <h1>Verify your <em>email</em>.</h1>
+  <p>We sent a 6-digit code to <strong>amara@silverjewelry.com</strong>. Type it in below.</p>
+  <div class="code-row">
+    <input class="code-cell" maxlength="1" value="4" />
+    <input class="code-cell" maxlength="1" value="8" />
+    <input class="code-cell" maxlength="1" value="2" />
+    <input class="code-cell" maxlength="1" />
+    <input class="code-cell" maxlength="1" />
+    <input class="code-cell" maxlength="1" />
+  </div>
+  <a href="onboarding.html" class="btn primary">Verify &amp; continue →</a>
+  <p class="resend">Didn't get it? <a href="#">Resend in 24s</a></p>
+</main>
+</body>
+</html>

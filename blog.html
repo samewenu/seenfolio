@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blog — SeenFolio</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+.hero { padding: 64px 0 40px; text-align: center; }
+.hero h1 { max-width: 22ch; margin: 18px auto; }
+.eyebrow { display: inline-block; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); padding: 5px 12px; border: 2px solid var(--accent); border-radius: 999px; background: var(--accent-soft); margin-bottom: 22px; }
+.featured { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; padding: 40px; background: var(--ink); color: var(--bg); border-radius: 24px; margin-bottom: 32px; box-shadow: var(--shadow-card-lg); }
+.featured .label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; color: var(--yellow); margin-bottom: 14px; }
+.featured h2 { color: var(--bg); font-size: 32px; font-variation-settings: "wght" 800; letter-spacing: -0.022em; margin: 0 0 14px; }
+.featured h2 em { font-style: normal; background: var(--yellow); color: var(--ink); padding: 0 6px; }
+.featured p { color: var(--bg); opacity: 0.8; line-height: 1.55; }
+.featured .meta { font-family: var(--font-mono); font-size: 11px; color: var(--bg); opacity: 0.6; margin-top: 18px; }
+.posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding-bottom: 80px; }
+.post { background: var(--bg-card); border: 2px solid var(--ink); border-radius: 14px; padding: 20px 22px; box-shadow: var(--shadow-card); }
+.post .tag { display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; padding: 3px 10px; border-radius: 999px; border: 1.5px solid var(--ink); margin-bottom: 12px; }
+.post .tag.geo { background: var(--accent); color: #fff; }
+.post .tag.ai { background: var(--yellow); }
+.post .tag.bi { background: var(--teal); }
+.post .tag.engineering { background: var(--blue); color: #fff; }
+.post .tag.brand { background: var(--bg); }
+.post h3 { font-family: var(--font-sans); font-size: 19px; font-variation-settings: "wght" 720; letter-spacing: -0.015em; margin: 0 0 10px; line-height: 1.2; }
+.post p { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); margin: 0 0 12px; }
+.post .meta { font-family: var(--font-mono); font-size: 11px; color: var(--ink-mute); letter-spacing: 0.06em; }
+@media (max-width: 920px) { .nav-links { display: none; } .featured { grid-template-columns: 1fr; padding: 28px; } .posts { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .posts { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><div class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div><div class="brand-name">Seen<em>Folio</em></div></a>
+    <div class="nav-links"><a href="index.html#how-it-works">How it works</a><a href="pricing.html">Pricing</a><a href="docs.html">Docs</a><a class="active" href="blog.html">Blog</a></div>
+    <div class="nav-cta"><a class="btn ghost" href="sign-in.html">Sign in</a><a class="btn primary" href="sign-in.html?signup=true">Start free →</a></div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <span class="eyebrow">Notes from Sage</span>
+  <h1 class="h1">Things we figured out so <span class="mark">you don't have to</span>.</h1>
+</header>
+
+<div class="wrap">
+  <article class="featured">
+    <div>
+      <div class="label">★ FEATURED · 12 min read</div>
+      <h2>Why we picked <em>Shapley</em> over last-touch attribution</h2>
+      <p>Attribution is one of the most consequential modeling decisions a growth platform makes. Pick wrong and you spend a year optimizing the wrong channel. Here's the math behind why we went with Shapley values, and what we use as a fallback when there's not enough data.</p>
+      <div class="meta">By Tunde Adesina · CTO · May 12, 2026</div>
+    </div>
+    <div style="display:grid;place-items:center;"><svg viewBox="0 0 320 230" width="100%" style="max-width:280px;"><use href="sage.svg#sage-desk"/></svg></div>
+  </article>
+
+  <div class="posts">
+    <article class="post">
+      <span class="tag geo">GEO</span>
+      <h3>How to rank #1 in ChatGPT for your category</h3>
+      <p>The new generation of search lives inside LLMs. Here's the 6-step playbook we use to get clients cited as sources.</p>
+      <div class="meta">8 min · May 6, 2026</div>
+    </article>
+    <article class="post">
+      <span class="tag ai">AI</span>
+      <h3>Token-based pricing for AI products</h3>
+      <p>Why we abandoned per-seat pricing on day one, and what the math looks like for a Growth-plan customer.</p>
+      <div class="meta">6 min · Apr 30, 2026</div>
+    </article>
+    <article class="post">
+      <span class="tag bi">BI</span>
+      <h3>The cross-device merge problem</h3>
+      <p>Maya sees your ad on her phone, then converts on her laptop. How do you give Maya's journey one identity?</p>
+      <div class="meta">10 min · Apr 22, 2026</div>
+    </article>
+    <article class="post">
+      <span class="tag engineering">Engineering</span>
+      <h3>Building a 12-engineer SaaS on Hetzner</h3>
+      <p>We almost went AWS. Here's why we run on bare VPS with Kamal, and what we'd change next time.</p>
+      <div class="meta">14 min · Apr 18, 2026</div>
+    </article>
+    <article class="post">
+      <span class="tag brand">Brand</span>
+      <h3>Why an owl?</h3>
+      <p>Sage's design process. The original sketches were 90% bad. The bad ones are at the bottom.</p>
+      <div class="meta">5 min · Apr 11, 2026</div>
+    </article>
+    <article class="post">
+      <span class="tag ai">AI</span>
+      <h3>Factual claim extraction beats temperature 0</h3>
+      <p>Hallucinations don't go away by tuning. You catch them by post-validating every generated number against the source.</p>
+      <div class="meta">9 min · Apr 3, 2026</div>
+    </article>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col"><a class="brand" href="index.html" style="margin-bottom:14px;"><div class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div><div class="brand-name">Seen<em>Folio</em></div></a></div>
+    <div class="footer-col"><h5>Product</h5><a href="index.html#engines">Engines</a><a href="pricing.html">Pricing</a><a href="docs.html">Docs</a></div>
+    <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="customers.html">Customers</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h5>Resources</h5><a href="changelog.html">Changelog</a><a href="status.html">Status</a><a href="trust.html">Trust</a><a href="blog.html">Blog</a></div>
+    <div class="footer-col"><h5>Legal</h5><a href="#">Terms</a><a href="#">Privacy</a><a href="#">DPA</a></div>
+  </div>
+  <div class="footer-meta"><span>© SeenFolio · Idylabs LTD · 2026</span><span>Made in Lagos</span></div>
+</footer>
+</body>
+</html>

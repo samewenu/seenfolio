@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Changelog — SeenFolio</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+.hero { padding: 64px 0 40px; text-align: center; }
+.hero h1 { max-width: 22ch; margin: 18px auto; }
+.eyebrow { display: inline-block; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); padding: 5px 12px; border: 2px solid var(--accent); border-radius: 999px; background: var(--accent-soft); margin-bottom: 22px; }
+.timeline { padding-bottom: 80px; max-width: 720px; margin: 0 auto; }
+.entry { background: var(--bg-card); border: 2px solid var(--ink); border-radius: 16px; padding: 24px 28px; margin-bottom: 18px; box-shadow: var(--shadow-card); position: relative; }
+.entry .meta { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+.entry .date { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--ink-mute); }
+.tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; border: 2px solid var(--ink); }
+.tag.feature { background: var(--accent); color: #fff; }
+.tag.improvement { background: var(--yellow); color: var(--ink); }
+.tag.integration { background: var(--teal); color: var(--ink); }
+.tag.fix { background: var(--bg); color: var(--ink); }
+.entry h3 { font-family: var(--font-sans); font-size: 22px; font-variation-settings: "wght" 720; letter-spacing: -0.015em; margin: 0 0 10px; }
+.entry p { margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); }
+.entry:nth-child(odd) { transform: rotate(-0.3deg); }
+.entry:nth-child(even) { transform: rotate(0.4deg); }
+@media (max-width: 920px) { .nav-links { display: none; } }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><div class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div><div class="brand-name">Seen<em>Folio</em></div></a>
+    <div class="nav-links"><a href="index.html#how-it-works">How it works</a><a href="pricing.html">Pricing</a><a href="docs.html">Docs</a><a class="active" href="changelog.html">Changelog</a></div>
+    <div class="nav-cta"><a class="btn ghost" href="sign-in.html">Sign in</a><a class="btn primary" href="sign-in.html?signup=true">Start free →</a></div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <span class="eyebrow">What Sage shipped</span>
+  <h1 class="h1"><span class="mark">Receipts</span>, dated and signed.</h1>
+  <p class="lede">Every meaningful release, in chronological order. Subscribe to the feed at <code style="background:var(--ink);color:var(--yellow);padding:2px 6px;border-radius:4px;font-family:var(--font-mono);font-size:13px;">changelog.seenfolio.com/feed.xml</code></p>
+</header>
+
+<div class="wrap timeline">
+  <article class="entry">
+    <div class="meta"><span class="date">May 15, 2026</span><span class="tag feature">Feature</span></div>
+    <h3>Workspace switcher v2</h3>
+    <p>Click your workspace name in the topbar to jump between sites instantly. Plus: keyboard shortcut ⌘W. We finally believed our own dogfooding pain on this one.</p>
+  </article>
+  <article class="entry">
+    <div class="meta"><span class="date">May 8, 2026</span><span class="tag improvement">Improvement</span></div>
+    <h3>Sage learned 3 new things</h3>
+    <p>Better at email subject lines, smarter about cart-recovery timing, and now spots GBP photo gaps automatically. Brand-voice training set expanded 4×.</p>
+  </article>
+  <article class="entry">
+    <div class="meta"><span class="date">May 1, 2026</span><span class="tag integration">Integration</span></div>
+    <h3>TikTok Ads is here</h3>
+    <p>Connect TikTok Ads from Engines → Ads. Variant testing and budget orchestration work out of the box. We've held off on this for six months waiting for the API to stabilize.</p>
+  </article>
+  <article class="entry">
+    <div class="meta"><span class="date">April 24, 2026</span><span class="tag feature">Feature · beta</span></div>
+    <h3>Crisis Watch (private beta)</h3>
+    <p>Real-time brand mention monitoring with 3σ sentiment alerts. Auto-pauses campaigns when negative sentiment spikes. Email crisis@seenfolio.com for early access.</p>
+  </article>
+  <article class="entry">
+    <div class="meta"><span class="date">April 17, 2026</span><span class="tag fix">Fix</span></div>
+    <h3>We made errors clearer</h3>
+    <p>Every action now tells you exactly why it ran or didn't — including the model temperature and the prompt fragment. "Sage made a decision" is no longer an acceptable answer.</p>
+  </article>
+  <article class="entry">
+    <div class="meta"><span class="date">April 10, 2026</span><span class="tag feature">Feature</span></div>
+    <h3>Cloudflare Worker proxy GA</h3>
+    <p>Edge-side rewrites are now available to every workspace. Adds ~6ms to TTFB; doubles GEO score on average. JS SDK still recommended for non-Cloudflare sites.</p>
+  </article>
+  <article class="entry">
+    <div class="meta"><span class="date">April 3, 2026</span><span class="tag feature">Feature</span></div>
+    <h3>Shapley attribution is now the default</h3>
+    <p>If your workspace has 100+ conversions in the trailing 90 days, we now route to data-driven Shapley attribution instead of time-decay. The old models stay accessible via the toggle.</p>
+  </article>
+  <article class="entry">
+    <div class="meta"><span class="date">March 25, 2026</span><span class="tag improvement">Improvement</span></div>
+    <h3>Sage stopped making up statistics</h3>
+    <p>New factual-claim extractor runs against every generated patch. Any number we can't cite from the source content gets flagged for your review instead of going live.</p>
+  </article>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col"><a class="brand" href="index.html" style="margin-bottom:14px;"><div class="brand-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg></div><div class="brand-name">Seen<em>Folio</em></div></a></div>
+    <div class="footer-col"><h5>Product</h5><a href="index.html#engines">Engines</a><a href="pricing.html">Pricing</a><a href="docs.html">Docs</a></div>
+    <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="customers.html">Customers</a><a href="contact.html">Contact</a></div>
+    <div class="footer-col"><h5>Resources</h5><a href="changelog.html">Changelog</a><a href="status.html">Status</a><a href="trust.html">Trust</a><a href="blog.html">Blog</a></div>
+    <div class="footer-col"><h5>Legal</h5><a href="#">Terms</a><a href="#">Privacy</a><a href="#">DPA</a></div>
+  </div>
+  <div class="footer-meta"><span>© SeenFolio · Idylabs LTD · 2026</span><span>Made in Lagos</span></div>
+</footer>
+</body>
+</html>
