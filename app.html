@@ -4937,11 +4937,28 @@
             </div>
           </div>
 
+          <!-- ATTRIBUTION MODEL TOGGLE (Engine 2 — BI deep) -->
+          <div class="for-intermediate" style="margin-bottom:28px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+            <div>
+              <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:8px;">Attribution model</div>
+              <div style="display:flex;gap:4px;padding:4px;border:1px solid var(--line-strong);border-radius:8px;background:var(--bg-1);" data-attr-toggle>
+                <button class="filter active" data-attr="shapley">Shapley (DDA) <span class="count">recommended</span></button>
+                <button class="filter" data-attr="first">First-touch</button>
+                <button class="filter" data-attr="last">Last-touch</button>
+                <button class="filter" data-attr="linear">Linear</button>
+                <button class="filter" data-attr="decay">Time-decay</button>
+              </div>
+            </div>
+            <div style="font-family:var(--serif);font-size:14px;color:var(--ink-soft);max-width:42ch;font-style:italic;font-variation-settings:'opsz' 60,'wght' 350;line-height:1.5;" data-attr-explain>
+              Shapley value attribution — credit assigned by the channel's incremental contribution across all journey orderings. Default at &gt; 100 conversions.
+            </div>
+          </div>
+
           <div class="grid-2">
             <div>
               <div class="sec-head">
                 <h3 class="sec-title">Revenue <em>by channel</em></h3>
-                <span class="sec-sub">First-touch attribution · last 30d</span>
+                <span class="sec-sub" data-attr-sub>Shapley attribution · last 30d</span>
               </div>
 
               <div class="table">
@@ -5072,6 +5089,166 @@
                 </div>
               </div>
             </aside>
+          </div>
+
+          <!-- CUSTOMER JOURNEY EXPLORER -->
+          <div class="sec-head" style="margin-top:48px;">
+            <h3 class="sec-title">Customer <em>journey explorer</em></h3>
+            <span class="sec-sub">Last 5 conversions · click to walk a touchpoint trail</span>
+          </div>
+
+          <div class="big-table">
+            <div class="bt-head" style="grid-template-columns:1.2fr 0.9fr 1fr 0.9fr 0.7fr;">
+              <span>Customer</span><span>Value</span><span>First touch</span><span>Last touch</span><span style="text-align:right;">Touches</span>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.2fr 0.9fr 1fr 0.9fr 0.7fr;" data-journey="maya">
+              <div>
+                <div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Maya O.</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Lagos · 12th order</div>
+              </div>
+              <div><div class="score good">$184</div></div>
+              <div style="font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);">Instagram organic</div>
+              <div style="font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);">Direct</div>
+              <div style="text-align:right;font-family:var(--serif);font-style:italic;color:var(--amber);font-size:18px;font-variation-settings:'opsz' 60,'wght' 360;">6</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.2fr 0.9fr 1fr 0.9fr 0.7fr;" data-journey="david">
+              <div>
+                <div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">David L.</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Brisbane · 1st order</div>
+              </div>
+              <div><div class="score warn">$89</div></div>
+              <div style="font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);">TikTok organic</div>
+              <div style="font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);">Direct</div>
+              <div style="text-align:right;font-family:var(--serif);font-style:italic;color:var(--amber);font-size:18px;font-variation-settings:'opsz' 60,'wght' 360;">3</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.2fr 0.9fr 1fr 0.9fr 0.7fr;">
+              <div>
+                <div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Priya R.</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Mumbai · 8th order</div>
+              </div>
+              <div><div class="score good">$220</div></div>
+              <div style="font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);">Google Ads</div>
+              <div style="font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);">Email</div>
+              <div style="text-align:right;font-family:var(--serif);font-style:italic;color:var(--amber);font-size:18px;font-variation-settings:'opsz' 60,'wght' 360;">4</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.2fr 0.9fr 1fr 0.9fr 0.7fr;">
+              <div>
+                <div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Sam K.</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Lagos · 6th order</div>
+              </div>
+              <div><div class="score good">$148</div></div>
+              <div style="font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);">WhatsApp</div>
+              <div style="font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);">WhatsApp</div>
+              <div style="text-align:right;font-family:var(--serif);font-style:italic;color:var(--amber);font-size:18px;font-variation-settings:'opsz' 60,'wght' 360;">2</div>
+            </div>
+            <div class="bt-row" style="grid-template-columns:1.2fr 0.9fr 1fr 0.9fr 0.7fr;">
+              <div>
+                <div style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Chioma N.</div>
+                <div style="font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:3px;">Lagos · 2nd order</div>
+              </div>
+              <div><div class="score warn">$72</div></div>
+              <div style="font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);">Direct</div>
+              <div style="font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);">WhatsApp</div>
+              <div style="text-align:right;font-family:var(--serif);font-style:italic;color:var(--amber);font-size:18px;font-variation-settings:'opsz' 60,'wght' 360;">5</div>
+            </div>
+          </div>
+
+          <!-- EXAMPLE JOURNEY WALK -->
+          <div class="panel" style="margin-top:24px;" data-journey-detail>
+            <div class="panel-head">
+              <span class="panel-title">Maya O.'s <em>journey</em> · $184 conversion</span>
+              <span class="panel-sub">7 days · 6 touchpoints · Shapley credits</span>
+            </div>
+            <div style="padding:24px 28px;">
+              <div style="display:flex;align-items:flex-start;gap:0;overflow-x:auto;">
+                <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;min-width:140px;text-align:center;">
+                  <div style="width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line-strong);background:var(--surface-2);display:grid;place-items:center;font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-bottom:10px;">−7d</div>
+                  <div style="font-family:var(--serif);font-size:14px;font-variation-settings:'opsz' 60,'wght' 380;">Instagram</div>
+                  <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:3px;">organic post view</div>
+                  <div style="font-family:var(--serif);font-style:italic;color:var(--amber);font-size:14px;margin-top:6px;">8%</div>
+                </div>
+                <div style="flex:1;height:2px;background:var(--line);margin:38px 0 0;min-width:24px;"></div>
+                <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;min-width:140px;text-align:center;">
+                  <div style="width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line-strong);background:var(--surface-2);display:grid;place-items:center;font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-bottom:10px;">−5d</div>
+                  <div style="font-family:var(--serif);font-size:14px;font-variation-settings:'opsz' 60,'wght' 380;">Google Ads</div>
+                  <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:3px;">branded search click</div>
+                  <div style="font-family:var(--serif);font-style:italic;color:var(--amber);font-size:14px;margin-top:6px;">22%</div>
+                </div>
+                <div style="flex:1;height:2px;background:var(--line);margin:38px 0 0;min-width:24px;"></div>
+                <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;min-width:140px;text-align:center;">
+                  <div style="width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line-strong);background:var(--surface-2);display:grid;place-items:center;font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-bottom:10px;">−3d</div>
+                  <div style="font-family:var(--serif);font-size:14px;font-variation-settings:'opsz' 60,'wght' 380;">Direct</div>
+                  <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:3px;">homepage</div>
+                  <div style="font-family:var(--serif);font-style:italic;color:var(--amber);font-size:14px;margin-top:6px;">11%</div>
+                </div>
+                <div style="flex:1;height:2px;background:var(--line);margin:38px 0 0;min-width:24px;"></div>
+                <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;min-width:140px;text-align:center;">
+                  <div style="width:38px;height:38px;border-radius:50%;border:1.5px solid var(--line-strong);background:var(--surface-2);display:grid;place-items:center;font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-bottom:10px;">−2d</div>
+                  <div style="font-family:var(--serif);font-size:14px;font-variation-settings:'opsz' 60,'wght' 380;">Email</div>
+                  <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:3px;">welcome series open</div>
+                  <div style="font-family:var(--serif);font-style:italic;color:var(--amber);font-size:14px;margin-top:6px;">14%</div>
+                </div>
+                <div style="flex:1;height:2px;background:var(--line);margin:38px 0 0;min-width:24px;"></div>
+                <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;min-width:140px;text-align:center;">
+                  <div style="width:38px;height:38px;border-radius:50%;border:1.5px solid var(--amber);background:var(--amber-trace);display:grid;place-items:center;font-family:var(--mono);font-size:10px;color:var(--amber);margin-bottom:10px;">−1d</div>
+                  <div style="font-family:var(--serif);font-size:14px;font-variation-settings:'opsz' 60,'wght' 380;">Email</div>
+                  <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:3px;">welcome series click</div>
+                  <div style="font-family:var(--serif);font-style:italic;color:var(--amber);font-size:14px;margin-top:6px;">28%</div>
+                </div>
+                <div style="flex:1;height:2px;background:var(--amber);margin:38px 0 0;min-width:24px;"></div>
+                <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;min-width:140px;text-align:center;">
+                  <div style="width:38px;height:38px;border-radius:50%;border:1.5px solid var(--amber);background:var(--amber);display:grid;place-items:center;font-family:var(--mono);font-size:10px;color:var(--bg);font-weight:600;margin-bottom:10px;">✓</div>
+                  <div style="font-family:var(--serif);font-size:14px;font-variation-settings:'opsz' 60,'wght' 380;">Direct</div>
+                  <div style="font-family:var(--mono);font-size:10px;color:var(--ink-mute);margin-top:3px;">checkout · $184</div>
+                  <div style="font-family:var(--serif);font-style:italic;color:var(--amber);font-size:14px;margin-top:6px;">17%</div>
+                </div>
+              </div>
+              <div style="margin-top:24px;padding-top:18px;border-top:1px dashed var(--line);font-family:var(--serif);font-size:14px;color:var(--ink-soft);line-height:1.6;font-style:italic;font-variation-settings:'opsz' 60,'wght' 350;">
+                Six touchpoints over a week. <em style="color:var(--amber);">Email is doing the heavy lifting</em> here — together both opens got 42% of the Shapley credit. Without that welcome series, Maya probably doesn't come back from the original Instagram view.
+              </div>
+            </div>
+          </div>
+
+          <!-- BUDGET ALLOCATION PROPOSAL (Engine 2 deep) -->
+          <div class="sec-head" style="margin-top:48px;">
+            <h3 class="sec-title">Budget allocation <em>proposal</em></h3>
+            <span class="sec-sub">Computed weekly from the past 30d · ±20% cap per cycle</span>
+          </div>
+          <div class="panel">
+            <div class="insight">
+              <div class="insight-eyebrow">Pending your approval · weekly cycle</div>
+              <p class="insight-text">
+                Shift <em>$100/wk from Meta to TikTok</em> as a learning test. Meta CAC is $86, your competitor brands' TikTok CAC averages $42. I'd cap the test at 14 days; if TikTok underperforms, I auto-revert.
+              </p>
+              <div class="insight-foot">
+                <button class="btn amber">Approve · run 14d test</button>
+                <button class="btn">Set my own split</button>
+                <button class="btn ghost">Reject &amp; explain why</button>
+              </div>
+            </div>
+            <div style="border-top:1px solid var(--line);">
+              <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.8fr;padding:14px 22px;background:var(--bg-1);font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute);">
+                <span>Channel</span><span>Current</span><span>Proposed</span><span style="text-align:right;">Δ</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.8fr;padding:16px 22px;border-bottom:1px solid var(--line);align-items:center;">
+                <span style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Google Ads</span>
+                <span style="font-family:var(--mono);font-size:13px;color:var(--ink-soft);">$550/wk</span>
+                <span style="font-family:var(--serif);font-size:16px;">$550/wk</span>
+                <span style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--ink-mute);">no change</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.8fr;padding:16px 22px;border-bottom:1px solid var(--line);align-items:center;">
+                <span style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">Meta Ads</span>
+                <span style="font-family:var(--mono);font-size:13px;color:var(--ink-soft);">$150/wk</span>
+                <span style="font-family:var(--serif);font-size:16px;">$50/wk</span>
+                <span style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--bad);">↓ −$100</span>
+              </div>
+              <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 0.8fr;padding:16px 22px;align-items:center;">
+                <span style="font-family:var(--serif);font-size:16px;font-variation-settings:'opsz' 60,'wght' 380;">TikTok Ads <span style="font-family:var(--mono);font-size:10px;color:var(--warn);letter-spacing:.1em;margin-left:8px;">LEARNING</span></span>
+                <span style="font-family:var(--mono);font-size:13px;color:var(--ink-soft);">$0/wk</span>
+                <span style="font-family:var(--serif);font-size:16px;">$100/wk</span>
+                <span style="text-align:right;font-family:var(--mono);font-size:11px;color:var(--good);">↑ +$100</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -6782,6 +6959,29 @@
       row.addEventListener('click', (e) => {
         e.stopPropagation();
         openDrawer('headline');
+      });
+    });
+
+    /* ────────────────── ATTRIBUTION MODEL TOGGLE ────────────────── */
+    const attrExplain = document.querySelector('[data-attr-explain]');
+    const attrSub = document.querySelector('[data-attr-sub]');
+    const attrCopy = {
+      shapley: { explain: "Shapley value attribution — credit assigned by the channel's incremental contribution across all journey orderings. Default at > 100 conversions.", sub: "Shapley attribution · last 30d" },
+      first:   { explain: "First-touch attribution — 100% of credit goes to the very first channel the customer saw. Good for evaluating awareness channels.", sub: "First-touch attribution · last 30d" },
+      last:    { explain: "Last-touch attribution — 100% credit to the channel that closed the conversion. Tends to over-credit branded search and direct.", sub: "Last-touch attribution · last 30d" },
+      linear:  { explain: "Linear attribution — equal weight to every touchpoint in the journey. Simple, but treats all touches as equal regardless of role.", sub: "Linear attribution · last 30d" },
+      decay:   { explain: "Time-decay attribution — recent touches get more credit. Falls back from Shapley when conversion volume is below 100.", sub: "Time-decay attribution · last 30d" },
+    };
+    document.querySelectorAll('[data-attr-toggle] .filter').forEach(b => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('[data-attr-toggle] .filter').forEach(x => x.classList.remove('active'));
+        b.classList.add('active');
+        const m = b.dataset.attr;
+        const c = attrCopy[m];
+        if (c) {
+          if (attrExplain) attrExplain.textContent = c.explain;
+          if (attrSub) attrSub.textContent = c.sub;
+        }
       });
     });
   </script>
