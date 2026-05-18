@@ -513,6 +513,544 @@
 .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
 .pricing-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
 
+/* ═══════════════════════════════════════════════════════════════════════
+   V2 SECTION SYSTEM · shared "morning briefing" voice across all blocks
+   ═══════════════════════════════════════════════════════════════════════ */
+.v2-section-head { max-width: 720px; margin-bottom: 48px; }
+.v2-eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.v2-section-title {
+  font-family: var(--font-sans);
+  font-size: clamp(34px, 4vw, 56px);
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.02em;
+  line-height: 1.06;
+  margin: 0;
+  color: var(--ink);
+}
+.v2-section-sub {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin: 18px 0 0;
+  max-width: 56ch;
+}
+
+/* ─── V2 · OUTCOMES WALL ─────────────────────────────────────────────── */
+.v2-outcomes { padding: 64px 0; }
+.v2-outcomes-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 18px;
+}
+.v2-outcome {
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  border-radius: 18px;
+  padding: 24px 26px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.v2-outcome--big {
+  grid-row: 1 / span 2;
+  background: var(--yellow-soft);
+  transform: rotate(-0.6deg);
+  padding: 32px 32px 28px;
+}
+.v2-outcome:nth-child(2) { transform: rotate(0.4deg); }
+.v2-outcome:nth-child(3) { transform: rotate(-0.3deg); }
+.v2-outcome:nth-child(4) { transform: rotate(0.5deg); }
+.v2-outcome-num {
+  font-family: var(--font-sans);
+  font-size: clamp(48px, 5vw, 72px);
+  font-variation-settings: "wght" 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.v2-outcome--big .v2-outcome-num {
+  font-size: clamp(80px, 9vw, 128px);
+  margin-bottom: 8px;
+}
+.v2-outcome-num--olive { color: var(--accent); }
+.v2-outcome-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 16px;
+}
+.v2-outcome--big .v2-outcome-label { margin-bottom: 24px; }
+.v2-outcome-quote {
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.5;
+  flex: 1;
+  margin: 0 0 18px;
+}
+.v2-outcome--big .v2-outcome-quote { font-size: 18px; line-height: 1.55; }
+.v2-outcome-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1.5px dashed var(--line);
+}
+.v2-outcome-avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--yellow), var(--accent-soft));
+  border: 2px solid var(--ink);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-variation-settings: "wght" 800;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+.v2-outcome-name {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-variation-settings: "wght" 720;
+  color: var(--ink);
+}
+.v2-outcome-brand {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-mute);
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+@media (max-width: 920px) {
+  .v2-outcomes-grid { grid-template-columns: 1fr 1fr; }
+  .v2-outcome--big { grid-row: auto; grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .v2-outcomes-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── V2 · SPECIALISTS · 7 engines as team cards with Sage poses ──────── */
+.v2-specialists { padding: 64px 0; }
+.v2-specialists-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.v2-specialist {
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  padding: 20px 22px 22px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.v2-specialist:nth-child(odd) { transform: rotate(-0.3deg); }
+.v2-specialist:nth-child(even) { transform: rotate(0.3deg); }
+.v2-specialist--wide {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: center;
+  gap: 28px;
+  padding: 24px 28px;
+}
+.v2-specialist--wide .v2-specialist-avatar {
+  width: 240px;
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+.v2-specialist--wide .v2-specialist-body { flex: 1; }
+.v2-specialist-num {
+  position: absolute;
+  top: 16px; right: 18px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+}
+.v2-specialist-avatar {
+  background: var(--yellow);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  margin-bottom: 16px;
+  padding: 6px 10px;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1.4;
+  box-shadow: var(--shadow-card-sm);
+  overflow: hidden;
+}
+.v2-specialist-avatar svg { width: 100%; height: 100%; display: block; }
+.v2-specialist-name {
+  font-family: var(--font-sans);
+  font-size: 22px;
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.018em;
+  margin: 0;
+  color: var(--ink);
+}
+.v2-specialist-role {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 6px 0 12px;
+}
+.v2-specialist-do {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0 0 14px;
+  flex: 1;
+}
+.v2-specialist-stat {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-mute);
+  letter-spacing: 0.04em;
+  padding-top: 12px;
+  border-top: 1.5px dashed var(--line);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.v2-specialist-stat .dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--good);
+  box-shadow: 0 0 0 1.5px var(--ink);
+  flex-shrink: 0;
+}
+@media (max-width: 920px) {
+  .v2-specialists-grid { grid-template-columns: 1fr 1fr; }
+  .v2-specialist--wide { flex-direction: column; }
+  .v2-specialist--wide .v2-specialist-avatar { width: 100%; }
+}
+@media (max-width: 560px) {
+  .v2-specialists-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── V2 · TRUST FLOW · Approve · Undo · Sleep well ──────────────────── */
+.v2-trust { padding: 64px 0; }
+.v2-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.v2-trust-card {
+  border: 2px solid var(--ink);
+  border-radius: 18px;
+  padding: 28px 26px 24px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.v2-trust-card--1 { background: var(--accent-soft); transform: rotate(-0.5deg); }
+.v2-trust-card--2 { background: var(--yellow-soft); transform: rotate(0.4deg); }
+.v2-trust-card--3 { background: var(--green-soft); transform: rotate(-0.3deg); }
+.v2-trust-stamp {
+  position: absolute;
+  top: 20px; right: 24px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+}
+.v2-trust-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.v2-trust-title {
+  font-family: var(--font-sans);
+  font-size: 26px;
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.018em;
+  line-height: 1.1;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+.v2-trust-desc {
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0 0 18px;
+  flex: 1;
+}
+.v2-trust-mock {
+  background: var(--bg-card);
+  border: 1.5px solid var(--ink);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.v2-trust-mock-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.v2-trust-mock-text {
+  flex: 1;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--ink);
+}
+.v2-trust-mock-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 1.5px solid var(--ink);
+}
+.v2-trust-mock-dot--warn { background: var(--warn); }
+.v2-trust-mock-btn {
+  background: var(--accent);
+  color: #fff;
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.v2-trust-mock-btn:hover { background: var(--accent-deep); }
+.v2-trust-mock-card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.v2-trust-mock-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.04em;
+}
+.v2-trust-mock-undo {
+  background: var(--bg-card);
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  padding: 5px 11px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-variation-settings: "wght" 700;
+  align-self: flex-start;
+  cursor: pointer;
+}
+.v2-trust-mock-undo:hover { background: var(--yellow); }
+.v2-trust-mock-why-q {
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-variation-settings: "wght" 720;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.v2-trust-mock-why-a {
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+@media (max-width: 920px) {
+  .v2-trust-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── V2 · PRICING TEASER · token menu ───────────────────────────────── */
+.v2-pricing { padding: 64px 0; }
+.v2-pricing-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.v2-pricing-menu {
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  border-radius: 18px;
+  box-shadow: var(--shadow-card-lg);
+  padding: 22px 26px 24px;
+  transform: rotate(-0.4deg);
+}
+.v2-pricing-menu-head {
+  padding-bottom: 14px;
+  border-bottom: 1.5px dashed var(--line);
+  margin-bottom: 8px;
+}
+.v2-menu-title {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+}
+.v2-menu-sub {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-mute);
+  letter-spacing: 0.04em;
+  margin-top: 4px;
+}
+.v2-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.v2-menu-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1.5px dotted var(--line);
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  color: var(--ink);
+}
+.v2-menu-item:last-child { border-bottom: 0; }
+.v2-menu-cost {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--accent);
+  font-variation-settings: "wght" 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.v2-menu-cost--free {
+  color: var(--good);
+  background: var(--green-soft);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1.5px solid var(--ink);
+}
+.v2-pricing-side-title {
+  font-family: var(--font-sans);
+  font-size: clamp(28px, 3vw, 40px);
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin: 0 0 18px;
+  color: var(--ink);
+}
+.v2-pricing-side-desc {
+  font-family: var(--font-sans);
+  font-size: 15.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin: 0 0 24px;
+  max-width: 36ch;
+}
+@media (max-width: 920px) {
+  .v2-pricing-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* ─── V2 · FINAL CTA · dark "tonight → 06:00" card ───────────────────── */
+.v2-final-cta { padding: 80px 0 96px; }
+.v2-final-card {
+  background: var(--ink);
+  color: var(--bg);
+  border: 2px solid var(--ink);
+  border-radius: 28px;
+  padding: 64px 56px;
+  text-align: center;
+  position: relative;
+  box-shadow: 8px 8px 0 var(--accent);
+  overflow: hidden;
+}
+.v2-final-clock {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid rgba(255, 210, 2, 0.35);
+  border-radius: 999px;
+  padding: 7px 18px;
+  margin-bottom: 28px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  position: relative;
+  z-index: 1;
+}
+.v2-final-clock-now { color: var(--bg); opacity: 0.65; }
+.v2-final-clock-arrow { color: var(--yellow); font-weight: bold; }
+.v2-final-clock-then { color: var(--yellow); font-variation-settings: "wght" 700; }
+.v2-final-title {
+  font-family: var(--font-sans);
+  font-size: clamp(36px, 5vw, 64px);
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.022em;
+  line-height: 1.05;
+  max-width: 22ch;
+  margin: 0 auto 18px;
+  color: var(--bg);
+  position: relative;
+  z-index: 1;
+}
+.v2-final-title .mark { color: var(--bg); }
+.v2-final-title .mark::before { background: var(--yellow); opacity: 0.92; }
+.v2-final-sub {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--bg);
+  opacity: 0.72;
+  line-height: 1.55;
+  max-width: 50ch;
+  margin: 0 auto 30px;
+  position: relative;
+  z-index: 1;
+}
+.v2-final-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+.v2-final-actions .btn {
+  box-shadow: 4px 4px 0 var(--bg);
+  border-color: var(--bg);
+}
+.v2-final-actions .btn.primary { box-shadow: 4px 4px 0 var(--yellow); }
+.v2-final-sage {
+  position: absolute;
+  bottom: -20px;
+  right: -10px;
+  width: 160px;
+  opacity: 0.18;
+  transform: rotate(8deg);
+  z-index: 0;
+}
+.v2-final-sage svg { width: 100%; height: 100%; display: block; }
+@media (max-width: 920px) {
+  .v2-final-card { padding: 48px 32px; }
+  .v2-final-sage { width: 100px; bottom: -10px; right: -10px; }
+}
+
 /* design-switch pill in the nav · A/B compare between v1 and v2 hero designs */
 .design-switch {
   font-family: var(--font-mono);
@@ -683,251 +1221,264 @@
 
 </header>
 
-<!-- ════════ PROBLEM ════════ -->
-<section class="section wrap">
-  <span class="section-eyebrow">Why most marketing tools quietly fail</span>
-  <h2 class="h2">Most online businesses run on <em>duct tape</em>.</h2>
-  <p class="lede section-intro">
-    SEO tool says one thing, Facebook another, your CRM doesn't talk to either, and somehow you're still doing the work. Six tools, ten dashboards, zero coordination.
-  </p>
+<!-- ════════ V2 · OUTCOMES WALL ════════ -->
+<section class="v2-outcomes wrap">
+  <div class="v2-section-head">
+    <span class="v2-eyebrow">↗ THE WALL · WHAT CUSTOMERS WOKE UP TO</span>
+    <h2 class="v2-section-title">Six weeks. <span class="mark">Six businesses.</span> Six different mornings.</h2>
+    <p class="v2-section-sub">No one set up campaigns. No one wrote copy. They turned Sage on and went to bed — and woke up to numbers they hadn't seen before.</p>
+  </div>
 
-  <div class="problem-grid">
-    <div class="tools-stack">
-      <div class="tool-sticker ts-1"><div class="lbl">SEO</div><div class="name">Ahrefs / SEMrush</div><div class="cost">$99 – $999 / mo</div></div>
-      <div class="tool-sticker ts-2"><div class="lbl">Content</div><div class="name">Jasper / Copy.ai</div><div class="cost">$50 – $500 / mo</div></div>
-      <div class="tool-sticker ts-3"><div class="lbl">Personalization</div><div class="name">Optimizely</div><div class="cost">$500 – $5k / mo</div></div>
-      <div class="tool-sticker ts-4"><div class="lbl">Ads</div><div class="name">Google + Meta + TikTok</div><div class="cost">native + fragmented</div></div>
-      <div class="tool-sticker ts-5"><div class="lbl">Analytics</div><div class="name">GA4 + Mixpanel</div><div class="cost">$0 – $500 / mo</div></div>
-      <div class="tool-sticker ts-6"><div class="lbl">CRM</div><div class="name">HubSpot / Salesforce</div><div class="cost">$50 – $5k / mo</div></div>
-      <div class="tool-stamp">~$1,200/mo · still doing it yourself</div>
+  <div class="v2-outcomes-grid">
+    <article class="v2-outcome v2-outcome--big">
+      <div class="v2-outcome-num">+31%</div>
+      <div class="v2-outcome-label">revenue / 6 weeks</div>
+      <div class="v2-outcome-quote">"I cancelled five tools the day I signed up. Six weeks later my revenue was up 31% — and I hadn't touched a single setting."</div>
+      <div class="v2-outcome-meta">
+        <span class="v2-outcome-avatar">A</span>
+        <div>
+          <div class="v2-outcome-name">Amara O.</div>
+          <div class="v2-outcome-brand">Silver Jewelry Co · Lagos</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="v2-outcome">
+      <div class="v2-outcome-num v2-outcome-num--olive">−22%</div>
+      <div class="v2-outcome-label">churn · 90d cohort</div>
+      <div class="v2-outcome-quote">"The retention engine alone paid for it. Churn went from 18% to 14% in a quarter."</div>
+      <div class="v2-outcome-meta">
+        <span class="v2-outcome-avatar">K</span>
+        <div>
+          <div class="v2-outcome-name">Kamau N.</div>
+          <div class="v2-outcome-brand">Daily Mwangi Coffee · Nairobi</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="v2-outcome">
+      <div class="v2-outcome-num v2-outcome-num--olive">+47%</div>
+      <div class="v2-outcome-label">WhatsApp orders</div>
+      <div class="v2-outcome-quote">"The bot recovers ~12 carts a week. That's a side of payroll we don't need anymore."</div>
+      <div class="v2-outcome-meta">
+        <span class="v2-outcome-avatar">M</span>
+        <div>
+          <div class="v2-outcome-name">Akosua M.</div>
+          <div class="v2-outcome-brand">Kente Threads · Accra</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="v2-outcome">
+      <div class="v2-outcome-num v2-outcome-num--olive">4 hrs</div>
+      <div class="v2-outcome-label">saved every day</div>
+      <div class="v2-outcome-quote">"I used to spend mornings editing product titles. Sage does it overnight with better keywords."</div>
+      <div class="v2-outcome-meta">
+        <span class="v2-outcome-avatar">Y</span>
+        <div>
+          <div class="v2-outcome-name">Yasmin K.</div>
+          <div class="v2-outcome-brand">Souq Hand · Cairo</div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ════════ V2 · SAGE'S SPECIALISTS ════════ -->
+<section class="v2-specialists wrap" id="engines">
+  <div class="v2-section-head">
+    <span class="v2-eyebrow">↗ THE TEAM · SEVEN SPECIALISTS · ONE SAGE</span>
+    <h2 class="v2-section-title">Seven engines. <span class="mark">One Sage</span> behind the wheel.</h2>
+    <p class="v2-section-sub">Each engine is a specialist for one part of your growth. Sage decides which to activate based on what your business needs tonight. You don't choose engines — you choose outcomes.</p>
+  </div>
+
+  <div class="v2-specialists-grid">
+    <article class="v2-specialist">
+      <div class="v2-specialist-num">01</div>
+      <div class="v2-specialist-avatar">
+        <svg aria-hidden="true" viewBox="0 0 280 220" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-magnify"/></svg>
+      </div>
+      <h3 class="v2-specialist-name">Search visibility</h3>
+      <p class="v2-specialist-role">SEO + AI engine optimization</p>
+      <p class="v2-specialist-do">Finds why you're ranked where you are. Fixes it overnight. Optimises for ChatGPT &amp; Perplexity citation too.</p>
+      <div class="v2-specialist-stat"><span class="dot"></span> Last action: 4 pages rewritten · 02:14</div>
+    </article>
+
+    <article class="v2-specialist">
+      <div class="v2-specialist-num">02</div>
+      <div class="v2-specialist-avatar">
+        <svg aria-hidden="true" viewBox="0 0 260 230" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-calc"/></svg>
+      </div>
+      <h3 class="v2-specialist-name">Intelligence</h3>
+      <p class="v2-specialist-role">Attribution + budget routing</p>
+      <p class="v2-specialist-do">Stitches every channel into one source of truth. Spots leaks, surfaces winners, moves budget on its own.</p>
+      <div class="v2-specialist-stat"><span class="dot"></span> Last action: rebalanced $340 spend · 02:41</div>
+    </article>
+
+    <article class="v2-specialist">
+      <div class="v2-specialist-num">03</div>
+      <div class="v2-specialist-avatar">
+        <svg aria-hidden="true" viewBox="0 0 360 220" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-controls"/></svg>
+      </div>
+      <h3 class="v2-specialist-name">Unified ads</h3>
+      <p class="v2-specialist-role">Google · Meta · TikTok · more</p>
+      <p class="v2-specialist-do">Sees every platform at once. Pauses what's not working, scales what is. Writes its own creative variants.</p>
+      <div class="v2-specialist-stat"><span class="dot"></span> Last action: 3 creatives generated · 22:18</div>
+    </article>
+
+    <article class="v2-specialist">
+      <div class="v2-specialist-num">04</div>
+      <div class="v2-specialist-avatar">
+        <svg aria-hidden="true" viewBox="0 0 260 230" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-clipboard"/></svg>
+      </div>
+      <h3 class="v2-specialist-name">Content</h3>
+      <p class="v2-specialist-role">Blogs · pages · social · email</p>
+      <p class="v2-specialist-do">Writes in your voice — samples three pieces first. Publishes only with your nod. Never sounds like AI.</p>
+      <div class="v2-specialist-stat"><span class="dot"></span> Last action: 3 blog drafts ready · 01:20</div>
+    </article>
+
+    <article class="v2-specialist">
+      <div class="v2-specialist-num">05</div>
+      <div class="v2-specialist-avatar">
+        <svg aria-hidden="true" viewBox="0 0 260 230" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-shield"/></svg>
+      </div>
+      <h3 class="v2-specialist-name">Trust</h3>
+      <p class="v2-specialist-role">Reviews · GBP · social proof</p>
+      <p class="v2-specialist-do">Replies to reviews in your tone. Keeps your Google Business Profile current. Surfaces ones that need a human.</p>
+      <div class="v2-specialist-stat"><span class="dot"></span> Last action: 12 reviews drafted · 03:14</div>
+    </article>
+
+    <article class="v2-specialist">
+      <div class="v2-specialist-num">06</div>
+      <div class="v2-specialist-avatar">
+        <svg aria-hidden="true" viewBox="0 0 240 220" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-point"/></svg>
+      </div>
+      <h3 class="v2-specialist-name">WhatsApp CRM</h3>
+      <p class="v2-specialist-role">Sell + serve in chat</p>
+      <p class="v2-specialist-do">Sells, ships, answers, recovers carts. Hands off to a human within 24h. Works in 50+ languages.</p>
+      <div class="v2-specialist-stat"><span class="dot"></span> Last action: 8 carts recovered · 21:47</div>
+    </article>
+
+    <article class="v2-specialist v2-specialist--wide">
+      <div class="v2-specialist-num">07</div>
+      <div class="v2-specialist-avatar">
+        <svg aria-hidden="true" viewBox="0 0 260 230" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-stopwatch"/></svg>
+      </div>
+      <div class="v2-specialist-body">
+        <h3 class="v2-specialist-name">Retention</h3>
+        <p class="v2-specialist-role">Lifecycle · churn ML · winback</p>
+        <p class="v2-specialist-do">Predicts who's about to churn. Triggers the right campaign at the right hour. Learns from every unsubscribe so the next one performs better.</p>
+        <div class="v2-specialist-stat"><span class="dot"></span> Last action: winback sent to 47 dormants · 00:12</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ════════ V2 · TRUST FLOW · APPROVE · UNDO · SLEEP WELL ════════ -->
+<section class="v2-trust wrap" id="how-it-works">
+  <div class="v2-section-head">
+    <span class="v2-eyebrow">↗ THE GUARDRAILS · YOU STAY IN CONTROL</span>
+    <h2 class="v2-section-title">Autonomous. <span class="mark">Not unsupervised.</span></h2>
+    <p class="v2-section-sub">Sage proposes. You dispose. Three patterns make sure she never goes off-script — and never wastes your morning explaining herself.</p>
+  </div>
+
+  <div class="v2-trust-grid">
+    <article class="v2-trust-card v2-trust-card--1">
+      <div class="v2-trust-stamp">01</div>
+      <div class="v2-trust-eyebrow">APPROVE</div>
+      <h3 class="v2-trust-title">Big calls wait for you.</h3>
+      <p class="v2-trust-desc">Spend changes &gt; $50, publish actions, customer replies that need nuance — they all sit in the morning queue with a one-tap Approve / Override / Hold.</p>
+      <div class="v2-trust-mock">
+        <div class="v2-trust-mock-row">
+          <span class="v2-trust-mock-dot v2-trust-mock-dot--warn"></span>
+          <span class="v2-trust-mock-text">Reallocate $340 Meta → TikTok</span>
+          <button class="v2-trust-mock-btn">Approve</button>
+        </div>
+        <div class="v2-trust-mock-row">
+          <span class="v2-trust-mock-dot v2-trust-mock-dot--warn"></span>
+          <span class="v2-trust-mock-text">Publish 3 blog drafts</span>
+          <button class="v2-trust-mock-btn">Approve</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="v2-trust-card v2-trust-card--2">
+      <div class="v2-trust-stamp">02</div>
+      <div class="v2-trust-eyebrow">UNDO</div>
+      <h3 class="v2-trust-title">Hit reset in 24h.</h3>
+      <p class="v2-trust-desc">Every action Sage takes is timestamped &amp; reversible for 24 hours. One click rolls it back AND tells Sage why — so she learns from the undo.</p>
+      <div class="v2-trust-mock">
+        <div class="v2-trust-mock-card-inner">
+          <div class="v2-trust-mock-meta">02:41 · Reallocated $340 spend</div>
+          <button class="v2-trust-mock-undo">↺ Undo this</button>
+        </div>
+      </div>
+    </article>
+
+    <article class="v2-trust-card v2-trust-card--3">
+      <div class="v2-trust-stamp">03</div>
+      <div class="v2-trust-eyebrow">SLEEP WELL</div>
+      <h3 class="v2-trust-title">She explains everything.</h3>
+      <p class="v2-trust-desc">Every change has a before/after, a plain-language reason, and the numbers it moved. Zero "AI decided" black boxes. If you don't get it, neither does she.</p>
+      <div class="v2-trust-mock">
+        <div class="v2-trust-mock-why-q">Why move spend?</div>
+        <div class="v2-trust-mock-why-a">Meta CAC has climbed 4 weeks running. TikTok ROAS hit 2.1×. Net upside ~$1,200.</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ════════ V2 · PRICING TEASER · TOKEN MENU ════════ -->
+<section class="v2-pricing wrap">
+  <div class="v2-section-head">
+    <span class="v2-eyebrow">↗ THE BILL · TRANSPARENT BY DEFAULT</span>
+    <h2 class="v2-section-title">Pay for what she <span class="mark">does</span>. Never for what she looks at.</h2>
+    <p class="v2-section-sub">Tokens are how Sage charges for action. Reading analytics, monitoring channels, drafting plans — always free. You only pay when she ships something.</p>
+  </div>
+
+  <div class="v2-pricing-grid">
+    <div class="v2-pricing-menu">
+      <div class="v2-pricing-menu-head">
+        <div class="v2-menu-title">TOKEN MENU · SAMPLE</div>
+        <div class="v2-menu-sub">A real cost breakdown · not made up</div>
+      </div>
+      <ul class="v2-menu-list">
+        <li class="v2-menu-item"><span>Rewrite a landing page for SEO + GEO</span><span class="v2-menu-cost">12 tokens</span></li>
+        <li class="v2-menu-item"><span>Generate a blog post in your voice</span><span class="v2-menu-cost">8 tokens</span></li>
+        <li class="v2-menu-item"><span>Reply to a customer review</span><span class="v2-menu-cost">2 tokens</span></li>
+        <li class="v2-menu-item"><span>Recover an abandoned cart on WhatsApp</span><span class="v2-menu-cost">3 tokens</span></li>
+        <li class="v2-menu-item"><span>Generate an ad creative variant</span><span class="v2-menu-cost">6 tokens</span></li>
+        <li class="v2-menu-item"><span>Reading any analytics, ever</span><span class="v2-menu-cost v2-menu-cost--free">FREE</span></li>
+      </ul>
     </div>
     <div>
-      <div class="bubble" style="margin-bottom: 28px;">
-        <p style="font-family: var(--font-sans); font-size: 19px; line-height: 1.5; margin: 0; font-variation-settings: 'wght' 500; font-style: italic;">
-          "I spend $1,200 a month on marketing tools and still have no idea which channels actually drive revenue. Google Analytics says one thing, Facebook says another."
-        </p>
-        <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-mute); margin-top: 14px;">— Owner, e-commerce skincare brand</div>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 14px;">
-        <div class="sticker tilt-l bg-cream" style="padding: 18px 22px;">
-          <h4 style="margin: 0 0 6px; font-size: 18px; font-variation-settings: 'wght' 700;">Tools require expertise you don't have.</h4>
-          <p style="margin: 0; font-size: 14px; color: var(--ink-soft);">Keyword difficulty. Bidding strategies. Attribution models. None of it should be your job.</p>
-        </div>
-        <div class="sticker tilt-r bg-cream" style="padding: 18px 22px;">
-          <h4 style="margin: 0 0 6px; font-size: 18px; font-variation-settings: 'wght' 700;">Insights without execution.</h4>
-          <p style="margin: 0; font-size: 14px; color: var(--ink-soft);">"You have 47 issues." Cool — when are you going to fix them?</p>
-        </div>
-        <div class="sticker tilt-l bg-cream" style="padding: 18px 22px;">
-          <h4 style="margin: 0 0 6px; font-size: 18px; font-variation-settings: 'wght' 700;">Search itself is changing.</h4>
-          <p style="margin: 0; font-size: 14px; color: var(--ink-soft);">Customers ask ChatGPT and Perplexity now. Your SEO tool has no idea how to make you visible there.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════ ENGINES ════════ -->
-<section class="section wrap" id="engines">
-  <span class="section-eyebrow">Seven coordinated engines · one platform</span>
-  <h2 class="h2">Specialized inside. <em>Invisible</em> outside.</h2>
-  <p class="lede section-intro">
-    You never have to think about engines. Sage picks which to activate based on your goal. You watch outcomes; the work stays behind the curtain.
-  </p>
-
-  <div class="engines-layout">
-    <div style="display: grid; place-items: center;">
-      <svg aria-hidden="true" viewBox="0 0 360 220" width="100%" style="max-width: 380px;"><use href="sage.svg#sage-controls"/></svg>
-    </div>
-    <div>
-      <div class="engines-grid-r">
-        <div class="engine-chip">
-          <div class="ec-icon c1">01</div>
-          <div class="ec-meta"><span class="ec-name">SEO + GEO</span><span class="ec-sub">Search & AI engine visibility</span></div>
-        </div>
-        <div class="engine-chip">
-          <div class="ec-icon c2">02</div>
-          <div class="ec-meta"><span class="ec-name">Intelligence (BI)</span><span class="ec-sub">Attribution & budget routing</span></div>
-        </div>
-        <div class="engine-chip">
-          <div class="ec-icon c3">03</div>
-          <div class="ec-meta"><span class="ec-name">Unified Ads</span><span class="ec-sub">Google · Meta · TikTok · more</span></div>
-        </div>
-        <div class="engine-chip">
-          <div class="ec-icon c4">04</div>
-          <div class="ec-meta"><span class="ec-name">Content</span><span class="ec-sub">Blogs · pages · social · email</span></div>
-        </div>
-        <div class="engine-chip">
-          <div class="ec-icon c5">05</div>
-          <div class="ec-meta"><span class="ec-name">Trust</span><span class="ec-sub">Reviews · GBP · social proof</span></div>
-        </div>
-        <div class="engine-chip">
-          <div class="ec-icon c6">06</div>
-          <div class="ec-meta"><span class="ec-name">WhatsApp CRM</span><span class="ec-sub">Sell + serve in chat</span></div>
-        </div>
-        <div class="engine-chip" style="grid-column: 1 / -1;">
-          <div class="ec-icon c7">07</div>
-          <div class="ec-meta"><span class="ec-name">Retention</span><span class="ec-sub">Lifecycle email · churn ML · winback</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ════════ HOW IT WORKS ════════ -->
-<section class="section wrap" id="how-it-works">
-  <span class="section-eyebrow">From signup to first result</span>
-  <h2 class="h2">Five minutes to set up. <em>Live results</em> in 24 hours.</h2>
-  <p class="lede section-intro">A 3-question setup, then Sage gets to work overnight. By morning you have your first recommendations and at least one optimization staged.</p>
-
-  <div class="comic-strip">
-    <div class="comic-panel">
-      <div class="comic-num">1</div>
-      <div class="comic-illustration">
-        <svg aria-hidden="true" viewBox="0 0 260 110" width="100%" height="100%" fill="none" stroke="#151515" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="40" y="20" width="180" height="70" rx="10" fill="#FAF9F4"/>
-          <line x1="55" y1="40" x2="180" y2="40"/>
-          <line x1="55" y1="55" x2="160" y2="55"/>
-          <line x1="55" y1="70" x2="170" y2="70"/>
-          <circle cx="200" cy="55" r="12" fill="#FFD202" stroke="#151515" stroke-width="2.5"/>
-          <path d="M 195 55 L 199 59 L 207 51" stroke="#fff"/>
-        </svg>
-      </div>
-      <h4>Tell us what you sell.</h4>
-      <p>Three questions in normal-person words. What you sell, your site, your goal. That's it.</p>
-    </div>
-    <div class="comic-panel">
-      <div class="comic-num">2</div>
-      <div class="comic-illustration">
-        <svg aria-hidden="true" viewBox="0 0 260 110" width="100%" height="100%" fill="none" stroke="#151515" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="50" y="20" width="160" height="60" rx="6" fill="#151515"/>
-          <text x="60" y="44" font-family="JetBrains Mono" font-size="10" fill="#FFD202" stroke="none">$ install seenfolio</text>
-          <text x="60" y="62" font-family="JetBrains Mono" font-size="10" fill="#81A62D" stroke="none">→ connected ✓</text>
-          <path d="M 140 95 Q 155 88 165 95" stroke="#FFD202" stroke-width="3"/>
-        </svg>
-      </div>
-      <h4>Install one snippet.</h4>
-      <p>JS tag, WordPress plugin, Cloudflare Worker, or CI pipeline — pick the one you already use.</p>
-    </div>
-    <div class="comic-panel">
-      <div class="comic-num">3</div>
-      <div class="comic-illustration">
-        <svg aria-hidden="true" viewBox="0 0 260 110" width="100%" height="100%" fill="none" stroke="#151515" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M 30 85 L 65 60 L 100 70 L 135 45 L 170 50 L 205 25 L 230 30" stroke="#FFD202" stroke-width="3" fill="none"/>
-          <circle cx="230" cy="30" r="5" fill="#FFD202"/>
-          <line x1="30" y1="90" x2="240" y2="90"/>
-          <text x="170" y="78" font-family="Caveat" font-size="18" fill="#151515" stroke="none">overnight ✨</text>
-        </svg>
-      </div>
-      <h4>Sage gets to work.</h4>
-      <p>By morning you have 5 prioritized recommendations and at least one optimization staged. Approve, override, or undo.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ════════ DESIGN PRINCIPLES ════════ -->
-<section class="section wrap">
-  <span class="section-eyebrow">How we think · 6 principles</span>
-  <h2 class="h2">Boring rules we <em>actually follow</em>.</h2>
-
-  <div class="principles-grid">
-    <div class="principle">
-      <div class="p-num">01.</div>
-      <h3 class="p-title">Outcomes, <em>not features</em></h3>
-      <p>You don't pick between "SEO" and "ads." You pick "more sales." Sage figures out the rest.</p>
-    </div>
-    <div class="principle">
-      <div class="p-num">02.</div>
-      <h3 class="p-title"><em>Autonomous</em>, not manual</h3>
-      <p>Other tools tell you what to do. Sage does it. With your approval, on your schedule, or never — your call.</p>
-    </div>
-    <div class="principle">
-      <div class="p-num">03.</div>
-      <h3 class="p-title">Trust through <em>transparency</em></h3>
-      <p>Every action has a before/after, a plain-language reason, and the numbers it moved. No black box.</p>
-    </div>
-    <div class="principle">
-      <div class="p-num">04.</div>
-      <h3 class="p-title">One-click <em>undo</em></h3>
-      <p>Anything we change can be reverted in a single click within 24 hours. We learn from the undo.</p>
-    </div>
-    <div class="principle">
-      <div class="p-num">05.</div>
-      <h3 class="p-title">Progressive <em>disclosure</em></h3>
-      <p>Beginner mode hides every term. Advanced exposes every dial. Same engine, different posture.</p>
-    </div>
-    <div class="principle">
-      <div class="p-num">06.</div>
-      <h3 class="p-title">Pay only when we <em>work</em></h3>
-      <p>Token-based. Analytics and insights are free. You pay when Sage acts on your behalf.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ════════ PRICING TEASER ════════ -->
-<section class="section wrap">
-  <span class="section-eyebrow">Transparent pricing · pay for action</span>
-  <h2 class="h2" style="max-width: 26ch;">Pay for what we <em>do</em>. Never for what we look at.</h2>
-
-  <div class="pricing-grid">
-    <div>
-      <p class="lede" style="margin: 0 0 24px; max-width: 50ch;">
-        Tokens are how we charge for action. Optimize a page, write a blog, generate a creative — each has a transparent cost. Reading analytics? Always free.
-      </p>
+      <h3 class="v2-pricing-side-title">100 tokens free. <br>No card.</h3>
+      <p class="v2-pricing-side-desc">Roughly enough for a week of overnight optimization on a small store. If Sage hasn't earned her keep by then, you walk away without spending a cent.</p>
       <a class="btn primary lg" href="pricing.html">See full pricing →</a>
     </div>
-    <div class="tickets-row">
-      <div class="mini-ticket">
-        <div class="name">Free</div>
-        <div class="price">$0</div>
-        <div class="tokens">100 tokens / mo</div>
-      </div>
-      <div class="mini-ticket">
-        <div class="name">Starter</div>
-        <div class="price">$49<small>/mo</small></div>
-        <div class="tokens">1,000 tokens</div>
-      </div>
-      <div class="mini-ticket" style="background: var(--yellow); border-radius: 12px;">
-        <div class="name" style="color: var(--accent-deep);">★ Popular</div>
-        <div class="price">$149<small>/mo</small></div>
-        <div class="tokens">5,000 tokens</div>
-      </div>
-      <div class="mini-ticket">
-        <div class="name">Enterprise</div>
-        <div class="price" style="font-size: 26px;">Custom</div>
-        <div class="tokens">Talk to us</div>
-      </div>
-    </div>
   </div>
 </section>
 
-<!-- ════════ TESTIMONIAL ════════ -->
-<section class="section">
-  <div class="wrap testi-wrap">
-    <div class="testi-avatar">
-      <div class="ring">A</div>
+<!-- ════════ V2 · FINAL CTA · TONIGHT → 06:00 ════════ -->
+<section class="wrap v2-final-cta">
+  <div class="v2-final-card">
+    <div class="v2-final-clock">
+      <span class="v2-final-clock-now">23:47 tonight</span>
+      <span class="v2-final-clock-arrow" aria-hidden="true">→</span>
+      <span class="v2-final-clock-then">06:00 your briefing</span>
     </div>
-    <div>
-      <p class="testi-quote">"I cancelled five tools the day I signed up. Six weeks later my revenue was up <em>31%</em> and I hadn't touched a single setting."</p>
-      <p class="testi-meta">— Amara O. · Silver Jewelry Co · Lagos</p>
-    </div>
-  </div>
-</section>
-
-<!-- ════════ FINAL CTA ════════ -->
-<section class="wrap">
-  <div class="final-cta">
-    <h2 class="h2">Try it on your site. <em>See it work</em> overnight.</h2>
-    <p class="lede">100 tokens free. No credit card. Your first optimization within 24 hours — or your platform stays quiet until you're ready.</p>
-    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1;">
+    <h2 class="v2-final-title">Tonight she starts. <span class="mark">By morning, you've moved.</span></h2>
+    <p class="v2-final-sub">100 tokens free. No credit card. Sage runs her first overnight pass within hours — you wake up to a briefing like the one above.</p>
+    <div class="v2-final-actions">
       <a class="btn primary lg" href="sign-in.html?signup=true">Start free →</a>
-      <a class="btn lg" href="docs.html" style="background: var(--bg-card);">Read the docs</a>
+      <a class="btn lg" href="docs.html">Read the docs</a>
     </div>
-    <div class="sage-tag sage" style="width: 180px; height: 180px;">
-      <svg aria-hidden="true" viewBox="0 0 220 220" width="100%" height="100%"><use href="sage.svg#sage-wink"/></svg>
+    <div class="v2-final-sage" aria-hidden="true">
+      <svg viewBox="0 0 220 220" width="100%"><use href="sage.svg#sage-wink"/></svg>
     </div>
   </div>
 </section>
+
 
 <!-- ════════ FOOTER ════════ -->
 <footer class="footer">
