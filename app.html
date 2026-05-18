@@ -432,20 +432,32 @@
     }
 
     .greeting {
-      font-family: var(--serif);
-      font-size: clamp(36px, 5vw, 56px);
-      letter-spacing: -0.025em;
-      line-height: 1.02;
-      font-variation-settings: "opsz" 144, "SOFT" 30, "wght" 320;
-      max-width: 18ch;
+      font-family: var(--sans);
+      font-size: clamp(24px, 2.4vw, 30px);
+      letter-spacing: -0.018em;
+      line-height: 1.15;
+      font-variation-settings: "wght" 720;
+      max-width: 38ch;
       margin: 0;
+      color: var(--ink);
     }
     .greeting em {
-      font-style: italic;
-      color: var(--amber);
-      font-variation-settings: "opsz" 144, "SOFT" 100, "wght" 320;
+      font-style: normal;
+      position: relative;
+      z-index: 1;
+      white-space: nowrap;
     }
-    .greeting .quiet { color: var(--ink-soft); }
+    .greeting em::before {
+      content: "";
+      position: absolute;
+      left: -3px; right: -3px;
+      bottom: 3%;
+      height: 32%;
+      background: var(--yellow);
+      z-index: -1;
+      border-radius: 2px;
+    }
+    .greeting .quiet { color: var(--ink-soft); font-variation-settings: "wght" 500; }
 
     .hero-meta {
       text-align: right;
@@ -2732,7 +2744,6 @@
       .chat-shell { border-radius: var(--r-md); }
       .results-row, .cost-grid { grid-template-columns: 1fr; }
       .result-cell, .cost-cell { border-right: 0; border-bottom: 1px solid var(--line); }
-      .greeting { font-size: 32px; }
     }
 
     /* ─── WORKSPACE SWITCHER ─────────────────────────── */
@@ -2930,7 +2941,6 @@
     }
     @media (max-width: 560px) {
       .ws-switch-btn .ws-avatar { width:24px; height:24px; }
-      .greeting { font-size:28px; }
       .stat-num { font-size:36px; }
       .reco-card { padding:18px 20px !important; }
     }
@@ -2947,18 +2957,18 @@
        LIGHT-THEME OVERRIDES (PostHog reskin)
     ─────────────────────────────────────────────── */
 
-    /* greeting and large display text need bold sans, not serif italic */
+    /* greeting · page title (sober app-shell scale, marker-stripe emphasis) */
     .greeting {
       font-family: var(--sans) !important;
-      font-variation-settings: "wght" 800 !important;
-      letter-spacing: -0.025em;
+      font-variation-settings: "wght" 720 !important;
+      letter-spacing: -0.018em;
     }
     .greeting em {
       font-style: normal !important;
-      background: var(--yellow);
+      background: transparent;
       color: var(--ink);
-      padding: 0 8px;
-      border-radius: 4px;
+      padding: 0;
+      border-radius: 0;
     }
     .greeting .quiet { color: var(--ink-mute); font-variation-settings: "wght" 500; }
     .stat-num {
@@ -4075,7 +4085,7 @@
       <div class="view" data-view-pane="chat">
         <div class="content" style="padding-bottom: 24px;">
           <div class="hero-head" style="margin-bottom: 24px;">
-            <h1 class="greeting" style="font-size: 36px;">Talk to <em>your platform</em>.</h1>
+            <h1 class="greeting">Talk to <em>your platform</em>.</h1>
             <div class="hero-meta">
               <b>2,140 / 5,000 tokens</b><br>
               Drafts &amp; analytics are free
