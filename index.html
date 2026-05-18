@@ -41,11 +41,9 @@
   transform: rotate(-3deg); z-index: 2;
 }
 
-/* hero URL-capture bar — primary "get started" entry point */
-.hero-grid > .hero-capture,
-.hero-grid > .hero-capture-foot { grid-column: 1 / -1; }
+/* hero URL-capture bar — primary "get started" entry point (in left column) */
 .hero-capture {
-  margin-top: 32px;
+  margin-top: 28px;
   display: grid;
   grid-template-columns: 1fr auto auto auto;
   align-items: stretch;
@@ -121,14 +119,6 @@
 }
 .hero-capture-cta:hover { background: var(--accent-deep); }
 .hero-capture-cta:active { background: var(--accent-deep); }
-.hero-capture-foot {
-  text-align: center;
-  margin: 14px 0 0;
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.08em;
-  color: var(--ink-mute);
-}
 @media (max-width: 700px) {
   .hero-capture {
     grid-template-columns: 1fr;
@@ -353,10 +343,38 @@
       <p class="lede" style="margin: 28px 0 8px; max-width: 44ch;">
         Replaces the ten marketing tools you barely use. Analyzes, decides, and acts on its own — and tells you why, in normal-person words.
       </p>
-      <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px;">
-        <a class="btn primary lg" href="sign-in.html?signup=true">Start free · 100 tokens</a>
-        <a class="btn lg" href="#how-it-works">See how it works ↓</a>
-      </div>
+
+      <!-- URL capture · primary onboarding entry-point -->
+      <form class="hero-capture" data-hero-capture autocomplete="off">
+        <input class="hero-capture-input" type="text" name="website"
+               placeholder="Enter your website URL..." autocomplete="url"
+               aria-label="Your website URL" />
+        <div class="hero-capture-divider" aria-hidden="true"></div>
+        <label class="hero-capture-region">
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/>
+          </svg>
+          <select name="region" aria-label="Region">
+            <option value="worldwide">Worldwide</option>
+            <option value="africa">Africa</option>
+            <option value="europe">Europe</option>
+            <option value="north-america">North America</option>
+            <option value="asia">Asia</option>
+            <option value="latam">Latin America</option>
+          </select>
+        </label>
+        <button class="hero-capture-cta" type="submit">
+          Get started
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2.4"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6"/>
+          </svg>
+        </button>
+      </form>
+
       <div class="hero-aside">
         <svg aria-hidden="true" width="50" height="40" viewBox="0 0 50 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M 4 10 Q 18 6 30 20 Q 38 30 44 26"/>
@@ -373,39 +391,6 @@
       </div>
       <div class="hero-stamp">100% reversible</div>
     </div>
-
-    <!-- URL capture · onboarding entry-point -->
-    <form class="hero-capture" data-hero-capture autocomplete="off">
-      <input class="hero-capture-input" type="text" name="website"
-             placeholder="Enter your website URL..." autocomplete="url"
-             aria-label="Your website URL" />
-      <div class="hero-capture-divider" aria-hidden="true"></div>
-      <label class="hero-capture-region">
-        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24"
-             fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="9"/>
-          <path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/>
-        </svg>
-        <select name="region" aria-label="Region">
-          <option value="worldwide">Worldwide</option>
-          <option value="africa">Africa</option>
-          <option value="europe">Europe</option>
-          <option value="north-america">North America</option>
-          <option value="asia">Asia</option>
-          <option value="latam">Latin America</option>
-        </select>
-      </label>
-      <button class="hero-capture-cta" type="submit">
-        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24"
-             fill="none" stroke="currentColor" stroke-width="2.4"
-             stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="7"/>
-          <path d="M21 21l-4.3-4.3"/>
-        </svg>
-        Get started
-      </button>
-    </form>
-    <p class="hero-capture-foot">Free · No credit card</p>
   </div>
 </header>
 
