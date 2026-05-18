@@ -4,120 +4,142 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pricing — SeenFolio</title>
-<meta name="description" content="Token-based, pay-only-when-it-works pricing for SeenFolio." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,200..700,0..100;1,9..144,200..700,0..100&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<meta name="description" content="Token-based, pay-only-when-it-works pricing." />
+<link rel="stylesheet" href="styles.css" />
 <style>
-:root{
-  --bg:#0E0D0A;--bg-1:#15130F;--surface:#1A1813;--surface-1:#211E18;--surface-2:#28241D;--surface-3:#322D24;
-  --line:rgba(245,233,211,0.07);--line-strong:rgba(245,233,211,0.14);--line-warm:rgba(232,178,96,0.22);
-  --ink:#F4EBD7;--ink-soft:#C7BCA3;--ink-mute:#877E6B;--ink-faint:#5C5547;
-  --amber:#E8B260;--amber-bright:#F4C880;--amber-deep:#B8843C;--amber-glow:rgba(232,178,96,0.16);--amber-trace:rgba(232,178,96,0.06);
-  --good:#9CB87E;--warn:#D49A4F;--bad:#C9694F;
-  --serif:"Fraunces","Iowan Old Style",Georgia,serif;
-  --sans:"Geist",ui-sans-serif,-apple-system,BlinkMacSystemFont,sans-serif;
-  --mono:"Geist Mono",ui-monospace,"SF Mono",monospace;
+.hero { padding: 64px 0 40px; text-align: center; }
+.hero h1 { max-width: 22ch; margin: 18px auto; }
+.hero p { max-width: 52ch; margin: 0 auto 32px; }
+
+.toggle-row {
+  display: inline-flex; padding: 5px;
+  border: 2px solid var(--ink); border-radius: 999px;
+  background: var(--bg-paper); gap: 4px;
+  box-shadow: var(--shadow-card-sm); margin-bottom: 48px;
 }
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;letter-spacing:-0.005em;-webkit-font-smoothing:antialiased}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(900px 600px at 18% -5%,rgba(232,178,96,0.07),transparent 60%);z-index:0}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;cursor:pointer;background:transparent;border:0}
-::selection{background:var(--amber-glow);color:var(--ink)}
-
-.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(14,13,10,0.7);border-bottom:1px solid var(--line)}
-.nav-inner{max-width:1240px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;gap:36px}
-.brand{display:flex;align-items:center;gap:10px}
-.brand-mark{width:26px;height:26px;position:relative}
-.brand-mark::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--amber-bright),var(--amber-deep) 60%,transparent 75%);animation:pulse 4s ease-in-out infinite}
-.brand-mark::after{content:"";position:absolute;inset:7px;background:var(--bg);border-radius:50%}
-@keyframes pulse{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
-.brand-name{font-family:var(--serif);font-size:19px;font-variation-settings:"opsz" 36,"SOFT" 50;letter-spacing:-0.01em}
-.brand-name em{font-style:italic;color:var(--amber)}
-.nav-links{display:flex;gap:24px;font-size:14px;color:var(--ink-soft);margin-left:14px}
-.nav-links a{padding:6px 0;border-bottom:1px dotted transparent;transition:.15s}
-.nav-links a:hover,.nav-links a.active{color:var(--amber);border-bottom-color:var(--amber)}
-.nav-cta{margin-left:auto;display:flex;gap:10px;align-items:center}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:8px;border:1px solid var(--line-strong);color:var(--ink);font-size:13.5px;transition:all .15s;white-space:nowrap}
-.btn:hover{border-color:var(--ink-mute)}
-.btn.primary{background:var(--amber);color:var(--bg);border-color:var(--amber);font-weight:500}
-.btn.primary:hover{background:var(--amber-bright);border-color:var(--amber-bright)}
-.btn.ghost{border-color:transparent;color:var(--ink-soft)}
-.btn.ghost:hover{color:var(--ink)}
-
-.wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 32px}
-.hero{padding:80px 0 56px;text-align:center}
-.eyebrow{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);padding:6px 14px;border:1px solid var(--line-warm);border-radius:999px;background:var(--amber-trace);margin-bottom:24px}
-.hero h1{font-family:var(--serif);font-size:clamp(40px,5.5vw,72px);line-height:1.02;letter-spacing:-0.025em;font-variation-settings:"opsz" 144,"SOFT" 30,"wght" 320;margin:0 0 22px;max-width:18ch;margin-inline:auto}
-.hero h1 em{font-style:italic;color:var(--amber);font-variation-settings:"opsz" 144,"SOFT" 100,"wght" 320}
-.hero-sub{font-family:var(--serif);font-size:20px;line-height:1.5;color:var(--ink-soft);max-width:50ch;margin:0 auto 24px;font-variation-settings:"opsz" 80,"wght" 350}
-
-.toggle-row{display:inline-flex;padding:5px;border:1px solid var(--line-strong);border-radius:10px;background:var(--surface);gap:4px;margin-bottom:48px}
-.toggle-row button{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:9px 18px;border-radius:7px;color:var(--ink-mute);transition:.15s}
-.toggle-row button.on{background:var(--surface-2);color:var(--ink);box-shadow:inset 0 1px 0 rgba(245,233,211,0.05)}
-.toggle-row button:hover{color:var(--ink)}
-.toggle-row .save{font-family:var(--mono);font-size:9px;color:var(--amber);margin-left:6px}
-
-.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:56px}
-.plan{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px 26px 30px;position:relative;transition:all .18s}
-.plan:hover{transform:translateY(-3px);border-color:var(--line-strong)}
-.plan.featured{background:radial-gradient(500px 250px at 0% 0%,var(--amber-trace),transparent 60%),linear-gradient(180deg,var(--surface-1),var(--surface));border-color:var(--line-warm);box-shadow:0 0 0 1px var(--amber-trace),0 16px 40px -16px rgba(0,0,0,0.5)}
-.plan-badge{position:absolute;top:14px;right:14px;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--amber)}
-.plan-name{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:18px}
-.plan-name b{color:var(--amber);font-weight:normal}
-.plan-price{font-family:var(--serif);font-size:48px;letter-spacing:-0.03em;line-height:1;font-variation-settings:"opsz" 144,"SOFT" 40,"wght" 300;margin-bottom:6px}
-.plan-price .unit{font-size:18px;color:var(--ink-mute);margin-left:4px}
-.plan-tagline{font-size:13px;color:var(--ink-soft);margin:0 0 22px;min-height:38px}
-.plan-cta{display:block;text-align:center;padding:11px 12px;border-radius:8px;border:1px solid var(--line-strong);color:var(--ink);font-size:13.5px;font-family:var(--sans);transition:.15s;margin-bottom:24px}
-.plan-cta:hover{border-color:var(--ink-mute)}
-.plan.featured .plan-cta{background:var(--amber);color:var(--bg);border-color:var(--amber);font-weight:500}
-.plan.featured .plan-cta:hover{background:var(--amber-bright);border-color:var(--amber-bright)}
-.plan-feats{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;font-size:13.5px;color:var(--ink-soft);line-height:1.45}
-.plan-feats li{padding-left:22px;position:relative}
-.plan-feats li::before{content:"✓";position:absolute;left:0;top:1px;color:var(--amber);font-size:13px;font-weight:600}
-.plan-feats li.muted{color:var(--ink-mute)}
-.plan-feats li.muted::before{content:"—";color:var(--ink-faint)}
-
-/* token cost table */
-.section{padding:64px 0;position:relative}
-.section-eyebrow{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:18px}
-.section h2{font-family:var(--serif);font-size:clamp(32px,4.5vw,56px);line-height:1.08;letter-spacing:-0.022em;font-variation-settings:"opsz" 144,"SOFT" 30,"wght" 320;margin:0 0 18px;max-width:22ch}
-.section h2 em{font-style:italic;color:var(--amber)}
-.section-intro{font-family:var(--serif);font-size:18px;line-height:1.5;color:var(--ink-soft);max-width:58ch;margin:0 0 36px;font-variation-settings:"opsz" 80,"wght" 350}
-
-.cost-table{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface)}
-.cost-row{display:grid;grid-template-columns:1.4fr 2.2fr 0.9fr;padding:18px 28px;border-bottom:1px solid var(--line);align-items:center;gap:24px}
-.cost-row:last-child{border-bottom:0}
-.cost-row.head{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);background:var(--bg-1)}
-.cost-action{font-family:var(--serif);font-size:18px;font-variation-settings:"opsz" 60,"wght" 380;letter-spacing:-0.005em}
-.cost-desc{font-size:13px;color:var(--ink-soft);line-height:1.5}
-.cost-price{font-family:var(--serif);font-size:24px;font-style:italic;color:var(--amber);text-align:right;font-variation-settings:"opsz" 80,"wght" 360}
-.cost-price.free{color:var(--good);font-style:normal;font-size:14px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase}
-
-/* faq */
-.faq{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px}
-.faq-item{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px 24px}
-.faq-item h4{font-family:var(--serif);font-size:18px;margin:0 0 10px;letter-spacing:-0.01em;font-variation-settings:"opsz" 60,"wght" 380}
-.faq-item p{margin:0;font-size:13.5px;color:var(--ink-soft);line-height:1.6}
-
-/* footer */
-.footer{margin-top:64px;border-top:1px solid var(--line);padding:48px 32px}
-.footer-inner{max-width:1240px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
-.footer-tagline{font-size:13.5px;color:var(--ink-mute);max-width:40ch;line-height:1.6}
-.footer-meta{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--ink-mute);margin-top:18px}
-
-@media (max-width:980px){
-  .nav-links{display:none}
-  .plans{grid-template-columns:1fr 1fr}
-  .faq{grid-template-columns:1fr}
-  .wrap{padding:0 20px}
+.toggle-row button {
+  font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 9px 18px; border-radius: 999px;
+  color: var(--ink-mute);
 }
-@media (max-width:620px){
-  .plans{grid-template-columns:1fr}
-  .cost-row{grid-template-columns:1fr;gap:8px;padding:18px 22px}
-  .cost-price{text-align:left}
+.toggle-row button.on { background: var(--ink); color: var(--bg-paper); }
+.toggle-row .save { color: var(--accent); margin-left: 6px; }
+
+/* tickets */
+.plans { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 64px; }
+.ticket-plan {
+  background: var(--bg-card); border: 2px solid var(--ink);
+  border-radius: 18px; padding: 28px 24px 32px;
+  box-shadow: var(--shadow-card); position: relative;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.ticket-plan:nth-child(1) { transform: rotate(-1.2deg); }
+.ticket-plan:nth-child(2) { transform: rotate(0.8deg); }
+.ticket-plan:nth-child(3) { transform: rotate(-0.6deg); background: var(--yellow); box-shadow: var(--shadow-card-lg); }
+.ticket-plan:nth-child(4) { transform: rotate(1deg); }
+.ticket-plan:hover { transform: rotate(0); box-shadow: 8px 8px 0 var(--ink); }
+.ticket-plan::before, .ticket-plan::after {
+  content: ""; position: absolute;
+  width: 18px; height: 18px;
+  background: var(--bg);
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+}
+.ticket-plan::before { left: -10px; top: 60%; transform: translateY(-50%); }
+.ticket-plan::after { right: -10px; top: 60%; transform: translateY(-50%); }
+.ticket-plan.featured::before, .ticket-plan.featured::after { background: var(--bg); }
+.ticket-badge {
+  position: absolute; top: 14px; right: 14px;
+  background: var(--accent); color: #fff;
+  padding: 4px 12px; border-radius: 999px;
+  font-family: var(--font-mono); font-size: 9.5px;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  border: 2px solid var(--ink); transform: rotate(8deg);
+}
+.tp-name { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 18px; }
+.tp-price { font-family: var(--font-hand); font-size: 56px; line-height: 1; color: var(--ink); margin-bottom: 4px; }
+.tp-price small { font-family: var(--font-sans); font-size: 14px; color: var(--ink-mute); font-variation-settings: "wght" 400; }
+.tp-tagline { font-size: 13.5px; color: var(--ink-soft); margin: 0 0 22px; min-height: 38px; }
+.tp-cta {
+  display: block; width: 100%; text-align: center;
+  padding: 11px 12px; border-radius: 12px;
+  border: 2px solid var(--ink); background: var(--bg-card);
+  font-size: 13.5px; font-variation-settings: "wght" 600;
+  margin-bottom: 24px; box-shadow: var(--shadow-card-sm);
+}
+.ticket-plan:nth-child(3) .tp-cta { background: var(--accent); color: #fff; }
+.tp-feats { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; font-size: 13.5px; color: var(--ink-soft); }
+.tp-feats li { padding-left: 24px; position: relative; line-height: 1.45; }
+.tp-feats li::before {
+  content: "✓"; position: absolute; left: 0; top: 1px;
+  color: var(--accent); font-size: 14px; font-variation-settings: "wght" 800;
+}
+.tp-feats li.muted { color: var(--ink-mute); }
+.tp-feats li.muted::before { content: "—"; color: var(--ink-faint); }
+
+/* receipt */
+.section { padding: 64px 0; }
+.section-eyebrow {
+  display: inline-block; font-family: var(--font-mono);
+  font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); padding: 5px 12px;
+  border: 2px solid var(--accent); border-radius: 999px;
+  background: var(--accent-soft); margin-bottom: 22px;
+}
+.section h2 { max-width: 22ch; margin-bottom: 18px; }
+.section h2 em { font-style: normal; background: var(--yellow); padding: 0 6px; }
+.section-intro { max-width: 60ch; margin: 0 0 40px; }
+
+.receipt {
+  max-width: 740px; margin: 0 auto;
+  background: var(--bg-card); border: 2px solid var(--ink);
+  border-radius: 14px 14px 0 0; padding: 32px;
+  box-shadow: var(--shadow-card-lg); position: relative;
+}
+.receipt::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -24px;
+  height: 24px;
+  background:
+    radial-gradient(circle at 10px 0, transparent 9px, var(--bg-card) 9px) 0 0 / 20px 24px;
+  border-left: 2px solid var(--ink);
+  border-right: 2px solid var(--ink);
+}
+.receipt-head { text-align: center; margin-bottom: 22px; padding-bottom: 16px; border-bottom: 2px dashed var(--ink); }
+.receipt-head h3 { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase; margin: 0 0 6px; }
+.receipt-head .sub { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-mute); letter-spacing: 0.06em; }
+.receipt-row { display: grid; grid-template-columns: 1.4fr 2fr 0.6fr; padding: 12px 0; border-bottom: 1px dotted var(--line); gap: 16px; align-items: baseline; }
+.receipt-row:last-child { border-bottom: 0; }
+.receipt-row .action { font-family: var(--font-sans); font-size: 15px; font-variation-settings: "wght" 600; }
+.receipt-row .desc { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+.receipt-row .cost { font-family: var(--font-hand); font-size: 22px; color: var(--accent); text-align: right; }
+.receipt-row .cost.free { color: var(--teal); font-size: 14px; font-family: var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; }
+.receipt-foot { margin-top: 24px; padding-top: 16px; border-top: 2px dashed var(--ink); text-align: center; font-family: var(--font-hand); font-size: 22px; color: var(--accent); }
+
+/* faq comic */
+.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.faq-card {
+  background: var(--bg-card); border: 2px solid var(--ink);
+  border-radius: 14px; padding: 22px 24px;
+  box-shadow: var(--shadow-card-sm);
+}
+.faq-card:nth-child(odd) { background: var(--accent-soft); }
+.faq-card:nth-child(even) { background: var(--yellow-soft); }
+.faq-card h4 { font-family: var(--font-sans); font-size: 17px; font-variation-settings: "wght" 700; margin: 0 0 10px; letter-spacing: -0.01em; }
+.faq-card p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--ink-soft); }
+
+.hero-sage { display: grid; place-items: center; max-width: 220px; margin: 0 auto -20px; }
+@media (max-width: 920px) {
+  .nav-links { display: none; }
+  .plans { grid-template-columns: 1fr 1fr; }
+  .receipt-row { grid-template-columns: 1fr; gap: 4px; }
+  .receipt-row .cost { text-align: left; }
+  .faq-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .plans { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -126,7 +148,9 @@ button{font:inherit;color:inherit;cursor:pointer;background:transparent;border:0
 <nav class="nav">
   <div class="nav-inner">
     <a class="brand" href="index.html">
-      <div class="brand-mark"></div>
+      <div class="brand-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg>
+      </div>
       <div class="brand-name">Seen<em>Folio</em></div>
     </a>
     <div class="nav-links">
@@ -143,9 +167,12 @@ button{font:inherit;color:inherit;cursor:pointer;background:transparent;border:0
 </nav>
 
 <header class="hero wrap">
-  <span class="eyebrow">Pay only when it works</span>
-  <h1>Tokens for <em>actions</em>. Insights for <em>free</em>.</h1>
-  <p class="hero-sub">SeenFolio earns when you grow. Analytics, attribution, and recommendations cost nothing. You pay per executed action — a published blog post, an optimized page, an ad campaign launched.</p>
+  <div class="hero-sage">
+    <svg viewBox="0 0 260 230" width="100%"><use href="sage.svg#sage-calc"/></svg>
+  </div>
+  <span class="section-eyebrow" style="margin-bottom: 16px;">Pay only when it works</span>
+  <h1 class="h1">Tokens for <span class="mark">actions</span>. Insights for <span class="mark teal">free</span>.</h1>
+  <p class="lede">SeenFolio earns when you grow. Analytics, attribution, and recommendations cost nothing. You pay per executed action — a published blog, an optimized page, an ad campaign launched.</p>
   <div class="toggle-row">
     <button class="on">Monthly</button>
     <button>Annual <span class="save">save 20%</span></button>
@@ -154,60 +181,56 @@ button{font:inherit;color:inherit;cursor:pointer;background:transparent;border:0
 
 <section class="wrap">
   <div class="plans">
-
-    <div class="plan">
-      <div class="plan-name">Free</div>
-      <div class="plan-price">$0<span class="unit">/mo</span></div>
-      <p class="plan-tagline">Test the waters. Connect one site. See what we'd do.</p>
-      <a class="plan-cta" href="sign-in.html?signup=true&plan=free">Start free</a>
-      <ul class="plan-feats">
+    <div class="ticket-plan">
+      <div class="tp-name">Free</div>
+      <div class="tp-price">$0</div>
+      <p class="tp-tagline">Test the waters. Connect one site. See what we'd do.</p>
+      <a class="tp-cta" href="sign-in.html?signup=true&plan=free">Start free</a>
+      <ul class="tp-feats">
         <li>100 tokens / month</li>
-        <li>1 site</li>
-        <li>1 seat</li>
+        <li>1 site, 1 seat</li>
         <li>Analytics &amp; recommendations (always free)</li>
         <li class="muted">No autonomous actions</li>
         <li class="muted">Email support only</li>
       </ul>
     </div>
 
-    <div class="plan">
-      <div class="plan-name">Starter</div>
-      <div class="plan-price">$49<span class="unit">/mo</span></div>
-      <p class="plan-tagline">Solo founders, small brands. Enough to feel the platform working.</p>
-      <a class="plan-cta" href="sign-in.html?signup=true&plan=starter">Start Starter</a>
-      <ul class="plan-feats">
+    <div class="ticket-plan">
+      <div class="tp-name">Starter</div>
+      <div class="tp-price">$49<small>/mo</small></div>
+      <p class="tp-tagline">Solo founders. Enough to feel the platform working.</p>
+      <a class="tp-cta" href="sign-in.html?signup=true&plan=starter">Start Starter</a>
+      <ul class="tp-feats">
         <li>1,000 tokens / month</li>
-        <li>1 site</li>
-        <li>3 seats</li>
+        <li>1 site, 3 seats</li>
         <li>All 7 engines</li>
-        <li>One-click undo (24h window)</li>
+        <li>One-click undo (24h)</li>
         <li>Email + chat support</li>
       </ul>
     </div>
 
-    <div class="plan featured">
-      <div class="plan-badge">MOST POPULAR</div>
-      <div class="plan-name"><b>Growth</b></div>
-      <div class="plan-price">$149<span class="unit">/mo</span></div>
-      <p class="plan-tagline">Growing e-commerce and SaaS. The plan that pays for itself.</p>
-      <a class="plan-cta" href="sign-in.html?signup=true&plan=growth">Start Growth</a>
-      <ul class="plan-feats">
+    <div class="ticket-plan featured">
+      <div class="ticket-badge">★ Most Popular</div>
+      <div class="tp-name">Growth</div>
+      <div class="tp-price">$149<small>/mo</small></div>
+      <p class="tp-tagline">Growing e-commerce and SaaS. The plan that pays for itself.</p>
+      <a class="tp-cta" href="sign-in.html?signup=true&plan=growth">Start Growth</a>
+      <ul class="tp-feats">
         <li>5,000 tokens / month</li>
-        <li>3 sites</li>
-        <li>10 seats</li>
+        <li>3 sites, 10 seats</li>
         <li>All 7 engines</li>
-        <li>Custom brand voice profiles</li>
+        <li>Custom brand voice</li>
         <li>Priority chat + onboarding call</li>
         <li>Auto-refill tokens (optional)</li>
       </ul>
     </div>
 
-    <div class="plan">
-      <div class="plan-name">Enterprise</div>
-      <div class="plan-price">Custom</div>
-      <p class="plan-tagline">Agencies, multi-brand operators, &gt;5,000 tokens/mo.</p>
-      <a class="plan-cta" href="#">Talk to sales</a>
-      <ul class="plan-feats">
+    <div class="ticket-plan">
+      <div class="tp-name">Enterprise</div>
+      <div class="tp-price" style="font-size: 36px;">Custom</div>
+      <p class="tp-tagline">Agencies and multi-brand. &gt;5,000 tokens/mo.</p>
+      <a class="tp-cta" href="#">Talk to sales</a>
+      <ul class="tp-feats">
         <li>Custom token allocation</li>
         <li>Unlimited sites &amp; seats</li>
         <li>Multi-workspace org dashboard</li>
@@ -216,142 +239,155 @@ button{font:inherit;color:inherit;cursor:pointer;background:transparent;border:0
         <li>DPA + custom legal</li>
       </ul>
     </div>
-
   </div>
 </section>
 
-<!-- TOKEN COSTS -->
+<!-- TOKEN COSTS · RECEIPT -->
 <section class="section wrap">
-  <span class="section-eyebrow">What tokens buy</span>
-  <h2>Transparent costs <em>per action</em>.</h2>
-  <p class="section-intro">Every action is priced before you approve it. The platform predicts the cost from the brief — and rounds up, never down. Analytics, recommendations, dashboards, monitoring: all free.</p>
+  <div style="text-align: center; margin-bottom: 36px;">
+    <span class="section-eyebrow">What tokens buy</span>
+    <h2 class="h2" style="margin: 0 auto 16px;">Transparent costs <em>per action</em>.</h2>
+    <p class="lede" style="margin: 0 auto; max-width: 56ch;">Every action is priced before you approve it. Sage predicts cost from the brief — and rounds up, never down.</p>
+  </div>
 
-  <div class="cost-table">
-    <div class="cost-row head">
-      <span>Action</span>
-      <span>What you get</span>
-      <span style="text-align:right">Cost</span>
+  <div class="receipt">
+    <div class="receipt-head">
+      <h3>SeenFolio · Token Receipt</h3>
+      <div class="sub">REF: actions per workspace · last updated 2026</div>
     </div>
-    <div class="cost-row">
-      <span class="cost-action">Page SEO &amp; GEO analysis</span>
-      <span class="cost-desc">Deep crawl, scoring, ranked issues, AI-citation visibility for one URL.</span>
-      <span class="cost-price">10 tokens</span>
+    <div class="receipt-row">
+      <span class="action">Page SEO &amp; GEO analysis</span>
+      <span class="desc">Deep crawl, scoring, ranked issues, AI-citation visibility for one URL.</span>
+      <span class="cost">10t</span>
     </div>
-    <div class="cost-row">
-      <span class="cost-action">Page content rewrite</span>
-      <span class="cost-desc">Title, meta, body — brand-voice trained, staged 24h before publish.</span>
-      <span class="cost-price">15 tokens</span>
+    <div class="receipt-row">
+      <span class="action">Page content rewrite</span>
+      <span class="desc">Title, meta, body — brand-voice trained, staged 24h before publish.</span>
+      <span class="cost">15t</span>
     </div>
-    <div class="cost-row">
-      <span class="cost-action">Blog post (long-form)</span>
-      <span class="cost-desc">1,000–1,500 words, SEO-optimized, distributed to your channels.</span>
-      <span class="cost-price">35–50 tokens</span>
+    <div class="receipt-row">
+      <span class="action">Blog post (long-form)</span>
+      <span class="desc">1,000–1,500 words, SEO-optimized, distributed to your channels.</span>
+      <span class="cost">35–50t</span>
     </div>
-    <div class="cost-row">
-      <span class="cost-action">Social post / email copy</span>
-      <span class="cost-desc">Short-form content, brand-voice matched, ready to schedule.</span>
-      <span class="cost-price">10 tokens</span>
+    <div class="receipt-row">
+      <span class="action">Social post / email copy</span>
+      <span class="desc">Short-form content, brand-voice matched, ready to schedule.</span>
+      <span class="cost">10t</span>
     </div>
-    <div class="cost-row">
-      <span class="cost-action">Ad creative bundle</span>
-      <span class="cost-desc">N headline × N description × N CTA variants for one campaign.</span>
-      <span class="cost-price">20 tokens</span>
+    <div class="receipt-row">
+      <span class="action">Ad creative bundle</span>
+      <span class="desc">N × headlines × descriptions × CTAs for one campaign.</span>
+      <span class="cost">20t</span>
     </div>
-    <div class="cost-row">
-      <span class="cost-action">Lifecycle email send</span>
-      <span class="cost-desc">Per personalized email in welcome / winback / at-risk flow.</span>
-      <span class="cost-price">5 tokens</span>
+    <div class="receipt-row">
+      <span class="action">Lifecycle email send</span>
+      <span class="desc">Per personalized email in welcome / winback / at-risk flow.</span>
+      <span class="cost">5t</span>
     </div>
-    <div class="cost-row">
-      <span class="cost-action">WhatsApp AI response</span>
-      <span class="cost-desc">Per outbound message in conversational commerce / support.</span>
-      <span class="cost-price">5 tokens</span>
+    <div class="receipt-row">
+      <span class="action">WhatsApp AI response</span>
+      <span class="desc">Per outbound message in conversational commerce / support.</span>
+      <span class="cost">5t</span>
     </div>
-    <div class="cost-row">
-      <span class="cost-action">Churn prediction (per contact)</span>
-      <span class="cost-desc">Nightly ML inference against your active customer base.</span>
-      <span class="cost-price">0.1 tokens</span>
+    <div class="receipt-row">
+      <span class="action">Churn prediction (per contact)</span>
+      <span class="desc">Nightly ML inference against your active customer base.</span>
+      <span class="cost">0.1t</span>
     </div>
-    <div class="cost-row">
-      <span class="cost-action">Analytics &amp; insights</span>
-      <span class="cost-desc">Attribution, dashboards, recommendations, citation tracking.</span>
-      <span class="cost-price free">always free</span>
+    <div class="receipt-row">
+      <span class="action">Analytics &amp; insights</span>
+      <span class="desc">Attribution, dashboards, recommendations, citation tracking.</span>
+      <span class="cost free">always free</span>
     </div>
-    <div class="cost-row">
-      <span class="cost-action">Undo (within 24h)</span>
-      <span class="cost-desc">Reverting an action we took. We refund the original cost.</span>
-      <span class="cost-price free">refunded</span>
+    <div class="receipt-row">
+      <span class="action">Undo (within 24h)</span>
+      <span class="desc">Reverting an action we took. We refund the original cost.</span>
+      <span class="cost free">refunded</span>
     </div>
+    <div class="receipt-foot">Thanks for letting us do the work ✨</div>
   </div>
 </section>
 
 <!-- FAQ -->
 <section class="section wrap">
-  <span class="section-eyebrow">FAQ</span>
-  <h2>Things people <em>actually ask</em>.</h2>
+  <span class="section-eyebrow">FAQ · things people actually ask</span>
+  <h2 class="h2" style="margin-bottom: 36px;">Real <em>questions</em>, real answers.</h2>
 
-  <div class="faq">
-    <div class="faq-item">
+  <div class="faq-grid">
+    <div class="faq-card">
       <h4>What happens when I run out of tokens?</h4>
-      <p>Autonomous jobs pause. Analytics and dashboards keep working. You'll get notified at 20% and again at 5%. You can top up manually or enable auto-refill in settings.</p>
+      <p>Autonomous jobs pause. Analytics and dashboards keep working. You'll get notified at 20% and again at 5%. Top up manually or enable auto-refill.</p>
     </div>
-    <div class="faq-item">
+    <div class="faq-card">
       <h4>Do I get refunded if I undo something?</h4>
-      <p>Yes — anything you undo within 24 hours of execution gets its tokens refunded. After 24h the work has already happened, so no refund, but you can still revert the change.</p>
+      <p>Yes — anything you undo within 24 hours gets its tokens refunded. After 24h the work has happened, so no refund, but you can still revert.</p>
     </div>
-    <div class="faq-item">
-      <h4>Can I cap how much SeenFolio can spend?</h4>
-      <p>Yes. Set token limits per engine, per week. Set a "require approval above X tokens" rule. Pause any engine entirely. You're in control.</p>
+    <div class="faq-card">
+      <h4>Can I cap how much Sage spends?</h4>
+      <p>Yes. Set token limits per engine, per week. Set "require approval above X tokens." Pause any engine entirely. You're in control.</p>
     </div>
-    <div class="faq-item">
-      <h4>What's the difference between Beginner, Intermediate, and Advanced mode?</h4>
-      <p>Same engine underneath. Beginner shows outcomes and chat only — no engine names, no technical metrics. Intermediate adds channel breakdowns and preview-before-publish. Advanced exposes every dial, per-engine controls, and the API.</p>
+    <div class="faq-card">
+      <h4>What's Beginner vs Advanced mode?</h4>
+      <p>Same engine underneath. Beginner shows outcomes + chat only. Intermediate adds channel breakdown. Advanced exposes every dial.</p>
     </div>
-    <div class="faq-item">
+    <div class="faq-card">
       <h4>How is autonomy set?</h4>
-      <p>Per engine, per workspace: Full Auto, Suggest+Confirm, Notify Only, or Off. Defaults match your goal — e.g. content gets Suggest+Confirm by default, while small SEO patches go Full Auto.</p>
+      <p>Per engine, per workspace: Full Auto, Suggest+Confirm, Notify Only, or Off. Defaults match your goal.</p>
     </div>
-    <div class="faq-item">
-      <h4>Where are you hosted? Where's my data?</h4>
-      <p>EU and West Africa primary regions. Data isolation is per-workspace at the Postgres level via row-level security. AES-256 at rest. We're NDPR + GDPR compliant.</p>
+    <div class="faq-card">
+      <h4>Where's my data?</h4>
+      <p>EU and West Africa primary regions. Per-workspace Postgres row-level isolation. AES-256 at rest. NDPR + GDPR compliant.</p>
     </div>
-    <div class="faq-item">
+    <div class="faq-card">
       <h4>Can I cancel anytime?</h4>
-      <p>Yes. No annual lock-in unless you choose the annual plan for the 20% discount. Cancel and your unused tokens stay good for 30 days.</p>
+      <p>Yes. No annual lock-in unless you opt into the annual 20% discount. Unused tokens stay good for 30 days after cancel.</p>
     </div>
-    <div class="faq-item">
-      <h4>Do you work with my CMS / stack?</h4>
-      <p>WordPress (official plugin), Shopify (Admin app), Webflow, Squarespace, custom sites (JS SDK), and CI pipelines (GitHub App for static sites). If we can't make it work in 5 minutes, the next call is free.</p>
+    <div class="faq-card">
+      <h4>Do you work with my stack?</h4>
+      <p>WordPress, Shopify, Webflow, Squarespace, custom sites (JS SDK), and CI pipelines (GitHub App). If we can't make it work in 5 min, the next call is free.</p>
     </div>
   </div>
 </section>
 
 <!-- FINAL CTA -->
-<section class="section wrap" style="text-align:center;padding-top:32px">
-  <h2 style="margin-inline:auto;text-align:center">Start with <em>100 free tokens</em>.</h2>
-  <p style="font-family:var(--serif);font-size:18px;color:var(--ink-soft);max-width:48ch;margin:0 auto 28px;font-variation-settings:'opsz' 80,'wght' 350;line-height:1.5">No credit card. Five minutes to set up. Your first optimization staged within 24 hours.</p>
-  <div style="display:flex;justify-content:center;gap:12px;flex-wrap:wrap">
-    <a class="btn primary" href="sign-in.html?signup=true">Start free →</a>
-    <a class="btn" href="docs.html">Read the docs</a>
+<section class="section wrap" style="text-align: center;">
+  <h2 class="h2" style="margin: 0 auto 18px;">Start with <em>100 free tokens</em>.</h2>
+  <p class="lede" style="max-width: 48ch; margin: 0 auto 28px;">No credit card. Five minutes to set up. Your first optimization staged within 24 hours.</p>
+  <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+    <a class="btn primary lg" href="sign-in.html?signup=true">Start free →</a>
+    <a class="btn lg" href="docs.html">Read the docs</a>
   </div>
 </section>
 
 <footer class="footer">
   <div class="footer-inner">
-    <div class="brand">
-      <div class="brand-mark"></div>
-      <div class="brand-name">Seen<em>Folio</em></div>
+    <div class="footer-col">
+      <a class="brand" href="index.html" style="margin-bottom: 14px;">
+        <div class="brand-mark">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <div class="brand-name">Seen<em>Folio</em></div>
+      </a>
+      <p style="font-size: 14px; color: var(--ink-mute); max-width: 28ch; line-height: 1.5;">
+        Autonomous growth infrastructure for online businesses.
+      </p>
     </div>
-    <p class="footer-tagline">Autonomous growth infrastructure for online businesses.</p>
-    <div class="footer-meta">© SeenFolio · Idylabs LTD · 2026 · Made in Lagos</div>
+    <div class="footer-col"><h5>Product</h5><a href="index.html#engines">Engines</a><a href="pricing.html">Pricing</a><a href="docs.html">Docs</a></div>
+    <div class="footer-col"><h5>Company</h5><a href="#">About</a><a href="#">Customers</a><a href="#">Contact</a></div>
+    <div class="footer-col"><h5>Resources</h5><a href="#">Changelog</a><a href="#">Status</a><a href="lofi.html">Design system</a></div>
+    <div class="footer-col"><h5>Legal</h5><a href="#">Terms</a><a href="#">Privacy</a><a href="#">DPA</a></div>
+  </div>
+  <div class="footer-meta">
+    <span>© SeenFolio · Idylabs LTD · 2026</span>
+    <span>Made in Lagos</span>
   </div>
 </footer>
 
 <script>
-  // Plan-toggle (visual only)
-  document.querySelectorAll('.toggle-row button').forEach(b=>{
-    b.addEventListener('click',()=>{
-      document.querySelectorAll('.toggle-row button').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.toggle-row button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.toggle-row button').forEach(x => x.classList.remove('on'));
       b.classList.add('on');
     });
   });

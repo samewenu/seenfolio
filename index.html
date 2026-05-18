@@ -4,214 +4,212 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SeenFolio — Autonomous growth infrastructure for online businesses</title>
-<meta name="description" content="SeenFolio replaces 10–15 marketing tools with a single AI platform that analyzes, decides, and acts on its own. Pay only when it does the work." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,200..700,0..100;1,9..144,200..700,0..100&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+<meta name="description" content="Replaces the ten marketing tools you barely use. Analyzes, decides, and acts on its own — and tells you why, in normal-person words." />
+<link rel="stylesheet" href="styles.css" />
 <style>
-:root{
-  --bg:#0E0D0A;--bg-1:#15130F;--surface:#1A1813;--surface-1:#211E18;--surface-2:#28241D;--surface-3:#322D24;
-  --line:rgba(245,233,211,0.07);--line-strong:rgba(245,233,211,0.14);--line-warm:rgba(232,178,96,0.22);
-  --ink:#F4EBD7;--ink-soft:#C7BCA3;--ink-mute:#877E6B;--ink-faint:#5C5547;
-  --amber:#E8B260;--amber-bright:#F4C880;--amber-deep:#B8843C;--amber-glow:rgba(232,178,96,0.16);--amber-trace:rgba(232,178,96,0.06);
-  --good:#9CB87E;--warn:#D49A4F;--bad:#C9694F;
-  --serif:"Fraunces","Iowan Old Style",Georgia,serif;
-  --sans:"Geist",ui-sans-serif,-apple-system,BlinkMacSystemFont,sans-serif;
-  --mono:"Geist Mono",ui-monospace,"SF Mono",monospace;
+/* page-specific touches */
+.hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; }
+.hero-mark {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent); background: var(--accent-soft); border: 2px solid var(--accent);
+  padding: 5px 12px; border-radius: 999px; margin-bottom: 28px; box-shadow: var(--shadow-card-sm);
 }
-*{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;letter-spacing:-0.005em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(900px 600px at 18% -5%,rgba(232,178,96,0.07),transparent 60%),radial-gradient(1200px 800px at 110% 110%,rgba(232,178,96,0.04),transparent 60%);z-index:0}
-a{color:inherit;text-decoration:none}
-button{font:inherit;color:inherit;cursor:pointer;background:transparent;border:0}
-::selection{background:var(--amber-glow);color:var(--ink)}
-
-/* ─── NAV ───────────────────────────────────────────── */
-.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(14,13,10,0.7);border-bottom:1px solid var(--line)}
-.nav-inner{max-width:1240px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;gap:36px}
-.brand{display:flex;align-items:center;gap:10px}
-.brand-mark{width:26px;height:26px;position:relative}
-.brand-mark::before{content:"";position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--amber-bright),var(--amber-deep) 60%,transparent 75%);animation:pulse 4s ease-in-out infinite}
-.brand-mark::after{content:"";position:absolute;inset:7px;background:var(--bg);border-radius:50%}
-@keyframes pulse{0%,100%{opacity:.85;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
-.brand-name{font-family:var(--serif);font-size:19px;font-variation-settings:"opsz" 36,"SOFT" 50;letter-spacing:-0.01em}
-.brand-name em{font-style:italic;color:var(--amber)}
-.nav-links{display:flex;gap:24px;font-size:14px;color:var(--ink-soft);margin-left:14px}
-.nav-links a{padding:6px 0;border-bottom:1px dotted transparent;transition:.15s}
-.nav-links a:hover{color:var(--ink);border-bottom-color:var(--line-warm)}
-.nav-cta{margin-left:auto;display:flex;gap:10px;align-items:center}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:8px;border:1px solid var(--line-strong);color:var(--ink);font-size:13.5px;transition:all .15s;white-space:nowrap}
-.btn:hover{border-color:var(--ink-mute)}
-.btn.primary{background:var(--amber);color:var(--bg);border-color:var(--amber);font-weight:500}
-.btn.primary:hover{background:var(--amber-bright);border-color:var(--amber-bright)}
-.btn.ghost{border-color:transparent;color:var(--ink-soft)}
-.btn.ghost:hover{color:var(--ink)}
-
-/* ─── HERO ──────────────────────────────────────────── */
-.wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:0 32px}
-.hero{padding:96px 0 80px;text-align:center;position:relative}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);padding:7px 14px;border:1px solid var(--line-warm);border-radius:999px;background:var(--amber-trace);margin-bottom:34px}
-.hero-eyebrow .ping{width:6px;height:6px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber)}
-.hero h1{font-family:var(--serif);font-size:clamp(48px,7.5vw,108px);line-height:0.96;letter-spacing:-0.03em;font-variation-settings:"opsz" 144,"SOFT" 30,"wght" 320;margin:0 0 28px;max-width:18ch;margin-inline:auto}
-.hero h1 em{font-style:italic;color:var(--amber);font-variation-settings:"opsz" 144,"SOFT" 100,"wght" 320}
-.hero-sub{font-family:var(--serif);font-size:clamp(19px,2.4vw,26px);line-height:1.4;color:var(--ink-soft);max-width:36ch;margin:0 auto 40px;font-variation-settings:"opsz" 80,"SOFT" 50,"wght" 350}
-.hero-ctas{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:28px}
-.hero-trust{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-mute)}
-.hero-trust b{color:var(--ink-soft);font-weight:400}
-
-/* "screenshot" preview */
-.preview{margin:80px auto 0;max-width:1120px;position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line-warm);box-shadow:0 32px 80px -28px rgba(0,0,0,0.7),0 6px 18px -8px rgba(0,0,0,0.55)}
-.preview-chrome{padding:11px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:11px;color:var(--ink-mute);background:var(--surface)}
-.preview-chrome .dots{display:inline-flex;gap:6px}
-.preview-chrome .dot{width:9px;height:9px;border:1px solid var(--line-strong);border-radius:50%}
-.preview-body{padding:36px 40px;background:linear-gradient(180deg,var(--surface),var(--bg-1));display:grid;grid-template-columns:1.4fr 1fr;gap:32px;min-height:380px}
-.pv-left h3{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 14px}
-.pv-greet{font-family:var(--serif);font-size:34px;line-height:1.06;letter-spacing:-0.02em;margin:0 0 22px;font-variation-settings:"opsz" 100,"wght" 340}
-.pv-greet em{font-style:italic;color:var(--amber)}
-.pv-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface-1)}
-.pv-stat{padding:18px 18px 20px;border-right:1px solid var(--line)}
-.pv-stat:last-child{border-right:0}
-.pv-stat-lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:8px}
-.pv-stat-val{font-family:var(--serif);font-size:30px;font-variation-settings:"opsz" 100,"wght" 320;letter-spacing:-0.025em;line-height:1}
-.pv-stat-trend{font-family:var(--mono);font-size:10px;color:var(--good);margin-top:6px}
-.pv-feed-title{font-family:var(--serif);font-size:18px;margin:24px 0 12px;font-variation-settings:"opsz" 36,"wght" 380}
-.pv-feed-title em{font-style:italic;color:var(--amber)}
-.pv-feed{display:flex;flex-direction:column;gap:10px}
-.pv-feed-row{padding:12px 14px;background:var(--surface-1);border:1px solid var(--line);border-radius:10px;font-size:13.5px;color:var(--ink-soft)}
-.pv-feed-row em{font-style:italic;color:var(--amber);font-family:var(--serif);font-variation-settings:"opsz" 36,"wght" 380}
-.pv-feed-row .meta{font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);margin-top:5px}
-.pv-feed-row .meta .good{color:var(--good)}
-.pv-action{background:linear-gradient(180deg,var(--surface-2),var(--surface-1));border:1px solid var(--line-warm);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:14px;box-shadow:0 0 0 1px var(--amber-trace) inset}
-.pv-action-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:8px}
-.pv-action-eyebrow .live{width:6px;height:6px;border-radius:50%;background:var(--amber);box-shadow:0 0 10px var(--amber);animation:pulse 1.8s ease-in-out infinite}
-.pv-action h4{font-family:var(--serif);font-size:21px;margin:0;line-height:1.2;font-variation-settings:"opsz" 80,"wght" 360;letter-spacing:-0.01em}
-.pv-action h4 em{font-style:italic;color:var(--amber)}
-.pv-action .ba{display:flex;flex-direction:column;gap:8px}
-.pv-ba-row{padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-family:var(--serif);font-size:13.5px;font-style:italic;background:var(--bg-1);font-variation-settings:"opsz" 80,"wght" 350}
-.pv-ba-row.before{color:var(--ink-mute);text-decoration:line-through;text-decoration-color:var(--ink-faint)}
-.pv-ba-row.after{border-color:var(--line-warm);background:var(--surface)}
-.pv-ba-arrow{font-family:var(--serif);color:var(--amber);text-align:center;font-size:14px;letter-spacing:.3em}
-.pv-action-results{display:flex;gap:18px;font-family:var(--mono);font-size:10.5px;color:var(--ink-mute);padding-top:10px;border-top:1px dashed var(--line)}
-.pv-action-results b{font-family:var(--serif);font-style:italic;color:var(--amber);font-size:15px;font-variation-settings:"wght" 380;display:block;margin-bottom:2px}
-
-/* ─── PROBLEM ───────────────────────────────────────── */
-.section{padding:96px 0;position:relative}
-.section-eyebrow{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:22px}
-.section h2{font-family:var(--serif);font-size:clamp(36px,5vw,64px);line-height:1.04;letter-spacing:-0.025em;font-variation-settings:"opsz" 144,"SOFT" 30,"wght" 320;margin:0 0 24px;max-width:18ch}
-.section h2 em{font-style:italic;color:var(--amber);font-variation-settings:"opsz" 144,"SOFT" 100,"wght" 320}
-.section-intro{font-family:var(--serif);font-size:20px;line-height:1.5;color:var(--ink-soft);max-width:60ch;font-variation-settings:"opsz" 80,"wght" 350}
-
-.problem-grid{margin-top:64px;display:grid;grid-template-columns:1.05fr 0.95fr;gap:64px;align-items:start}
-.tools-stack{position:relative;height:480px}
-.tool-card{position:absolute;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;width:240px;box-shadow:0 14px 36px -14px rgba(0,0,0,0.6)}
-.tool-card .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:6px}
-.tool-card .name{font-family:var(--serif);font-size:18px;font-variation-settings:"opsz" 60,"wght" 360;margin-bottom:4px}
-.tool-card .cost{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft)}
-.tool-card.t1{top:0;left:0;transform:rotate(-3deg)}
-.tool-card.t2{top:40px;left:200px;transform:rotate(2deg)}
-.tool-card.t3{top:130px;left:50px;transform:rotate(-1deg)}
-.tool-card.t4{top:175px;left:280px;transform:rotate(4deg)}
-.tool-card.t5{top:280px;left:0px;transform:rotate(3deg)}
-.tool-card.t6{top:320px;left:240px;transform:rotate(-2deg)}
-.tool-total{position:absolute;bottom:-12px;right:8px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--bad);padding:8px 14px;border:1px solid rgba(201,105,79,0.4);border-radius:999px;background:rgba(201,105,79,0.08)}
-.problem-text{padding-top:14px}
-.problem-quote{font-family:var(--serif);font-size:24px;line-height:1.4;font-style:italic;color:var(--ink);font-variation-settings:"opsz" 80,"SOFT" 60,"wght" 360;border-left:2px solid var(--amber);padding-left:24px;margin:0 0 20px}
-.problem-quote-attr{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-mute);padding-left:26px}
-.problem-pains{margin-top:36px;display:flex;flex-direction:column;gap:14px}
-.problem-pain{padding:18px 22px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
-.problem-pain h4{font-family:var(--serif);font-size:18px;margin:0 0 6px;font-variation-settings:"opsz" 60,"wght" 380}
-.problem-pain p{margin:0;font-size:14px;color:var(--ink-soft);line-height:1.55}
-
-/* ─── SOLUTION / DIAGRAM ────────────────────────────── */
-.solution{position:relative}
-.flow{margin-top:64px;border:1px solid var(--line);border-radius:20px;background:radial-gradient(800px 400px at 50% 0%,var(--amber-trace),transparent 60%),var(--surface);padding:48px 40px;position:relative;overflow:hidden}
-.flow-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;align-items:center;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute)}
-.flow-step{padding:22px;text-align:center;border:1px solid var(--line);border-radius:14px;background:var(--surface-1);position:relative}
-.flow-step b{display:block;font-family:var(--serif);font-style:italic;color:var(--amber);font-size:32px;letter-spacing:-0.01em;margin-bottom:8px;font-variation-settings:"opsz" 100,"wght" 360;text-transform:none}
-.flow-sep{font-family:var(--serif);color:var(--amber);font-size:24px;text-align:center}
-
-/* ─── SEVEN ENGINES ─────────────────────────────────── */
-.engines-grid{margin-top:64px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.engine-card{padding:24px 26px 28px;background:var(--surface);border:1px solid var(--line);border-radius:16px;position:relative;transition:all .2s;cursor:pointer}
-.engine-card:hover{transform:translateY(-3px);border-color:var(--line-warm);background:linear-gradient(180deg,var(--surface-1),var(--surface))}
-.engine-num{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--amber);margin-bottom:14px}
-.engine-name{font-family:var(--serif);font-size:24px;letter-spacing:-0.015em;margin:0 0 8px;font-variation-settings:"opsz" 80,"SOFT" 50,"wght" 360}
-.engine-name em{font-style:italic;color:var(--amber)}
-.engine-desc{font-size:13.5px;line-height:1.6;color:var(--ink-soft);margin:0 0 14px}
-.engine-bullets{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:.02em;display:flex;flex-direction:column;gap:4px}
-.engine-bullets span::before{content:"— ";color:var(--amber)}
-
-/* ─── HOW IT WORKS ──────────────────────────────────── */
-.how-grid{margin-top:64px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.how-step{padding:32px 28px;background:linear-gradient(180deg,var(--surface),var(--bg-1));border:1px solid var(--line);border-radius:16px;position:relative}
-.how-num{font-family:var(--serif);font-size:64px;color:var(--amber);font-style:italic;letter-spacing:-0.03em;line-height:1;margin-bottom:18px;font-variation-settings:"opsz" 144,"wght" 320}
-.how-step h4{font-family:var(--serif);font-size:22px;margin:0 0 10px;letter-spacing:-0.01em;font-variation-settings:"opsz" 60,"wght" 380}
-.how-step p{font-size:14px;color:var(--ink-soft);line-height:1.6;margin:0}
-
-/* ─── PRINCIPLES ────────────────────────────────────── */
-.principles{margin-top:64px;display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.principle{padding:28px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-.principle:nth-child(even){border-right:0}
-.principle:nth-last-child(-n+2){border-bottom:0}
-.principle-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:10px}
-.principle h4{font-family:var(--serif);font-size:24px;margin:0 0 8px;letter-spacing:-0.015em;font-variation-settings:"opsz" 80,"wght" 360}
-.principle h4 em{font-style:italic;color:var(--amber)}
-.principle p{font-size:14px;color:var(--ink-soft);line-height:1.6;margin:0}
-
-/* ─── PRICING TEASER ────────────────────────────────── */
-.pricing-teaser{margin-top:64px;padding:40px 44px;border:1px solid var(--line-warm);border-radius:20px;background:radial-gradient(700px 360px at 0% 0%,var(--amber-trace),transparent 60%),var(--surface);display:grid;grid-template-columns:1.2fr 0.8fr;gap:40px;align-items:center}
-.pricing-teaser h3{font-family:var(--serif);font-size:32px;margin:0 0 14px;letter-spacing:-0.015em;font-variation-settings:"opsz" 100,"wght" 340;max-width:18ch}
-.pricing-teaser h3 em{font-style:italic;color:var(--amber)}
-.pricing-teaser p{font-size:15px;color:var(--ink-soft);line-height:1.6;margin:0 0 18px;max-width:50ch}
-.pricing-tiers{display:flex;flex-direction:column;gap:8px}
-.pricing-tier{display:flex;align-items:baseline;justify-content:space-between;padding:13px 16px;border:1px solid var(--line);border-radius:10px;background:var(--bg-1);font-family:var(--mono);font-size:11.5px;color:var(--ink-soft)}
-.pricing-tier b{font-family:var(--serif);font-size:18px;color:var(--ink);font-variation-settings:"opsz" 60,"wght" 380;font-weight:normal;letter-spacing:-0.005em}
-.pricing-tier .price{font-family:var(--serif);font-size:18px;color:var(--amber);font-style:italic;font-variation-settings:"opsz" 60,"wght" 360}
-
-/* ─── TESTIMONIAL ───────────────────────────────────── */
-.testimonial{margin:96px auto 0;max-width:920px;text-align:center;padding:0 40px}
-.testimonial blockquote{font-family:var(--serif);font-size:clamp(24px,3.3vw,40px);line-height:1.3;font-style:italic;color:var(--ink);margin:0 0 28px;font-variation-settings:"opsz" 100,"SOFT" 60,"wght" 340;letter-spacing:-0.01em}
-.testimonial blockquote em{font-style:italic;color:var(--amber);font-variation-settings:"opsz" 100,"SOFT" 100,"wght" 340}
-.testimonial cite{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:var(--ink-mute);font-style:normal;display:flex;justify-content:center;align-items:center;gap:14px}
-.testimonial cite .avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--bad),var(--amber));display:grid;place-items:center;font-family:var(--serif);font-size:14px;font-style:italic;color:var(--bg);font-variation-settings:"wght" 500}
-
-/* ─── FINAL CTA ─────────────────────────────────────── */
-.final{margin-top:96px;text-align:center;padding:80px 40px 64px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,var(--surface-1),var(--bg-1));position:relative;overflow:hidden}
-.final::before{content:"";position:absolute;inset:0;background:radial-gradient(800px 400px at 50% 100%,var(--amber-glow),transparent 60%);pointer-events:none}
-.final h2{position:relative;margin:0 auto 22px;max-width:18ch}
-.final p{position:relative;font-family:var(--serif);font-size:19px;color:var(--ink-soft);margin:0 auto 32px;max-width:48ch;line-height:1.5;font-variation-settings:"opsz" 80,"wght" 350}
-.final-ctas{position:relative;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.final-tiny{position:relative;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-mute);margin-top:22px}
-
-/* ─── FOOTER ────────────────────────────────────────── */
-.footer{margin-top:80px;border-top:1px solid var(--line);padding:48px 32px 48px}
-.footer-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:48px}
-.footer-brand .brand-name{font-size:22px;margin-bottom:14px}
-.footer-tagline{font-size:13px;color:var(--ink-mute);max-width:30ch;line-height:1.6}
-.footer-col h5{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute);margin:0 0 14px}
-.footer-col a{display:block;padding:4px 0;font-size:13px;color:var(--ink-soft);transition:.15s}
-.footer-col a:hover{color:var(--amber)}
-.footer-meta{max-width:1240px;margin:36px auto 0;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--ink-mute)}
-
-@media (max-width:980px){
-  .nav-links{display:none}
-  .preview-body{grid-template-columns:1fr}
-  .problem-grid{grid-template-columns:1fr;gap:48px}
-  .tools-stack{height:420px}
-  .flow-grid{grid-template-columns:1fr;gap:14px}
-  .flow-sep{transform:rotate(90deg)}
-  .engines-grid{grid-template-columns:1fr}
-  .how-grid{grid-template-columns:1fr}
-  .principles{grid-template-columns:1fr}
-  .principle{border-right:0}
-  .pricing-teaser{grid-template-columns:1fr;padding:32px 24px}
-  .footer-inner{grid-template-columns:1fr 1fr;gap:32px}
-  .footer-brand{grid-column:1/-1}
-  .wrap{padding:0 20px}
-  .hero{padding:64px 0 56px}
-  .section{padding:64px 0}
+.hero-mark .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.hero-aside {
+  font-family: var(--font-hand); font-size: 22px; color: var(--accent);
+  display: inline-flex; align-items: center; gap: 10px; margin-top: 28px;
 }
+.hero-art { position: relative; display: grid; place-items: center; }
+.hero-art .sage-bg {
+  position: absolute; inset: 10% 0; background: var(--yellow);
+  border: 2px solid var(--ink); border-radius: 24px; z-index: 0;
+  transform: rotate(-2deg); box-shadow: var(--shadow-card-lg);
+}
+.hero-art .sage { position: relative; z-index: 1; }
+.hero-bubble {
+  position: absolute; top: 5%; left: -10px;
+  background: var(--bg-card); border: 2px solid var(--ink); border-radius: 12px;
+  padding: 8px 14px; font-family: var(--font-hand); font-size: 22px; color: var(--ink);
+  box-shadow: var(--shadow-card-sm); z-index: 2; transform: rotate(-4deg);
+}
+.hero-stamp {
+  position: absolute; bottom: 8%; right: 4%;
+  background: var(--teal); border: 2px solid var(--ink); border-radius: 10px;
+  padding: 6px 14px; font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink);
+  transform: rotate(8deg); z-index: 2;
+}
+
+/* problem section */
+.tools-stack { position: relative; min-height: 460px; }
+.tool-sticker {
+  position: absolute; width: 220px; padding: 16px 20px;
+  border: 2px solid var(--ink); border-radius: 14px;
+  box-shadow: var(--shadow-card); background: var(--bg-card);
+}
+.tool-sticker .lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 6px; }
+.tool-sticker .name { font-family: var(--font-sans); font-size: 18px; font-variation-settings: "wght" 700; margin-bottom: 4px; }
+.tool-sticker .cost { font-family: var(--font-mono); font-size: 12px; }
+.ts-1 { top: 0; left: 0; background: var(--accent-soft); transform: rotate(-3deg); }
+.ts-2 { top: 60px; left: 230px; background: var(--yellow-soft); transform: rotate(2deg); }
+.ts-3 { top: 150px; left: 30px; background: var(--teal-soft); transform: rotate(-1deg); }
+.ts-4 { top: 220px; left: 260px; background: var(--blue-soft); transform: rotate(4deg); }
+.ts-5 { top: 310px; left: 0; background: var(--red-soft); transform: rotate(3deg); }
+.ts-6 { top: 370px; left: 220px; background: var(--bg-paper); transform: rotate(-2deg); }
+.tool-stamp {
+  position: absolute; bottom: -8px; right: 0;
+  background: var(--red); color: #fff; border: 2px solid var(--ink);
+  border-radius: 10px; padding: 8px 16px; font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  transform: rotate(-4deg); box-shadow: var(--shadow-card-sm);
+}
+
+/* engines section */
+.engines-layout {
+  display: grid; grid-template-columns: 0.85fr 1.15fr;
+  gap: 48px; align-items: center;
+  background: var(--bg-paper); border: 2px solid var(--ink);
+  border-radius: 24px; padding: 48px;
+  box-shadow: var(--shadow-card-lg); position: relative;
+}
+.engines-grid-r { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.engine-chip {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px; background: var(--bg-card);
+  border: 2px solid var(--ink); border-radius: 12px;
+  box-shadow: var(--shadow-card-sm); cursor: pointer; transition: transform 0.12s;
+}
+.engine-chip:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+.engine-chip .ec-icon {
+  width: 34px; height: 34px; border-radius: 50%;
+  display: grid; place-items: center; border: 2px solid var(--ink); flex-shrink: 0;
+  font-family: var(--font-mono); font-size: 12px; font-variation-settings: "wght" 700;
+}
+.ec-icon.c1 { background: var(--accent); color: #fff; }
+.ec-icon.c2 { background: var(--yellow); color: var(--ink); }
+.ec-icon.c3 { background: var(--teal); color: var(--ink); }
+.ec-icon.c4 { background: var(--blue); color: #fff; }
+.ec-icon.c5 { background: var(--red); color: #fff; }
+.ec-icon.c6 { background: var(--bg-paper); color: var(--ink); }
+.ec-icon.c7 { background: var(--accent-soft); color: var(--ink); }
+.engine-chip .ec-meta { display: flex; flex-direction: column; line-height: 1.2; }
+.engine-chip .ec-name { font-size: 15px; font-variation-settings: "wght" 700; }
+.engine-chip .ec-sub { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-mute); letter-spacing: 0.04em; }
+
+/* how it works comic strip */
+.comic-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+.comic-panel {
+  background: var(--bg-card); border: 2px solid var(--ink);
+  border-radius: 16px; padding: 28px 24px 24px;
+  box-shadow: var(--shadow-card); position: relative; overflow: hidden;
+}
+.comic-panel:nth-child(1) { background: var(--accent-soft); }
+.comic-panel:nth-child(2) { background: var(--yellow-soft); }
+.comic-panel:nth-child(3) { background: var(--teal-soft); }
+.comic-num {
+  position: absolute; top: -2px; right: 14px;
+  background: var(--ink); color: var(--bg);
+  width: 38px; height: 50px; border-radius: 0 0 20px 20px;
+  font-family: var(--font-sans); font-variation-settings: "wght" 800;
+  font-size: 22px; display: grid; place-items: center;
+}
+.comic-panel h4 { font-family: var(--font-sans); font-size: 22px; font-variation-settings: "wght" 720; letter-spacing: -0.015em; margin: 0 0 10px; max-width: 14ch; }
+.comic-panel p { font-size: 14px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
+.comic-illustration { height: 110px; display: grid; place-items: center; margin: 12px 0 14px; }
+
+/* principles */
+.principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.principle {
+  background: var(--bg-card); border: 2px solid var(--ink);
+  border-radius: 16px; padding: 24px;
+  box-shadow: var(--shadow-card); position: relative;
+}
+.principle:nth-child(1) { transform: rotate(-1deg); }
+.principle:nth-child(2) { transform: rotate(1deg); }
+.principle:nth-child(3) { transform: rotate(-0.5deg); }
+.principle:nth-child(4) { transform: rotate(0.8deg); }
+.principle:nth-child(5) { transform: rotate(-1.2deg); }
+.principle:nth-child(6) { transform: rotate(0.6deg); }
+.principle:hover { transform: rotate(0); }
+.p-num { font-family: var(--font-hand); font-size: 28px; color: var(--accent); margin-bottom: 6px; line-height: 1; }
+.p-title { font-family: var(--font-sans); font-size: 22px; font-variation-settings: "wght" 720; letter-spacing: -0.012em; margin: 0 0 10px; }
+.p-title em { font-style: normal; color: var(--accent); }
+.principle p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
+
+/* pricing tickets */
+.tickets-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  background: var(--bg-paper); border: 2px solid var(--ink);
+  border-radius: 18px; padding: 12px; box-shadow: var(--shadow-card-lg);
+}
+.mini-ticket { padding: 18px 14px; border-right: 2px dashed var(--ink); text-align: center; }
+.mini-ticket:last-child { border-right: 0; }
+.mini-ticket .name { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 8px; }
+.mini-ticket .price { font-family: var(--font-hand); font-size: 38px; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+.mini-ticket .price small { font-family: var(--font-sans); font-size: 12px; color: var(--ink-mute); font-variation-settings: "wght" 400; }
+.mini-ticket .tokens { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.04em; }
+
+/* testimonial */
+.testi-wrap { display: grid; grid-template-columns: 220px 1fr; gap: 32px; align-items: center; max-width: 1080px; margin: 0 auto; }
+.testi-avatar { display: grid; place-items: center; position: relative; }
+.testi-avatar .ring {
+  width: 180px; height: 180px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--yellow));
+  border: 3px solid var(--ink); display: grid; place-items: center;
+  font-family: var(--font-sans); font-size: 64px;
+  font-variation-settings: "wght" 800; color: var(--ink);
+  box-shadow: var(--shadow-card-lg);
+}
+.testi-quote { font-family: var(--font-sans); font-size: clamp(20px, 2.2vw, 28px); line-height: 1.4; letter-spacing: -0.012em; font-variation-settings: "wght" 500; margin: 0 0 18px; }
+.testi-quote em { font-style: normal; background: var(--yellow); padding: 0 6px; }
+.testi-meta { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--ink-mute); }
+
+/* final CTA */
+.final-cta {
+  background: var(--ink); color: var(--bg);
+  border: 2px solid var(--ink); border-radius: 24px;
+  padding: 64px 48px; text-align: center; position: relative;
+  overflow: hidden; box-shadow: var(--shadow-card-lg);
+}
+.final-cta h2 { color: var(--bg); margin: 0 auto 18px; max-width: 18ch; }
+.final-cta h2 em { font-style: normal; background: var(--yellow); color: var(--ink); padding: 0 8px; }
+.final-cta .lede { color: var(--bg); opacity: 0.8; max-width: 48ch; margin: 0 auto 32px; }
+.final-cta .sage-tag { position: absolute; bottom: 0; right: 48px; z-index: 0; }
+@media (max-width: 920px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .engines-layout { grid-template-columns: 1fr; padding: 32px 24px; }
+  .comic-strip { grid-template-columns: 1fr; }
+  .principles-grid { grid-template-columns: 1fr 1fr; }
+  .tickets-row { grid-template-columns: 1fr 1fr; }
+  .mini-ticket:nth-child(2) { border-right: 0; }
+  .testi-wrap { grid-template-columns: 1fr; text-align: center; }
+  .tools-stack { min-height: 600px; }
+  .problem-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+  .pricing-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 560px) {
+  .principles-grid { grid-template-columns: 1fr; }
+  .tickets-row { grid-template-columns: 1fr; }
+  .mini-ticket { border-right: 0; border-bottom: 2px dashed var(--ink); }
+  .mini-ticket:last-child { border-bottom: 0; }
+  .tool-sticker { width: 180px; }
+  .final-cta .sage-tag { display: none; }
+}
+
+.section { padding: 72px 0; }
+.section-eyebrow {
+  display: inline-block; font-family: var(--font-mono);
+  font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); padding: 5px 12px;
+  border: 2px solid var(--accent); border-radius: 999px;
+  background: var(--accent-soft); margin-bottom: 22px;
+}
+.section h2 { max-width: 22ch; margin-bottom: 18px; }
+.section h2 em { font-style: normal; background: var(--yellow); padding: 0 6px; }
+.section-intro { max-width: 56ch; margin: 0 0 48px; }
+.problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.pricing-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
 </style>
 </head>
 <body>
@@ -219,7 +217,9 @@ button{font:inherit;color:inherit;cursor:pointer;background:transparent;border:0
 <nav class="nav">
   <div class="nav-inner">
     <a class="brand" href="index.html">
-      <div class="brand-mark"></div>
+      <div class="brand-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg>
+      </div>
       <div class="brand-name">Seen<em>Folio</em></div>
     </a>
     <div class="nav-links">
@@ -235,310 +235,297 @@ button{font:inherit;color:inherit;cursor:pointer;background:transparent;border:0
   </div>
 </nav>
 
-<!-- ═════ HERO ═════ -->
+<!-- ════════ HERO ════════ -->
 <header class="hero wrap">
-  <div class="hero-eyebrow"><span class="ping"></span> Autonomous, not automated</div>
-  <h1>The growth tool that <em>actually</em> does the work.</h1>
-  <p class="hero-sub">SeenFolio replaces ten marketing tools with one platform that analyzes, decides, and acts on its own — and explains every move in plain language.</p>
-  <div class="hero-ctas">
-    <a class="btn primary" href="sign-in.html?signup=true">Start free · 100 tokens</a>
-    <a class="btn" href="#how-it-works">See how it works ↓</a>
-  </div>
-  <p class="hero-trust"><b>No credit card.</b> · 5-minute setup · Undo anything in one click</p>
-
-  <!-- product preview -->
-  <div class="preview">
-    <div class="preview-chrome">
-      <span class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></span>
-      <span>app.seenfolio.com / home</span>
-      <span style="margin-left:auto">Beginner mode · 2,140 / 5,000 tokens</span>
+  <div class="hero-grid">
+    <div>
+      <span class="hero-mark"><span class="dot"></span> Autonomous, not automated</span>
+      <h1 class="h1">The growth tool that <span class="mark">actually does the work.</span></h1>
+      <p class="lede" style="margin: 28px 0 8px; max-width: 44ch;">
+        Replaces the ten marketing tools you barely use. Analyzes, decides, and acts on its own — and tells you why, in normal-person words.
+      </p>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px;">
+        <a class="btn primary lg" href="sign-in.html?signup=true">Start free · 100 tokens</a>
+        <a class="btn lg" href="#how-it-works">See how it works ↓</a>
+      </div>
+      <div class="hero-aside">
+        <svg width="50" height="40" viewBox="0 0 50 40" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M 4 10 Q 18 6 30 20 Q 38 30 44 26"/>
+          <path d="M 44 26 L 38 22 M 44 26 L 42 32"/>
+        </svg>
+        <span>No credit card. 5-min setup.</span>
+      </div>
     </div>
-    <div class="preview-body">
-      <div class="pv-left">
-        <h3>Mon · Apr 26</h3>
-        <h2 class="pv-greet">Morning, <em>Amara</em>. <span style="color:var(--ink-soft)">A quiet, productive night.</span></h2>
-        <div class="pv-stats">
-          <div class="pv-stat"><div class="pv-stat-lbl">Revenue · MTD</div><div class="pv-stat-val">$4,820</div><div class="pv-stat-trend">↑ 22% vs. last month</div></div>
-          <div class="pv-stat"><div class="pv-stat-lbl">New customers</div><div class="pv-stat-val">63</div><div class="pv-stat-trend">↑ 17%</div></div>
-          <div class="pv-stat"><div class="pv-stat-lbl">Visitors</div><div class="pv-stat-val">11,402</div><div class="pv-stat-trend" style="color:var(--ink-mute)">→ steady</div></div>
-        </div>
-        <h3 class="pv-feed-title">What <em>I've been doing</em></h3>
-        <div class="pv-feed">
-          <div class="pv-feed-row">I rewrote your <em>homepage headline</em>.<div class="meta"><span class="good">↓ 18% bounce · ↑ 12% to cart</span> · 8 tokens</div></div>
-          <div class="pv-feed-row">I shifted <em>$150 from Facebook to Google</em>.<div class="meta"><span class="good">CAC ↓ $14</span> · free · analytics</div></div>
-          <div class="pv-feed-row">I published <em>"How to care for sterling silver"</em>.<div class="meta">Indexed by Google · 34 tokens</div></div>
-        </div>
+    <div class="hero-art">
+      <div class="sage-bg"></div>
+      <div class="hero-bubble">Hi, I'm Sage 👋</div>
+      <div class="sage hero">
+        <svg viewBox="0 0 220 220" width="100%" height="100%"><use href="sage.svg#sage-wave"/></svg>
       </div>
-      <div class="pv-action">
-        <div class="pv-action-eyebrow"><span class="live"></span> Most impactful · 2h ago</div>
-        <h4>I rewrote your homepage <em>headline</em>.</h4>
-        <div class="ba">
-          <div class="pv-ba-row before">"Welcome to Our Store"</div>
-          <div class="pv-ba-arrow">···</div>
-          <div class="pv-ba-row after">"Handmade silver jewelry — free shipping over $50"</div>
-        </div>
-        <div class="pv-action-results">
-          <div><b>−18%</b>Bounce rate</div>
-          <div><b>+12%</b>Add to cart</div>
-          <div><b>8</b>Tokens</div>
-        </div>
-      </div>
+      <div class="hero-stamp">100% reversible</div>
     </div>
   </div>
 </header>
 
-<!-- ═════ PROBLEM ═════ -->
+<!-- ════════ PROBLEM ════════ -->
 <section class="section wrap">
-  <span class="section-eyebrow">The state of marketing tooling</span>
-  <h2>Ten tools, no <em>intelligence</em>.</h2>
-  <p class="section-intro">Most online businesses run on a duct-taped stack of SEO, content, ads, analytics, and CRM tools that don't talk to each other. Each tool optimizes for itself. None optimize for the business.</p>
+  <span class="section-eyebrow">Why most marketing tools quietly fail</span>
+  <h2 class="h2">Most online businesses run on <em>duct tape</em>.</h2>
+  <p class="lede section-intro">
+    SEO tool says one thing, Facebook another, your CRM doesn't talk to either, and somehow you're still doing the work. Six tools, ten dashboards, zero coordination.
+  </p>
 
   <div class="problem-grid">
     <div class="tools-stack">
-      <div class="tool-card t1"><div class="lbl">SEO</div><div class="name">Ahrefs / SEMrush</div><div class="cost">$99 – $999 / mo</div></div>
-      <div class="tool-card t2"><div class="lbl">Content</div><div class="name">Jasper / Copy.ai</div><div class="cost">$50 – $500 / mo</div></div>
-      <div class="tool-card t3"><div class="lbl">Personalization</div><div class="name">Optimizely</div><div class="cost">$500 – $5k / mo</div></div>
-      <div class="tool-card t4"><div class="lbl">Ads</div><div class="name">Google + Meta + TikTok</div><div class="cost">native, fragmented</div></div>
-      <div class="tool-card t5"><div class="lbl">Analytics</div><div class="name">GA4 + Mixpanel</div><div class="cost">$0 – $500 / mo</div></div>
-      <div class="tool-card t6"><div class="lbl">CRM</div><div class="name">HubSpot / Salesforce</div><div class="cost">$50 – $5k / mo</div></div>
-      <div class="tool-total">$1,000 – $15,000 / mo</div>
+      <div class="tool-sticker ts-1"><div class="lbl">SEO</div><div class="name">Ahrefs / SEMrush</div><div class="cost">$99 – $999 / mo</div></div>
+      <div class="tool-sticker ts-2"><div class="lbl">Content</div><div class="name">Jasper / Copy.ai</div><div class="cost">$50 – $500 / mo</div></div>
+      <div class="tool-sticker ts-3"><div class="lbl">Personalization</div><div class="name">Optimizely</div><div class="cost">$500 – $5k / mo</div></div>
+      <div class="tool-sticker ts-4"><div class="lbl">Ads</div><div class="name">Google + Meta + TikTok</div><div class="cost">native + fragmented</div></div>
+      <div class="tool-sticker ts-5"><div class="lbl">Analytics</div><div class="name">GA4 + Mixpanel</div><div class="cost">$0 – $500 / mo</div></div>
+      <div class="tool-sticker ts-6"><div class="lbl">CRM</div><div class="name">HubSpot / Salesforce</div><div class="cost">$50 – $5k / mo</div></div>
+      <div class="tool-stamp">~$1,200/mo · still doing it yourself</div>
     </div>
-    <div class="problem-text">
-      <blockquote class="problem-quote">"I spend $1,200 a month on marketing tools and still have no idea which channels actually drive revenue. Google Analytics says one thing, Facebook says another, and my SEO tool doesn't talk to either of them."</blockquote>
-      <p class="problem-quote-attr">— Owner, e-commerce skincare brand · 2025</p>
+    <div>
+      <div class="bubble" style="margin-bottom: 28px;">
+        <p style="font-family: var(--font-sans); font-size: 19px; line-height: 1.5; margin: 0; font-variation-settings: 'wght' 500; font-style: italic;">
+          "I spend $1,200 a month on marketing tools and still have no idea which channels actually drive revenue. Google Analytics says one thing, Facebook says another."
+        </p>
+        <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-mute); margin-top: 14px;">— Owner, e-commerce skincare brand</div>
+      </div>
 
-      <div class="problem-pains">
-        <div class="problem-pain">
-          <h4>Tools require expertise you don't have</h4>
-          <p>Keyword difficulty, bidding strategies, attribution models, conversion rate optimization. None of it should be your job.</p>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div class="sticker tilt-l bg-cream" style="padding: 18px 22px;">
+          <h4 style="margin: 0 0 6px; font-size: 18px; font-variation-settings: 'wght' 700;">Tools require expertise you don't have.</h4>
+          <p style="margin: 0; font-size: 14px; color: var(--ink-soft);">Keyword difficulty. Bidding strategies. Attribution models. None of it should be your job.</p>
         </div>
-        <div class="problem-pain">
-          <h4>Insights without execution</h4>
-          <p>"Your site has 47 issues." Cool — when are you going to fix them? The gap between insight and action is where most businesses fail.</p>
+        <div class="sticker tilt-r bg-cream" style="padding: 18px 22px;">
+          <h4 style="margin: 0 0 6px; font-size: 18px; font-variation-settings: 'wght' 700;">Insights without execution.</h4>
+          <p style="margin: 0; font-size: 14px; color: var(--ink-soft);">"You have 47 issues." Cool — when are you going to fix them?</p>
         </div>
-        <div class="problem-pain">
-          <h4>Search itself is changing</h4>
-          <p>Customers now ask ChatGPT and Perplexity for recommendations. Your SEO tool doesn't know how to make you visible there.</p>
+        <div class="sticker tilt-l bg-cream" style="padding: 18px 22px;">
+          <h4 style="margin: 0 0 6px; font-size: 18px; font-variation-settings: 'wght' 700;">Search itself is changing.</h4>
+          <p style="margin: 0; font-size: 14px; color: var(--ink-soft);">Customers ask ChatGPT and Perplexity now. Your SEO tool has no idea how to make you visible there.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═════ SOLUTION FLOW ═════ -->
-<section class="section solution wrap" id="solution">
-  <span class="section-eyebrow">The SeenFolio way</span>
-  <h2>One platform that <em>analyzes, decides, and acts</em>.</h2>
-  <p class="section-intro">An intelligence layer that integrates with your website, your ad accounts, your email tool, and your customer chat — then runs growth on autopilot. You watch outcomes. You override anything. You undo everything.</p>
-
-  <div class="flow">
-    <div class="flow-grid">
-      <div class="flow-step"><b>01</b>Analyze</div>
-      <div class="flow-sep">→</div>
-      <div class="flow-step"><b>02</b>Decide</div>
-      <div class="flow-sep">→</div>
-      <div class="flow-step"><b>03</b>Act &amp; Explain</div>
-    </div>
-  </div>
-</section>
-
-<!-- ═════ ENGINES ═════ -->
+<!-- ════════ ENGINES ════════ -->
 <section class="section wrap" id="engines">
-  <span class="section-eyebrow">Seven coordinated engines</span>
-  <h2>Specialized inside. <em>Invisible</em> outside.</h2>
-  <p class="section-intro">You never have to think about engines. The intelligence layer decides which to activate. You just see outcomes and the activity feed.</p>
+  <span class="section-eyebrow">Seven coordinated engines · one platform</span>
+  <h2 class="h2">Specialized inside. <em>Invisible</em> outside.</h2>
+  <p class="lede section-intro">
+    You never have to think about engines. Sage picks which to activate based on your goal. You watch outcomes; the work stays behind the curtain.
+  </p>
 
-  <div class="engines-grid">
-    <div class="engine-card">
-      <div class="engine-num">Engine 01 · Foundation</div>
-      <h3 class="engine-name">SEO &amp; <em>GEO</em></h3>
-      <p class="engine-desc">Get found on Google and inside ChatGPT, Perplexity, Claude, and Google SGE. Auto-optimizes pages in real time.</p>
-      <div class="engine-bullets">
-        <span>Real-time page rewrites</span>
-        <span>AI citation tracking</span>
-        <span>Performance auto-policing</span>
-      </div>
+  <div class="engines-layout">
+    <div style="display: grid; place-items: center;">
+      <svg viewBox="0 0 360 220" width="100%" style="max-width: 380px;"><use href="sage.svg#sage-controls"/></svg>
     </div>
-    <div class="engine-card">
-      <div class="engine-num">Engine 02 · The Brain</div>
-      <h3 class="engine-name">Business <em>Intelligence</em></h3>
-      <p class="engine-desc">Multi-touch attribution across every channel. Automatic budget allocation. Profit-aware, not revenue-aware.</p>
-      <div class="engine-bullets">
-        <span>Shapley-value attribution</span>
-        <span>Auto-rebalance ad spend</span>
-        <span>LTV / CAC / payback</span>
-      </div>
-    </div>
-    <div class="engine-card">
-      <div class="engine-num">Engine 03</div>
-      <h3 class="engine-name">Unified <em>Ads</em></h3>
-      <p class="engine-desc">Google, Meta, TikTok, LinkedIn in one place. Tests 100+ variants. Scales winners. Pauses losers.</p>
-      <div class="engine-bullets">
-        <span>Cross-platform creative</span>
-        <span>Audience lookalikes</span>
-        <span>Click-fraud filtering</span>
-      </div>
-    </div>
-    <div class="engine-card">
-      <div class="engine-num">Engine 04</div>
-      <h3 class="engine-name"><em>Content</em> creation</h3>
-      <p class="engine-desc">Generates blogs, product descriptions, landing pages, social, and email — in your voice.</p>
-      <div class="engine-bullets">
-        <span>Brand-voice trained</span>
-        <span>Content-gap radar</span>
-        <span>Multi-channel distribution</span>
-      </div>
-    </div>
-    <div class="engine-card">
-      <div class="engine-num">Engine 05</div>
-      <h3 class="engine-name"><em>Trust</em> building</h3>
-      <p class="engine-desc">Reviews, testimonials, Google Business Profile, social-proof widgets. Curates and responds.</p>
-      <div class="engine-bullets">
-        <span>NPS-gated reviews</span>
-        <span>GBP automation</span>
-        <span>Crisis detection</span>
-      </div>
-    </div>
-    <div class="engine-card">
-      <div class="engine-num">Engine 06</div>
-      <h3 class="engine-name">WhatsApp <em>CRM</em></h3>
-      <p class="engine-desc">Conversational commerce, automated support, cart recovery — for businesses where WhatsApp is the channel.</p>
-      <div class="engine-bullets">
-        <span>Browse + buy in chat</span>
-        <span>Cart recovery</span>
-        <span>Handoff to human</span>
-      </div>
-    </div>
-    <div class="engine-card">
-      <div class="engine-num">Engine 07</div>
-      <h3 class="engine-name"><em>Retention</em></h3>
-      <p class="engine-desc">Lifecycle email and SMS. Predicts churn. Intervenes before customers leave.</p>
-      <div class="engine-bullets">
-        <span>Welcome / winback flows</span>
-        <span>Churn prediction (ML)</span>
-        <span>Send-time optimization</span>
-      </div>
-    </div>
-    <div class="engine-card" style="grid-column:span 2;background:linear-gradient(180deg,var(--surface-1),var(--surface));border-color:var(--line-warm)">
-      <div class="engine-num" style="color:var(--amber-bright)">The Intelligence Layer</div>
-      <h3 class="engine-name">Coordinator <em>&amp; explainer</em></h3>
-      <p class="engine-desc">Routes work between engines. Resolves conflicts. Picks the strategy that maps to your goal. Writes the plain-English rationale for every action.</p>
-      <div class="engine-bullets">
-        <span>Goal-driven routing</span>
-        <span>Conflict resolution</span>
-        <span>Plain-language explanations for everything</span>
+    <div>
+      <div class="engines-grid-r">
+        <div class="engine-chip">
+          <div class="ec-icon c1">01</div>
+          <div class="ec-meta"><span class="ec-name">SEO + GEO</span><span class="ec-sub">Search & AI engine visibility</span></div>
+        </div>
+        <div class="engine-chip">
+          <div class="ec-icon c2">02</div>
+          <div class="ec-meta"><span class="ec-name">Intelligence (BI)</span><span class="ec-sub">Attribution & budget routing</span></div>
+        </div>
+        <div class="engine-chip">
+          <div class="ec-icon c3">03</div>
+          <div class="ec-meta"><span class="ec-name">Unified Ads</span><span class="ec-sub">Google · Meta · TikTok · more</span></div>
+        </div>
+        <div class="engine-chip">
+          <div class="ec-icon c4">04</div>
+          <div class="ec-meta"><span class="ec-name">Content</span><span class="ec-sub">Blogs · pages · social · email</span></div>
+        </div>
+        <div class="engine-chip">
+          <div class="ec-icon c5">05</div>
+          <div class="ec-meta"><span class="ec-name">Trust</span><span class="ec-sub">Reviews · GBP · social proof</span></div>
+        </div>
+        <div class="engine-chip">
+          <div class="ec-icon c6">06</div>
+          <div class="ec-meta"><span class="ec-name">WhatsApp CRM</span><span class="ec-sub">Sell + serve in chat</span></div>
+        </div>
+        <div class="engine-chip" style="grid-column: 1 / -1;">
+          <div class="ec-icon c7">07</div>
+          <div class="ec-meta"><span class="ec-name">Retention</span><span class="ec-sub">Lifecycle email · churn ML · winback</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═════ HOW IT WORKS ═════ -->
+<!-- ════════ HOW IT WORKS ════════ -->
 <section class="section wrap" id="how-it-works">
   <span class="section-eyebrow">From signup to first result</span>
-  <h2>Five minutes to <em>set up</em>. Live results in 24 hours.</h2>
-  <div class="how-grid">
-    <div class="how-step">
-      <div class="how-num">01</div>
-      <h4>Tell us what you sell &amp; where</h4>
-      <p>Three questions: what you sell, your website, your goal. Free text — no jargon. We figure out the rest from your site.</p>
+  <h2 class="h2">Five minutes to set up. <em>Live results</em> in 24 hours.</h2>
+  <p class="lede section-intro">A 3-question setup, then Sage gets to work overnight. By morning you have your first recommendations and at least one optimization staged.</p>
+
+  <div class="comic-strip">
+    <div class="comic-panel">
+      <div class="comic-num">1</div>
+      <div class="comic-illustration">
+        <svg viewBox="0 0 260 110" width="100%" height="100%" fill="none" stroke="#151515" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="40" y="20" width="180" height="70" rx="10" fill="#FAF9F4"/>
+          <line x1="55" y1="40" x2="180" y2="40"/>
+          <line x1="55" y1="55" x2="160" y2="55"/>
+          <line x1="55" y1="70" x2="170" y2="70"/>
+          <circle cx="200" cy="55" r="12" fill="#F54E00" stroke="#151515" stroke-width="2.5"/>
+          <path d="M 195 55 L 199 59 L 207 51" stroke="#fff"/>
+        </svg>
+      </div>
+      <h4>Tell us what you sell.</h4>
+      <p>Three questions in normal-person words. What you sell, your site, your goal. That's it.</p>
     </div>
-    <div class="how-step">
-      <div class="how-num">02</div>
-      <h4>Install one snippet</h4>
-      <p>JavaScript tag, WordPress plugin, Cloudflare Worker, or direct CI pipeline. Pick the one you already use. Five minutes.</p>
+    <div class="comic-panel">
+      <div class="comic-num">2</div>
+      <div class="comic-illustration">
+        <svg viewBox="0 0 260 110" width="100%" height="100%" fill="none" stroke="#151515" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="50" y="20" width="160" height="60" rx="6" fill="#151515"/>
+          <text x="60" y="44" font-family="JetBrains Mono" font-size="10" fill="#F9BD2B" stroke="none">$ install seenfolio</text>
+          <text x="60" y="62" font-family="JetBrains Mono" font-size="10" fill="#29DBBB" stroke="none">→ connected ✓</text>
+          <path d="M 140 95 Q 155 88 165 95" stroke="#F54E00" stroke-width="3"/>
+        </svg>
+      </div>
+      <h4>Install one snippet.</h4>
+      <p>JS tag, WordPress plugin, Cloudflare Worker, or CI pipeline — pick the one you already use.</p>
     </div>
-    <div class="how-step">
-      <div class="how-num">03</div>
-      <h4>SeenFolio gets to work</h4>
-      <p>By tomorrow morning you have your first 5 recommendations and at least one optimization staged. You approve, override, or undo.</p>
+    <div class="comic-panel">
+      <div class="comic-num">3</div>
+      <div class="comic-illustration">
+        <svg viewBox="0 0 260 110" width="100%" height="100%" fill="none" stroke="#151515" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M 30 85 L 65 60 L 100 70 L 135 45 L 170 50 L 205 25 L 230 30" stroke="#F54E00" stroke-width="3" fill="none"/>
+          <circle cx="230" cy="30" r="5" fill="#F54E00"/>
+          <line x1="30" y1="90" x2="240" y2="90"/>
+          <text x="170" y="78" font-family="Caveat" font-size="18" fill="#151515" stroke="none">overnight ✨</text>
+        </svg>
+      </div>
+      <h4>Sage gets to work.</h4>
+      <p>By morning you have 5 prioritized recommendations and at least one optimization staged. Approve, override, or undo.</p>
     </div>
   </div>
 </section>
 
-<!-- ═════ PRINCIPLES ═════ -->
+<!-- ════════ DESIGN PRINCIPLES ════════ -->
 <section class="section wrap">
-  <span class="section-eyebrow">How we think</span>
-  <h2>Design <em>principles</em>.</h2>
-  <div class="principles">
+  <span class="section-eyebrow">How we think · 6 principles</span>
+  <h2 class="h2">Boring rules we <em>actually follow</em>.</h2>
+
+  <div class="principles-grid">
     <div class="principle">
-      <div class="principle-eyebrow">Principle 01</div>
-      <h4>Outcomes, <em>not features</em></h4>
-      <p>You don't pick between "SEO" and "ads." You pick "more sales" and we figure it out. Specialists pick engines. You pick results.</p>
+      <div class="p-num">01.</div>
+      <h3 class="p-title">Outcomes, <em>not features</em></h3>
+      <p>You don't pick between "SEO" and "ads." You pick "more sales." Sage figures out the rest.</p>
     </div>
     <div class="principle">
-      <div class="principle-eyebrow">Principle 02</div>
-      <h4><em>Autonomous</em>, not manual</h4>
-      <p>Other tools tell you what to do. SeenFolio does it. With your approval, on your schedule, or never — your call per engine.</p>
+      <div class="p-num">02.</div>
+      <h3 class="p-title"><em>Autonomous</em>, not manual</h3>
+      <p>Other tools tell you what to do. Sage does it. With your approval, on your schedule, or never — your call.</p>
     </div>
     <div class="principle">
-      <div class="principle-eyebrow">Principle 03</div>
-      <h4>Trust through <em>transparency</em></h4>
-      <p>Every action has a before/after, a plain-language reason, and the numbers it changed. No black box. No "the AI decided."</p>
+      <div class="p-num">03.</div>
+      <h3 class="p-title">Trust through <em>transparency</em></h3>
+      <p>Every action has a before/after, a plain-language reason, and the numbers it moved. No black box.</p>
     </div>
     <div class="principle">
-      <div class="principle-eyebrow">Principle 04</div>
-      <h4>One-click <em>undo</em></h4>
-      <p>Anything we change can be reverted in a single click within 24 hours — and we learn from the undo.</p>
+      <div class="p-num">04.</div>
+      <h3 class="p-title">One-click <em>undo</em></h3>
+      <p>Anything we change can be reverted in a single click within 24 hours. We learn from the undo.</p>
     </div>
     <div class="principle">
-      <div class="principle-eyebrow">Principle 05</div>
-      <h4>Progressive <em>disclosure</em></h4>
-      <p>Beginner mode hides every technical term. Advanced mode exposes every dial. Same engine underneath; different posture.</p>
+      <div class="p-num">05.</div>
+      <h3 class="p-title">Progressive <em>disclosure</em></h3>
+      <p>Beginner mode hides every term. Advanced exposes every dial. Same engine, different posture.</p>
     </div>
     <div class="principle">
-      <div class="principle-eyebrow">Principle 06</div>
-      <h4>Pay only when we <em>work</em></h4>
-      <p>Token-based pricing. Analytics and insights are free. You pay when SeenFolio takes action on your behalf.</p>
+      <div class="p-num">06.</div>
+      <h3 class="p-title">Pay only when we <em>work</em></h3>
+      <p>Token-based. Analytics and insights are free. You pay when Sage acts on your behalf.</p>
     </div>
   </div>
 </section>
 
-<!-- ═════ PRICING TEASER ═════ -->
+<!-- ════════ PRICING TEASER ════════ -->
 <section class="section wrap">
-  <div class="pricing-teaser">
+  <span class="section-eyebrow">Transparent pricing · pay for action</span>
+  <h2 class="h2" style="max-width: 26ch;">Pay for what we <em>do</em>. Never for what we look at.</h2>
+
+  <div class="pricing-grid">
     <div>
-      <h3>Pay for what we <em>do</em>. Never for what we look at.</h3>
-      <p>Tokens are how we charge for action. Optimizing a page, writing a blog post, generating a creative — each has a transparent cost. Reading analytics is always free.</p>
-      <a class="btn primary" href="pricing.html">See pricing →</a>
+      <p class="lede" style="margin: 0 0 24px; max-width: 50ch;">
+        Tokens are how we charge for action. Optimize a page, write a blog, generate a creative — each has a transparent cost. Reading analytics? Always free.
+      </p>
+      <a class="btn primary lg" href="pricing.html">See full pricing →</a>
     </div>
-    <div class="pricing-tiers">
-      <div class="pricing-tier"><b>Free</b><span class="price">$0</span></div>
-      <div class="pricing-tier"><b>Starter</b><span class="price">$49/mo</span></div>
-      <div class="pricing-tier"><b>Growth</b><span class="price">$149/mo</span></div>
-      <div class="pricing-tier"><b>Enterprise</b><span class="price">Custom</span></div>
+    <div class="tickets-row">
+      <div class="mini-ticket">
+        <div class="name">Free</div>
+        <div class="price">$0</div>
+        <div class="tokens">100 tokens / mo</div>
+      </div>
+      <div class="mini-ticket">
+        <div class="name">Starter</div>
+        <div class="price">$49<small>/mo</small></div>
+        <div class="tokens">1,000 tokens</div>
+      </div>
+      <div class="mini-ticket" style="background: var(--yellow); border-radius: 12px;">
+        <div class="name" style="color: var(--accent-deep);">★ Popular</div>
+        <div class="price">$149<small>/mo</small></div>
+        <div class="tokens">5,000 tokens</div>
+      </div>
+      <div class="mini-ticket">
+        <div class="name">Enterprise</div>
+        <div class="price" style="font-size: 26px;">Custom</div>
+        <div class="tokens">Talk to us</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═════ TESTIMONIAL ═════ -->
-<section class="testimonial">
-  <blockquote>"I sell handmade jewelry. I was paying $1,200/month for tools I didn't understand. SeenFolio took over in a week, my Google rankings doubled, and I get a <em>plain-English explanation</em> every morning of what changed and why."</blockquote>
-  <cite><span class="avatar">A</span> Amara O. · Silver Jewelry Co · Lagos</cite>
+<!-- ════════ TESTIMONIAL ════════ -->
+<section class="section">
+  <div class="wrap testi-wrap">
+    <div class="testi-avatar">
+      <div class="ring">A</div>
+    </div>
+    <div>
+      <p class="testi-quote">"I cancelled five tools the day I signed up. Six weeks later my revenue was up <em>31%</em> and I hadn't touched a single setting."</p>
+      <p class="testi-meta">— Amara O. · Silver Jewelry Co · Lagos</p>
+    </div>
+  </div>
 </section>
 
-<!-- ═════ FINAL CTA ═════ -->
+<!-- ════════ FINAL CTA ════════ -->
 <section class="wrap">
-  <div class="final">
-    <span class="section-eyebrow" style="position:relative">Ready when you are</span>
-    <h2>Try it on your site. <em>See it work overnight.</em></h2>
-    <p>100 tokens free. No credit card. You'll see your first optimization within 24 hours, or your platform stays quiet until you're ready.</p>
-    <div class="final-ctas">
-      <a class="btn primary" href="sign-in.html?signup=true">Start free →</a>
-      <a class="btn" href="docs.html">Read the docs</a>
+  <div class="final-cta">
+    <h2 class="h2">Try it on your site. <em>See it work</em> overnight.</h2>
+    <p class="lede">100 tokens free. No credit card. Your first optimization within 24 hours — or your platform stays quiet until you're ready.</p>
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1;">
+      <a class="btn primary lg" href="sign-in.html?signup=true">Start free →</a>
+      <a class="btn lg" href="docs.html" style="background: var(--bg-card);">Read the docs</a>
     </div>
-    <p class="final-tiny">Five minutes to set up. Cancel anytime. Undo anything.</p>
+    <div class="sage-tag sage" style="width: 180px; height: 180px;">
+      <svg viewBox="0 0 220 220" width="100%" height="100%"><use href="sage.svg#sage-wink"/></svg>
+    </div>
   </div>
 </section>
 
-<!-- ═════ FOOTER ═════ -->
+<!-- ════════ FOOTER ════════ -->
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="brand">
-        <div class="brand-mark"></div>
+    <div class="footer-col">
+      <a class="brand" href="index.html" style="margin-bottom: 14px;">
+        <div class="brand-mark">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg>
+        </div>
         <div class="brand-name">Seen<em>Folio</em></div>
-      </div>
-      <p class="footer-tagline">Autonomous growth infrastructure for online businesses. Built in Lagos, used worldwide.</p>
+      </a>
+      <p style="font-size: 14px; color: var(--ink-mute); max-width: 28ch; line-height: 1.5;">
+        Autonomous growth infrastructure for online businesses. Built in Lagos, used worldwide.
+      </p>
     </div>
     <div class="footer-col">
       <h5>Product</h5>
@@ -571,7 +558,7 @@ button{font:inherit;color:inherit;cursor:pointer;background:transparent;border:0
   </div>
   <div class="footer-meta">
     <span>© SeenFolio · Idylabs LTD · 2026</span>
-    <span>Made in Lagos · Operated from London</span>
+    <span>Made in Lagos · operated from London</span>
   </div>
 </footer>
 
