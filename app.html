@@ -6,55 +6,59 @@
   <title>SeenFolio — Home</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,200..700,0..100;1,9..144,200..700,0..100&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@300;400;500&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=JetBrains+Mono:wght@300;400;500;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     /* ─────────────────────────────────────────────────────────
-       TOKENS
+       TOKENS (PostHog-style light theme · keeps original
+       variable names so existing CSS keeps working)
     ───────────────────────────────────────────────────────── */
     :root {
-      /* surfaces — warm dark */
-      --bg: #0E0D0A;
-      --bg-1: #15130F;
-      --surface: #1A1813;
-      --surface-1: #211E18;
-      --surface-2: #28241D;
-      --surface-3: #322D24;
+      /* surfaces — cream paper */
+      --bg: #EEEFE9;
+      --bg-1: #E5E5DC;
+      --bg-card: #FFFFFF;
+      --surface: #FAF9F4;
+      --surface-1: #FFFFFF;
+      --surface-2: #F5F2EC;
+      --surface-3: #E5E5DC;
 
       /* borders */
-      --line: rgba(245, 233, 211, 0.07);
-      --line-strong: rgba(245, 233, 211, 0.14);
-      --line-warm: rgba(232, 178, 96, 0.18);
+      --line: #D0D0C7;
+      --line-strong: #151515;
+      --line-warm: rgba(245, 78, 0, 0.4);
 
       /* ink */
-      --ink: #F4EBD7;
-      --ink-soft: #C7BCA3;
-      --ink-mute: #877E6B;
-      --ink-faint: #5C5547;
+      --ink: #151515;
+      --ink-soft: #444444;
+      --ink-mute: #767676;
+      --ink-faint: #A9A9A0;
 
-      /* accent — amber/gold, the platform's "voice" */
-      --amber: #E8B260;
-      --amber-bright: #F4C880;
-      --amber-deep: #B8843C;
-      --amber-glow: rgba(232, 178, 96, 0.16);
-      --amber-trace: rgba(232, 178, 96, 0.06);
+      /* accent — PostHog orange (replaces amber namespace) */
+      --amber: #F54E00;
+      --amber-bright: #FF7A40;
+      --amber-deep: #C53B00;
+      --amber-glow: rgba(245, 78, 0, 0.18);
+      --amber-trace: rgba(245, 78, 0, 0.08);
 
       /* signals */
-      --good: #9CB87E;
-      --warn: #D49A4F;
-      --bad: #C9694F;
+      --good: #29DBBB;
+      --warn: #F9BD2B;
+      --bad: #EF4444;
 
-      /* type */
-      --serif: "Fraunces", "Iowan Old Style", Georgia, serif;
-      --sans: "Geist", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --mono: "Geist Mono", ui-monospace, "SF Mono", "JetBrains Mono", monospace;
+      /* extras */
+      --yellow: #F9BD2B;
+      --teal: #29DBBB;
+      --blue: #1D4AFF;
 
-      /* shadows */
-      --shadow-pop: 0 28px 80px -24px rgba(0, 0, 0, 0.7),
-                    0 4px 14px -6px rgba(0, 0, 0, 0.55);
-      --shadow-rim: inset 0 1px 0 rgba(245, 233, 211, 0.06);
+      /* type — keep names; new values */
+      --serif: "Mona Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --sans: "Mona Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+      --hand: "Caveat", cursive;
+
+      /* shadows — drawn-on offset, no blur */
+      --shadow-pop: 4px 4px 0 #151515;
+      --shadow-rim: inset 0 1px 0 rgba(21, 21, 21, 0.04);
 
       /* dimensions */
       --rail: 256px;
@@ -76,20 +80,21 @@
       font-size: 14px;
       line-height: 1.5;
       letter-spacing: -0.005em;
+      font-variation-settings: "wght" 420;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
       overflow-x: hidden;
     }
 
-    /* ambient warm glow that anchors the whole canvas */
+    /* subtle paper-dot texture */
     body::before {
       content: "";
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background:
-        radial-gradient(900px 600px at 18% -10%, rgba(232, 178, 96, 0.06), transparent 60%),
-        radial-gradient(1200px 800px at 110% 110%, rgba(232, 178, 96, 0.04), transparent 60%);
+      background-image:
+        radial-gradient(circle at 18% 30%, rgba(245, 78, 0, 0.05), transparent 50%),
+        radial-gradient(circle at 82% 70%, rgba(29, 74, 255, 0.03), transparent 50%);
       z-index: 0;
     }
 
@@ -129,36 +134,27 @@
       padding: 4px 4px 0;
     }
     .brand-mark {
-      width: 28px; height: 28px;
+      width: 32px; height: 32px;
+      background: var(--amber);
+      border: 2px solid var(--ink);
+      border-radius: 50%;
       display: grid; place-items: center;
+      box-shadow: 2px 2px 0 var(--ink);
+      color: #fff;
       position: relative;
     }
-    .brand-mark::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 35% 35%, var(--amber-bright), var(--amber-deep) 60%, transparent 75%);
-      border-radius: 50%;
-      filter: blur(0.5px);
-      animation: brand-pulse 4s ease-in-out infinite;
-    }
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      inset: 8px;
-      background: var(--bg);
-      border-radius: 50%;
-    }
     .brand-name {
-      font-family: var(--serif);
-      font-weight: 400;
-      font-size: 21px;
-      letter-spacing: -0.01em;
-      font-variation-settings: "opsz" 36, "SOFT" 50;
+      font-family: var(--sans);
+      font-variation-settings: "wght" 800;
+      font-size: 19px;
+      letter-spacing: -0.025em;
     }
     .brand-name em {
-      font-style: italic;
-      color: var(--amber);
+      font-style: normal;
+      background: var(--yellow);
+      color: var(--ink);
+      padding: 0 4px;
+      border-radius: 3px;
     }
     @keyframes brand-pulse {
       0%, 100% { opacity: 0.85; transform: scale(1); }
@@ -2941,6 +2937,215 @@
       border-radius: 6px;
     }
     .radio:focus-within span { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+    /* ───────────────────────────────────────────────
+       LIGHT-THEME OVERRIDES (PostHog reskin)
+    ─────────────────────────────────────────────── */
+
+    /* greeting and large display text need bold sans, not serif italic */
+    .greeting {
+      font-family: var(--sans) !important;
+      font-variation-settings: "wght" 800 !important;
+      letter-spacing: -0.025em;
+    }
+    .greeting em {
+      font-style: normal !important;
+      background: var(--yellow);
+      color: var(--ink);
+      padding: 0 8px;
+      border-radius: 4px;
+    }
+    .greeting .quiet { color: var(--ink-mute); font-variation-settings: "wght" 500; }
+    .stat-num {
+      font-family: var(--sans) !important;
+      font-variation-settings: "wght" 800 !important;
+      letter-spacing: -0.02em;
+    }
+    .stat-num em, .pv-stat-val em { font-style: normal; }
+    .feature-title, .drawer-title, .notif-title, .panel-title, .insight-text, .sec-title, .modal-title, .chat-input, .chat-input::placeholder, .conv-text, .reco-title, .compare-pane .txt, .why-row .why-txt, .feed-text, .pv-greet {
+      font-family: var(--sans) !important;
+      font-variation-settings: "wght" 720 !important;
+    }
+    .feature-title em, .drawer-title em, .notif-title em, .panel-title em, .insight-text em, .sec-title em, .modal-title em, .reco-title em, .compare-pane .txt em, .feed-text em {
+      font-style: normal !important;
+      background: var(--yellow);
+      padding: 0 6px;
+      color: var(--ink);
+    }
+
+    /* topbar, panels, drawers — white background instead of dark */
+    .topbar {
+      background: rgba(238, 239, 233, 0.85) !important;
+      border-bottom: 2px solid var(--ink) !important;
+    }
+    .rail { background: var(--bg) !important; border-right: 2px solid var(--ink) !important; }
+    .nav-item.active {
+      background: var(--amber) !important;
+      color: #fff !important;
+      border: 2px solid var(--ink) !important;
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+    .nav-item.active .icon { color: #fff !important; }
+    .nav-item.active .badge { background: var(--yellow) !important; color: var(--ink) !important; }
+    .nav-item:hover { background: var(--surface) !important; }
+    .nav-item .badge { background: var(--surface-2) !important; color: var(--ink-soft) !important; border: 1.5px solid var(--ink); }
+    .nav-label { color: var(--ink-mute) !important; }
+
+    /* token meter */
+    .meter {
+      background: var(--yellow) !important;
+      border: 2px solid var(--ink) !important;
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+    .meter-num em { color: var(--ink) !important; background: var(--bg-card); padding: 0 4px; border-radius: 3px; font-style: normal; }
+    .meter-bar { background: rgba(0,0,0,0.15) !important; }
+    .meter-foot a { color: var(--amber) !important; border-bottom-color: var(--amber) !important; }
+
+    /* user strip */
+    .user-strip:hover { background: var(--surface) !important; }
+    .user-avatar { border: 2px solid var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+
+    /* workspace switcher */
+    .ws-switch-btn { background: var(--surface) !important; border: 2px solid var(--ink) !important; box-shadow: 2px 2px 0 var(--ink); }
+    .ws-menu { background: var(--surface-1) !important; border: 2px solid var(--ink) !important; box-shadow: 4px 4px 0 var(--ink) !important; }
+    .ws-menu-item:hover { background: var(--surface-2) !important; }
+    .ws-avatar { border: 2px solid var(--ink); }
+
+    /* cards / panels */
+    .panel, .activity, .big-table, .feature, .stats, .feed, .table, .timeline, .inbox-list, .inbox-detail, .chat-history, .chat-pane, .modal, .drawer, .scrim {
+      background: var(--surface-1) !important;
+      border: 2px solid var(--ink) !important;
+      box-shadow: var(--shadow-pop);
+    }
+    .scrim { background: rgba(21, 21, 21, 0.5) !important; backdrop-filter: blur(4px); box-shadow: none !important; }
+    .feature-text {
+      background: var(--yellow) !important;
+      border-right: 2px solid var(--ink) !important;
+    }
+    .ba {
+      background: var(--surface-2) !important;
+    }
+    .ba-row {
+      background: var(--surface-1) !important;
+      border: 2px solid var(--ink) !important;
+    }
+    .ba-row.after {
+      background: var(--bg-card) !important;
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    /* buttons — drawn-shadow style */
+    .btn {
+      border: 2px solid var(--ink) !important;
+      box-shadow: 2px 2px 0 var(--ink) !important;
+      background: var(--surface-1) !important;
+      color: var(--ink) !important;
+      font-variation-settings: "wght" 600 !important;
+      transition: transform 0.12s, box-shadow 0.12s;
+    }
+    .btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 4px 4px 0 var(--ink) !important;
+    }
+    .btn.primary, .btn.amber {
+      background: var(--amber) !important;
+      color: #fff !important;
+    }
+    .btn.primary:hover, .btn.amber:hover { background: var(--amber-deep) !important; }
+    .btn.ghost {
+      background: transparent !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
+    }
+    .btn.ghost:hover { background: var(--surface-2) !important; transform: none; box-shadow: none !important; }
+    .btn.danger { background: var(--bad) !important; color: #fff !important; }
+
+    /* pills */
+    .pill { border: 1.5px solid var(--ink) !important; }
+    .pill.ok, .pill.amber, .pill.warn, .pill.bad {
+      border-color: var(--ink) !important;
+    }
+    .pill.amber { background: var(--amber) !important; color: #fff !important; }
+    .pill.ok { background: var(--teal) !important; color: var(--ink) !important; }
+    .pill.warn { background: var(--yellow) !important; color: var(--ink) !important; }
+    .pill.bad { background: var(--bad) !important; color: #fff !important; }
+
+    /* table rows + filter pills */
+    .feed-row, .bt-row { border-bottom: 1px solid var(--line) !important; }
+    .feed-row:hover, .bt-row:hover { background: var(--surface-2) !important; }
+    .bt-head, .filter-row { background: var(--surface-2) !important; border-bottom: 2px solid var(--ink) !important; }
+    .filter { color: var(--ink-soft) !important; }
+    .filter.active { background: var(--amber) !important; color: #fff !important; border: 1.5px solid var(--ink); }
+
+    /* chat dock */
+    .chat-dock .chat-shell {
+      background: var(--surface-1) !important;
+      border: 2px solid var(--ink) !important;
+      box-shadow: 4px 4px 0 var(--ink) !important;
+    }
+    .chat-input { color: var(--ink) !important; }
+    .chat-input::placeholder { color: var(--ink-mute) !important; }
+    .chat-send { background: var(--amber) !important; color: #fff !important; border: 2px solid var(--ink) !important; }
+    .chip-suggest { background: var(--surface) !important; border: 1.5px solid var(--ink) !important; color: var(--ink-soft) !important; }
+    .chip-suggest:hover { background: var(--yellow) !important; color: var(--ink) !important; }
+
+    /* drawer + modals */
+    .drawer-head { background: var(--surface-1) !important; border-bottom: 2px solid var(--ink) !important; }
+    .modal-host::before { background: rgba(21, 21, 21, 0.5) !important; }
+    .modal { background: var(--surface-1) !important; border: 2px solid var(--ink) !important; box-shadow: 6px 6px 0 var(--ink) !important; }
+    .compare-pane { background: var(--surface-2) !important; border: 2px solid var(--ink) !important; }
+    .compare-pane.after { background: var(--yellow) !important; border-color: var(--ink) !important; }
+    .compare-pane .txt { color: var(--ink) !important; font-style: normal !important; }
+    .compare-pane:not(.after) .txt { color: var(--ink-mute) !important; }
+
+    /* toast */
+    .toast { background: var(--surface-1) !important; border: 2px solid var(--ink) !important; box-shadow: var(--shadow-pop) !important; }
+
+    /* banners */
+    .banner { background: var(--yellow) !important; border: 2px solid var(--ink) !important; box-shadow: var(--shadow-pop) !important; }
+    .banner.warn { background: var(--yellow) !important; }
+    .banner.danger { background: var(--bad) !important; color: #fff !important; }
+    .banner.danger .banner-text, .banner.danger .banner-text em { color: #fff !important; }
+    .banner-close { border: 1.5px solid var(--ink) !important; }
+
+    /* demo panel */
+    .demo-toggle { background: var(--ink) !important; color: var(--yellow) !important; border: 2px solid var(--ink) !important; box-shadow: 2px 2px 0 var(--yellow) !important; }
+    .demo-panel { background: var(--surface-1) !important; border: 2px solid var(--ink) !important; box-shadow: 4px 4px 0 var(--ink) !important; }
+    .demo-btn { background: var(--surface-2) !important; border: 1.5px solid var(--ink) !important; color: var(--ink) !important; }
+    .demo-btn:hover { background: var(--yellow) !important; }
+
+    /* form inputs */
+    input, textarea {
+      color: var(--ink) !important;
+    }
+    .draft-box, .review-box { background: var(--surface-2) !important; border: 1px solid var(--ink) !important; }
+    .draft-box textarea { color: var(--ink) !important; }
+
+    /* trends + sparklines colors */
+    .stat-trend, .stat-trend.flat, .feed-meta .good, .good { color: #1F8A65 !important; }
+    .stat-trend.flat { color: var(--ink-mute) !important; }
+    .stat-trend.down, .feed-meta .warn, .warn { color: #B58E1A !important; }
+    .spark path.line { stroke: var(--amber) !important; }
+    .spark .dot { fill: var(--amber) !important; }
+    .spark path.area { fill: var(--amber-glow) !important; }
+
+    /* mode badge */
+    .mode-badge {
+      background: var(--surface) !important;
+      border: 2px solid var(--ink) !important;
+      color: var(--ink) !important;
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+    .top-action { border: 2px solid var(--ink) !important; background: var(--surface) !important; box-shadow: 2px 2px 0 var(--ink); color: var(--ink) !important; }
+
+    /* hero accent on engine spots — score badges, etc */
+    .score.good { color: #1F8A65 !important; }
+    .score.warn { color: #B58E1A !important; }
+    .score.bad { color: var(--bad) !important; }
+    .score-bar { background: var(--surface-2) !important; }
+    .score-bar > span.good { background: #1F8A65 !important; }
+    .score-bar > span.warn { background: var(--yellow) !important; }
+    .score-bar > span.bad { background: var(--bad) !important; }
   </style>
 </head>
 <body class="mode-beginner">
@@ -2962,7 +3167,9 @@
     <!-- ═══ SIDEBAR ═══ -->
     <aside class="rail">
       <div class="brand">
-        <div class="brand-mark"></div>
+        <div class="brand-mark">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/></svg>
+        </div>
         <div class="brand-name">Seen<em>Folio</em></div>
       </div>
 
@@ -3246,7 +3453,7 @@
         <div class="content">
           <!-- HERO -->
           <section class="hero">
-            <div class="hero-head">
+            <div class="hero-head" style="display:grid;grid-template-columns:1fr auto auto;gap:24px;align-items:center;">
               <h1 class="greeting">
                 Morning, <em>Amara</em>.<br>
                 <span class="quiet">A quiet, productive night.</span>
@@ -3255,6 +3462,9 @@
                 <b>Mon · Apr 26</b><br>
                 Last action 2h ago<br>
                 14 actions this week
+              </div>
+              <div style="width:120px;height:120px;">
+                <svg viewBox="0 0 320 230" width="100%" height="100%"><use href="sage.svg#sage-desk"/></svg>
               </div>
             </div>
 

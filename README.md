@@ -4,6 +4,8 @@ Autonomous growth infrastructure for online businesses. One platform replaces 10
 
 Clickable high-fidelity prototype in vanilla HTML/CSS/JS. No backend, no build step.
 
+**Style:** PostHog-inspired cream-paper light theme with hand-drawn illustrations. Mascot is **Sage the owl** (12 contextual poses defined in `sage.svg`). Orange `#F54E00` accents, yellow `#F9BD2B` highlights, drawn-shadow cards (no blur), sticker-style rotations on hover.
+
 **Live:** [seenfolio.vercel.app](https://seenfolio.vercel.app)
 **Repo:** [github.com/samewenu/seenfolio](https://github.com/samewenu/seenfolio)
 
