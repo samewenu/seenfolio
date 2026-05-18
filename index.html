@@ -35,54 +35,93 @@
 }
 .hero-mark .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 
-/* SAGE HERO STAGE · the mascot is the visual peak of the page */
+/* SAGE HERO STAGE · the mascot at a desk · no surrounding card · live scene */
 .hero-art {
   position: relative;
   width: 100%;
-  max-width: 540px;
-  aspect-ratio: 6 / 5;
+  max-width: 600px;
   margin: 0 auto;
-  display: grid;
-  place-items: center;
-  transform: rotate(1deg);
-}
-.hero-art .sage-bg {
-  position: absolute; inset: 0;
-  background: var(--yellow);
-  border: 2.5px solid var(--ink);
-  border-radius: 28px;
-  z-index: 0;
-  transform: rotate(-3deg);
-  box-shadow: var(--shadow-card-lg);
 }
 .hero-art .sage {
-  position: relative; z-index: 1;
-  width: 78%;
-  aspect-ratio: 1;
+  position: relative;
+  width: 100%;
+  display: block;
 }
-.hero-art .sage svg { width: 100%; height: 100%; display: block; }
+.hero-art .sage svg { width: 100%; height: auto; display: block; }
 .hero-bubble {
   position: absolute;
-  top: -16px; left: -8px;
+  top: -8px;
+  left: 6%;
   background: var(--bg-card);
-  border: 2px solid var(--ink); border-radius: 14px;
+  border: 2px solid var(--ink);
+  border-radius: 14px;
   padding: 8px 16px;
-  font-family: var(--font-hand); font-size: 24px; color: var(--ink);
+  font-family: var(--font-hand);
+  font-size: 22px;
+  color: var(--ink);
   box-shadow: var(--shadow-card);
   z-index: 3;
-  transform: rotate(-4deg);
+  transform: rotate(-3deg);
+}
+/* speech-bubble tail · points down-right toward Sage */
+.hero-bubble::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  bottom: -10px;
+  width: 14px; height: 14px;
+  background: var(--bg-card);
+  border-right: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  transform: rotate(45deg);
+  border-bottom-right-radius: 3px;
 }
 .hero-stamp {
   position: absolute;
-  bottom: -14px; right: 12px;
+  bottom: 14%;
+  right: -4px;
   background: var(--teal);
-  border: 2px solid var(--ink); border-radius: 12px;
-  padding: 7px 14px;
-  font-family: var(--font-mono); font-size: 10.5px;
-  letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink);
-  transform: rotate(-3deg);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transform: rotate(-4deg);
   z-index: 3;
   box-shadow: var(--shadow-card-sm);
+}
+/* floating "data" chip · gives the scene one extra moment of life */
+.hero-chip {
+  position: absolute;
+  top: 32%;
+  right: -10px;
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  padding: 6px 11px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  transform: rotate(4deg);
+  z-index: 3;
+  box-shadow: var(--shadow-card-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.hero-chip .dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--good);
+  box-shadow: 0 0 0 2px var(--ink);
+}
+.hero-chip b {
+  font-variation-settings: "wght" 720;
+  color: var(--accent);
 }
 
 .hero-bottom { position: relative; }
@@ -411,11 +450,11 @@
       </div>
 
       <div class="hero-art">
-        <div class="sage-bg"></div>
         <div class="hero-bubble">Hi, I'm Sage 👋</div>
         <div class="sage hero">
-          <svg aria-hidden="true" viewBox="0 0 220 220" width="100%" height="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-wave"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 320 230" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-desk"/></svg>
         </div>
+        <div class="hero-chip"><span class="dot"></span> <b>+31%</b> revenue · 6w</div>
         <div class="hero-stamp">100% reversible</div>
       </div>
     </div>
