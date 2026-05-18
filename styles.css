@@ -22,19 +22,19 @@
   --line: #D0D0C7;
   --line-strong: #151515;
 
-  /* brand · primary gold (matches alphabeta.seenfolio.com) */
-  --accent: #E9C000;
-  --accent-bright: #FFD63B;
-  --accent-deep: #B89500;
-  --accent-soft: #FBF2C5;
-  --accent-trace: rgba(233, 192, 0, 0.10);
-  --accent-glow: rgba(233, 192, 0, 0.20);
+  /* brand · primary dark olive (official Seenfolio primary #3E5210) */
+  --accent: #3E5210;
+  --accent-bright: #4F6818;
+  --accent-deep: #2A3A0A;
+  --accent-soft: #DCE6BC;
+  --accent-trace: rgba(62, 82, 16, 0.10);
+  --accent-glow: rgba(62, 82, 16, 0.20);
 
-  /* yellow · aliased to primary (keeps existing .mark highlights working) */
-  --yellow: #E9C000;
-  --yellow-soft: #FBF2C5;
+  /* brand accent · bright yellow (official Seenfolio accent #FFD202 — logo eggs) */
+  --yellow: #FFD202;
+  --yellow-soft: #FFF4B0;
 
-  /* brand green family (three depths) */
+  /* brand green family (three depths) — kept for success states + variety */
   --green: #81A62D;
   --green-soft: #C4E675;
   --green-deep: #3E5210;
@@ -43,14 +43,14 @@
   --teal: #81A62D;
   --teal-soft: #C4E675;
 
-  /* signal semantics retuned to harmonize with the new palette */
+  /* signal semantics retuned for the dark-olive primary */
   --good: #81A62D;
-  --warn: #E9C000;
+  --warn: #FFD202;
   --bad: #C44A2A;
   --red: #C44A2A;
   --red-soft: #F1D6CB;
   --blue: #3E5210;
-  --blue-soft: #C4E675;
+  --blue-soft: #E8EED5;
 
   /* type */
   --font-sans: "Mona Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -193,8 +193,8 @@ button { font: inherit; color: inherit; cursor: pointer; background: transparent
 }
 .btn:active { transform: translate(0, 0); box-shadow: var(--shadow-card-sm); }
 
-.btn.primary { background: var(--accent); color: var(--ink); }
-.btn.primary:hover { background: var(--accent-deep); color: var(--ink); }
+.btn.primary { background: var(--accent); color: #fff; }
+.btn.primary:hover { background: var(--accent-deep); color: #fff; }
 .btn.yellow { background: var(--yellow); color: var(--ink); }
 .btn.teal, .btn.green { background: var(--green); color: var(--ink); }
 .btn.ghost {

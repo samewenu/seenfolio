@@ -25,7 +25,7 @@
       /* borders */
       --line: #D0D0C7;
       --line-strong: #151515;
-      --line-warm: rgba(233, 192, 0, 0.45);
+      --line-warm: rgba(62, 82, 16, 0.45);
 
       /* ink */
       --ink: #151515;
@@ -33,34 +33,34 @@
       --ink-mute: #767676;
       --ink-faint: #A9A9A0;
 
-      /* accent — Seenfolio brand gold (replaces orange amber namespace) */
-      --amber: #E9C000;
-      --amber-bright: #FFD63B;
-      --amber-deep: #B89500;
-      --amber-glow: rgba(233, 192, 0, 0.20);
-      --amber-trace: rgba(233, 192, 0, 0.10);
-      --accent: #E9C000;
-      --accent-bright: #FFD63B;
-      --accent-deep: #B89500;
-      --accent-soft: #FBF2C5;
-      --accent-glow: rgba(233, 192, 0, 0.20);
-      --accent-trace: rgba(233, 192, 0, 0.10);
+      /* brand · PRIMARY = dark olive #3E5210 (alphabeta.seenfolio.com primary) */
+      --amber: #3E5210;
+      --amber-bright: #4F6818;
+      --amber-deep: #2A3A0A;
+      --amber-glow: rgba(62, 82, 16, 0.20);
+      --amber-trace: rgba(62, 82, 16, 0.10);
+      --accent: #3E5210;
+      --accent-bright: #4F6818;
+      --accent-deep: #2A3A0A;
+      --accent-soft: #DCE6BC;
+      --accent-glow: rgba(62, 82, 16, 0.20);
+      --accent-trace: rgba(62, 82, 16, 0.10);
 
-      /* signals — brand green for success, gold for warn, rust for bad */
+      /* signals — brand green for success, brand yellow for warn, rust for bad */
       --good: #81A62D;
-      --warn: #E9C000;
+      --warn: #FFD202;
       --bad: #C44A2A;
 
-      /* extras · legacy aliases that resolve to brand palette */
-      --yellow: #E9C000;
-      --yellow-soft: #FBF2C5;
+      /* brand · ACCENT = bright yellow #FFD202 (logo eggs + highlights) */
+      --yellow: #FFD202;
+      --yellow-soft: #FFF4B0;
       --green: #81A62D;
       --green-soft: #C4E675;
       --green-deep: #3E5210;
       --teal: #81A62D;
       --teal-soft: #C4E675;
       --blue: #3E5210;
-      --blue-soft: #C4E675;
+      --blue-soft: #DCE6BC;
       --red: #C44A2A;
       --red-soft: #F1D6CB;
 
@@ -776,7 +776,7 @@
       margin-left: 6px;
       color: var(--ink-faint);
     }
-    .filter.active .count { color: var(--amber); }
+    .filter.active .count { color: var(--yellow); }
 
     .feed-row {
       display: grid;
@@ -2986,12 +2986,12 @@
     .rail { background: var(--bg) !important; border-right: 2px solid var(--ink) !important; }
     .nav-item.active {
       background: var(--amber) !important;
-      color: var(--ink) !important;
+      color: #fff !important;
       border: 2px solid var(--ink) !important;
       box-shadow: 2px 2px 0 var(--ink);
     }
-    .nav-item.active .icon { color: var(--ink) !important; }
-    .nav-item.active .badge { background: var(--ink) !important; color: var(--amber) !important; }
+    .nav-item.active .icon { color: #fff !important; }
+    .nav-item.active .badge { background: var(--yellow) !important; color: var(--ink) !important; }
     .nav-item:hover { background: var(--surface) !important; }
     .nav-item .badge { background: var(--surface-2) !important; color: var(--ink-soft) !important; border: 1.5px solid var(--ink); }
     .nav-label { color: var(--ink-mute) !important; }
@@ -3061,9 +3061,9 @@
     .btn.ghost:active { transform: none !important; box-shadow: none !important; }
     .btn.primary, .btn.amber {
       background: var(--amber) !important;
-      color: var(--ink) !important;
+      color: #fff !important;
     }
-    .btn.primary:hover, .btn.amber:hover { background: var(--amber-deep) !important; color: var(--ink) !important; }
+    .btn.primary:hover, .btn.amber:hover { background: var(--amber-deep) !important; color: #fff !important; }
     .btn.ghost {
       background: transparent !important;
       border-color: transparent !important;
@@ -3077,8 +3077,8 @@
     .pill.ok, .pill.amber, .pill.warn, .pill.bad {
       border-color: var(--ink) !important;
     }
-    .pill.amber { background: var(--amber) !important; color: var(--ink) !important; }
-    .pill.ok { background: var(--green) !important; color: var(--ink) !important; }
+    .pill.amber { background: var(--amber) !important; color: #fff !important; }
+    .pill.ok { background: var(--green) !important; color: #fff !important; }
     .pill.warn { background: var(--yellow) !important; color: var(--ink) !important; }
     .pill.bad { background: var(--bad) !important; color: #fff !important; }
 
@@ -3087,7 +3087,7 @@
     .feed-row:hover, .bt-row:hover { background: var(--surface-2) !important; }
     .bt-head, .filter-row { background: var(--surface-2) !important; border-bottom: 2px solid var(--ink) !important; }
     .filter { color: var(--ink-soft) !important; }
-    .filter.active { background: var(--amber) !important; color: var(--ink) !important; border: 1.5px solid var(--ink); }
+    .filter.active { background: var(--amber) !important; color: #fff !important; border: 1.5px solid var(--ink); }
 
     /* chat dock */
     .chat-dock .chat-shell {
@@ -3097,7 +3097,7 @@
     }
     .chat-input { color: var(--ink) !important; }
     .chat-input::placeholder { color: var(--ink-mute) !important; }
-    .chat-send { background: var(--amber) !important; color: var(--ink) !important; border: 2px solid var(--ink) !important; }
+    .chat-send { background: var(--amber) !important; color: #fff !important; border: 2px solid var(--ink) !important; }
     .chip-suggest { background: var(--surface) !important; border: 1.5px solid var(--ink) !important; color: var(--ink-soft) !important; }
     .chip-suggest:hover { background: var(--yellow) !important; color: var(--ink) !important; }
 
@@ -3169,7 +3169,7 @@
     <aside class="rail">
       <div class="brand">
         <div class="brand-mark">
-          <svg width="28" height="20" viewBox="0 0 30 22" aria-hidden="true"><ellipse cx="9" cy="11" rx="7" ry="9.5" fill="#E9C000"/><ellipse cx="21" cy="11" rx="8.5" ry="10.5" fill="#E9C000"/></svg>
+          <svg width="28" height="20" viewBox="0 0 30 22" aria-hidden="true"><ellipse cx="9" cy="11" rx="7" ry="9.5" fill="#FFD202"/><ellipse cx="21" cy="11" rx="8.5" ry="10.5" fill="#FFD202"/></svg>
         </div>
         <div class="brand-name">Seenfolio</div>
       </div>
