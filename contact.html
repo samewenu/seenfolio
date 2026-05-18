@@ -37,7 +37,7 @@
 <body>
 <nav class="nav">
   <div class="nav-inner">
-    <a class="brand" href="index.html"><div class="brand-mark"><svg width="30" height="22" viewBox="0 0 30 22" aria-hidden="true"><ellipse cx="9" cy="11" rx="7" ry="9.5" fill="#FFD202"/><ellipse cx="21" cy="11" rx="8.5" ry="10.5" fill="#FFD202"/></svg></div><div class="brand-name">Seenfolio</div></a>
+    <a class="brand" href="index.html"><div class="brand-mark"><svg aria-hidden="true" width="30" height="22" viewBox="0 0 30 22"><ellipse cx="9" cy="11" rx="7" ry="9.5" fill="#FFD202"/><ellipse cx="21" cy="11" rx="8.5" ry="10.5" fill="#FFD202"/></svg></div><div class="brand-name">Seenfolio</div></a>
     <div class="nav-links"><a href="index.html#how-it-works">How it works</a><a href="pricing.html">Pricing</a><a href="docs.html">Docs</a><a class="active" href="contact.html">Contact</a></div>
     <div class="nav-cta"><a class="btn ghost" href="sign-in.html">Sign in</a><a class="btn primary" href="sign-in.html?signup=true">Start free →</a></div>
   </div>
@@ -51,9 +51,9 @@
 <div class="wrap split">
   <div class="contact-form">
     <h2>Tell us what you're after.</h2>
-    <div class="field"><label>Your email</label><input type="email" placeholder="amara@example.com" /></div>
-    <div class="field"><label>About</label><select><option>I'm evaluating Seenfolio</option><option>I'm a customer with a question</option><option>I'm pitching a partnership</option><option>I'm a journalist</option><option>I'm applying for a role</option><option>Other</option></select></div>
-    <div class="field"><label>Message</label><textarea placeholder="Tell us what's on your mind."></textarea></div>
+    <div class="field"><label for="contact-email">Your email</label><input id="contact-email" type="email" autocomplete="email" placeholder="amara@example.com" /></div>
+    <div class="field"><label for="contact-about">About</label><select id="contact-about"><option>I'm evaluating Seenfolio</option><option>I'm a customer with a question</option><option>I'm pitching a partnership</option><option>I'm a journalist</option><option>I'm applying for a role</option><option>Other</option></select></div>
+    <div class="field"><label for="contact-message">Message</label><textarea id="contact-message" placeholder="Tell us what's on your mind."></textarea></div>
     <button class="btn primary">Send · we reply in 24h</button>
   </div>
 
@@ -76,7 +76,7 @@
 
 <footer class="footer">
   <div class="footer-inner">
-    <div class="footer-col"><a class="brand" href="index.html" style="margin-bottom:14px;"><div class="brand-mark"><svg width="30" height="22" viewBox="0 0 30 22" aria-hidden="true"><ellipse cx="9" cy="11" rx="7" ry="9.5" fill="#FFD202"/><ellipse cx="21" cy="11" rx="8.5" ry="10.5" fill="#FFD202"/></svg></div><div class="brand-name">Seenfolio</div></a></div>
+    <div class="footer-col"><a class="brand" href="index.html" style="margin-bottom:14px;"><div class="brand-mark"><svg aria-hidden="true" width="30" height="22" viewBox="0 0 30 22"><ellipse cx="9" cy="11" rx="7" ry="9.5" fill="#FFD202"/><ellipse cx="21" cy="11" rx="8.5" ry="10.5" fill="#FFD202"/></svg></div><div class="brand-name">Seenfolio</div></a></div>
     <div class="footer-col"><h5>Product</h5><a href="index.html#engines">Engines</a><a href="pricing.html">Pricing</a><a href="docs.html">Docs</a></div>
     <div class="footer-col"><h5>Company</h5><a href="about.html">About</a><a href="customers.html">Customers</a><a href="contact.html">Contact</a></div>
     <div class="footer-col"><h5>Resources</h5><a href="changelog.html">Changelog</a><a href="status.html">Status</a><a href="trust.html">Trust</a><a href="blog.html">Blog</a></div>

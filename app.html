@@ -27,11 +27,11 @@
       --line-strong: #151515;
       --line-warm: rgba(62, 82, 16, 0.45);
 
-      /* ink */
-      --ink: #151515;
-      --ink-soft: #444444;
-      --ink-mute: #767676;
-      --ink-faint: #A9A9A0;
+      /* ink (text tokens · darkened to meet WCAG AA on cream paper) */
+      --ink: #151515;       /* primary text */
+      --ink-soft: #444444;  /* emphasised secondary */
+      --ink-mute: #5E5E5E;  /* secondary body · was #767676 (failed AA) */
+      --ink-faint: #8A8A80; /* UI-only · was #A9A9A0 (failed AA) */
 
       /* brand · PRIMARY = dark olive #3E5210 (alphabeta.seenfolio.com primary) */
       --amber: #3E5210;
@@ -3169,7 +3169,7 @@
     <aside class="rail">
       <div class="brand">
         <div class="brand-mark">
-          <svg width="28" height="20" viewBox="0 0 30 22" aria-hidden="true"><ellipse cx="9" cy="11" rx="7" ry="9.5" fill="#FFD202"/><ellipse cx="21" cy="11" rx="8.5" ry="10.5" fill="#FFD202"/></svg>
+          <svg aria-hidden="true" width="28" height="20" viewBox="0 0 30 22"><ellipse cx="9" cy="11" rx="7" ry="9.5" fill="#FFD202"/><ellipse cx="21" cy="11" rx="8.5" ry="10.5" fill="#FFD202"/></svg>
         </div>
         <div class="brand-name">Seenfolio</div>
       </div>
@@ -3177,25 +3177,25 @@
       <nav class="nav-section">
         <div class="nav-label">Workspace</div>
         <button class="nav-item active" data-view="home">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
           Home
         </button>
         <button class="nav-item" data-view="activity">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
           Activity
           <span class="badge">14</span>
         </button>
         <button class="nav-item" data-view="inbox">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7l9 6 9-6M3 7v12a2 2 0 002 2h14a2 2 0 002-2V7M3 7l2-3h14l2 3"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7l9 6 9-6M3 7v12a2 2 0 002 2h14a2 2 0 002-2V7M3 7l2-3h14l2 3"/></svg>
           Inbox
           <span class="badge">3</span>
         </button>
         <button class="nav-item" data-view="chat">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2v10z"/></svg>
           Chat
         </button>
         <button class="nav-item for-advanced" data-view="registry">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 4v16"/></svg>
           Registry
         </button>
       </nav>
@@ -3203,37 +3203,37 @@
       <nav class="nav-section for-intermediate">
         <div class="nav-label">Engines</div>
         <button class="nav-item" data-view="pages">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
           Pages
           <span class="badge">12</span>
         </button>
         <button class="nav-item" data-view="citations">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12c5-4 13-4 18 0M3 12c5 4 13 4 18 0"/><circle cx="12" cy="12" r="2"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12c5-4 13-4 18 0M3 12c5 4 13 4 18 0"/><circle cx="12" cy="12" r="2"/></svg>
           AI Citations
         </button>
         <button class="nav-item" data-view="content">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg>
           Content
           <span class="badge">2</span>
         </button>
         <button class="nav-item" data-view="ads">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 11l18-8v18L3 13V11z"/><path d="M11.6 21l-3-7"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 11l18-8v18L3 13V11z"/><path d="M11.6 21l-3-7"/></svg>
           Ads
         </button>
         <button class="nav-item" data-view="email">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7l9 6 9-6M3 7v12a2 2 0 002 2h14a2 2 0 002-2V7M3 7l2-3h14l2 3"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 7l9 6 9-6M3 7v12a2 2 0 002 2h14a2 2 0 002-2V7M3 7l2-3h14l2 3"/></svg>
           Email
         </button>
         <button class="nav-item" data-view="reputation">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2l2.5 7h7l-5.5 4.5 2 7-6-4.5-6 4.5 2-7L2 9h7z"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2l2.5 7h7l-5.5 4.5 2 7-6-4.5-6 4.5 2-7L2 9h7z"/></svg>
           Reputation
         </button>
         <button class="nav-item" data-view="whatsapp">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12a9 9 0 11-3.5-7.1L21 3v6h-6"/><path d="M9 12h.01M13 12h.01M17 12h.01"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12a9 9 0 11-3.5-7.1L21 3v6h-6"/><path d="M9 12h.01M13 12h.01M17 12h.01"/></svg>
           WhatsApp
         </button>
         <button class="nav-item" data-view="customers">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="8" r="3"/><path d="M3 21v-1a6 6 0 0112 0v1M16 11a3 3 0 100-6M21 21v-1a6 6 0 00-3-5.2"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="8" r="3"/><path d="M3 21v-1a6 6 0 0112 0v1M16 11a3 3 0 100-6M21 21v-1a6 6 0 00-3-5.2"/></svg>
           Customers
         </button>
       </nav>
@@ -3241,19 +3241,19 @@
       <nav class="nav-section for-intermediate">
         <div class="nav-label">Engine depth</div>
         <button class="nav-item" data-view="events">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
           Events stream
         </button>
         <button class="nav-item" data-view="experiments">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 3h6M10 3v6L4 19a2 2 0 002 2h12a2 2 0 002-2L14 9V3"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 3h6M10 3v6L4 19a2 2 0 002 2h12a2 2 0 002-2L14 9V3"/></svg>
           Experiments
         </button>
         <button class="nav-item" data-view="library">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h6v16H4zM10 4h6v16h-6zM16 4l4 1-2 15-4-1"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 4h6v16H4zM10 4h6v16h-6zM16 4l4 1-2 15-4-1"/></svg>
           Library
         </button>
         <button class="nav-item" data-view="journeys">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 6h6a4 4 0 014 4v6"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 6h6a4 4 0 014 4v6"/></svg>
           Journeys
         </button>
       </nav>
@@ -3261,27 +3261,27 @@
       <nav class="nav-section for-intermediate">
         <div class="nav-label">Health &amp; Watch</div>
         <button class="nav-item" data-view="speed">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="13" r="8"/><path d="M12 13l4-4M9 1h6M12 1v4"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="13" r="8"/><path d="M12 13l4-4M9 1h6M12 1v4"/></svg>
           Speed
         </button>
         <button class="nav-item" data-view="fraud">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           Fraud Center
         </button>
         <button class="nav-item" data-view="localization">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
           Localization
         </button>
         <button class="nav-item" data-view="feedback">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.4 8.4 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.4 8.4 0 013.8-.9h.5a8.5 8.5 0 018 8v.5z"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.4 8.4 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.4 8.4 0 013.8-.9h.5a8.5 8.5 0 018 8v.5z"/></svg>
           Feedback
         </button>
         <button class="nav-item" data-view="finance">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 1v22M17 5H9a4 4 0 000 8h6a4 4 0 010 8H7"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 1v22M17 5H9a4 4 0 000 8h6a4 4 0 010 8H7"/></svg>
           Financials
         </button>
         <button class="nav-item" data-view="crisis">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L2 22h20L12 2z"/><path d="M12 9v5M12 18h.01"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2L2 22h20L12 2z"/><path d="M12 9v5M12 18h.01"/></svg>
           Crisis Watch
         </button>
       </nav>
@@ -3289,19 +3289,19 @@
       <nav class="nav-section">
         <div class="nav-label">Insights</div>
         <button class="nav-item" data-view="performance">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 21H4V3M8 16l4-7 4 4 5-9"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 21H4V3M8 16l4-7 4 4 5-9"/></svg>
           Performance
         </button>
         <button class="nav-item" data-view="schedule">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
           Schedule
         </button>
         <button class="nav-item" data-view="goals">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
           Goals
         </button>
         <button class="nav-item" data-view="billing">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 11h20M6 15h4"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 11h20M6 15h4"/></svg>
           Billing
         </button>
       </nav>
@@ -3309,19 +3309,19 @@
       <nav class="nav-section for-advanced">
         <div class="nav-label">Operations</div>
         <button class="nav-item" data-view="rules">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
           Rules
         </button>
         <button class="nav-item" data-view="health">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
           Integration health
         </button>
         <button class="nav-item" data-view="compliance">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           Compliance
         </button>
         <button class="nav-item" data-view="dlq">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M5 6v14a2 2 0 002 2h10a2 2 0 002-2V6M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M3 6h18M5 6v14a2 2 0 002 2h10a2 2 0 002-2V6M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
           DLQ
           <span class="badge">3</span>
         </button>
@@ -3330,19 +3330,19 @@
       <nav class="nav-section for-advanced">
         <div class="nav-label">System</div>
         <button class="nav-item" data-view="team">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="8" r="3"/><path d="M3 21v-1a6 6 0 0112 0v1M16 11a3 3 0 100-6M21 21v-1a6 6 0 00-3-5.2"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="9" cy="8" r="3"/><path d="M3 21v-1a6 6 0 0112 0v1M16 11a3 3 0 100-6M21 21v-1a6 6 0 00-3-5.2"/></svg>
           Team
         </button>
         <button class="nav-item" data-view="credentials">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V8a5 5 0 0110 0v3"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V8a5 5 0 0110 0v3"/></svg>
           Credentials
         </button>
         <button class="nav-item" data-view="api">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12a9 9 0 11-9-9"/><path d="M14 4l4 4-4 4"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12a9 9 0 11-9-9"/><path d="M14 4l4 4-4 4"/></svg>
           API &amp; Webhooks
         </button>
         <button class="nav-item" data-view="audit">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg aria-hidden="true" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           Audit log
         </button>
       </nav>
@@ -3382,7 +3382,7 @@
               <span class="ws-name" data-ws-name>Silver Jewelry Co</span>
               <span class="ws-site" data-ws-site>silverjewelry.com</span>
             </span>
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--ink-mute);"><path d="M6 9l6 6 6-6"/></svg>
+            <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--ink-mute);"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <div class="ws-menu" data-ws-menu>
             <div class="ws-menu-head">Workspaces</div>
@@ -3402,7 +3402,7 @@
         </div>
         <div class="crumb"><span data-view-crumb>Home</span></div>
         <div class="search">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color: var(--ink-mute);"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="color: var(--ink-mute);"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
           <input placeholder="Ask anything, or jump to…" />
           <span class="kbd">⌘K</span>
         </div>
@@ -3411,182 +3411,182 @@
           <span class="indicator"></span>
           Auto-mode · on
         </button>
-        <button class="top-action" data-bell title="Notifications" style="padding:7px 10px;position:relative;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 004 0"/></svg>
+        <button class="top-action" data-bell aria-label="Notifications" title="Notifications" style="padding:7px 10px;position:relative;">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 004 0"/></svg>
           <span class="bell-dot" style="position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:var(--accent);border:1.5px solid var(--ink);"></span>
         </button>
       </header>
 
       <!-- BANNERS (edge cases) -->
       <div class="banner warn" data-banner="token">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
         <span class="banner-text">You've used <em>80%</em> of this month's tokens. At your current pace I'll run out April 29 — three days before reset.</span>
         <div class="banner-actions">
           <button class="btn amber" data-view-link="billing">Top up · $20</button>
           <button class="btn">Auto-refill</button>
         </div>
-        <button class="banner-close" data-banner-close="token">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="token">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
         </button>
       </div>
 
       <div class="banner danger" data-banner="budget">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
         <span class="banner-text"><em>Ad budget paused</em> — Mother's Day campaign exhausted at 6:14 AM. CAC was $42, performing well.</span>
         <div class="banner-actions">
           <button class="btn amber">+ $500</button>
           <button class="btn">+ $1,000</button>
           <button class="btn">Custom</button>
         </div>
-        <button class="banner-close" data-banner-close="budget">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="budget">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
         </button>
       </div>
 
       <div class="banner" data-banner="degrade">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--ink-soft);"><path d="M12 2L2 22h20L12 2z"/><path d="M12 9v5M12 18h.01"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--ink-soft);"><path d="M12 2L2 22h20L12 2z"/><path d="M12 9v5M12 18h.01"/></svg>
         <span class="banner-text">I disabled <em>homepage personalization</em> — it was slowing page load by 2 seconds. Fast sites convert better. I can re-enable with optimizations if you want.</span>
         <div class="banner-actions">
           <button class="btn">Re-enable optimized</button>
           <button class="btn ghost">See details</button>
         </div>
-        <button class="banner-close" data-banner-close="degrade">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="degrade">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
         </button>
       </div>
 
       <div class="banner warn" data-banner="csp">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V8a5 5 0 0110 0v3"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V8a5 5 0 0110 0v3"/></svg>
         <span class="banner-text">Your site's <em>Content-Security-Policy</em> is blocking my SDK. I generated the directive you need — one line to paste in your headers.</span>
         <div class="banner-actions">
           <button class="btn amber">Copy directive</button>
           <button class="btn ghost">Show me how</button>
         </div>
-        <button class="banner-close" data-banner-close="csp">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="csp">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
         </button>
       </div>
 
       <div class="banner warn" data-banner="wa-window">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
         <span class="banner-text"><em>WhatsApp 24h window</em> closing in 38 minutes for 7 conversations. After that I can only send pre-approved templates — auto-switching now.</span>
         <div class="banner-actions">
           <button class="btn">See conversations</button>
           <button class="btn ghost">Templates</button>
         </div>
-        <button class="banner-close" data-banner-close="wa-window">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="wa-window">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
         </button>
       </div>
 
       <div class="banner danger" data-banner="bounce">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9 6 9-6M3 7v12a2 2 0 002 2h14a2 2 0 002-2V7"/><path d="M3 7l2-3h14l2 3M9 14l3 3 4-5"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9 6 9-6M3 7v12a2 2 0 002 2h14a2 2 0 002-2V7"/><path d="M3 7l2-3h14l2 3M9 14l3 3 4-5"/></svg>
         <span class="banner-text">Email bounce rate hit <em>5.4%</em> — I paused the winback campaign automatically. Likely a stale segment. Want me to clean the list?</span>
         <div class="banner-actions">
           <button class="btn amber">Clean list · 6 tokens</button>
           <button class="btn">See bounced addresses</button>
         </div>
-        <button class="banner-close" data-banner-close="bounce">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="bounce">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
         </button>
       </div>
 
       <div class="banner" data-banner="attribution">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--ink-soft);"><path d="M3 12c5-4 13-4 18 0M3 12c5 4 13 4 18 0"/><circle cx="12" cy="12" r="2"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--ink-soft);"><path d="M3 12c5-4 13-4 18 0M3 12c5 4 13 4 18 0"/><circle cx="12" cy="12" r="2"/></svg>
         <span class="banner-text"><em>Only 84 conversions</em> in the last 90 days — below the 100-conversion threshold for Shapley attribution. I'm using time-decay as a fallback until you cross 100.</span>
         <div class="banner-actions">
           <button class="btn ghost">Why this matters</button>
         </div>
-        <button class="banner-close" data-banner-close="attribution">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="attribution">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
         </button>
       </div>
 
       <div class="banner danger" data-banner="ad-suspended">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M6 6l12 12"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M6 6l12 12"/></svg>
         <span class="banner-text"><em>Meta ad account suspended</em> — reason code "policy review." All Meta campaigns auto-paused. Refund for unspent budget is automatic. I'll keep Google running.</span>
         <div class="banner-actions">
           <button class="btn amber">Open appeal</button>
           <button class="btn">View suspension reason</button>
         </div>
-        <button class="banner-close" data-banner-close="ad-suspended">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="ad-suspended">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
         </button>
       </div>
 
       <div class="banner" data-banner="hallucination">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--warn);"><path d="M12 2L2 22h20L12 2z"/><path d="M12 9v5M12 18h.01"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--warn);"><path d="M12 2L2 22h20L12 2z"/><path d="M12 9v5M12 18h.01"/></svg>
         <span class="banner-text">A patch for <em>/about</em> contained <em>1 unverifiable claim</em> ("founded 2018" — source says 2019). Held for your review. I'll never publish content I can't cite.</span>
         <div class="banner-actions">
           <button class="btn amber">Review claims</button>
           <button class="btn ghost">Regenerate</button>
         </div>
-        <button class="banner-close" data-banner-close="hallucination">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="hallucination">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
         </button>
       </div>
 
       <div class="banner warn" data-banner="kv-stale">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 11-9-9"/><path d="M14 4l4 4-4 4M3 12h18"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 11-9-9"/><path d="M14 4l4 4-4 4M3 12h18"/></svg>
         <span class="banner-text">Cloudflare edge cache is stale after your last patch. <em>Warming up</em> — should be live in ~30 seconds.</span>
         <div class="banner-actions"><button class="btn">Refresh status</button></div>
-        <button class="banner-close" data-banner-close="kv-stale"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="kv-stale"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
       </div>
 
       <div class="banner" data-banner="sitemap-changed">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
         <span class="banner-text">Your sitemap changed — <em>3 new URLs · 1 removed · 2 modified</em>. Re-ingesting all three now.</span>
         <div class="banner-actions"><button class="btn" data-view-link="pages">See sitemap diff</button></div>
-        <button class="banner-close" data-banner-close="sitemap-changed"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="sitemap-changed"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
       </div>
 
       <div class="banner warn" data-banner="meta-review-long">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
         <span class="banner-text">Meta ad <em>"Lookalike — past buyers"</em> has been in review for 51 hours. Likely policy issue — auto-pausing dependent automations.</span>
         <div class="banner-actions"><button class="btn">Check review status</button><button class="btn ghost">Cancel ad</button></div>
-        <button class="banner-close" data-banner-close="meta-review-long"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="meta-review-long"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
       </div>
 
       <div class="banner" data-banner="wa-handoff">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 21v-1a6 6 0 0112 0v1M16 11a3 3 0 100-6M21 21v-1a6 6 0 00-3-5.2"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><path d="M3 21v-1a6 6 0 0112 0v1M16 11a3 3 0 100-6M21 21v-1a6 6 0 00-3-5.2"/></svg>
         <span class="banner-text"><em>WhatsApp conversation</em> with unknown number routed to human queue. Bot suppressed. Customer asked to speak with a person.</span>
         <div class="banner-actions"><button class="btn amber" data-view-link="whatsapp">Open thread</button><button class="btn ghost">Re-engage bot</button></div>
-        <button class="banner-close" data-banner-close="wa-handoff"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="wa-handoff"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
       </div>
 
       <div class="banner danger" data-banner="webhook-sig">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M6 6l12 12"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M6 6l12 12"/></svg>
         <span class="banner-text">Webhook from <em>WhatsApp</em> failed signature verification. Replayed once and verified. Check your webhook secret if this repeats.</span>
         <div class="banner-actions"><button class="btn" data-view-link="api">View webhook log</button><button class="btn ghost">Rotate secret</button></div>
-        <button class="banner-close" data-banner-close="webhook-sig"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="webhook-sig"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
       </div>
 
       <div class="banner" data-banner="channel-learning">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--ink-soft);"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--ink-soft);"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
         <span class="banner-text"><em>TikTok Ads</em> has been active for 11 days. I won't reallocate budget away from it for 3 more days — letting it learn properly.</span>
         <div class="banner-actions"><button class="btn">See learning status</button></div>
-        <button class="banner-close" data-banner-close="channel-learning"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="channel-learning"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
       </div>
 
       <div class="banner warn" data-banner="oauth-expired">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V8a5 5 0 0110 0v3"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V8a5 5 0 0110 0v3"/></svg>
         <span class="banner-text"><em>Meta Marketing OAuth</em> expired. I paused Meta-side actions until you re-authenticate — should take 30 seconds.</span>
         <div class="banner-actions"><button class="btn amber">Re-authenticate</button><button class="btn ghost" data-view-link="credentials">All credentials</button></div>
-        <button class="banner-close" data-banner-close="oauth-expired"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="oauth-expired"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
       </div>
 
       <div class="banner" data-banner="voice-mismatch">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--warn);"><path d="M12 2L2 22h20L12 2z"/><path d="M12 9v5M12 18h.01"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--warn);"><path d="M12 2L2 22h20L12 2z"/><path d="M12 9v5M12 18h.01"/></svg>
         <span class="banner-text">You've reverted <em>3 of my last 5 content patches</em>. Either my brand voice is off, or I'm being too aggressive. Want to recalibrate?</span>
         <div class="banner-actions"><button class="btn amber">Recalibrate voice</button><button class="btn">Be less aggressive</button><button class="btn ghost">Tell me more</button></div>
-        <button class="banner-close" data-banner-close="voice-mismatch"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="voice-mismatch"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg></button>
       </div>
 
       <div class="banner danger" data-banner="dlq-high">
-        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M5 6v14a2 2 0 002 2h10a2 2 0 002-2V6"/></svg>
+        <svg aria-hidden="true" class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M5 6v14a2 2 0 002 2h10a2 2 0 002-2V6"/></svg>
         <span class="banner-text"><em>108 failed jobs</em> in the dead-letter queue · above the 100 alert threshold. Mostly Meta API rate-limit retries that finally exhausted.</span>
         <div class="banner-actions"><button class="btn amber" data-view-link="dlq">Open DLQ</button><button class="btn">Retry all</button></div>
-        <button class="banner-close" data-banner-close="dlq-high"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M5 6v14a2 2 0 002 2h10a2 2 0 002-2V6"/></svg></button>
+        <button class="banner-close" aria-label="Dismiss" data-banner-close="dlq-high"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M5 6v14a2 2 0 002 2h10a2 2 0 002-2V6"/></svg></button>
       </div>
 
       <!-- ════ VIEW: HOME ════ -->
@@ -3605,7 +3605,7 @@
                 14 actions this week
               </div>
               <div style="width:120px;height:120px;">
-                <svg viewBox="0 0 320 230" width="100%" height="100%"><use href="sage.svg#sage-desk"/></svg>
+                <svg aria-hidden="true" viewBox="0 0 320 230" width="100%" height="100%"><use href="sage.svg#sage-desk"/></svg>
               </div>
             </div>
 
@@ -3615,7 +3615,7 @@
                 <div class="stat-num"><span class="pre">$</span>4,820</div>
                 <div class="stat-foot">
                   <div class="stat-trend">↑ <span class="delta-num">22%</span> vs. last month</div>
-                  <svg class="spark" viewBox="0 0 88 28" preserveAspectRatio="none">
+                  <svg aria-hidden="true" class="spark" viewBox="0 0 88 28" preserveAspectRatio="none">
                     <path class="area" d="M0,22 L8,20 L16,21 L24,18 L32,16 L40,17 L48,12 L56,11 L64,8 L72,7 L80,4 L88,3 L88,28 L0,28 Z"/>
                     <path class="line" d="M0,22 L8,20 L16,21 L24,18 L32,16 L40,17 L48,12 L56,11 L64,8 L72,7 L80,4 L88,3"/>
                     <circle class="dot" cx="88" cy="3" r="2.2"/>
@@ -3627,7 +3627,7 @@
                 <div class="stat-num">63</div>
                 <div class="stat-foot">
                   <div class="stat-trend">↑ <span class="delta-num">9</span> more than April</div>
-                  <svg class="spark" viewBox="0 0 88 28" preserveAspectRatio="none">
+                  <svg aria-hidden="true" class="spark" viewBox="0 0 88 28" preserveAspectRatio="none">
                     <path class="area" d="M0,18 L11,17 L22,20 L33,15 L44,16 L55,12 L66,13 L77,9 L88,7 L88,28 L0,28 Z"/>
                     <path class="line" d="M0,18 L11,17 L22,20 L33,15 L44,16 L55,12 L66,13 L77,9 L88,7"/>
                     <circle class="dot" cx="88" cy="7" r="2.2"/>
@@ -3639,7 +3639,7 @@
                 <div class="stat-num">11,402</div>
                 <div class="stat-foot">
                   <div class="stat-trend flat">→ steady week-over-week</div>
-                  <svg class="spark" viewBox="0 0 88 28" preserveAspectRatio="none" style="opacity: 0.55;">
+                  <svg aria-hidden="true" class="spark" viewBox="0 0 88 28" preserveAspectRatio="none" style="opacity: 0.55;">
                     <path class="area" d="M0,14 L11,13 L22,15 L33,12 L44,14 L55,13 L66,11 L77,14 L88,12 L88,28 L0,28 Z"/>
                     <path class="line" d="M0,14 L11,13 L22,15 L33,12 L44,14 L55,13 L66,11 L77,14 L88,12" style="stroke: var(--ink-mute);"/>
                     <circle class="dot" cx="88" cy="12" r="2.2" style="fill: var(--ink-mute);"/>
@@ -3783,7 +3783,7 @@
 
                 <div class="pending-row">
                   <div class="pending-icon">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.5 7h7l-5.5 4.5 2 7-6-4.5-6 4.5 2-7L2 9h7z"/></svg>
+                    <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.5 7h7l-5.5 4.5 2 7-6-4.5-6 4.5 2-7L2 9h7z"/></svg>
                   </div>
                   <div class="pending-text">
                     Reply to <b>2 new Google reviews</b>
@@ -3794,7 +3794,7 @@
 
                 <div class="pending-row">
                   <div class="pending-icon">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
+                    <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg>
                   </div>
                   <div class="pending-text">
                     Approve blog post: <b>"4 silver-care mistakes"</b>
@@ -3805,7 +3805,7 @@
 
                 <div class="pending-row">
                   <div class="pending-icon">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+                    <svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
                   </div>
                   <div class="pending-text">
                     Confirm <b>Mother's Day campaign</b> launch
@@ -3839,8 +3839,8 @@
             <div class="chat-shell">
               <div class="chat-input-row">
                 <input class="chat-input" placeholder="Ask, request, or just think out loud…" data-chat-input />
-                <button class="chat-send" data-chat-send>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                <button class="chat-send" aria-label="Send message" data-chat-send>
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </button>
               </div>
               <div class="chat-suggest-row">
@@ -5381,7 +5381,7 @@
                 <div class="customer-row" style="grid-template-columns: 32px 1fr auto auto auto;">
                   <div class="cust-avatar" style="background: linear-gradient(135deg, #9CB87E, #5A7548);">D</div>
                   <div class="cust-info">
-                    <div class="name">David L. · <span style="color: var(--amber);">★★★★</span><span style="color: var(--ink-faint);">★</span></div>
+                    <div class="name">David L. · <span role="img" aria-label="4 out of 5 stars"><span style="color: var(--amber);">★★★★</span><span style="color: var(--ink-faint);">☆</span></span></div>
                     <div class="email">"Beautiful piece, but took longer than expected to arrive…"</div>
                   </div>
                   <span class="tbl-status pending">Reply drafted</span>
@@ -5411,7 +5411,7 @@
                 <div class="customer-row" style="grid-template-columns: 32px 1fr auto auto auto;">
                   <div class="cust-avatar" style="background: linear-gradient(135deg, #B85C97, #7A2E62);">L</div>
                   <div class="cust-info">
-                    <div class="name">Liu W. · <span style="color: var(--amber);">★★★</span><span style="color: var(--ink-faint);">★★</span></div>
+                    <div class="name">Liu W. · <span role="img" aria-label="3 out of 5 stars"><span style="color: var(--amber);">★★★</span><span style="color: var(--ink-faint);">☆☆</span></span></div>
                     <div class="email">"Quality is good but ring was a half-size off."</div>
                   </div>
                   <span class="tbl-status pending">Needs nuance</span>
@@ -6747,7 +6747,7 @@
               <div class="engine">ChatGPT</div>
               <div class="count">18</div>
               <div class="label">citations · last 30d</div>
-              <svg class="spark-line" viewBox="0 0 80 32" preserveAspectRatio="none">
+              <svg aria-hidden="true" class="spark-line" viewBox="0 0 80 32" preserveAspectRatio="none">
                 <path class="a" d="M0,28 L11,24 L22,21 L33,18 L44,14 L55,10 L66,6 L80,3 L80,32 L0,32 Z"/>
                 <path class="l" d="M0,28 L11,24 L22,21 L33,18 L44,14 L55,10 L66,6 L80,3"/>
               </svg>
@@ -6756,7 +6756,7 @@
               <div class="engine">Perplexity</div>
               <div class="count">12</div>
               <div class="label">citations · last 30d</div>
-              <svg class="spark-line" viewBox="0 0 80 32" preserveAspectRatio="none">
+              <svg aria-hidden="true" class="spark-line" viewBox="0 0 80 32" preserveAspectRatio="none">
                 <path class="a" d="M0,28 L11,26 L22,22 L33,18 L44,14 L55,12 L66,9 L80,7 L80,32 L0,32 Z"/>
                 <path class="l" d="M0,28 L11,26 L22,22 L33,18 L44,14 L55,12 L66,9 L80,7"/>
               </svg>
@@ -6765,7 +6765,7 @@
               <div class="engine">Google SGE</div>
               <div class="count">9</div>
               <div class="label">citations · last 30d</div>
-              <svg class="spark-line" viewBox="0 0 80 32" preserveAspectRatio="none">
+              <svg aria-hidden="true" class="spark-line" viewBox="0 0 80 32" preserveAspectRatio="none">
                 <path class="a" d="M0,29 L11,26 L22,24 L33,20 L44,17 L55,14 L66,11 L80,9 L80,32 L0,32 Z"/>
                 <path class="l" d="M0,29 L11,26 L22,24 L33,20 L44,17 L55,14 L66,11 L80,9"/>
               </svg>
@@ -6774,7 +6774,7 @@
               <div class="engine">Claude</div>
               <div class="count">7</div>
               <div class="label">citations · last 30d</div>
-              <svg class="spark-line" viewBox="0 0 80 32" preserveAspectRatio="none">
+              <svg aria-hidden="true" class="spark-line" viewBox="0 0 80 32" preserveAspectRatio="none">
                 <path class="a" d="M0,30 L11,28 L22,26 L33,22 L44,19 L55,16 L66,13 L80,11 L80,32 L0,32 Z"/>
                 <path class="l" d="M0,30 L11,28 L22,26 L33,22 L44,19 L55,16 L66,13 L80,11"/>
               </svg>
@@ -7279,7 +7279,7 @@
           <div class="hero-head" style="display:grid;grid-template-columns:1fr auto auto;gap:24px;align-items:center;margin-bottom:24px;">
             <h1 class="greeting">Your site is <em>2.1s</em> at the median.</h1>
             <div class="hero-meta"><b>Down 0.7s</b> in 30 days<br>I'm policing aggressively.</div>
-            <div style="width:100px;height:100px;"><svg viewBox="0 0 260 230" width="100%"><use href="sage.svg#sage-stopwatch"/></svg></div>
+            <div style="width:100px;height:100px;"><svg aria-hidden="true" viewBox="0 0 260 230" width="100%"><use href="sage.svg#sage-stopwatch"/></svg></div>
           </div>
 
           <div class="metric-strip">
@@ -7353,7 +7353,7 @@
           <div class="hero-head" style="display:grid;grid-template-columns:1fr auto auto;gap:24px;align-items:center;margin-bottom:24px;">
             <h1 class="greeting">Fraud filtered <em>before</em> it cost you.</h1>
             <div class="hero-meta"><b>312 bots filtered · 18 fraudulent clicks blocked</b><br>Last 24 hours</div>
-            <div style="width:100px;height:100px;"><svg viewBox="0 0 260 230" width="100%"><use href="sage.svg#sage-shield"/></svg></div>
+            <div style="width:100px;height:100px;"><svg aria-hidden="true" viewBox="0 0 260 230" width="100%"><use href="sage.svg#sage-shield"/></svg></div>
           </div>
 
           <div class="metric-strip">
@@ -7400,7 +7400,7 @@
           <div class="hero-head" style="display:grid;grid-template-columns:1fr auto auto;gap:24px;align-items:center;margin-bottom:24px;">
             <h1 class="greeting">You sell in <em>5 markets</em>.</h1>
             <div class="hero-meta"><b>3 live · 1 translating · 1 pending</b><br>Currencies refresh daily</div>
-            <div style="width:100px;height:100px;"><svg viewBox="0 0 280 230" width="100%"><use href="sage.svg#sage-globe"/></svg></div>
+            <div style="width:100px;height:100px;"><svg aria-hidden="true" viewBox="0 0 280 230" width="100%"><use href="sage.svg#sage-globe"/></svg></div>
           </div>
 
           <div class="big-table">
@@ -7528,7 +7528,7 @@
           <div class="hero-head" style="display:grid;grid-template-columns:1fr auto auto;gap:24px;align-items:center;margin-bottom:24px;">
             <h1 class="greeting">All quiet on the <em>western front</em>.</h1>
             <div class="hero-meta"><b>Sentiment +0.78</b> · baseline +0.74<br>No anomalies in 42 days</div>
-            <div style="width:100px;height:100px;"><svg viewBox="0 0 260 200" width="100%"><use href="sage.svg#sage-nap"/></svg></div>
+            <div style="width:100px;height:100px;"><svg aria-hidden="true" viewBox="0 0 260 200" width="100%"><use href="sage.svg#sage-nap"/></svg></div>
           </div>
 
           <div class="metric-strip">
@@ -7864,8 +7864,8 @@
         <span class="dot"></span>
         <span data-drawer-eyebrow>Action · Live on your site</span>
       </div>
-      <button class="drawer-close" data-close-drawer>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      <button class="drawer-close" aria-label="Close drawer" data-close-drawer>
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
       </button>
     </div>
 
@@ -8209,8 +8209,8 @@
   <aside class="drawer" data-drawer-notif>
     <div class="drawer-head">
       <div class="drawer-eyebrow"><span class="dot"></span> Notifications</div>
-      <button class="drawer-close" data-close-notif>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
+      <button class="drawer-close" aria-label="Close notifications" data-close-notif>
+        <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></svg>
       </button>
     </div>
     <div class="drawer-content">
@@ -8232,8 +8232,8 @@
   </aside>
 
   <!-- ═══════════════════ DEMO CONTROLS (review-only) ═══════════════════ -->
-  <button class="demo-toggle" data-demo-toggle title="Demo controls">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+  <button class="demo-toggle" aria-label="Demo controls" data-demo-toggle title="Demo controls">
+    <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
       <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
       <circle cx="12" cy="12" r="3"/>
     </svg>

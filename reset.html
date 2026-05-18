@@ -25,19 +25,19 @@ body { min-height: 100vh; display: grid; place-items: center; padding: 32px; }
 <body>
 <main class="shell">
   <a class="brand" href="index.html">
-    <div class="brand-mark"><svg width="30" height="22" viewBox="0 0 30 22" aria-hidden="true"><ellipse cx="9" cy="11" rx="7" ry="9.5" fill="#FFD202"/><ellipse cx="21" cy="11" rx="8.5" ry="10.5" fill="#FFD202"/></svg></div>
+    <div class="brand-mark"><svg aria-hidden="true" width="30" height="22" viewBox="0 0 30 22"><ellipse cx="9" cy="11" rx="7" ry="9.5" fill="#FFD202"/><ellipse cx="21" cy="11" rx="8.5" ry="10.5" fill="#FFD202"/></svg></div>
     <div class="brand-name">Seenfolio</div>
   </a>
   <h1>Set a <em>new password</em>.</h1>
   <p>10+ characters. Mix it up. We'll never email it to you.</p>
   <div class="form-group">
-    <label>New password</label>
-    <input class="form-input" type="password" placeholder="••••••••••" />
-    <div class="req">· At least 10 characters · contains a number</div>
+    <label for="reset-new">New password</label>
+    <input id="reset-new" class="form-input" type="password" autocomplete="new-password" placeholder="••••••••••" aria-describedby="reset-req" />
+    <div class="req" id="reset-req">· At least 10 characters · contains a number</div>
   </div>
   <div class="form-group">
-    <label>Confirm new password</label>
-    <input class="form-input" type="password" placeholder="••••••••••" />
+    <label for="reset-confirm">Confirm new password</label>
+    <input id="reset-confirm" class="form-input" type="password" autocomplete="new-password" placeholder="••••••••••" />
   </div>
   <a href="sign-in.html" class="btn primary">Save and sign in →</a>
   <p class="footer-link"><a href="sign-in.html">Cancel</a></p>

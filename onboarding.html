@@ -286,7 +286,7 @@
 <header class="topnav">
   <a class="brand" href="index.html">
     <div class="brand-mark">
-      <svg width="30" height="22" viewBox="0 0 30 22" aria-hidden="true"><ellipse cx="9" cy="11" rx="7" ry="9.5" fill="#FFD202"/><ellipse cx="21" cy="11" rx="8.5" ry="10.5" fill="#FFD202"/></svg>
+      <svg aria-hidden="true" width="30" height="22" viewBox="0 0 30 22"><ellipse cx="9" cy="11" rx="7" ry="9.5" fill="#FFD202"/><ellipse cx="21" cy="11" rx="8.5" ry="10.5" fill="#FFD202"/></svg>
     </div>
     <div class="brand-name">Seenfolio</div>
   </a>
@@ -335,7 +335,7 @@
 
       <aside class="why-card">
         <div class="why-card-mascot">
-          <svg viewBox="0 0 260 230" width="100%"><use href="sage.svg#sage-clipboard"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 260 230" width="100%"><use href="sage.svg#sage-clipboard"/></svg>
         </div>
         <h4>Why I'm asking</h4>
         <p>I'll match my voice to your business. Selling silver jewelry is very different from selling enterprise software.</p>
@@ -372,7 +372,7 @@
 
       <aside class="why-card" style="background: var(--teal); transform: rotate(-2deg);">
         <div class="why-card-mascot">
-          <svg viewBox="0 0 280 220" width="100%"><use href="sage.svg#sage-magnify"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 280 220" width="100%"><use href="sage.svg#sage-magnify"/></svg>
         </div>
         <h4>What happens next</h4>
         <p>I'll crawl every page, score it on SEO + GEO + Core Web Vitals, and pick three things to fix first.</p>
@@ -469,7 +469,7 @@
 
       <aside class="why-card" style="background: var(--blue-soft); transform: rotate(-1.5deg);">
         <div class="why-card-mascot">
-          <svg viewBox="0 0 280 220" width="100%"><use href="sage.svg#sage-wrench"/></svg>
+          <svg aria-hidden="true" viewBox="0 0 280 220" width="100%"><use href="sage.svg#sage-wrench"/></svg>
         </div>
         <h4>Why this matters</h4>
         <p>WordPress plugins are <em>server-side</em>. They help AI engines crawl your content.</p>
@@ -482,7 +482,7 @@
   <section class="step" data-step="5">
     <div class="analyzing-stage">
       <div class="orb">
-        <svg viewBox="0 0 360 240" width="100%"><use href="sage.svg#sage-multitask"/></svg>
+        <svg aria-hidden="true" viewBox="0 0 360 240" width="100%"><use href="sage.svg#sage-multitask"/></svg>
       </div>
       <h2 class="analyzing-title" data-analyzing-title>Reading your site, your traffic, and what your <em>customers</em> say.</h2>
       <p class="analyzing-sub" data-analyzing-sub>You'll get an email tomorrow morning with three things I noticed and the first change I'd like to make. You don't need to do anything until then.</p>
@@ -667,7 +667,7 @@
           const prev = document.querySelector(`[data-phase="${phases[i - 1]}"]`);
           prev.classList.remove('active');
           prev.classList.add('done');
-          prev.querySelector('.phase-icon').innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>';
+          prev.querySelector('.phase-icon').innerHTML = '<svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>';
         }
         cur.classList.add('active');
         i++;
@@ -676,7 +676,7 @@
         const last = document.querySelector('[data-phase="draft"]');
         last.classList.remove('active');
         last.classList.add('done');
-        last.querySelector('.phase-icon').innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>';
+        last.querySelector('.phase-icon').innerHTML = '<svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>';
         findings.style.display = 'block';
         if (skipBtn) skipBtn.style.display = 'inline-flex';
       }
