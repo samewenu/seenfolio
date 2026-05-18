@@ -99,56 +99,6 @@
   border-bottom-right-radius: 3px;
 }
 
-/* live-data chip · sits on the monitor as if it's a notification overlay */
-.hero-chip {
-  position: absolute;
-  top: 16%;
-  right: 6%;
-  background: var(--bg-card);
-  border: 2px solid var(--ink);
-  border-radius: 10px;
-  padding: 5px 10px;
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.04em;
-  color: var(--ink);
-  transform: rotate(3deg);
-  z-index: 3;
-  box-shadow: var(--shadow-card-sm);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.hero-chip .dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--good);
-  box-shadow: 0 0 0 1.5px var(--ink);
-}
-.hero-chip b {
-  font-variation-settings: "wght" 720;
-  color: var(--accent);
-}
-
-/* "100% reversible" sticker · placed on the desk surface like a Post-it */
-.hero-stamp {
-  position: absolute;
-  bottom: 12%;
-  left: 22%;
-  background: var(--teal);
-  border: 2px solid var(--ink);
-  border-radius: 8px;
-  padding: 5px 11px;
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink);
-  transform: rotate(-5deg);
-  z-index: 3;
-  box-shadow: var(--shadow-card-sm);
-}
-
 @media (max-width: 920px) {
   .hero-stage { grid-template-columns: 1fr; gap: 40px; }
   .hero-text { text-align: center; }
@@ -501,14 +451,12 @@
       </div>
     </div>
 
-    <!-- RIGHT · Sage's self-contained scene · desk + monitor + speech bubble + live data chip -->
+    <!-- RIGHT · Sage's enriched workstation · desk, monitor with Post-it, plant, notebook, pen all baked into the SVG · only a floating speech bubble sits on top -->
     <div class="hero-art">
       <div class="hero-bubble">Hi, I'm Sage 👋</div>
-      <div class="hero-chip"><span class="dot"></span> <b>+31%</b> revenue · 6w</div>
       <div class="sage hero">
         <svg aria-hidden="true" viewBox="0 0 320 230" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-desk"/></svg>
       </div>
-      <div class="hero-stamp">100% reversible</div>
     </div>
 
   </div>

@@ -101,21 +101,74 @@
 
   <!-- ════════ POSE 3 · AT A DESK ════════ -->
   <symbol id="sage-desk" viewBox="0 0 320 230">
-    <!-- monitor -->
+    <!-- floor shadow under the whole scene for depth -->
+    <ellipse cx="180" cy="202" rx="135" ry="8" fill="#151515" opacity="0.08"/>
+
+    <!-- monitor frame + screen -->
     <rect x="155" y="50" width="130" height="90" rx="6" fill="#151515" stroke="#151515" stroke-width="3.5"/>
     <rect x="163" y="58" width="114" height="74" rx="3" fill="#FAF9F4"/>
-    <!-- chart lines in screen -->
+
+    <!-- chart line trending up in olive -->
     <path d="M 170 110 L 185 95 L 200 100 L 215 80 L 230 85 L 245 70 L 265 65" fill="none" stroke="#3E5210" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
     <circle cx="265" cy="65" r="3.5" fill="#3E5210"/>
+
+    <!-- Post-it stuck to monitor's top-right corner with the +31% callout -->
+    <g transform="rotate(8 280 56)">
+      <rect x="262" y="42" width="36" height="28" rx="1.5" fill="#FFD202" stroke="#151515" stroke-width="2"/>
+      <text x="280" y="58" font-family="JetBrains Mono, monospace" font-size="11" font-weight="700" fill="#151515" text-anchor="middle">+31%</text>
+      <text x="280" y="65" font-family="JetBrains Mono, monospace" font-size="5" letter-spacing="0.5" fill="#3E5210" text-anchor="middle">6 WEEKS</text>
+    </g>
+
     <!-- monitor stand -->
     <path d="M 215 140 L 215 160 L 195 175 L 245 175 L 225 160 L 225 140" fill="#151515"/>
+
     <!-- desk surface -->
     <rect x="50" y="175" width="260" height="5" fill="#151515"/>
+
+    <!-- potted plant on the right of the desk · adds life to the workstation -->
+    <g transform="translate(297 0)">
+      <!-- stems -->
+      <path d="M 0 162 Q -3 145 -6 128" fill="none" stroke="#3E5210" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M 0 162 Q 3 148 4 132" fill="none" stroke="#3E5210" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M 0 162 Q 0 142 -1 122" fill="none" stroke="#81A62D" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- leaves -->
+      <ellipse cx="-7" cy="130" rx="3.5" ry="6" fill="#81A62D" stroke="#3E5210" stroke-width="1.5" transform="rotate(-22 -7 130)"/>
+      <ellipse cx="5" cy="133" rx="3.5" ry="6" fill="#81A62D" stroke="#3E5210" stroke-width="1.5" transform="rotate(22 5 133)"/>
+      <ellipse cx="-1" cy="120" rx="3.5" ry="6.5" fill="#3E5210" stroke="#151515" stroke-width="1.5"/>
+      <!-- pot · warm tan to match Sage's body -->
+      <path d="M -8 162 L -6 178 L 6 178 L 8 162 Z" fill="#C9A46B" stroke="#151515" stroke-width="2" stroke-linejoin="round"/>
+      <line x1="-7" y1="166" x2="7" y2="166" stroke="#151515" stroke-width="1.5"/>
+    </g>
+
     <!-- coffee mug -->
     <rect x="160" y="153" width="22" height="20" rx="2" fill="#3E5210" stroke="#151515" stroke-width="2.5"/>
     <path d="M 182 158 Q 192 162 182 168" fill="none" stroke="#151515" stroke-width="2.5"/>
-    <!-- sage seated -->
+
+    <!-- notebook + paper stack right of coffee mug -->
+    <g>
+      <!-- scrap paper underneath, slightly rotated -->
+      <rect x="190" y="170" width="32" height="6" rx="0.5" fill="#FAF9F4" stroke="#151515" stroke-width="1.5" transform="rotate(-4 206 173)"/>
+      <!-- notebook on top -->
+      <rect x="192" y="160" width="30" height="13" rx="1" fill="#FAF9F4" stroke="#151515" stroke-width="2"/>
+      <!-- spiral binding dots -->
+      <circle cx="194" cy="163" r="0.9" fill="#151515"/>
+      <circle cx="194" cy="167" r="0.9" fill="#151515"/>
+      <circle cx="194" cy="171" r="0.9" fill="#151515"/>
+      <!-- a couple of squiggle lines on the page -->
+      <path d="M 200 165 L 218 165" stroke="#151515" stroke-width="0.8" opacity="0.5"/>
+      <path d="M 200 168 L 216 168" stroke="#151515" stroke-width="0.8" opacity="0.5"/>
+    </g>
+
+    <!-- pen on the desk surface at an angle -->
+    <g transform="rotate(-14 250 173)">
+      <rect x="237" y="171" width="26" height="2.5" rx="1.2" fill="#3E5210" stroke="#151515" stroke-width="1.2"/>
+      <rect x="261" y="171" width="3" height="2.5" fill="#151515"/>
+      <circle cx="237" cy="172.25" r="0.8" fill="#FFD202"/>
+    </g>
+
+    <!-- sage seated (rendered on top of desk-level scene) -->
     <g transform="translate(0 35)">
+      <!-- chair back curve behind Sage -->
       <path d="M 48 110 Q 38 138 62 165" fill="none" stroke="#151515" stroke-width="3.5" stroke-linecap="round"/>
       <use href="#sage-base"/>
       <!-- right wing reaching forward toward monitor -->
