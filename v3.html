@@ -1,0 +1,2709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Seenfolio — Build growth, not dashboards · v3 design</title>
+<meta name="description" content="Replaces the ten marketing tools you barely use. Analyzes, decides, and acts on its own — and tells you why, in normal-person words." />
+<link rel="stylesheet" href="styles.css" />
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO · v2 · centered editorial above + morning-briefing card below
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero.hero-v2 { padding: 56px 0 96px; }
+
+/* the centered editorial column on top */
+.hero-v2-top { max-width: 760px; margin: 0 auto; text-align: center; }
+.hero-v2-top .hero-mark { margin: 0 0 22px; }
+.hero-v2-h1 {
+  margin: 0;
+  font-size: clamp(40px, 5.4vw, 72px);
+  letter-spacing: -0.022em;
+  line-height: 1.04;
+  max-width: 18ch;
+  margin-left: auto; margin-right: auto;
+}
+.hero-v2-lede {
+  margin: 22px auto 32px;
+  max-width: 56ch;
+}
+.hero-v2-form {
+  margin: 0 auto !important;
+  max-width: 660px;
+}
+.hero-v2-aside {
+  margin-top: 18px;
+  justify-content: center;
+}
+
+.hero-mark {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent); background: var(--accent-soft); border: 2px solid var(--accent);
+  padding: 5px 12px; border-radius: 999px; box-shadow: var(--shadow-card-sm);
+}
+.hero-mark .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.hero-aside {
+  font-family: var(--font-hand); font-size: 21px; color: var(--accent);
+  display: inline-flex; align-items: center; gap: 10px;
+}
+
+/* ─── BRIEFING CARD WRAP · the product output ─────────────────────────── */
+.briefing-wrap {
+  max-width: 860px;
+  margin: 72px auto 0;
+  position: relative;
+}
+.briefing-tag {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 18px;
+}
+
+.briefing-card {
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  border-radius: 20px;
+  box-shadow: var(--shadow-card-lg);
+  padding: 28px 32px 24px;
+  transform: rotate(-0.4deg);
+  position: relative;
+  z-index: 1;
+}
+
+/* head — Sage avatar + title block */
+.briefing-head {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 18px;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1.5px dashed var(--line);
+  margin-bottom: 8px;
+}
+.briefing-sage {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--yellow);
+  border: 2px solid var(--ink);
+  display: grid;
+  place-items: center;
+  box-shadow: var(--shadow-card-sm);
+  transform: rotate(-4deg);
+  overflow: hidden;
+}
+.briefing-sage svg { width: 84%; height: 84%; display: block; }
+.briefing-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 4px;
+}
+.briefing-title {
+  font-family: var(--font-sans);
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.018em;
+  line-height: 1.12;
+  margin: 0;
+  color: var(--ink);
+}
+.briefing-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  margin: 6px 0 0;
+}
+
+/* list of autonomous actions */
+.briefing-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.briefing-item {
+  display: grid;
+  grid-template-columns: 32px 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1.5px solid var(--line);
+}
+.briefing-item:last-child { border-bottom: 0; }
+.briefing-check {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--good);
+  border: 2px solid var(--ink);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  box-shadow: var(--shadow-card-sm);
+}
+.briefing-action {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--ink);
+  margin-bottom: 3px;
+  line-height: 1.4;
+}
+.briefing-action b {
+  font-variation-settings: "wght" 720;
+}
+.briefing-impact {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.briefing-impact em.impact-good {
+  font-style: normal;
+  font-variation-settings: "wght" 700;
+  color: var(--accent);
+  background: var(--yellow);
+  padding: 0 4px;
+  border-radius: 3px;
+}
+.briefing-time {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.04em;
+  align-self: start;
+  padding-top: 4px;
+}
+
+/* footer — trust line + CTA */
+.briefing-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  padding-top: 18px;
+  border-top: 1.5px dashed var(--line);
+}
+.briefing-reversible {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.briefing-reversible b { color: var(--ink); font-variation-settings: "wght" 720; }
+.briefing-reversible .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--good);
+  box-shadow: 0 0 0 2px var(--ink);
+  flex-shrink: 0;
+}
+.briefing-cta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--accent);
+  padding-bottom: 1px;
+}
+.briefing-cta:hover { color: var(--accent-deep); border-bottom-color: var(--accent-deep); }
+
+/* hand-drawn annotation on the side */
+.briefing-scribble {
+  position: absolute;
+  bottom: -8px;
+  right: -32px;
+  font-family: var(--font-hand);
+  font-size: 21px;
+  color: var(--accent);
+  transform: rotate(-6deg);
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+.briefing-scribble svg { flex-shrink: 0; margin-top: 2px; }
+
+@media (max-width: 920px) {
+  .hero-v2-h1 { font-size: clamp(34px, 7vw, 52px); }
+  .briefing-card { padding: 22px 20px 18px; }
+  .briefing-head { grid-template-columns: 52px 1fr; gap: 14px; }
+  .briefing-sage { width: 52px; height: 52px; }
+  .briefing-item { grid-template-columns: 26px 1fr; gap: 12px; }
+  .briefing-time { grid-column: 2; padding-top: 0; }
+  .briefing-scribble { display: none; }
+}
+
+/* hero URL-capture bar — primary "get started" entry point (in left column) */
+.hero-capture {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: stretch;
+  height: 68px;
+  background: var(--bg);
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card-sm);
+  transition: box-shadow .15s, transform .15s;
+  overflow: hidden;
+}
+.hero-capture:focus-within {
+  box-shadow: 4px 4px 0 var(--accent);
+  transform: translate(-1px, -1px);
+}
+.hero-capture-input {
+  border: 0;
+  background: transparent;
+  padding: 0 26px;
+  font-family: var(--font-sans);
+  font-size: 18px;
+  color: var(--ink);
+  outline: none;
+  min-width: 0;
+}
+.hero-capture-input::placeholder { color: var(--ink-mute); }
+.hero-capture-divider {
+  width: 0;
+  border-left: 1.5px solid var(--line);
+  align-self: center;
+  height: 60%;
+}
+.hero-capture-region {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 18px;
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.hero-capture-region svg { flex-shrink: 0; opacity: 0.7; }
+.hero-capture-region select {
+  border: 0;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-variation-settings: "wght" 600;
+  color: var(--ink);
+  cursor: pointer;
+  padding: 6px 4px;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'><path d='M2 4l3 3 3-3' fill='none' stroke='%23151515' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0 center;
+  padding-right: 18px;
+}
+.hero-capture-cta {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  padding: 0 30px;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-variation-settings: "wght" 720;
+  letter-spacing: -0.005em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background .12s;
+}
+.hero-capture-cta:hover { background: var(--accent-deep); }
+.hero-capture-cta:active { background: var(--accent-deep); }
+@media (max-width: 700px) {
+  .hero-capture {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 56px;
+    height: auto;
+    border-radius: 12px;
+  }
+  .hero-capture-input {
+    padding: 0 18px;
+    border-bottom: 1.5px solid var(--line);
+  }
+  .hero-capture-divider { display: none; }
+  .hero-capture-region {
+    border-bottom: 1.5px solid var(--line);
+    padding: 0 18px;
+  }
+  .hero-capture-cta {
+    justify-content: center;
+    padding: 14px 0;
+  }
+}
+
+/* problem section */
+.tools-stack { position: relative; min-height: 460px; }
+.tool-sticker {
+  position: absolute; width: 220px; padding: 16px 20px;
+  border: 2px solid var(--ink); border-radius: 14px;
+  box-shadow: var(--shadow-card); background: var(--bg-card);
+}
+.tool-sticker .lbl { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 6px; }
+.tool-sticker .name { font-family: var(--font-sans); font-size: 18px; font-variation-settings: "wght" 700; margin-bottom: 4px; }
+.tool-sticker .cost { font-family: var(--font-mono); font-size: 12px; }
+.ts-1 { top: 0; left: 0; background: var(--accent-soft); transform: rotate(-2deg); }
+.ts-2 { top: 80px; left: 230px; background: var(--yellow-soft); transform: rotate(1.5deg); }
+.ts-3 { top: 200px; left: 30px; background: var(--teal-soft); transform: rotate(-1deg); }
+.ts-4 { top: 280px; left: 230px; background: var(--bg-paper); transform: rotate(2deg); }
+.ts-5, .ts-6 { display: none; }
+.tool-stamp {
+  position: absolute; bottom: -8px; right: 0;
+  background: var(--red); color: #fff; border: 2px solid var(--ink);
+  border-radius: 10px; padding: 8px 16px; font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  transform: rotate(-4deg); box-shadow: var(--shadow-card-sm);
+}
+
+/* engines section */
+.engines-layout {
+  display: grid; grid-template-columns: 0.85fr 1.15fr;
+  gap: 48px; align-items: center;
+  background: var(--bg-paper); border: 2px solid var(--ink);
+  border-radius: 24px; padding: 48px;
+  box-shadow: var(--shadow-card-lg); position: relative;
+}
+.engines-grid-r { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.engine-chip {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px; background: var(--bg-card);
+  border: 2px solid var(--ink); border-radius: 12px;
+  box-shadow: var(--shadow-card-sm); cursor: pointer; transition: transform 0.12s;
+}
+.engine-chip:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+.engine-chip .ec-icon {
+  width: 34px; height: 34px; border-radius: 50%;
+  display: grid; place-items: center; border: 2px solid var(--ink); flex-shrink: 0;
+  font-family: var(--font-mono); font-size: 12px; font-variation-settings: "wght" 700;
+}
+.ec-icon.c1 { background: var(--accent); color: #fff; }
+.ec-icon.c2 { background: var(--yellow); color: var(--ink); }
+.ec-icon.c3 { background: var(--teal); color: var(--ink); }
+.ec-icon.c4 { background: var(--blue); color: #fff; }
+.ec-icon.c5 { background: var(--red); color: #fff; }
+.ec-icon.c6 { background: var(--bg-paper); color: var(--ink); }
+.ec-icon.c7 { background: var(--accent-soft); color: var(--ink); }
+.engine-chip .ec-meta { display: flex; flex-direction: column; line-height: 1.2; }
+.engine-chip .ec-name { font-size: 15px; font-variation-settings: "wght" 700; }
+.engine-chip .ec-sub { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-mute); letter-spacing: 0.04em; }
+
+/* how it works comic strip */
+.comic-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+.comic-panel {
+  background: var(--bg-card); border: 2px solid var(--ink);
+  border-radius: 16px; padding: 28px 24px 24px;
+  box-shadow: var(--shadow-card); position: relative; overflow: hidden;
+}
+.comic-panel:nth-child(1) { background: var(--accent-soft); }
+.comic-panel:nth-child(2) { background: var(--yellow-soft); }
+.comic-panel:nth-child(3) { background: var(--teal-soft); }
+.comic-num {
+  position: absolute; top: -2px; right: 14px;
+  background: var(--ink); color: var(--bg);
+  width: 38px; height: 50px; border-radius: 0 0 20px 20px;
+  font-family: var(--font-sans); font-variation-settings: "wght" 800;
+  font-size: 22px; display: grid; place-items: center;
+}
+.comic-panel h4 { font-family: var(--font-sans); font-size: 22px; font-variation-settings: "wght" 720; letter-spacing: -0.015em; margin: 0 0 10px; max-width: 14ch; }
+.comic-panel p { font-size: 14px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
+.comic-illustration { height: 110px; display: grid; place-items: center; margin: 12px 0 14px; }
+
+/* principles */
+.principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.principle {
+  background: var(--bg-card); border: 2px solid var(--ink);
+  border-radius: 16px; padding: 24px;
+  box-shadow: var(--shadow-card); position: relative;
+}
+.principle:nth-child(1) { transform: rotate(-1deg); }
+.principle:nth-child(2) { transform: rotate(1deg); }
+.principle:nth-child(3) { transform: rotate(-0.5deg); }
+.principle:nth-child(4) { transform: rotate(0.8deg); }
+.principle:nth-child(5) { transform: rotate(-1.2deg); }
+.principle:nth-child(6) { transform: rotate(0.6deg); }
+.principle:hover { transform: rotate(0); }
+.p-num { font-family: var(--font-hand); font-size: 28px; color: var(--accent); margin-bottom: 6px; line-height: 1; }
+.p-title { font-family: var(--font-sans); font-size: 22px; font-variation-settings: "wght" 720; letter-spacing: -0.012em; margin: 0 0 10px; }
+.p-title em { font-style: normal; color: var(--accent); }
+.principle p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
+
+/* pricing tickets */
+.tickets-row {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  background: var(--bg-paper); border: 2px solid var(--ink);
+  border-radius: 18px; padding: 12px; box-shadow: var(--shadow-card-lg);
+}
+.mini-ticket { padding: 18px 14px; border-right: 2px dashed var(--ink); text-align: center; }
+.mini-ticket:last-child { border-right: 0; }
+.mini-ticket .name { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); margin-bottom: 8px; }
+.mini-ticket .price { font-family: var(--font-hand); font-size: 38px; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+.mini-ticket .price small { font-family: var(--font-sans); font-size: 12px; color: var(--ink-mute); font-variation-settings: "wght" 400; }
+.mini-ticket .tokens { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.04em; }
+
+/* testimonial */
+.testi-wrap { display: grid; grid-template-columns: 220px 1fr; gap: 32px; align-items: center; max-width: 1080px; margin: 0 auto; }
+.testi-avatar { display: grid; place-items: center; position: relative; }
+.testi-avatar .ring {
+  width: 180px; height: 180px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--yellow));
+  border: 3px solid var(--ink); display: grid; place-items: center;
+  font-family: var(--font-sans); font-size: 64px;
+  font-variation-settings: "wght" 800; color: var(--ink);
+  box-shadow: var(--shadow-card-lg);
+}
+.testi-quote { font-family: var(--font-sans); font-size: clamp(20px, 2.2vw, 28px); line-height: 1.4; letter-spacing: -0.012em; font-variation-settings: "wght" 500; margin: 0 0 18px; }
+.testi-quote em { font-style: normal; background: var(--yellow); padding: 0 6px; }
+.testi-meta { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; color: var(--ink-mute); }
+
+/* final CTA */
+.final-cta {
+  background: var(--ink); color: var(--bg);
+  border: 2px solid var(--ink); border-radius: 24px;
+  padding: 64px 48px; text-align: center; position: relative;
+  overflow: hidden; box-shadow: var(--shadow-card-lg);
+}
+.final-cta h2 { color: var(--bg); margin: 0 auto 18px; max-width: 18ch; }
+.final-cta h2 em { font-style: normal; background: var(--yellow); color: var(--ink); padding: 0 8px; }
+.final-cta .lede { color: var(--bg); opacity: 0.8; max-width: 48ch; margin: 0 auto 32px; }
+.final-cta .sage-tag { position: absolute; bottom: 0; right: 48px; z-index: 0; }
+@media (max-width: 920px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .engines-layout { grid-template-columns: 1fr; padding: 32px 24px; }
+  .comic-strip { grid-template-columns: 1fr; }
+  .principles-grid { grid-template-columns: 1fr 1fr; }
+  .tickets-row { grid-template-columns: 1fr 1fr; }
+  .mini-ticket:nth-child(2) { border-right: 0; }
+  .testi-wrap { grid-template-columns: 1fr; text-align: center; }
+  .tools-stack { min-height: 600px; }
+  .problem-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+  .pricing-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 560px) {
+  .principles-grid { grid-template-columns: 1fr; }
+  .tickets-row { grid-template-columns: 1fr; }
+  .mini-ticket { border-right: 0; border-bottom: 2px dashed var(--ink); }
+  .mini-ticket:last-child { border-bottom: 0; }
+  .tool-sticker { width: 180px; }
+  .final-cta .sage-tag { display: none; }
+}
+
+.section { padding: 64px 0; }
+.section-eyebrow {
+  display: inline-block; font-family: var(--font-mono);
+  font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--accent); padding: 5px 12px;
+  border: 2px solid var(--accent); border-radius: 999px;
+  background: var(--accent-soft); margin-bottom: 22px;
+}
+.section h2 { max-width: 22ch; margin-bottom: 18px; }
+.section h2 em { font-style: normal; background: var(--yellow); padding: 0 6px; }
+.section-intro { max-width: 56ch; margin: 0 0 48px; }
+.problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.pricing-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   V2 SECTION SYSTEM · shared "morning briefing" voice across all blocks
+   ═══════════════════════════════════════════════════════════════════════ */
+.v2-section-head { max-width: 720px; margin-bottom: 48px; }
+.v2-eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.v2-section-title {
+  font-family: var(--font-sans);
+  font-size: clamp(34px, 4vw, 56px);
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.02em;
+  line-height: 1.06;
+  margin: 0;
+  color: var(--ink);
+}
+.v2-section-sub {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin: 18px 0 0;
+  max-width: 56ch;
+}
+
+/* ─── V2 · OUTCOMES WALL ─────────────────────────────────────────────── */
+.v2-outcomes { padding: 64px 0; }
+.v2-outcomes-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 18px;
+}
+.v2-outcome {
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  border-radius: 18px;
+  padding: 24px 26px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.v2-outcome--big {
+  grid-row: 1 / span 2;
+  background: var(--yellow-soft);
+  transform: rotate(-0.6deg);
+  padding: 32px 32px 28px;
+}
+.v2-outcome:nth-child(2) { transform: rotate(0.4deg); }
+.v2-outcome:nth-child(3) { transform: rotate(-0.3deg); }
+.v2-outcome:nth-child(4) { transform: rotate(0.5deg); }
+.v2-outcome-num {
+  font-family: var(--font-sans);
+  font-size: clamp(48px, 5vw, 72px);
+  font-variation-settings: "wght" 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.v2-outcome--big .v2-outcome-num {
+  font-size: clamp(80px, 9vw, 128px);
+  margin-bottom: 8px;
+}
+.v2-outcome-num--olive { color: var(--accent); }
+.v2-outcome-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 16px;
+}
+.v2-outcome--big .v2-outcome-label { margin-bottom: 24px; }
+.v2-outcome-quote {
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  font-style: italic;
+  color: var(--ink);
+  line-height: 1.5;
+  flex: 1;
+  margin: 0 0 18px;
+}
+.v2-outcome--big .v2-outcome-quote { font-size: 18px; line-height: 1.55; }
+.v2-outcome-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1.5px dashed var(--line);
+}
+.v2-outcome-avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--yellow), var(--accent-soft));
+  border: 2px solid var(--ink);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-variation-settings: "wght" 800;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+.v2-outcome-name {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  font-variation-settings: "wght" 720;
+  color: var(--ink);
+}
+.v2-outcome-brand {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-mute);
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+@media (max-width: 920px) {
+  .v2-outcomes-grid { grid-template-columns: 1fr 1fr; }
+  .v2-outcome--big { grid-row: auto; grid-column: 1 / -1; }
+}
+@media (max-width: 560px) {
+  .v2-outcomes-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── V2 · SPECIALISTS · 7 engines as team cards with Sage poses ──────── */
+.v2-specialists { padding: 64px 0; }
+.v2-specialists-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.v2-specialist {
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  padding: 20px 22px 22px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.v2-specialist:nth-child(odd) { transform: rotate(-0.3deg); }
+.v2-specialist:nth-child(even) { transform: rotate(0.3deg); }
+.v2-specialist--wide {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: center;
+  gap: 28px;
+  padding: 24px 28px;
+}
+.v2-specialist--wide .v2-specialist-avatar {
+  width: 240px;
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+.v2-specialist--wide .v2-specialist-body { flex: 1; }
+.v2-specialist-num {
+  position: absolute;
+  top: 16px; right: 18px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+}
+.v2-specialist-avatar {
+  background: var(--yellow);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  margin-bottom: 16px;
+  padding: 6px 10px;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1.4;
+  box-shadow: var(--shadow-card-sm);
+  overflow: hidden;
+}
+.v2-specialist-avatar svg { width: 100%; height: 100%; display: block; }
+.v2-specialist-name {
+  font-family: var(--font-sans);
+  font-size: 22px;
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.018em;
+  margin: 0;
+  color: var(--ink);
+}
+.v2-specialist-role {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 6px 0 12px;
+}
+.v2-specialist-do {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0 0 14px;
+  flex: 1;
+}
+.v2-specialist-stat {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-mute);
+  letter-spacing: 0.04em;
+  padding-top: 12px;
+  border-top: 1.5px dashed var(--line);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.v2-specialist-stat .dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--good);
+  box-shadow: 0 0 0 1.5px var(--ink);
+  flex-shrink: 0;
+}
+@media (max-width: 920px) {
+  .v2-specialists-grid { grid-template-columns: 1fr 1fr; }
+  .v2-specialist--wide { flex-direction: column; }
+  .v2-specialist--wide .v2-specialist-avatar { width: 100%; }
+}
+@media (max-width: 560px) {
+  .v2-specialists-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── V2 · TRUST FLOW · Approve · Undo · Sleep well ──────────────────── */
+.v2-trust { padding: 64px 0; }
+.v2-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.v2-trust-card {
+  border: 2px solid var(--ink);
+  border-radius: 18px;
+  padding: 28px 26px 24px;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.v2-trust-card--1 { background: var(--accent-soft); transform: rotate(-0.5deg); }
+.v2-trust-card--2 { background: var(--yellow-soft); transform: rotate(0.4deg); }
+.v2-trust-card--3 { background: var(--green-soft); transform: rotate(-0.3deg); }
+.v2-trust-stamp {
+  position: absolute;
+  top: 20px; right: 24px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+}
+.v2-trust-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.v2-trust-title {
+  font-family: var(--font-sans);
+  font-size: 26px;
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.018em;
+  line-height: 1.1;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+.v2-trust-desc {
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0 0 18px;
+  flex: 1;
+}
+.v2-trust-mock {
+  background: var(--bg-card);
+  border: 1.5px solid var(--ink);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.v2-trust-mock-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.v2-trust-mock-text {
+  flex: 1;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--ink);
+}
+.v2-trust-mock-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 1.5px solid var(--ink);
+}
+.v2-trust-mock-dot--warn { background: var(--warn); }
+.v2-trust-mock-btn {
+  background: var(--accent);
+  color: #fff;
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.v2-trust-mock-btn:hover { background: var(--accent-deep); }
+.v2-trust-mock-card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.v2-trust-mock-meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.04em;
+}
+.v2-trust-mock-undo {
+  background: var(--bg-card);
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  padding: 5px 11px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-variation-settings: "wght" 700;
+  align-self: flex-start;
+  cursor: pointer;
+}
+.v2-trust-mock-undo:hover { background: var(--yellow); }
+.v2-trust-mock-why-q {
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  font-variation-settings: "wght" 720;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.v2-trust-mock-why-a {
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+@media (max-width: 920px) {
+  .v2-trust-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── V2 · PRICING TEASER · token menu ───────────────────────────────── */
+.v2-pricing { padding: 64px 0; }
+.v2-pricing-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.v2-pricing-menu {
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  border-radius: 18px;
+  box-shadow: var(--shadow-card-lg);
+  padding: 22px 26px 24px;
+  transform: rotate(-0.4deg);
+}
+.v2-pricing-menu-head {
+  padding-bottom: 14px;
+  border-bottom: 1.5px dashed var(--line);
+  margin-bottom: 8px;
+}
+.v2-menu-title {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.22em;
+  color: var(--accent);
+}
+.v2-menu-sub {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-mute);
+  letter-spacing: 0.04em;
+  margin-top: 4px;
+}
+.v2-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.v2-menu-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1.5px dotted var(--line);
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  color: var(--ink);
+}
+.v2-menu-item:last-child { border-bottom: 0; }
+.v2-menu-cost {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  color: var(--accent);
+  font-variation-settings: "wght" 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.v2-menu-cost--free {
+  color: var(--good);
+  background: var(--green-soft);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1.5px solid var(--ink);
+}
+.v2-pricing-side-title {
+  font-family: var(--font-sans);
+  font-size: clamp(28px, 3vw, 40px);
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin: 0 0 18px;
+  color: var(--ink);
+}
+.v2-pricing-side-desc {
+  font-family: var(--font-sans);
+  font-size: 15.5px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin: 0 0 24px;
+  max-width: 36ch;
+}
+@media (max-width: 920px) {
+  .v2-pricing-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* ─── V2 · FINAL CTA · dark "tonight → 06:00" card ───────────────────── */
+.v2-final-cta { padding: 80px 0 96px; }
+.v2-final-card {
+  background: var(--ink);
+  color: var(--bg);
+  border: 2px solid var(--ink);
+  border-radius: 28px;
+  padding: 64px 56px;
+  text-align: center;
+  position: relative;
+  box-shadow: 8px 8px 0 var(--accent);
+  overflow: hidden;
+}
+.v2-final-clock {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid rgba(255, 210, 2, 0.35);
+  border-radius: 999px;
+  padding: 7px 18px;
+  margin-bottom: 28px;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  position: relative;
+  z-index: 1;
+}
+.v2-final-clock-now { color: var(--bg); opacity: 0.65; }
+.v2-final-clock-arrow { color: var(--yellow); font-weight: bold; }
+.v2-final-clock-then { color: var(--yellow); font-variation-settings: "wght" 700; }
+.v2-final-title {
+  font-family: var(--font-sans);
+  font-size: clamp(36px, 5vw, 64px);
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.022em;
+  line-height: 1.05;
+  max-width: 22ch;
+  margin: 0 auto 18px;
+  color: var(--bg);
+  position: relative;
+  z-index: 1;
+}
+.v2-final-title .mark { color: var(--bg); }
+.v2-final-title .mark::before { background: var(--yellow); opacity: 0.92; }
+.v2-final-sub {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--bg);
+  opacity: 0.72;
+  line-height: 1.55;
+  max-width: 50ch;
+  margin: 0 auto 30px;
+  position: relative;
+  z-index: 1;
+}
+.v2-final-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+.v2-final-actions .btn {
+  box-shadow: 4px 4px 0 var(--bg);
+  border-color: var(--bg);
+}
+.v2-final-actions .btn.primary { box-shadow: 4px 4px 0 var(--yellow); }
+.v2-final-sage {
+  position: absolute;
+  bottom: -20px;
+  right: -10px;
+  width: 160px;
+  opacity: 0.18;
+  transform: rotate(8deg);
+  z-index: 0;
+}
+.v2-final-sage svg { width: 100%; height: 100%; display: block; }
+@media (max-width: 920px) {
+  .v2-final-card { padding: 48px 32px; }
+  .v2-final-sage { width: 100px; bottom: -10px; right: -10px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   V3 · PostHog-style · big H1 + product UI mocks + dark sections + comics
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.v3-eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.v3-eyebrow--dark { color: var(--yellow); }
+.v3-section-head { max-width: 720px; margin-bottom: 48px; }
+.v3-section-head--dark { color: var(--bg); }
+.v3-section-title {
+  font-family: var(--font-sans);
+  font-size: clamp(38px, 4.5vw, 64px);
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.022em;
+  line-height: 1.04;
+  margin: 0;
+  color: var(--ink);
+}
+.v3-section-title--dark { color: var(--bg); }
+.v3-section-sub {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin: 18px 0 0;
+  max-width: 58ch;
+}
+.v3-section-sub--dark { color: var(--bg); opacity: 0.78; }
+
+/* ─── V3 · HERO ────────────────────────────────────────────────────────── */
+.hero.hero-v3 { padding: 48px 0 72px; }
+.hero-v3-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 48px;
+  align-items: center;
+}
+.hero-v3-text { min-width: 0; }
+.hero-v3-h1 {
+  font-family: var(--font-sans);
+  font-size: clamp(48px, 6.4vw, 92px);
+  font-variation-settings: "wght" 900;
+  letter-spacing: -0.028em;
+  line-height: 0.98;
+  margin: 18px 0 0;
+  color: var(--ink);
+}
+.hero-v3-lede {
+  font-family: var(--font-sans);
+  font-size: clamp(17px, 1.6vw, 19px);
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin: 24px 0 28px;
+  max-width: 50ch;
+}
+.hero-v3-form {
+  margin: 0;
+  max-width: 520px;
+}
+.hero-v3-secondary {
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.hero-v3-bar { color: var(--ink-faint); }
+.hero-v3-link {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--accent);
+  padding-bottom: 1px;
+}
+.hero-v3-link:hover { color: var(--accent-deep); }
+.hero-v3-trust {
+  margin-top: 28px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+.hero-v3-stars { color: var(--yellow); font-size: 16px; letter-spacing: 1px; -webkit-text-stroke: 1px var(--ink); }
+
+/* Product UI mock · stylized dashboard window */
+.hero-v3-mock { position: relative; padding: 18px 0; }
+.mock-window {
+  background: var(--bg-card);
+  border: 3px solid var(--ink);
+  border-radius: 16px;
+  box-shadow: 8px 8px 0 var(--ink);
+  overflow: hidden;
+  transform: rotate(-0.6deg);
+}
+.mock-bar {
+  background: var(--bg-paper);
+  border-bottom: 2px solid var(--ink);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.mock-dots { display: inline-flex; gap: 6px; }
+.mock-dots span {
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: var(--bg-card);
+}
+.mock-dots span:nth-child(1) { background: var(--bad); }
+.mock-dots span:nth-child(2) { background: var(--warn); }
+.mock-dots span:nth-child(3) { background: var(--good); }
+.mock-url {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-mute);
+  letter-spacing: 0.02em;
+}
+.mock-url b { color: var(--ink); font-variation-settings: "wght" 600; }
+.mock-bell {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: var(--bg-card);
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  position: relative;
+}
+.mock-bell-count {
+  position: absolute;
+  top: -4px; right: -4px;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  border: 1.5px solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: 8px;
+  display: grid;
+  place-items: center;
+  font-variation-settings: "wght" 700;
+}
+.mock-body { padding: 20px 22px 22px; }
+.mock-greeting {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 14px;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1.5px dashed var(--line);
+  margin-bottom: 16px;
+}
+.mock-greet-sage {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--yellow);
+  border: 2px solid var(--ink);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  transform: rotate(-4deg);
+}
+.mock-greet-sage svg { width: 80%; height: 80%; }
+.mock-greet-h {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-variation-settings: "wght" 720;
+  color: var(--ink);
+}
+.mock-greet-s {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+.mock-greet-s b { color: var(--accent); }
+.mock-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.mock-stat {
+  background: var(--bg-paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.mock-stat-num {
+  font-family: var(--font-sans);
+  font-size: 22px;
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+  line-height: 1;
+}
+.mock-stat-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+  margin-top: 4px;
+}
+.mock-chart {
+  background: var(--bg-paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 10px;
+  padding: 8px 10px;
+  margin-bottom: 16px;
+  height: 80px;
+}
+.mock-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.mock-action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--ink);
+}
+.mock-action-text { flex: 1; }
+.mock-action-text b { font-variation-settings: "wght" 720; }
+.mock-time {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--ink-mute);
+  letter-spacing: 0.04em;
+}
+.mock-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  flex-shrink: 0;
+}
+.mock-dot--good { background: var(--good); }
+
+/* floating stickers on the hero mock */
+.hero-v3-sticker {
+  position: absolute;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: var(--shadow-card-sm);
+  z-index: 3;
+}
+.hero-v3-sticker--undo {
+  top: -2px; right: -12px;
+  background: var(--yellow);
+  color: var(--ink);
+  transform: rotate(6deg);
+}
+.hero-v3-sticker--live {
+  bottom: 8px; left: -18px;
+  background: var(--bg-card);
+  color: var(--ink);
+  transform: rotate(-4deg);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.hero-v3-sticker--live .dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--good);
+  box-shadow: 0 0 0 2px var(--ink);
+}
+
+@media (max-width: 920px) {
+  .hero-v3-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* ─── V3 · LOGO STRIP ──────────────────────────────────────────────────── */
+.v3-logos { padding: 32px 0 64px; }
+.v3-logos-head { text-align: center; margin-bottom: 24px; }
+.v3-logos-sub {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--ink-soft);
+  margin: 6px 0 0;
+}
+.v3-logos-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+}
+.v3-logo {
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  padding: 18px 12px;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-variation-settings: "wght" 720;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  box-shadow: var(--shadow-card-sm);
+  transition: transform .12s;
+}
+.v3-logo:nth-child(odd) { transform: rotate(-0.4deg); }
+.v3-logo:nth-child(even) { transform: rotate(0.3deg); }
+.v3-logo:hover { transform: rotate(0deg) translateY(-2px); }
+
+@media (max-width: 920px) {
+  .v3-logos-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 560px) {
+  .v3-logos-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ─── V3 · COMIC PROBLEM ───────────────────────────────────────────────── */
+.v3-comic { padding: 64px 0; }
+.v3-comic-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.v3-comic-panel {
+  background: var(--bg-card);
+  border: 3px solid var(--ink);
+  border-radius: 18px;
+  padding: 24px 24px 22px;
+  box-shadow: 6px 6px 0 var(--ink);
+  position: relative;
+}
+.v3-comic-panel--1 { background: var(--accent-soft); transform: rotate(-0.6deg); }
+.v3-comic-panel--2 { background: var(--yellow-soft); transform: rotate(0.5deg); }
+.v3-comic-panel--3 { background: var(--green-soft); transform: rotate(-0.4deg); }
+.v3-comic-num {
+  position: absolute;
+  top: 18px; right: 22px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+}
+.v3-comic-illo {
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  height: 160px;
+  display: grid;
+  place-items: center;
+}
+.v3-comic-illo svg { width: 100%; height: auto; max-height: 140px; }
+.v3-comic-h {
+  font-family: var(--font-sans);
+  font-size: 22px;
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.018em;
+  line-height: 1.15;
+  margin: 0 0 10px;
+  color: var(--ink);
+}
+.v3-comic-p {
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin: 0;
+}
+
+@media (max-width: 920px) {
+  .v3-comic-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── V3 · PRODUCT TILES ───────────────────────────────────────────────── */
+.v3-tiles { padding: 72px 0; }
+.v3-tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.v3-tile {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 3px solid var(--ink);
+  border-radius: 18px;
+  padding: 24px 24px 20px;
+  box-shadow: 6px 6px 0 var(--ink);
+  color: var(--ink);
+  text-decoration: none;
+  position: relative;
+  transition: transform .15s, box-shadow .15s;
+}
+.v3-tile:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--ink);
+}
+.v3-tile:nth-child(odd) { transform: rotate(-0.3deg); }
+.v3-tile:nth-child(even) { transform: rotate(0.3deg); }
+.v3-tile:hover { transform: rotate(0deg) translate(-3px, -3px); }
+
+.v3-tile--seo { background: #FFEEC2; }
+.v3-tile--bi { background: var(--accent-soft); }
+.v3-tile--ads { background: #FBD9C8; }
+.v3-tile--content { background: var(--yellow-soft); }
+.v3-tile--trust { background: var(--green-soft); }
+.v3-tile--wa { background: #CFE5C7; }
+.v3-tile--retain { background: #E8D6FF; }
+
+.v3-tile--wide {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: center;
+  gap: 28px;
+  padding: 28px 32px;
+}
+
+.v3-tile-num {
+  position: absolute;
+  top: 18px; right: 22px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--ink-mute);
+}
+.v3-tile-name {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.018em;
+  margin-bottom: 4px;
+}
+.v3-tile--wide .v3-tile-name { font-size: 30px; }
+.v3-tile-tag {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.v3-tile-ui {
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  flex: 1;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.v3-tile--wide .v3-tile-ui {
+  margin-bottom: 0;
+  flex: 1;
+  min-height: 100px;
+}
+.v3-tile-ui--wide {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.v3-tile-ui-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  color: var(--ink);
+}
+.v3-tile-ui-row .dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  flex-shrink: 0;
+}
+.v3-tile-ui-row .dot.good { background: var(--good); }
+.v3-tile-ui-row .dot.warn { background: var(--warn); }
+.v3-tile-ui-row .stars { color: var(--yellow); font-size: 12px; letter-spacing: 0.5px; -webkit-text-stroke: 0.5px var(--ink); }
+.v3-tile-bar {
+  display: flex;
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1.5px solid var(--ink);
+}
+.v3-tile-bar .bar-meta { background: var(--accent); }
+.v3-tile-bar .bar-google { background: var(--yellow); }
+.v3-tile-bar .bar-tt { background: var(--bad); }
+.v3-tile-mini {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+.v3-tile-mini.muted { color: var(--ink-mute); }
+.v3-tile-mini--accent { color: var(--accent); font-variation-settings: "wght" 700; }
+.v3-tile-creative {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.creative-thumb {
+  width: 36px; height: 36px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--accent), var(--yellow));
+  border: 1.5px solid var(--ink);
+  flex-shrink: 0;
+}
+.creative-thumb--alt { background: linear-gradient(135deg, var(--green), var(--green-soft)); }
+.v3-tile-draft .v3-tile-h {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-variation-settings: "wght" 700;
+  color: var(--ink);
+  margin: 4px 0;
+  line-height: 1.3;
+}
+.v3-tile-chat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.v3-tile-bubble {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1.5px solid var(--ink);
+  max-width: 80%;
+  line-height: 1.4;
+}
+.v3-tile-bubble--in {
+  background: var(--bg-paper);
+  align-self: flex-start;
+  border-top-left-radius: 4px;
+}
+.v3-tile-bubble--out {
+  background: var(--green-soft);
+  align-self: flex-end;
+  border-top-right-radius: 4px;
+}
+.v3-tile-num-big {
+  font-family: var(--font-sans);
+  font-size: 36px;
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  line-height: 1;
+  margin: 4px 0;
+}
+.v3-tile-spark { flex-shrink: 0; }
+.v3-tile-cta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-variation-settings: "wght" 700;
+}
+
+@media (max-width: 920px) {
+  .v3-tiles-grid { grid-template-columns: 1fr 1fr; }
+  .v3-tile--wide { flex-direction: column; align-items: stretch; }
+}
+@media (max-width: 560px) {
+  .v3-tiles-grid { grid-template-columns: 1fr; }
+}
+
+/* ─── V3 · DARK OUTCOMES ───────────────────────────────────────────────── */
+.v3-dark {
+  background: var(--accent);
+  color: var(--bg);
+  padding: 80px 0;
+  margin: 24px 0;
+}
+.v3-dark .v3-section-title .mark { color: var(--bg); }
+.v3-dark .v3-section-title .mark::before { background: var(--yellow); opacity: 0.95; }
+.v3-dark-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 48px;
+}
+.v3-dark-stat {
+  border-top: 2px dashed rgba(255, 210, 2, 0.4);
+  padding-top: 18px;
+}
+.v3-dark-num {
+  font-family: var(--font-sans);
+  font-size: clamp(48px, 5vw, 80px);
+  font-variation-settings: "wght" 900;
+  letter-spacing: -0.03em;
+  color: var(--yellow);
+  line-height: 1;
+}
+.v3-dark-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bg);
+  opacity: 0.78;
+  margin-top: 10px;
+  max-width: 22ch;
+}
+.v3-dark-quote {
+  background: rgba(255, 255, 255, 0.06);
+  border: 2px solid rgba(255, 210, 2, 0.35);
+  border-radius: 20px;
+  padding: 40px 44px;
+  position: relative;
+}
+.v3-dark-quote-mark {
+  font-family: var(--font-sans);
+  font-size: 140px;
+  line-height: 0.6;
+  color: var(--yellow);
+  position: absolute;
+  top: 24px; left: 24px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+.v3-dark-quote p {
+  font-family: var(--font-sans);
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-style: italic;
+  font-variation-settings: "wght" 500;
+  line-height: 1.4;
+  color: var(--bg);
+  margin: 0 0 24px;
+  padding-left: 56px;
+  position: relative;
+  z-index: 1;
+}
+.v3-dark-cite {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-left: 56px;
+}
+.v3-dark-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--yellow);
+  border: 2px solid var(--bg);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-variation-settings: "wght" 800;
+  color: var(--ink);
+}
+.v3-dark-name {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-variation-settings: "wght" 720;
+  color: var(--bg);
+}
+.v3-dark-brand {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--bg);
+  opacity: 0.7;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
+@media (max-width: 920px) {
+  .v3-dark-stats { grid-template-columns: 1fr 1fr; }
+  .v3-dark-quote { padding: 32px 28px; }
+  .v3-dark-quote p, .v3-dark-cite { padding-left: 0; }
+  .v3-dark-quote-mark { font-size: 90px; }
+}
+
+/* ─── V3 · MANIFESTO ───────────────────────────────────────────────────── */
+.v3-manifesto { padding: 80px 0 72px; }
+.v3-manifesto-inner { max-width: 880px; margin: 0 auto; }
+.v3-manifesto-h {
+  font-family: var(--font-sans);
+  font-size: clamp(38px, 4.5vw, 64px);
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.022em;
+  line-height: 1.04;
+  margin: 0 0 48px;
+  color: var(--ink);
+}
+.v3-manifesto-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.v3-manifesto-row {
+  padding: 32px 0;
+  border-top: 2px dashed var(--line);
+}
+.v3-manifesto-row:last-child { border-bottom: 2px dashed var(--line); }
+.v3-manifesto-vs {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.vs-then { color: var(--ink-mute); }
+.vs-arrow { color: var(--accent); font-weight: bold; }
+.vs-now { color: var(--accent); }
+.v3-manifesto-row-h {
+  font-family: var(--font-sans);
+  font-size: clamp(24px, 3vw, 36px);
+  font-variation-settings: "wght" 800;
+  letter-spacing: -0.018em;
+  line-height: 1.15;
+  margin: 0 0 12px;
+  color: var(--ink);
+}
+.v3-manifesto-row-h .muted { color: var(--ink-mute); margin: 0 6px; }
+.v3-manifesto-row-h .strong {
+  color: var(--ink);
+  background: var(--yellow);
+  padding: 0 6px;
+}
+.v3-manifesto-row p {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 60ch;
+}
+
+/* ─── V3 · PRICING TABLE ───────────────────────────────────────────────── */
+.v3-pricing { padding: 64px 0; }
+.v3-pricing-table {
+  background: var(--bg-card);
+  border: 3px solid var(--ink);
+  border-radius: 18px;
+  box-shadow: var(--shadow-card-lg);
+  overflow: hidden;
+}
+.v3-pricing-head, .v3-pricing-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr 1fr;
+}
+.v3-pricing-head {
+  background: var(--ink);
+  color: var(--bg);
+  border-bottom: 3px solid var(--ink);
+}
+.v3-pricing-cell {
+  padding: 18px 18px;
+  border-right: 1.5px dashed var(--line);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.v3-pricing-cell:last-child { border-right: 0; }
+.v3-pricing-cell--feature {
+  align-items: flex-start;
+  text-align: left;
+  font-variation-settings: "wght" 600;
+  background: var(--bg-paper);
+}
+.v3-pricing-head .v3-pricing-cell {
+  color: var(--bg);
+  border-right-color: rgba(255, 210, 2, 0.25);
+  padding: 22px 18px;
+}
+.v3-pricing-head .v3-pricing-cell--feature {
+  background: var(--ink);
+  color: var(--yellow);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.v3-pricing-plan {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-variation-settings: "wght" 720;
+  color: var(--bg);
+  margin-bottom: 6px;
+}
+.v3-pricing-price {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  font-variation-settings: "wght" 800;
+  color: var(--bg);
+  letter-spacing: -0.02em;
+}
+.v3-pricing-price span {
+  font-size: 12px;
+  font-variation-settings: "wght" 400;
+  color: var(--bg);
+  opacity: 0.6;
+  margin-left: 2px;
+}
+.v3-pricing-cell--featured {
+  background: var(--yellow-soft);
+  position: relative;
+}
+.v3-pricing-head .v3-pricing-cell--featured {
+  background: var(--accent);
+  color: var(--bg);
+}
+.v3-pricing-head .v3-pricing-cell--featured .v3-pricing-plan,
+.v3-pricing-head .v3-pricing-cell--featured .v3-pricing-price { color: var(--bg); }
+.v3-pricing-head .v3-pricing-cell--featured .v3-pricing-price span { color: var(--bg); opacity: 0.75; }
+.v3-pricing-badge {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: var(--yellow);
+  color: var(--ink);
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1.5px solid var(--bg);
+  margin-bottom: 8px;
+}
+.v3-pricing-row {
+  border-bottom: 1.5px solid var(--line);
+}
+.v3-pricing-row:last-child { border-bottom: 0; }
+
+@media (max-width: 920px) {
+  .v3-pricing-head, .v3-pricing-row { grid-template-columns: 1.4fr 1fr 1fr; }
+  .v3-pricing-cell:nth-child(4),
+  .v3-pricing-cell:nth-child(5) { display: none; }
+}
+
+/* ─── V3 · FAQ ─────────────────────────────────────────────────────────── */
+.v3-faq { padding: 80px 0 96px; }
+.v3-faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 56px;
+  align-items: start;
+}
+.v3-faq-side { position: sticky; top: 32px; }
+.v3-faq-list { display: flex; flex-direction: column; gap: 0; }
+.v3-faq-item {
+  border-top: 1.5px solid var(--line);
+  padding: 18px 0;
+}
+.v3-faq-item:last-child { border-bottom: 1.5px solid var(--line); }
+.v3-faq-item summary {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-variation-settings: "wght" 720;
+  color: var(--ink);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+}
+.v3-faq-item summary::-webkit-details-marker { display: none; }
+.v3-faq-item summary::after {
+  content: "+";
+  font-family: var(--font-mono);
+  font-size: 22px;
+  color: var(--accent);
+  font-variation-settings: "wght" 600;
+  flex-shrink: 0;
+  transition: transform .15s;
+}
+.v3-faq-item[open] summary::after { content: "−"; }
+.v3-faq-item p {
+  font-family: var(--font-sans);
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  margin: 14px 0 0;
+  max-width: 60ch;
+}
+.v3-faq-item p a { color: var(--accent); border-bottom: 1.5px solid var(--accent); text-decoration: none; }
+.v3-faq-item p em { font-style: italic; font-variation-settings: "wght" 600; color: var(--ink); }
+
+@media (max-width: 920px) {
+  .v3-faq-grid { grid-template-columns: 1fr; gap: 32px; }
+  .v3-faq-side { position: static; }
+}
+
+/* ─── V3 · FINAL CTA ───────────────────────────────────────────────────── */
+.v3-final { padding: 32px 0 96px; }
+.v3-final-card {
+  background: var(--yellow);
+  border: 3px solid var(--ink);
+  border-radius: 28px;
+  box-shadow: 10px 10px 0 var(--ink);
+  padding: 56px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.v3-final-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+.v3-final-h {
+  font-family: var(--font-sans);
+  font-size: clamp(36px, 4.5vw, 56px);
+  font-variation-settings: "wght" 900;
+  letter-spacing: -0.022em;
+  line-height: 1.04;
+  margin: 12px 0 18px;
+  color: var(--ink);
+  max-width: 18ch;
+}
+.v3-final-h .mark::before { background: var(--bg-card); }
+.v3-final-p {
+  font-family: var(--font-sans);
+  font-size: 16.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0 0 26px;
+  max-width: 50ch;
+}
+.v3-final-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+.v3-final-meta {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+.v3-final-meta strong { color: var(--ink); }
+.v3-final-art {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.v3-final-art svg { width: 100%; max-width: 280px; }
+.v3-final-bubble {
+  position: absolute;
+  top: 0; left: 10%;
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  padding: 8px 14px;
+  font-family: var(--font-hand);
+  font-size: 19px;
+  color: var(--ink);
+  box-shadow: var(--shadow-card-sm);
+  transform: rotate(-3deg);
+  line-height: 1.2;
+}
+
+@media (max-width: 920px) {
+  .v3-final-grid { grid-template-columns: 1fr; }
+  .v3-final-card { padding: 40px 24px; }
+}
+
+
+
+/* design-switch pill in the nav · A/B compare between v1 and v2 hero designs */
+.design-switch {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  text-decoration: none;
+  border: 1.5px dashed var(--ink-mute);
+  border-radius: 999px;
+  padding: 5px 10px;
+  margin-right: 4px;
+  transition: color .12s, border-color .12s, background .12s;
+}
+.design-switch:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+  background: var(--yellow-soft);
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <div class="brand-mark">
+        <svg aria-hidden="true" width="30" height="22" viewBox="0 0 30 22"><ellipse cx="9" cy="11" rx="7" ry="9.5" fill="#FFD202"/><ellipse cx="21" cy="11" rx="8.5" ry="10.5" fill="#FFD202"/></svg>
+      </div>
+      <div class="brand-name">Seenfolio</div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#how-it-works">How it works</a>
+      <a href="index.html#engines">Engines</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="docs.html">Docs</a>
+    </div>
+    <div class="nav-cta">
+      <a class="design-switch" href="index.html" title="View design v1">v3 · see v1 →</a>
+      <a class="btn ghost" href="sign-in.html">Sign in</a>
+      <a class="btn primary" href="sign-in.html?signup=true">Start free →</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ════════ HERO · V3 · PostHog-style · big H1 + product UI mock ════════ -->
+<header class="hero wrap hero-v3">
+  <div class="hero-v3-grid">
+
+    <div class="hero-v3-text">
+      <span class="hero-mark"><span class="dot"></span> Autonomous, not automated</span>
+      <h1 class="hero-v3-h1">Build <span class="mark">growth</span>,<br>not dashboards.</h1>
+      <p class="hero-v3-lede">
+        Seenfolio is the autonomous AI that runs every marketing channel for your online business. It analyzes, decides, and acts on its own — you just confirm what's worth keeping.
+      </p>
+
+      <form class="hero-capture hero-v3-form" data-hero-capture autocomplete="off">
+        <input class="hero-capture-input" type="text" name="website"
+               placeholder="yourwebsite.com" autocomplete="url"
+               aria-label="Your website URL" />
+        <button class="hero-capture-cta" type="submit">
+          Get started — free
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+      </form>
+
+      <div class="hero-v3-secondary">
+        <a class="hero-v3-link" href="#engines">See what's inside →</a>
+        <span class="hero-v3-bar" aria-hidden="true">·</span>
+        <a class="hero-v3-link" href="docs.html">Read the docs →</a>
+      </div>
+
+      <div class="hero-v3-trust">
+        <span class="hero-v3-stars" aria-label="4.9 out of 5 stars">★★★★★</span>
+        <span><b>4.9 / 5</b> · used by <b>2,400+</b> online businesses across 47 countries</span>
+      </div>
+    </div>
+
+    <!-- product UI mock · stylized dashboard frame · this is what Sage built last night -->
+    <div class="hero-v3-mock">
+      <div class="mock-window">
+        <div class="mock-bar">
+          <div class="mock-dots" aria-hidden="true"><span></span><span></span><span></span></div>
+          <div class="mock-url">seenfolio.com/<b>silverjewelry</b>/today</div>
+          <div class="mock-bell" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 10-12 0c0 7-3 8-3 8h18s-3-1-3-8M14 21a2 2 0 01-4 0"/></svg>
+            <span class="mock-bell-count">3</span>
+          </div>
+        </div>
+
+        <div class="mock-body">
+          <div class="mock-greeting">
+            <div class="mock-greet-sage" aria-hidden="true">
+              <svg viewBox="0 0 220 220" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-wink"/></svg>
+            </div>
+            <div>
+              <div class="mock-greet-h">Good morning, Amara.</div>
+              <div class="mock-greet-s">Last night I shipped <b>3 things</b>. Saved you 4h 20m.</div>
+            </div>
+          </div>
+
+          <div class="mock-stats">
+            <div class="mock-stat">
+              <div class="mock-stat-num">+31%</div>
+              <div class="mock-stat-label">REVENUE · 6w</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-num">−22%</div>
+              <div class="mock-stat-label">CHURN · 90d</div>
+            </div>
+            <div class="mock-stat">
+              <div class="mock-stat-num">4h</div>
+              <div class="mock-stat-label">SAVED · /day</div>
+            </div>
+          </div>
+
+          <div class="mock-chart">
+            <svg viewBox="0 0 320 80" width="100%" height="100%" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M 0 60 L 30 55 L 60 58 L 90 50 L 120 52 L 150 42 L 180 45 L 210 32 L 240 38 L 270 22 L 300 18 L 320 12" fill="none" stroke="#3E5210" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="320" cy="12" r="3.5" fill="#3E5210"/>
+              <path d="M 0 60 L 30 55 L 60 58 L 90 50 L 120 52 L 150 42 L 180 45 L 210 32 L 240 38 L 270 22 L 300 18 L 320 12 L 320 80 L 0 80 Z" fill="#3E5210" opacity="0.08"/>
+            </svg>
+          </div>
+
+          <div class="mock-actions">
+            <div class="mock-action">
+              <span class="mock-dot mock-dot--good" aria-hidden="true"></span>
+              <span class="mock-action-text">Reallocated <b>$340 spend</b> · Meta → TikTok</span>
+              <span class="mock-time">03:14</span>
+            </div>
+            <div class="mock-action">
+              <span class="mock-dot mock-dot--good" aria-hidden="true"></span>
+              <span class="mock-action-text">Drafted <b>3 blog posts</b> · awaiting your approval</span>
+              <span class="mock-time">01:20</span>
+            </div>
+            <div class="mock-action">
+              <span class="mock-dot mock-dot--good" aria-hidden="true"></span>
+              <span class="mock-action-text">Replied to <b>12 reviews</b> · in your voice</span>
+              <span class="mock-time">03:14</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-v3-sticker hero-v3-sticker--undo">
+        ↺ One-click undo on any of this
+      </div>
+      <div class="hero-v3-sticker hero-v3-sticker--live">
+        <span class="dot"></span> live now
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- ════════ V3 · LOGO STRIP · plays nice with everything ════════ -->
+<section class="v3-logos wrap">
+  <div class="v3-logos-head">
+    <span class="v3-eyebrow">→ INTEGRATIONS · ALREADY IN YOUR STACK</span>
+    <p class="v3-logos-sub">Plays nice with everything you already use. (And the things you'd rather not touch.)</p>
+  </div>
+  <div class="v3-logos-grid">
+    <div class="v3-logo">Google</div>
+    <div class="v3-logo">Meta</div>
+    <div class="v3-logo">TikTok</div>
+    <div class="v3-logo">Shopify</div>
+    <div class="v3-logo">WordPress</div>
+    <div class="v3-logo">Mailchimp</div>
+    <div class="v3-logo">Klaviyo</div>
+    <div class="v3-logo">Stripe</div>
+    <div class="v3-logo">WhatsApp</div>
+    <div class="v3-logo">HubSpot</div>
+    <div class="v3-logo">Zapier</div>
+    <div class="v3-logo">+44 more</div>
+  </div>
+</section>
+
+<!-- ════════ V3 · PROBLEM · 3-panel comic strip ════════ -->
+<section class="v3-comic wrap">
+  <div class="v3-section-head">
+    <span class="v3-eyebrow">→ HERE'S THE THING</span>
+    <h2 class="v3-section-title">Most marketing software <span class="mark">tells you what to do</span>. Yours does it.</h2>
+    <p class="v3-section-sub">You don't need another dashboard. You need somebody to actually run the thing. Here's the difference, in three frames.</p>
+  </div>
+
+  <div class="v3-comic-grid">
+    <article class="v3-comic-panel v3-comic-panel--1">
+      <div class="v3-comic-num">01</div>
+      <div class="v3-comic-illo" aria-hidden="true">
+        <svg viewBox="0 0 220 160" width="100%" fill="none" stroke="#151515" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+          <rect x="14" y="20" width="60" height="36" rx="4" fill="#FAF9F4"/>
+          <rect x="84" y="14" width="60" height="36" rx="4" fill="#FAF9F4"/>
+          <rect x="154" y="22" width="52" height="36" rx="4" fill="#FAF9F4"/>
+          <rect x="20" y="70" width="60" height="36" rx="4" fill="#FAF9F4"/>
+          <rect x="90" y="76" width="60" height="36" rx="4" fill="#FAF9F4"/>
+          <rect x="160" y="72" width="46" height="36" rx="4" fill="#FAF9F4"/>
+          <text x="44" y="42" font-family="JetBrains Mono" font-size="9" fill="#3E5210" stroke="none" text-anchor="middle">SEO</text>
+          <text x="114" y="36" font-family="JetBrains Mono" font-size="9" fill="#3E5210" stroke="none" text-anchor="middle">META</text>
+          <text x="180" y="44" font-family="JetBrains Mono" font-size="9" fill="#3E5210" stroke="none" text-anchor="middle">CRM</text>
+          <text x="50" y="92" font-family="JetBrains Mono" font-size="9" fill="#3E5210" stroke="none" text-anchor="middle">EMAIL</text>
+          <text x="120" y="98" font-family="JetBrains Mono" font-size="9" fill="#3E5210" stroke="none" text-anchor="middle">ADS</text>
+          <text x="183" y="94" font-family="JetBrains Mono" font-size="9" fill="#3E5210" stroke="none" text-anchor="middle">CDN</text>
+          <text x="110" y="138" font-family="Caveat" font-size="22" fill="#C44A2A" stroke="none" text-anchor="middle">$1,200 / mo</text>
+        </svg>
+      </div>
+      <h3 class="v3-comic-h">Today: six tools, six dashboards.</h3>
+      <p class="v3-comic-p">You pay $1,200 a month so software can <i>tell</i> you what to fix. Then you fix it yourself, at midnight, on a Sunday.</p>
+    </article>
+
+    <article class="v3-comic-panel v3-comic-panel--2">
+      <div class="v3-comic-num">02</div>
+      <div class="v3-comic-illo" aria-hidden="true">
+        <svg viewBox="0 0 220 160" width="100%" fill="none" stroke="#151515" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+          <rect x="40" y="20" width="140" height="100" rx="10" fill="#FFD202"/>
+          <path d="M 60 90 L 80 70 L 100 78 L 120 55 L 140 60 L 160 38" stroke="#3E5210" stroke-width="3" fill="none"/>
+          <circle cx="160" cy="38" r="4.5" fill="#3E5210"/>
+          <text x="110" y="148" font-family="Caveat" font-size="20" fill="#3E5210" stroke="none" text-anchor="middle">one screen ✨</text>
+        </svg>
+      </div>
+      <h3 class="v3-comic-h">Tomorrow: one Sage. One feed.</h3>
+      <p class="v3-comic-p">Sage decides which channels to touch and when. You see one timeline of what she did, with an undo button on every action.</p>
+    </article>
+
+    <article class="v3-comic-panel v3-comic-panel--3">
+      <div class="v3-comic-num">03</div>
+      <div class="v3-comic-illo" aria-hidden="true">
+        <svg viewBox="0 0 220 160" width="100%" fill="none" stroke="#151515" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
+          <rect x="20" y="36" width="180" height="80" rx="8" fill="#FAF9F4"/>
+          <line x1="36" y1="56" x2="120" y2="56"/>
+          <line x1="36" y1="72" x2="100" y2="72"/>
+          <line x1="36" y1="88" x2="130" y2="88"/>
+          <rect x="146" y="50" width="44" height="18" rx="9" fill="#3E5210" stroke="#151515" stroke-width="2"/>
+          <text x="168" y="63" font-family="JetBrains Mono" font-size="8.5" fill="#fff" stroke="none" text-anchor="middle">APPROVE</text>
+          <text x="110" y="20" font-family="Caveat" font-size="22" fill="#3E5210" stroke="none" text-anchor="middle">your morning queue</text>
+        </svg>
+      </div>
+      <h3 class="v3-comic-h">You stay in charge.</h3>
+      <p class="v3-comic-p">Sage proposes; you dispose. Anything that touches money or your customers' inbox waits for a one-tap Approve. She earns trust by showing her work.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ════════ V3 · PRODUCT TILES · seven engines, seven colors ════════ -->
+<section class="v3-tiles wrap" id="engines">
+  <div class="v3-section-head">
+    <span class="v3-eyebrow">→ THE TEAM YOU JUST HIRED</span>
+    <h2 class="v3-section-title">Seven specialists.<br><span class="mark">One Sage</span> who delegates.</h2>
+    <p class="v3-section-sub">Each engine is its own product. You don't have to pick — Sage activates the right one at the right time. Click any tile to see what it looks like running.</p>
+  </div>
+
+  <div class="v3-tiles-grid">
+    <a class="v3-tile v3-tile--seo" href="#">
+      <div class="v3-tile-num">01</div>
+      <div class="v3-tile-name">SEO + GEO</div>
+      <div class="v3-tile-tag">Search &amp; AI engine visibility</div>
+      <div class="v3-tile-ui">
+        <div class="v3-tile-ui-row"><span class="dot good"></span><span>4 pages rewritten</span></div>
+        <div class="v3-tile-ui-row"><span class="dot good"></span><span>12 schema fixes</span></div>
+        <div class="v3-tile-ui-row"><span class="dot warn"></span><span>3 indexing errors</span></div>
+      </div>
+      <div class="v3-tile-cta">Show me how →</div>
+    </a>
+
+    <a class="v3-tile v3-tile--bi" href="#">
+      <div class="v3-tile-num">02</div>
+      <div class="v3-tile-name">Intelligence</div>
+      <div class="v3-tile-tag">Attribution &amp; budget routing</div>
+      <div class="v3-tile-ui">
+        <div class="v3-tile-bar"><span class="bar-meta" style="width:62%"></span><span class="bar-google" style="width:28%"></span><span class="bar-tt" style="width:10%"></span></div>
+        <div class="v3-tile-mini">META 62% · GOOGLE 28% · TT 10%</div>
+        <div class="v3-tile-mini v3-tile-mini--accent">+$1,200 projected lift</div>
+      </div>
+      <div class="v3-tile-cta">Show me how →</div>
+    </a>
+
+    <a class="v3-tile v3-tile--ads" href="#">
+      <div class="v3-tile-num">03</div>
+      <div class="v3-tile-name">Unified Ads</div>
+      <div class="v3-tile-tag">Google · Meta · TikTok · more</div>
+      <div class="v3-tile-ui">
+        <div class="v3-tile-creative">
+          <div class="creative-thumb"></div>
+          <div>
+            <div class="v3-tile-mini">3 creatives generated</div>
+            <div class="v3-tile-mini muted">ready to launch</div>
+          </div>
+        </div>
+        <div class="v3-tile-creative">
+          <div class="creative-thumb creative-thumb--alt"></div>
+          <div>
+            <div class="v3-tile-mini">CTR forecast: 2.4%</div>
+          </div>
+        </div>
+      </div>
+      <div class="v3-tile-cta">Show me how →</div>
+    </a>
+
+    <a class="v3-tile v3-tile--content" href="#">
+      <div class="v3-tile-num">04</div>
+      <div class="v3-tile-name">Content</div>
+      <div class="v3-tile-tag">Blogs · pages · social · email</div>
+      <div class="v3-tile-ui">
+        <div class="v3-tile-draft">
+          <div class="v3-tile-mini">DRAFT · 1,240 words</div>
+          <div class="v3-tile-h">Why we still hand-cast every silver chain.</div>
+          <div class="v3-tile-mini muted">Ready · in your voice</div>
+        </div>
+      </div>
+      <div class="v3-tile-cta">Show me how →</div>
+    </a>
+
+    <a class="v3-tile v3-tile--trust" href="#">
+      <div class="v3-tile-num">05</div>
+      <div class="v3-tile-name">Trust</div>
+      <div class="v3-tile-tag">Reviews · GBP · social proof</div>
+      <div class="v3-tile-ui">
+        <div class="v3-tile-ui-row"><span class="stars">★★★★★</span><span>auto-replied</span></div>
+        <div class="v3-tile-ui-row"><span class="stars">★★★★☆</span><span>drafted · needs nuance</span></div>
+        <div class="v3-tile-ui-row"><span class="stars">★★★★★</span><span>auto-replied</span></div>
+      </div>
+      <div class="v3-tile-cta">Show me how →</div>
+    </a>
+
+    <a class="v3-tile v3-tile--wa" href="#">
+      <div class="v3-tile-num">06</div>
+      <div class="v3-tile-name">WhatsApp CRM</div>
+      <div class="v3-tile-tag">Sell + serve in chat</div>
+      <div class="v3-tile-ui">
+        <div class="v3-tile-chat">
+          <div class="v3-tile-bubble v3-tile-bubble--in">Is the silver chain still in stock?</div>
+          <div class="v3-tile-bubble v3-tile-bubble--out">Yes — and it's 15% off until Sunday. Want me to hold one?</div>
+        </div>
+      </div>
+      <div class="v3-tile-cta">Show me how →</div>
+    </a>
+
+    <a class="v3-tile v3-tile--retain v3-tile--wide" href="#">
+      <div class="v3-tile-num">07</div>
+      <div class="v3-tile-name">Retention</div>
+      <div class="v3-tile-tag">Lifecycle · churn ML · winback</div>
+      <div class="v3-tile-ui v3-tile-ui--wide">
+        <div>
+          <div class="v3-tile-mini">CHURN FORECAST · NEXT 30D</div>
+          <div class="v3-tile-num-big">47 dormants</div>
+          <div class="v3-tile-mini muted">winback campaign drafted &amp; staged</div>
+        </div>
+        <svg class="v3-tile-spark" viewBox="0 0 120 36" width="120" height="36" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 32 L12 28 L24 30 L36 22 L48 20 L60 24 L72 14 L84 16 L96 8 L108 10 L120 4" fill="none" stroke="#FFD202" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="120" cy="4" r="3" fill="#FFD202"/>
+        </svg>
+      </div>
+      <div class="v3-tile-cta">Show me how →</div>
+    </a>
+  </div>
+</section>
+
+<!-- ════════ V3 · DARK OUTCOMES SECTION ════════ -->
+<section class="v3-dark">
+  <div class="wrap">
+    <div class="v3-section-head v3-section-head--dark">
+      <span class="v3-eyebrow v3-eyebrow--dark">→ WHAT 2,400 BUSINESSES WOKE UP TO</span>
+      <h2 class="v3-section-title v3-section-title--dark">The numbers from <span class="mark">six months</span> with Sage at the wheel.</h2>
+      <p class="v3-section-sub v3-section-sub--dark">Real customers. Real outcomes. No setup, no campaigns, no late-night fiddling.</p>
+    </div>
+
+    <div class="v3-dark-stats">
+      <div class="v3-dark-stat">
+        <div class="v3-dark-num">+31%</div>
+        <div class="v3-dark-label">avg revenue lift in 6 weeks</div>
+      </div>
+      <div class="v3-dark-stat">
+        <div class="v3-dark-num">−22%</div>
+        <div class="v3-dark-label">avg churn drop, 90d cohort</div>
+      </div>
+      <div class="v3-dark-stat">
+        <div class="v3-dark-num">5×</div>
+        <div class="v3-dark-label">tools cancelled per customer</div>
+      </div>
+      <div class="v3-dark-stat">
+        <div class="v3-dark-num">4h</div>
+        <div class="v3-dark-label">manual marketing time saved / day</div>
+      </div>
+    </div>
+
+    <div class="v3-dark-quote">
+      <div class="v3-dark-quote-mark" aria-hidden="true">"</div>
+      <p>I cancelled five tools the day I signed up. Six weeks later my revenue was up 31% — and I hadn't touched a single setting. I just kept approving things in the morning.</p>
+      <div class="v3-dark-cite">
+        <span class="v3-dark-avatar">A</span>
+        <div>
+          <div class="v3-dark-name">Amara O.</div>
+          <div class="v3-dark-brand">Silver Jewelry Co · Lagos · 6-mo customer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ V3 · MANIFESTO · we're not the autopilot ════════ -->
+<section class="v3-manifesto wrap">
+  <div class="v3-manifesto-inner">
+    <span class="v3-eyebrow">→ HOW WE THINK ABOUT THIS</span>
+    <h2 class="v3-manifesto-h">We're not the "autopilot" <span class="mark">you're used to</span>.</h2>
+
+    <div class="v3-manifesto-rows">
+      <div class="v3-manifesto-row">
+        <div class="v3-manifesto-vs">
+          <span class="vs-then">most tools</span>
+          <span class="vs-arrow">→</span>
+          <span class="vs-now">Sage</span>
+        </div>
+        <h3 class="v3-manifesto-row-h">Surfacing problems<br><span class="muted">→</span> <span class="strong">Fixing them.</span></h3>
+        <p>"You have 47 SEO issues." Cool — when are you going to fix them? Sage fixes the top 10 overnight and shows you what changed.</p>
+      </div>
+
+      <div class="v3-manifesto-row">
+        <div class="v3-manifesto-vs">
+          <span class="vs-then">most tools</span>
+          <span class="vs-arrow">→</span>
+          <span class="vs-now">Sage</span>
+        </div>
+        <h3 class="v3-manifesto-row-h">Pretending to be AI<br><span class="muted">→</span> <span class="strong">Showing the receipts.</span></h3>
+        <p>Every action has a plain-language reason, a before/after, and the numbers it moved. If you don't get it, neither does she — that's a bug we fix.</p>
+      </div>
+
+      <div class="v3-manifesto-row">
+        <div class="v3-manifesto-vs">
+          <span class="vs-then">most tools</span>
+          <span class="vs-arrow">→</span>
+          <span class="vs-now">Sage</span>
+        </div>
+        <h3 class="v3-manifesto-row-h">Charging for seats<br><span class="muted">→</span> <span class="strong">Charging for work.</span></h3>
+        <p>Reading analytics? Always free. You only pay when Sage acts on your behalf — and you get the tokens back if you undo her within 24 hours.</p>
+      </div>
+
+      <div class="v3-manifesto-row">
+        <div class="v3-manifesto-vs">
+          <span class="vs-then">most tools</span>
+          <span class="vs-arrow">→</span>
+          <span class="vs-now">Sage</span>
+        </div>
+        <h3 class="v3-manifesto-row-h">Locking you in<br><span class="muted">→</span> <span class="strong">Letting you leave.</span></h3>
+        <p>You own your data, your accounts, your audiences. We hand them back as exportable files the day you walk. (We don't think you will.)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ V3 · PRICING · comparison table ════════ -->
+<section class="v3-pricing wrap">
+  <div class="v3-section-head">
+    <span class="v3-eyebrow">→ HONEST PRICING · TOKEN-BASED</span>
+    <h2 class="v3-section-title">Free until Sage <span class="mark">earns her keep</span>.</h2>
+    <p class="v3-section-sub">100 tokens to start. Reading analytics is always free. You only pay for what Sage actually ships — and we refund tokens on anything you undo within 24h.</p>
+  </div>
+
+  <div class="v3-pricing-table">
+    <div class="v3-pricing-head">
+      <div class="v3-pricing-cell v3-pricing-cell--feature">PLAN</div>
+      <div class="v3-pricing-cell">
+        <div class="v3-pricing-plan">Free</div>
+        <div class="v3-pricing-price">$0<span>/mo</span></div>
+      </div>
+      <div class="v3-pricing-cell v3-pricing-cell--featured">
+        <div class="v3-pricing-badge">Most popular</div>
+        <div class="v3-pricing-plan">Starter</div>
+        <div class="v3-pricing-price">$29<span>/mo</span></div>
+      </div>
+      <div class="v3-pricing-cell">
+        <div class="v3-pricing-plan">Growth</div>
+        <div class="v3-pricing-price">$129<span>/mo</span></div>
+      </div>
+      <div class="v3-pricing-cell">
+        <div class="v3-pricing-plan">Enterprise</div>
+        <div class="v3-pricing-price">Custom</div>
+      </div>
+    </div>
+
+    <div class="v3-pricing-row">
+      <div class="v3-pricing-cell v3-pricing-cell--feature">Tokens / month</div>
+      <div class="v3-pricing-cell">100</div>
+      <div class="v3-pricing-cell v3-pricing-cell--featured">800</div>
+      <div class="v3-pricing-cell">4,000</div>
+      <div class="v3-pricing-cell">Unlimited</div>
+    </div>
+    <div class="v3-pricing-row">
+      <div class="v3-pricing-cell v3-pricing-cell--feature">All 7 engines</div>
+      <div class="v3-pricing-cell">✓</div>
+      <div class="v3-pricing-cell v3-pricing-cell--featured">✓</div>
+      <div class="v3-pricing-cell">✓</div>
+      <div class="v3-pricing-cell">✓</div>
+    </div>
+    <div class="v3-pricing-row">
+      <div class="v3-pricing-cell v3-pricing-cell--feature">Analytics &amp; insights (read-only)</div>
+      <div class="v3-pricing-cell">Free</div>
+      <div class="v3-pricing-cell v3-pricing-cell--featured">Free</div>
+      <div class="v3-pricing-cell">Free</div>
+      <div class="v3-pricing-cell">Free</div>
+    </div>
+    <div class="v3-pricing-row">
+      <div class="v3-pricing-cell v3-pricing-cell--feature">One-click undo (24h window)</div>
+      <div class="v3-pricing-cell">✓</div>
+      <div class="v3-pricing-cell v3-pricing-cell--featured">✓</div>
+      <div class="v3-pricing-cell">✓</div>
+      <div class="v3-pricing-cell">✓</div>
+    </div>
+    <div class="v3-pricing-row">
+      <div class="v3-pricing-cell v3-pricing-cell--feature">Region pinning · DPA</div>
+      <div class="v3-pricing-cell">—</div>
+      <div class="v3-pricing-cell v3-pricing-cell--featured">—</div>
+      <div class="v3-pricing-cell">✓</div>
+      <div class="v3-pricing-cell">✓ Custom</div>
+    </div>
+    <div class="v3-pricing-row">
+      <div class="v3-pricing-cell v3-pricing-cell--feature">Priority support · slack channel</div>
+      <div class="v3-pricing-cell">—</div>
+      <div class="v3-pricing-cell v3-pricing-cell--featured">—</div>
+      <div class="v3-pricing-cell">✓</div>
+      <div class="v3-pricing-cell">✓ Dedicated</div>
+    </div>
+    <div class="v3-pricing-row">
+      <div class="v3-pricing-cell v3-pricing-cell--feature"></div>
+      <div class="v3-pricing-cell"><a class="btn ghost" href="sign-in.html?signup=true">Start free</a></div>
+      <div class="v3-pricing-cell v3-pricing-cell--featured"><a class="btn primary" href="sign-in.html?signup=true">Start free →</a></div>
+      <div class="v3-pricing-cell"><a class="btn ghost" href="sign-in.html?signup=true">Try growth</a></div>
+      <div class="v3-pricing-cell"><a class="btn ghost" href="contact.html">Talk to sales</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ V3 · FAQ ACCORDION ════════ -->
+<section class="v3-faq wrap">
+  <div class="v3-faq-grid">
+    <div class="v3-faq-side">
+      <span class="v3-eyebrow">→ COMMON QUESTIONS</span>
+      <h2 class="v3-section-title">Things we get<br><span class="mark">asked a lot</span>.</h2>
+      <p class="v3-section-sub">Still got questions? Hit our team in chat — we read every one.</p>
+      <a class="hero-v3-link" href="contact.html" style="margin-top: 18px;">Ask us anything →</a>
+    </div>
+    <div class="v3-faq-list">
+      <details class="v3-faq-item" open>
+        <summary>How is Sage different from automation tools like Zapier?</summary>
+        <p>Zapier executes rules <em>you</em> write. Sage decides what to do, then does it. You don't author triggers — you set a goal ("grow revenue 20% this quarter") and Sage picks the levers each night.</p>
+      </details>
+      <details class="v3-faq-item">
+        <summary>Will Sage actually publish content / ads without me approving?</summary>
+        <p>Only the low-risk, high-confidence stuff — like updating meta descriptions or replying to 5★ reviews. Anything that touches money (ad spend &gt;$50) or your customers' inbox (sends, replies that need nuance) waits in a morning queue with one-tap Approve.</p>
+      </details>
+      <details class="v3-faq-item">
+        <summary>What if Sage does something I don't like?</summary>
+        <p>Every action is reversible for 24 hours with one click — and you get the tokens back. Sage also <em>learns</em> from every undo so the next attempt looks different. We auto-disable any optimization that hurts Core Web Vitals or conversion.</p>
+      </details>
+      <details class="v3-faq-item">
+        <summary>Do I have to ditch my current tools?</summary>
+        <p>Nope. Sage plugs into Google Analytics, Meta Ads, Shopify, Mailchimp, Klaviyo, Stripe, WordPress, WhatsApp Business, and 44 more. She reads from your existing stack — and lets you cancel it when you're ready.</p>
+      </details>
+      <details class="v3-faq-item">
+        <summary>Where does my data live? GDPR / NDPR?</summary>
+        <p>Pick your region at signup (EU-West, US-East, Africa-South1). Single-region by default, no cross-region replication. AES-256-GCM encrypted at rest, RLS-isolated per workspace. Full DPA + sub-processor list on the <a href="trust.html">Trust page</a>.</p>
+      </details>
+      <details class="v3-faq-item">
+        <summary>Can I run Sage in "watch-only" mode at first?</summary>
+        <p>Yes — toggle "Hold all actions" in settings. Sage will still analyze your business and stage recommendations, but won't ship anything until you flip her on. Most customers do this for the first 3 days, then can't help themselves.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ V3 · FINAL CTA · yellow personality card ════════ -->
+<section class="wrap v3-final">
+  <div class="v3-final-card">
+    <div class="v3-final-grid">
+      <div class="v3-final-text">
+        <span class="v3-eyebrow">→ READY TO SLEEP MORE</span>
+        <h2 class="v3-final-h">Sage starts tonight. <span class="mark">You wake up to results.</span></h2>
+        <p class="v3-final-p">100 tokens free. No credit card. First overnight pass within hours. If we can't move your numbers in 30 days, we'll refund you and buy you a coffee.</p>
+        <div class="v3-final-actions">
+          <a class="btn primary lg" href="sign-in.html?signup=true">Start free →</a>
+          <a class="btn lg" href="docs.html">Read the docs</a>
+        </div>
+        <div class="v3-final-meta">
+          ★★★★★ <strong>4.9 / 5</strong> · 2,400+ businesses · no credit card
+        </div>
+      </div>
+      <div class="v3-final-art" aria-hidden="true">
+        <svg viewBox="0 0 280 220" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-point"/></svg>
+        <div class="v3-final-bubble">Try me. Worst case<br>you sleep more.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════ FOOTER ════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <a class="brand" href="index.html" style="margin-bottom: 14px;">
+        <div class="brand-mark">
+          <svg aria-hidden="true" width="30" height="22" viewBox="0 0 30 22"><ellipse cx="9" cy="11" rx="7" ry="9.5" fill="#FFD202"/><ellipse cx="21" cy="11" rx="8.5" ry="10.5" fill="#FFD202"/></svg>
+        </div>
+        <div class="brand-name">Seenfolio</div>
+      </a>
+      <p style="font-size: 14px; color: var(--ink-mute); max-width: 28ch; line-height: 1.5;">
+        Autonomous growth infrastructure for online businesses. Built in Lagos, used worldwide.
+      </p>
+    </div>
+    <div class="footer-col">
+      <h5>Product</h5>
+      <a href="index.html#engines">Seven engines</a>
+      <a href="index.html#how-it-works">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="docs.html">Docs</a>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <a href="about.html">About</a>
+      <a href="customers.html">Customers</a>
+      <a href="contact.html#careers">Careers</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h5>Resources</h5>
+      <a href="changelog.html">Changelog</a>
+      <a href="trust.html">Trust &amp; security</a>
+      <a href="status.html">Status</a>
+      <a href="lofi.html">Design system</a>
+    </div>
+    <div class="footer-col">
+      <h5>Legal</h5>
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+      <a href="#">DPA</a>
+      <a href="#">NDPR</a>
+    </div>
+  </div>
+  <div class="footer-meta">
+    <span>© Seenfolio · Idylabs LTD · 2026</span>
+    <span>Made in Lagos · operated from London</span>
+  </div>
+</footer>
+
+<script>
+  // Hero URL-capture → hand off to onboarding with website + region params
+  document.querySelector('[data-hero-capture]')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const raw = (form.website.value || '').trim();
+    const url = raw.replace(/^https?:\/\//i, '').replace(/\/+$/, '');
+    const region = form.region.value;
+    const params = new URLSearchParams();
+    if (url) params.set('website', url);
+    if (region && region !== 'worldwide') params.set('region', region);
+    const qs = params.toString();
+    window.location.href = 'onboarding.html' + (qs ? '?' + qs : '');
+  });
+</script>
+
+</body>
+</html>
