@@ -1347,8 +1347,35 @@
   box-shadow: 0 0 0 2px var(--ink);
 }
 
+/* Sage peeks from below-left of the dashboard mock */
+.hero-v3-sage {
+  position: absolute;
+  left: -28px;
+  bottom: -20px;
+  width: 150px;
+  z-index: 4;
+  transform: rotate(-4deg);
+  pointer-events: none;
+}
+.hero-v3-sage svg { width: 100%; height: auto; display: block; }
+.hero-v3-sage-bubble {
+  position: absolute;
+  top: -14px; right: -28px;
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 4px 12px;
+  font-family: var(--font-hand);
+  font-size: 18px;
+  color: var(--ink);
+  box-shadow: var(--shadow-card-sm);
+  transform: rotate(6deg);
+  white-space: nowrap;
+}
+
 @media (max-width: 920px) {
   .hero-v3-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-v3-sage { width: 110px; left: -8px; bottom: -12px; }
 }
 
 /* ─── V3 · LOGO STRIP ──────────────────────────────────────────────────── */
@@ -1420,13 +1447,41 @@
   background: var(--bg-card);
   border: 2px solid var(--ink);
   border-radius: 12px;
-  padding: 12px 14px;
+  padding: 14px 16px;
   margin-bottom: 18px;
-  height: 160px;
+  height: 200px;
   display: grid;
   place-items: center;
+  position: relative;
+  overflow: hidden;
 }
-.v3-comic-illo svg { width: 100%; height: auto; max-height: 140px; }
+.v3-comic-illo svg { width: 100%; height: 100%; max-height: 180px; }
+.v3-comic-cost {
+  position: absolute;
+  bottom: 8px;
+  right: 14px;
+  font-family: var(--font-hand);
+  font-size: 22px;
+  color: var(--bad);
+  transform: rotate(-4deg);
+  pointer-events: none;
+}
+.v3-comic-doodle {
+  position: absolute;
+  top: 10px;
+  left: 16px;
+  font-family: var(--font-hand);
+  font-size: 19px;
+  color: var(--accent);
+  transform: rotate(-3deg);
+  pointer-events: none;
+}
+.v3-comic-doodle--right {
+  left: auto;
+  right: 16px;
+  top: 10px;
+  transform: rotate(3deg);
+}
 .v3-comic-h {
   font-family: var(--font-sans);
   font-size: 22px;
@@ -1499,6 +1554,30 @@
   font-size: 12px;
   letter-spacing: 0.1em;
   color: var(--ink-mute);
+}
+.v3-tile-sage {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2.5px solid var(--ink);
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+  box-shadow: 3px 3px 0 var(--ink);
+  overflow: hidden;
+  transform: rotate(-4deg);
+  transition: transform .15s;
+}
+.v3-tile-sage svg {
+  width: 88%;
+  height: 88%;
+  display: block;
+}
+.v3-tile:hover .v3-tile-sage { transform: rotate(0deg) scale(1.05); }
+.v3-tile-sage--wide {
+  width: 80px;
+  height: 80px;
 }
 .v3-tile-name {
   font-family: var(--font-sans);
@@ -1652,9 +1731,29 @@
   color: var(--bg);
   padding: 80px 0;
   margin: 24px 0;
+  position: relative;
+  overflow: hidden;
 }
 .v3-dark .v3-section-title .mark { color: var(--bg); }
 .v3-dark .v3-section-title .mark::before { background: var(--yellow); opacity: 0.95; }
+/* big Sage celebrates the outcomes · top-right of the dark section */
+.v3-dark-sage {
+  position: absolute;
+  top: 24px;
+  right: 32px;
+  width: 220px;
+  z-index: 2;
+  transform: rotate(6deg);
+  pointer-events: none;
+  filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.18));
+}
+.v3-dark-sage svg { width: 100%; height: auto; display: block; }
+@media (max-width: 1080px) {
+  .v3-dark-sage { width: 170px; top: 18px; right: 16px; }
+}
+@media (max-width: 720px) {
+  .v3-dark-sage { width: 120px; top: 12px; right: 8px; opacity: 0.85; }
+}
 .v3-dark-stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1926,6 +2025,27 @@
   align-items: start;
 }
 .v3-faq-side { position: sticky; top: 32px; }
+.v3-faq-sage {
+  position: relative;
+  width: 220px;
+  margin-top: 32px;
+  transform: rotate(-3deg);
+}
+.v3-faq-sage svg { width: 100%; height: auto; display: block; }
+.v3-faq-sage-bubble {
+  position: absolute;
+  top: -8px; right: -12px;
+  background: var(--bg-card);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 6px 14px;
+  font-family: var(--font-hand);
+  font-size: 18px;
+  color: var(--ink);
+  box-shadow: var(--shadow-card-sm);
+  transform: rotate(5deg);
+  white-space: nowrap;
+}
 .v3-faq-list { display: flex; flex-direction: column; gap: 0; }
 .v3-faq-item {
   border-top: 1.5px solid var(--line);
@@ -2197,6 +2317,12 @@
       <div class="hero-v3-sticker hero-v3-sticker--live">
         <span class="dot"></span> live now
       </div>
+
+      <!-- Sage peeks from the bottom-left, pointing at her dashboard -->
+      <div class="hero-v3-sage" aria-hidden="true">
+        <svg viewBox="0 0 240 220" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-point"/></svg>
+        <div class="hero-v3-sage-bubble">that's me!</div>
+      </div>
     </div>
 
   </div>
@@ -2236,54 +2362,30 @@
     <article class="v3-comic-panel v3-comic-panel--1">
       <div class="v3-comic-num">01</div>
       <div class="v3-comic-illo" aria-hidden="true">
-        <svg viewBox="0 0 220 160" width="100%" fill="none" stroke="#151515" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
-          <rect x="14" y="20" width="60" height="36" rx="4" fill="#FAF9F4"/>
-          <rect x="84" y="14" width="60" height="36" rx="4" fill="#FAF9F4"/>
-          <rect x="154" y="22" width="52" height="36" rx="4" fill="#FAF9F4"/>
-          <rect x="20" y="70" width="60" height="36" rx="4" fill="#FAF9F4"/>
-          <rect x="90" y="76" width="60" height="36" rx="4" fill="#FAF9F4"/>
-          <rect x="160" y="72" width="46" height="36" rx="4" fill="#FAF9F4"/>
-          <text x="44" y="42" font-family="JetBrains Mono" font-size="9" fill="#3E5210" stroke="none" text-anchor="middle">SEO</text>
-          <text x="114" y="36" font-family="JetBrains Mono" font-size="9" fill="#3E5210" stroke="none" text-anchor="middle">META</text>
-          <text x="180" y="44" font-family="JetBrains Mono" font-size="9" fill="#3E5210" stroke="none" text-anchor="middle">CRM</text>
-          <text x="50" y="92" font-family="JetBrains Mono" font-size="9" fill="#3E5210" stroke="none" text-anchor="middle">EMAIL</text>
-          <text x="120" y="98" font-family="JetBrains Mono" font-size="9" fill="#3E5210" stroke="none" text-anchor="middle">ADS</text>
-          <text x="183" y="94" font-family="JetBrains Mono" font-size="9" fill="#3E5210" stroke="none" text-anchor="middle">CDN</text>
-          <text x="110" y="138" font-family="Caveat" font-size="22" fill="#C44A2A" stroke="none" text-anchor="middle">$1,200 / mo</text>
-        </svg>
+        <svg viewBox="0 0 360 240" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-multitask"/></svg>
+        <div class="v3-comic-cost">$1,200 / mo</div>
       </div>
-      <h3 class="v3-comic-h">Today: six tools, six dashboards.</h3>
+      <h3 class="v3-comic-h">Today: <span class="mark">six tools</span>, six dashboards.</h3>
       <p class="v3-comic-p">You pay $1,200 a month so software can <i>tell</i> you what to fix. Then you fix it yourself, at midnight, on a Sunday.</p>
     </article>
 
     <article class="v3-comic-panel v3-comic-panel--2">
       <div class="v3-comic-num">02</div>
       <div class="v3-comic-illo" aria-hidden="true">
-        <svg viewBox="0 0 220 160" width="100%" fill="none" stroke="#151515" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
-          <rect x="40" y="20" width="140" height="100" rx="10" fill="#FFD202"/>
-          <path d="M 60 90 L 80 70 L 100 78 L 120 55 L 140 60 L 160 38" stroke="#3E5210" stroke-width="3" fill="none"/>
-          <circle cx="160" cy="38" r="4.5" fill="#3E5210"/>
-          <text x="110" y="148" font-family="Caveat" font-size="20" fill="#3E5210" stroke="none" text-anchor="middle">one screen ✨</text>
-        </svg>
+        <svg viewBox="0 0 360 220" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-controls"/></svg>
+        <div class="v3-comic-doodle">one screen ✨</div>
       </div>
-      <h3 class="v3-comic-h">Tomorrow: one Sage. One feed.</h3>
+      <h3 class="v3-comic-h">Tomorrow: <span class="mark">one Sage</span>. One feed.</h3>
       <p class="v3-comic-p">Sage decides which channels to touch and when. You see one timeline of what she did, with an undo button on every action.</p>
     </article>
 
     <article class="v3-comic-panel v3-comic-panel--3">
       <div class="v3-comic-num">03</div>
       <div class="v3-comic-illo" aria-hidden="true">
-        <svg viewBox="0 0 220 160" width="100%" fill="none" stroke="#151515" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5">
-          <rect x="20" y="36" width="180" height="80" rx="8" fill="#FAF9F4"/>
-          <line x1="36" y1="56" x2="120" y2="56"/>
-          <line x1="36" y1="72" x2="100" y2="72"/>
-          <line x1="36" y1="88" x2="130" y2="88"/>
-          <rect x="146" y="50" width="44" height="18" rx="9" fill="#3E5210" stroke="#151515" stroke-width="2"/>
-          <text x="168" y="63" font-family="JetBrains Mono" font-size="8.5" fill="#fff" stroke="none" text-anchor="middle">APPROVE</text>
-          <text x="110" y="20" font-family="Caveat" font-size="22" fill="#3E5210" stroke="none" text-anchor="middle">your morning queue</text>
-        </svg>
+        <svg viewBox="0 0 260 230" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-clipboard"/></svg>
+        <div class="v3-comic-doodle v3-comic-doodle--right">your morning queue</div>
       </div>
-      <h3 class="v3-comic-h">You stay in charge.</h3>
+      <h3 class="v3-comic-h">You stay <span class="mark">in charge</span>.</h3>
       <p class="v3-comic-p">Sage proposes; you dispose. Anything that touches money or your customers' inbox waits for a one-tap Approve. She earns trust by showing her work.</p>
     </article>
   </div>
@@ -2300,6 +2402,9 @@
   <div class="v3-tiles-grid">
     <a class="v3-tile v3-tile--seo" href="#">
       <div class="v3-tile-num">01</div>
+      <div class="v3-tile-sage" aria-hidden="true">
+        <svg viewBox="0 0 280 220" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-magnify"/></svg>
+      </div>
       <div class="v3-tile-name">SEO + GEO</div>
       <div class="v3-tile-tag">Search &amp; AI engine visibility</div>
       <div class="v3-tile-ui">
@@ -2312,6 +2417,9 @@
 
     <a class="v3-tile v3-tile--bi" href="#">
       <div class="v3-tile-num">02</div>
+      <div class="v3-tile-sage" aria-hidden="true">
+        <svg viewBox="0 0 260 230" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-calc"/></svg>
+      </div>
       <div class="v3-tile-name">Intelligence</div>
       <div class="v3-tile-tag">Attribution &amp; budget routing</div>
       <div class="v3-tile-ui">
@@ -2324,6 +2432,9 @@
 
     <a class="v3-tile v3-tile--ads" href="#">
       <div class="v3-tile-num">03</div>
+      <div class="v3-tile-sage" aria-hidden="true">
+        <svg viewBox="0 0 280 220" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-wrench"/></svg>
+      </div>
       <div class="v3-tile-name">Unified Ads</div>
       <div class="v3-tile-tag">Google · Meta · TikTok · more</div>
       <div class="v3-tile-ui">
@@ -2346,6 +2457,9 @@
 
     <a class="v3-tile v3-tile--content" href="#">
       <div class="v3-tile-num">04</div>
+      <div class="v3-tile-sage" aria-hidden="true">
+        <svg viewBox="0 0 260 220" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-sign"/></svg>
+      </div>
       <div class="v3-tile-name">Content</div>
       <div class="v3-tile-tag">Blogs · pages · social · email</div>
       <div class="v3-tile-ui">
@@ -2360,6 +2474,9 @@
 
     <a class="v3-tile v3-tile--trust" href="#">
       <div class="v3-tile-num">05</div>
+      <div class="v3-tile-sage" aria-hidden="true">
+        <svg viewBox="0 0 260 230" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-shield"/></svg>
+      </div>
       <div class="v3-tile-name">Trust</div>
       <div class="v3-tile-tag">Reviews · GBP · social proof</div>
       <div class="v3-tile-ui">
@@ -2372,6 +2489,9 @@
 
     <a class="v3-tile v3-tile--wa" href="#">
       <div class="v3-tile-num">06</div>
+      <div class="v3-tile-sage" aria-hidden="true">
+        <svg viewBox="0 0 220 220" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-wave"/></svg>
+      </div>
       <div class="v3-tile-name">WhatsApp CRM</div>
       <div class="v3-tile-tag">Sell + serve in chat</div>
       <div class="v3-tile-ui">
@@ -2385,6 +2505,9 @@
 
     <a class="v3-tile v3-tile--retain v3-tile--wide" href="#">
       <div class="v3-tile-num">07</div>
+      <div class="v3-tile-sage v3-tile-sage--wide" aria-hidden="true">
+        <svg viewBox="0 0 260 230" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-stopwatch"/></svg>
+      </div>
       <div class="v3-tile-name">Retention</div>
       <div class="v3-tile-tag">Lifecycle · churn ML · winback</div>
       <div class="v3-tile-ui v3-tile-ui--wide">
@@ -2405,6 +2528,10 @@
 
 <!-- ════════ V3 · DARK OUTCOMES SECTION ════════ -->
 <section class="v3-dark">
+  <!-- big Sage holding a ribbon · celebrates the outcome stats below -->
+  <div class="v3-dark-sage" aria-hidden="true">
+    <svg viewBox="0 0 260 220" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-ribbon"/></svg>
+  </div>
   <div class="wrap">
     <div class="v3-section-head v3-section-head--dark">
       <span class="v3-eyebrow v3-eyebrow--dark">→ WHAT 2,400 BUSINESSES WOKE UP TO</span>
@@ -2584,7 +2711,12 @@
       <span class="v3-eyebrow">→ COMMON QUESTIONS</span>
       <h2 class="v3-section-title">Things we get<br><span class="mark">asked a lot</span>.</h2>
       <p class="v3-section-sub">Still got questions? Hit our team in chat — we read every one.</p>
-      <a class="hero-v3-link" href="contact.html" style="margin-top: 18px;">Ask us anything →</a>
+      <a class="hero-v3-link" href="contact.html" style="margin-top: 18px; display: inline-block;">Ask us anything →</a>
+      <!-- Sage holding the "ask me" sign -->
+      <div class="v3-faq-sage" aria-hidden="true">
+        <svg viewBox="0 0 260 220" width="100%" preserveAspectRatio="xMidYMid meet"><use href="sage.svg#sage-sign"/></svg>
+        <div class="v3-faq-sage-bubble">I read every one.</div>
+      </div>
     </div>
     <div class="v3-faq-list">
       <details class="v3-faq-item" open>
